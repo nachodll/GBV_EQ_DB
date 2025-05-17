@@ -1,0 +1,5 @@
+datasets/
+scripts_privados/
+*.ipynb_checkpoints/
+site/
+venv/
