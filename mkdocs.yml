@@ -1,0 +1,22 @@
+site_name: Violencia de Género - Documentación Técnica
+theme:
+  name: material
+
+nav:
+  - Inicio: index.md
+
+  - Fuentes:
+      - Índice de fuentes: fuentes/README.md
+      - Barómetros del CIS: fuentes/violencia/cis_barometros.md
+
+  - Tablas:
+      - violencia_genero: tablas/violencia_genero.md
+
+  - Scripts:
+      - transformar_cis.py: scripts/transformar_cis.md
+
+  - Procesos:
+      - Dependencias y entorno: procesos/dependencias.md
+
+  - Decisiones técnicas:
+      - (por completar): decisiones/README.md
