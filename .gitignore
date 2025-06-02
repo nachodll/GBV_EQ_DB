@@ -1,5 +1,8 @@
 datasets/
-scripts_privados/
+datasets
 *.ipynb_checkpoints/
 site/
 venv/
+.env
+**/log
+.DS_Store
