@@ -1,0 +1,5 @@
+[tool.ruff]
+line-length = 120
+target-version = "py312"
+select = ["E", "F", "W"]  # (E=Errors, F=Failures, W=Warnings)
+ignore = []               # Errors to be ignored
