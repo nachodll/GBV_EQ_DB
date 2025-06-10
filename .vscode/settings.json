@@ -1,4 +1,5 @@
 {
+  // Configure ruff formatter for python
   "[python]": {
         "editor.formatOnType": true,
         "editor.defaultFormatter": "charliermarsh.ruff",
@@ -8,9 +9,14 @@
         }
     },
     "ruff.format.preview": false,
+    // Configure the ruff formatter for jupyter notebooks
     "notebook.formatOnSave.enabled": true,
     "notebook.defaultFormatter": "charliermarsh.ruff",
     "notebook.codeActionsOnSave": {
       "source.organizeImports": "explicit"
     },
+    // All jupyter notebooks will exectute from the root of the project
+    "jupyter.notebookFileRoot": "${workspaceFolder}",
+    // Load .env with PYTHONPATH so all python files will execute from the root of the project
+    "python.envFile": "${workspaceFolder}/.env",
 }
