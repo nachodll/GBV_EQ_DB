@@ -3,16 +3,14 @@ CREATE SCHEMA "geo";
 CREATE SCHEMA "violencia";
 
 CREATE TABLE "geo"."comunidades_autonomas" (
-  "id" serial PRIMARY KEY,
-  "nombre" varchar UNIQUE NOT NULL,
-  "codigo_ine" varchar(2) UNIQUE
+  "id" int PRIMARY KEY,
+  "nombre" varchar UNIQUE NOT NULL
 );
 
 CREATE TABLE "geo"."provincias" (
-  "id" serial PRIMARY KEY,
+  "id" int PRIMARY KEY,
   "nombre" varchar UNIQUE NOT NULL,
-  "comunidad_id" int,
-  "codigo_ine" varchar(2) UNIQUE
+  "comunidad_autonoma_id" int
 );
 
 CREATE TABLE "violencia"."feminicidios_pareja" (
@@ -44,7 +42,7 @@ CREATE TABLE "violencia"."servicio_016" (
   "total_consultas" int
 );
 
-ALTER TABLE "geo"."provincias" ADD FOREIGN KEY ("comunidad_id") REFERENCES "geo"."comunidades_autonomas" ("id");
+ALTER TABLE "geo"."provincias" ADD FOREIGN KEY ("comunidad_autonoma_id") REFERENCES "geo"."comunidades_autonomas" ("id");
 
 ALTER TABLE "violencia"."feminicidios_pareja" ADD FOREIGN KEY ("provincia_id") REFERENCES "geo"."provincias" ("id");
 
