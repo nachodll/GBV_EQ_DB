@@ -50,4 +50,4 @@ if df["provincia_id"].isnull().any():
 # Save cleaned CSV
 os.makedirs(os.path.dirname(clean_csv_path), exist_ok=True)
 df.to_csv(clean_csv_path, index=False)
-print(f"Cleaned data saved to {clean_csv_path}")
+print(f"✅ Cleaned data saved to {clean_csv_path}")

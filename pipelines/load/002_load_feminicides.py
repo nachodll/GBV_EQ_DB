@@ -35,4 +35,5 @@ with engine.begin() as conn:
     feminicidios_pareja_df.to_sql("feminicidios_pareja", con=conn, if_exists="append", index=False)
     feminicidios_no_pareja_df.to_sql("feminicidios_no_pareja", con=conn, if_exists="append", index=False)
 
-print("✅ Tables 'feminicidios_pareja' y 'feminicidios_no_pareja' loaded succesfully.")
+print("✅ Tables 'feminicidios_pareja' loaded succesfully.")
+print("✅ Table 'feminicidios_no_pareja' loaded successfully.")

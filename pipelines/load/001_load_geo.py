@@ -28,4 +28,5 @@ with engine.begin() as conn:
     # Load provincias (FK comunidad_autonoma_id must already exist)
     prov_df.to_sql(name="provincias", con=conn, if_exists="append", index=False)
 
-print("✅ Tables 'comunidades_autonomas' and 'provincias' loaded successfully.")
+print("✅ Table 'comunidades_autonomas' loaded successfully.")
+print("✅ Table 'provincias' loaded successfully.")
