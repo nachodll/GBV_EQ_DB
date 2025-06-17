@@ -166,15 +166,36 @@ def normalize_name(name: str, normalization_dict: dict) -> str | None:
     return None
 
 
-def normalize_name_provincia(name: str) -> str | None:
+def normalize_provincia(name: str) -> str | None:
     """
     Normalize a province name using the dict_provincia dictionary.
     """
     return normalize_name(name, dict_provincia)
 
 
-def normalize_name_comunidad_autonoma(name: str) -> str | None:
+def normalize_comunidad_autonoma(name: str) -> str | None:
     """
     Normalize a comunidad autónoma name using the dict_comunidad_autonoma dictionary.
     """
     return normalize_name(name, dict_comunidad_autonoma)
+
+
+def normalize_month(month: str) -> int | None:
+    """
+    Normalize a month name to its corresponding number.
+    """
+    months = {
+        "Enero": 1,
+        "Febrero": 2,
+        "Marzo": 3,
+        "Abril": 4,
+        "Mayo": 5,
+        "Junio": 6,
+        "Julio": 7,
+        "Agosto": 8,
+        "Septiembre": 9,
+        "Octubre": 10,
+        "Noviembre": 11,
+        "Diciembre": 12,
+    }
+    return months.get(month.strip(), None)
