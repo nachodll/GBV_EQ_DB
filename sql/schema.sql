@@ -1,51 +1,53 @@
-CREATE SCHEMA "geo";
+CREATE TABLE
+  comunidades_autonomas (
+    comunidades_autonomas_id INT PRIMARY KEY,
+    nombre VARCHAR UNIQUE NOT NULL
+  );
 
-CREATE SCHEMA "violencia";
+CREATE TABLE
+  provincias (
+    provincias_id INT PRIMARY KEY,
+    nombre VARCHAR UNIQUE NOT NULL,
+    comunidad_autonoma_id INT
+  );
 
-CREATE TABLE "geo"."comunidades_autonomas" (
-  "id" int PRIMARY KEY,
-  "nombre" varchar UNIQUE NOT NULL
-);
+CREATE TABLE
+  feminicidios_pareja (
+    feminicidios_pareja_id SERIAL PRIMARY KEY,
+    feminicidios INT,
+    huerfanos_menores INT,
+    provincia_id INT,
+    año INT,
+    mes INT,
+    edad_grupo_victima VARCHAR,
+    edad_grupo_agresor VARCHAR
+  );
 
-CREATE TABLE "geo"."provincias" (
-  "id" int PRIMARY KEY,
-  "nombre" varchar UNIQUE NOT NULL,
-  "comunidad_autonoma_id" int
-);
+CREATE TABLE
+  feminicidios_no_pareja (
+    feminicidios_no_pareja_id SERIAL PRIMARY KEY,
+    feminicidios INT,
+    tipo_feminicidio VARCHAR,
+    comunidad_autonoma_id INT,
+    año INT
+  );
 
-CREATE TABLE "violencia"."feminicidios_pareja" (
-  "id" serial PRIMARY KEY,
-  "num_feminicidios" int,
-  "huerfanos_menores" int,
-  "provincia_id" int,
-  "año" int,
-  "mes" int,
-  "vm_grupo_edad" varchar,
-  "ag_grupo_edad" varchar
-);
+CREATE TABLE
+  servicio_016 (
+    servicio_016_id SERIAL PRIMARY KEY,
+    provincia_id INT,
+    año INT,
+    mes INT,
+    idioma VARCHAR,
+    tipo_violencia VARCHAR,
+    total_consultas INT
+  );
 
-CREATE TABLE "violencia"."feminicidios_no_pareja" (
-  "id" serial PRIMARY KEY,
-  "num_feminicidios" int,
-  "tipo_feminicidio" varchar,
-  "comunidad_autonoma_id" int,
-  "año" int
-);
+-- Foreign keys
+ALTER TABLE provincias ADD FOREIGN KEY (comunidad_autonoma_id) REFERENCES comunidades_autonomas (comunidades_autonomas_id);
 
-CREATE TABLE "violencia"."servicio_016" (
-  "id" serial PRIMARY KEY,
-  "provincia_id" int,
-  "año" int,
-  "mes" int,
-  "idioma" varchar,
-  "tipo_violencia" varchar,
-  "total_consultas" int
-);
+ALTER TABLE feminicidios_pareja ADD FOREIGN KEY (provincia_id) REFERENCES provincias (provincias_id);
 
-ALTER TABLE "geo"."provincias" ADD FOREIGN KEY ("comunidad_autonoma_id") REFERENCES "geo"."comunidades_autonomas" ("id");
+ALTER TABLE feminicidios_no_pareja ADD FOREIGN KEY (comunidad_autonoma_id) REFERENCES comunidades_autonomas (comunidades_autonomas_id);
 
-ALTER TABLE "violencia"."feminicidios_pareja" ADD FOREIGN KEY ("provincia_id") REFERENCES "geo"."provincias" ("id");
-
-ALTER TABLE "violencia"."feminicidios_no_pareja" ADD FOREIGN KEY ("comunidad_autonoma_id") REFERENCES "geo"."comunidades_autonomas" ("id");
-
-ALTER TABLE "violencia"."servicio_016" ADD FOREIGN KEY ("provincia_id") REFERENCES "geo"."provincias" ("id");
+ALTER TABLE servicio_016 ADD FOREIGN KEY (provincia_id) REFERENCES provincias (provincias_id);

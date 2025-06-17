@@ -3,7 +3,7 @@ import os
 import pandas as pd
 import pyreadstat
 
-from utils.region_normalization import normalize_name_comunidad_autonoma, normalize_name_provincia
+from utils.normalization import normalize_comunidad_autonoma, normalize_provincia
 
 output_dir = os.path.join("data", "preliminary-merge")
 
@@ -11,7 +11,7 @@ output_dir = os.path.join("data", "preliminary-merge")
 pre001_path = os.path.join("data", "raw", "DGVG", "DGVG001-010FeminicidiosPareja.csv")
 pre001 = pd.read_csv(pre001_path)
 pre001.rename(columns={"Provincia (As)": "Provincia"}, inplace=True)
-pre001["Provincia"] = pre001["Provincia"].apply(normalize_name_provincia)
+pre001["Provincia"] = pre001["Provincia"].apply(normalize_provincia)
 pre001_csv_path = os.path.join(output_dir, "PRE001-FeminicidiosPareja.csv")
 pre001.to_csv(pre001_csv_path, index=False)
 
@@ -19,21 +19,21 @@ pre001.to_csv(pre001_csv_path, index=False)
 pre002_path = os.path.join("data", "raw", "DGVG", "DGVG002-020FeminicidiosFueraParejaExpareja.csv")
 pre002 = pd.read_csv(pre002_path)
 pre002.rename(columns={"Comunidad autónoma (As)": "Comunidad autónoma"}, inplace=True)
-pre002["Comunidad autónoma"] = pre002["Comunidad autónoma"].apply(normalize_name_comunidad_autonoma)
+pre002["Comunidad autónoma"] = pre002["Comunidad autónoma"].apply(normalize_comunidad_autonoma)
 pre002_csv_path = os.path.join(output_dir, "PRE002-FeminicidiosFueraPareja.csv")
 pre002.to_csv(pre002_csv_path, index=False)
 
 # PRE003 - VioGen
 pre003_path = os.path.join("data", "raw", "DGVG", "DGVG008-090VioGenSistemaSeguimientoIntegral.csv")
 pre003 = pd.read_csv(pre003_path)
-pre003["Comunidad autónoma"] = pre003["Comunidad autónoma"].apply(normalize_name_comunidad_autonoma)
+pre003["Comunidad autónoma"] = pre003["Comunidad autónoma"].apply(normalize_comunidad_autonoma)
 pre003_csv_path = os.path.join(output_dir, "PRE003-VioGen.csv")
 pre003.to_csv(pre003_csv_path, index=False)
 
 # PRE004 - Servicio 016
 pre004 = os.path.join("data", "raw", "DGVG", "DGVG004-040Servicio016.csv")
 pre004 = pd.read_csv(pre004)
-pre004["Provincia"] = pre004["Provincia"].apply(normalize_name_provincia)
+pre004["Provincia"] = pre004["Provincia"].apply(normalize_provincia)
 pre004_csv_path = os.path.join(output_dir, "PRE004-Servicio016.csv")
 pre004.to_csv(pre004_csv_path, index=False)
 
@@ -41,7 +41,7 @@ pre004.to_csv(pre004_csv_path, index=False)
 pre005_path = os.path.join("data", "raw", "INE", "INE020-DenunciasIncoadasTipoInfracción.csv")
 pre005 = pd.read_csv(pre005_path, sep=";")
 pre005.rename(columns={"Comunidades y ciudades autónomas": "Comunidad autónoma"}, inplace=True)
-pre005["Comunidad autónoma"] = pre005["Comunidad autónoma"].apply(normalize_name_comunidad_autonoma)
+pre005["Comunidad autónoma"] = pre005["Comunidad autónoma"].apply(normalize_comunidad_autonoma)
 pre005_csv_path = os.path.join(output_dir, "PRE005-DenunciasVDG.csv")
 pre005.to_csv(pre005_csv_path, index=False)
 
@@ -116,8 +116,8 @@ pre006.rename(
     },
     inplace=True,
 )
-pre006["Comunidad autónoma"] = pre006["Comunidad autónoma"].apply(normalize_name_comunidad_autonoma)
-pre006["Provincia"] = pre006["Provincia"].apply(normalize_name_provincia)
+pre006["Comunidad autónoma"] = pre006["Comunidad autónoma"].apply(normalize_comunidad_autonoma)
+pre006["Provincia"] = pre006["Provincia"].apply(normalize_provincia)
 
 pre006_csv_path = os.path.join(output_dir, "PRE006-MacroencuestasVDG.csv")
 pre006.to_csv(pre006_csv_path, index=False)
