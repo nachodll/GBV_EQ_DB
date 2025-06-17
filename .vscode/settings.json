@@ -19,4 +19,11 @@
     "jupyter.notebookFileRoot": "${workspaceFolder}",
     // Load .env with PYTHONPATH so all python files will execute from the root of the project
     "python.envFile": "${workspaceFolder}/.env",
+
+    // Sql formatting with Prettier
+    "[sql]": {
+      "editor.defaultFormatter": "inferrinizzard.prettier-sql-vscode",
+      "editor.formatOnSave": true
+    }
+
 }
