@@ -5,12 +5,12 @@ import os
 import subprocess
 from pathlib import Path
 
+SCHEMA_PATH = Path("sql") / "schema.sql"
+
 
 def main() -> None:
-    schema_path = Path("sql/schema.sql")
-
     subprocess.run(
-        ["psql", "-U", os.getenv("DB_USER"), "-d", os.getenv("DB_NAME"), "-f", str(schema_path)],
+        ["psql", "-U", os.getenv("DB_USER"), "-d", os.getenv("DB_NAME"), "-f", str(SCHEMA_PATH)],
         check=True,
     )
 

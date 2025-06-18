@@ -5,10 +5,11 @@ import os
 import subprocess
 from pathlib import Path
 
+TEMPLATE_PATH = Path("sql") / "reset_db_template.sql"
+
 
 def main() -> None:
-    template_path = Path("sql/reset_db_template.sql")
-    with open(template_path) as f:
+    with open(TEMPLATE_PATH) as f:
         sql_script = os.path.expandvars(f.read())
 
     subprocess.run(

@@ -1,8 +1,16 @@
 import os
+from pathlib import Path
 
 import pandas as pd
 from sqlalchemy import create_engine, text
 
+# Load CSVs to dataframes
+CCAA_PATH = Path("data") / "static" / "ComunidadesAutónomas.csv"
+PROV_PATH = Path("data") / "static" / "Provincias.csv"
+ccaa_df = pd.read_csv(CCAA_PATH)
+prov_df = pd.read_csv(PROV_PATH)
+
+# Create database engine
 engine = create_engine(
     (
         f"postgresql://{os.getenv('DB_USER')}:"
@@ -11,10 +19,6 @@ engine = create_engine(
         f"{os.getenv('DB_NAME')}"
     )
 )
-
-# Load CSVs
-ccaa_df = pd.read_csv("data/static/ComunidadesAutónomas.csv")
-prov_df = pd.read_csv("data/static/Provincias.csv")
 
 # Insert into DB
 with engine.begin() as conn:

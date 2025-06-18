@@ -1,11 +1,11 @@
-import os
 import subprocess
+from pathlib import Path
 
 # Define load scripts to run
-load_scripts_dir = os.path.join("scripts", "load")
+LOAD_SCRIPTS_DIR = Path("scripts") / "load"
 SCRIPTS = [
-    "001_load_geo.py",
-    "002_load_feminicides.py",
+    LOAD_SCRIPTS_DIR / "001_load_geo.py",
+    LOAD_SCRIPTS_DIR / "002_load_feminicides.py",
 ]
 
 
@@ -20,5 +20,4 @@ def run_script(script_path):
 
 
 for script in SCRIPTS:
-    script_path = os.path.join(load_scripts_dir, script)
-    run_script(script_path)
+    run_script(script)

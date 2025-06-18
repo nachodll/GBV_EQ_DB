@@ -1,6 +1,7 @@
 import os
 import time
 from datetime import datetime
+from pathlib import Path
 from urllib.parse import quote
 
 from selenium import webdriver
@@ -11,8 +12,11 @@ from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.support.ui import WebDriverWait
 
 # Settings
-driver_path = "/opt/homebrew/bin/chromedriver"
-max_retries = 3
+DRIVER_PATH = Path("/opt/homebrew/bin/chromedriver")
+
+# Terms to be consulted
+TERMS = ["pornhub", "xvideos"]
+MAX_RETRIES = 3
 
 # Log
 log_dir = os.path.join(os.path.dirname(__file__), "log")
@@ -22,7 +26,6 @@ log_path = os.path.join(log_dir, f"log{timestamp}.log")
 log_file = open(log_path, mode="w", encoding="utf-8")
 
 # List of terms to be consulted
-terms = ["pornhub", "xvideos"]
 
 # Comunidades Autónomas and its codes
 regions = {
@@ -49,16 +52,16 @@ regions = {
 options = Options()
 options.add_argument("--start-maximized")
 # options.add_argument("--headless")  # Activar si no necesitas ver el navegador
-service = Service(driver_path)
+service = Service(str(DRIVER_PATH))
 driver = webdriver.Chrome(service=service, options=options)
 wait = WebDriverWait(driver, 15)
 
 try:
-    for term in terms:
+    for term in TERMS:
         for region_name, region_code in regions.items():
             attemp = 0
             success = False
-            while attemp < max_retries and not success:
+            while attemp < MAX_RETRIES and not success:
                 attemp += 1
                 timestamp = datetime.now().isoformat()
                 print(f"🔁 Attemp {attemp}: Popularity of '{term}' in {region_name}")
@@ -87,7 +90,7 @@ try:
                 except Exception as e:
                     msg = f"Attemp {attemp} failed: {type(e).__name__} - {str(e)}"
                     print(f"⚠️ {msg}")
-                    if attemp == max_retries:
+                    if attemp == MAX_RETRIES:
                         print(f"❌ Downloaded failed for {term} / {region_name}")
                         log_file.write(
                             f"{datetime.now().isoformat()}\tERROR\tDownload failed for [{term}/{region_name}]\n"

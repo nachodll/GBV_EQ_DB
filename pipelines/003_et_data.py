@@ -1,11 +1,11 @@
-import os
 import subprocess
+from pathlib import Path
 
 # Define extract transform scripts to run
-et_scripts_dir = os.path.join("scripts", "extract_transform")
+ET_SCRIPTS_DIR = Path("scripts") / "extract_transform"
 SCRIPTS = [
-    "001_et_feminicidios_pareja.py",
-    "002_et_feminicidios_no_pareja.py",
+    ET_SCRIPTS_DIR / "001_et_feminicidios_pareja.py",
+    ET_SCRIPTS_DIR / "002_et_feminicidios_no_pareja.py",
 ]
 
 
@@ -20,5 +20,4 @@ def run_script(script_path):
 
 
 for script in SCRIPTS:
-    script_path = os.path.join(et_scripts_dir, script)
-    run_script(script_path)
+    run_script(script)

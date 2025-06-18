@@ -1,8 +1,8 @@
 import os
 import time
 from datetime import datetime
+from pathlib import Path
 
-from dotenv import dotenv_values
 from selenium import webdriver
 from selenium.common.exceptions import NoSuchElementException
 from selenium.webdriver.chrome.options import Options
@@ -12,8 +12,8 @@ from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.support.ui import WebDriverWait
 
 # Settings
-driver_path = "/opt/homebrew/bin/chromedriver"
-email = dotenv_values(".env")["CIS_EMAIL"]
+DRIVER_PATH = Path("/opt/homebrew/bin/chromedriver")
+CIS_EMAIL = os.getenv("CIS_EMAIL")
 
 # Log
 log_dir = os.path.join(os.path.dirname(__file__), "log")
@@ -26,7 +26,7 @@ log_file = open(log_path, mode="w", encoding="utf-8")
 options = Options()
 options.add_argument("--start-maximized")
 # options.add_argument("--headless")
-service = Service(driver_path)
+service = Service(str(DRIVER_PATH))
 driver = webdriver.Chrome(service=service, options=options)
 wait = WebDriverWait(driver, 15)
 
@@ -105,12 +105,12 @@ try:
             )
             input_email = driver.find_element(By.ID, label_email.get_attribute("for"))
             input_email.clear()
-            input_email.send_keys(email)
+            input_email.send_keys(CIS_EMAIL)
 
             label_confirm = driver.find_element(By.XPATH, "//label[contains(., 'Confirmar Email')]")
             input_confirm = driver.find_element(By.ID, label_confirm.get_attribute("for"))
             input_confirm.clear()
-            input_confirm.send_keys(email)
+            input_confirm.send_keys(CIS_EMAIL)
 
             try:
                 checkbox = driver.find_element(By.XPATH, "//label[contains(., 'acepta')]/input[@type='checkbox']")

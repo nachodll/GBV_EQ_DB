@@ -1,15 +1,16 @@
 import os
+from pathlib import Path
 
 import pandas as pd
 
 from utils.normalization import normalize_comunidad_autonoma
 
 # Paths
-raw_csv_path = os.path.join("data", "raw", "DGVG", "DGVG002-020FeminicidiosFueraParejaExpareja.csv")
-clean_csv_path = os.path.join("data", "clean", "feminicidios_no_pareja.csv")
+RAW_CSV_PATH = Path("data") / "raw" / "DGVG" / "DGVG002-020FeminicidiosFueraParejaExpareja.csv"
+CLEAN_CSV_PATH = Path("data") / "clean" / "feminicidios_no_pareja.csv"
 
 # Read file
-df = pd.read_csv(raw_csv_path)
+df = pd.read_csv(RAW_CSV_PATH)
 
 # Delete spaces
 df.columns = df.columns.str.strip()
@@ -39,6 +40,6 @@ if df["comunidad_autonoma_id"].isnull().any():
     raise ValueError(f"Unmapped provinces found: {missing}")
 
 # Save cleaned CSV
-os.makedirs(os.path.dirname(clean_csv_path), exist_ok=True)
-df.to_csv(clean_csv_path, index=False)
-print(f"✅ Cleaned data saved to {clean_csv_path}")
+os.makedirs(os.path.dirname(CLEAN_CSV_PATH), exist_ok=True)
+df.to_csv(CLEAN_CSV_PATH, index=False)
+print(f"✅ Cleaned data saved to {CLEAN_CSV_PATH}")

@@ -1,6 +1,7 @@
 import os
 import time
 from datetime import datetime
+from pathlib import Path
 
 from selenium import webdriver
 from selenium.common.exceptions import TimeoutException
@@ -11,7 +12,7 @@ from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.support.ui import WebDriverWait
 
 # Settings
-driver_path = "/opt/homebrew/bin/chromedriver"
+DRIVER_PATH = Path("/opt/homebrew/bin/chromedriver")
 
 # Log
 log_dir = os.path.join(os.path.dirname(__file__), "log")
@@ -24,7 +25,7 @@ log_file = open(log_path, mode="w", encoding="utf-8")
 options = Options()
 options.add_argument("--start-maximized")
 # options.add_argument("--headless")
-service = Service(driver_path)
+service = Service(str(DRIVER_PATH))
 driver = webdriver.Chrome(service=service, options=options)
 wait = WebDriverWait(driver, 15)
 

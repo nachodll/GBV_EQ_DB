@@ -1,8 +1,21 @@
 import os
+from pathlib import Path
 
 import pandas as pd
 from sqlalchemy import create_engine, text
 
+FEMINICIDIOS_PAREJA_PATH = Path("data") / "clean" / "feminicidios_pareja.csv"
+FEMINICIDIOS_NO_PAREJA_PATH = Path("data") / "clean" / "feminicidios_no_pareja.csv"
+
+# Load CSVs to dataframes
+feminicidios_pareja_df = pd.read_csv(FEMINICIDIOS_PAREJA_PATH)[
+    ["feminicidios", "huerfanos_menores", "provincia_id", "año", "mes", "edad_grupo_victima", "edad_grupo_agresor"]
+]
+feminicidios_no_pareja_df = pd.read_csv(FEMINICIDIOS_NO_PAREJA_PATH)[
+    ["feminicidios", "tipo_feminicidio", "comunidad_autonoma_id", "año"]
+]
+
+# Create database engine
 engine = create_engine(
     (
         f"postgresql://{os.getenv('DB_USER')}:"
@@ -11,19 +24,6 @@ engine = create_engine(
         f"{os.getenv('DB_NAME')}"
     )
 )
-
-# Build paths to cleaned CSVs
-feminicidios_pareja_path = os.path.join("data", "clean", "feminicidios_pareja.csv")
-feminicidios_no_pareja_path = os.path.join("data", "clean", "feminicidios_no_pareja.csv")
-
-# Load dataframes
-feminicidios_pareja_df = pd.read_csv(feminicidios_pareja_path)[
-    ["feminicidios", "huerfanos_menores", "provincia_id", "año", "mes", "edad_grupo_victima", "edad_grupo_agresor"]
-]
-
-feminicidios_no_pareja_df = pd.read_csv(feminicidios_no_pareja_path)[
-    ["feminicidios", "tipo_feminicidio", "comunidad_autonoma_id", "año"]
-]
 
 # Insert with full transaction
 with engine.begin() as conn:
