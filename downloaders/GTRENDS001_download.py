@@ -1,4 +1,4 @@
-import os
+import logging
 import time
 from datetime import datetime
 from pathlib import Path
@@ -34,14 +34,25 @@ REGIONS = {
     "La Rioja": "ES-RI",
 }
 
+LOG_DIR = Path("logs") / "download_GTRENDS"
+LOG_PATH = LOG_DIR / f"{datetime.now().isoformat()}.log"
+
+
+def setup_logging() -> None:
+    """Configure root logger to log to stdout and file."""
+    LOG_DIR.mkdir(exist_ok=True)
+    logging.basicConfig(
+        level=logging.INFO,
+        format="%(asctime)s %(levelname)s [%(name)s] %(message)s",
+        handlers=[
+            logging.StreamHandler(),
+            logging.FileHandler(LOG_PATH),
+        ],
+    )
+
 
 def main():
-    # Log
-    log_dir = os.path.join(os.path.dirname(__file__), "log")
-    os.makedirs(log_dir, exist_ok=True)
-    timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
-    log_path = os.path.join(log_dir, f"log{timestamp}.log")
-    log_file = open(log_path, mode="w", encoding="utf-8")
+    setup_logging()
 
     # Selenium Config
     options = Options()
@@ -58,7 +69,6 @@ def main():
                 success = False
                 while attemp < MAX_RETRIES and not success:
                     attemp += 1
-                    timestamp = datetime.now().isoformat()
                     print(f"🔁 Attemp {attemp}: Popularity of '{term}' in {region_name}")
                     url = (
                         f"https://trends.google.com/trends/explore"
@@ -78,7 +88,7 @@ def main():
                         export_button = wait.until(EC.element_to_be_clickable((By.XPATH, xpath)))
                         export_button.click()
                         print(f"✅ Download successful: {term} / {region_name}")
-                        log_file.write(f"{datetime.now().isoformat()}\tSUCCESS\tDownloaded [{term}/{region_name}]\n")
+                        logging.info(f"Downloaded: {term} / {region_name}")
                         time.sleep(1)
                         success = True
 
@@ -87,18 +97,12 @@ def main():
                         print(f"⚠️ {msg}")
                         if attemp == MAX_RETRIES:
                             print(f"❌ Downloaded failed for {term} / {region_name}")
-                            log_file.write(
-                                f"{datetime.now().isoformat()}\tERROR\tDownload failed for [{term}/{region_name}]\n"
-                            )
+                            logging.error(f"Download failed for {term} / {region_name}: {msg}")
                         else:
-                            log_file.write(
-                                f"{datetime.now().isoformat()}\tWARNING\tAttemp {attemp} failed for [{term}/{region_name}]\n"  # noqa: E501
-                            )
+                            logging.warning(f"Attemp {attemp} failed for {term} / {region_name}")
                             time.sleep(1)
     finally:
         driver.quit()
-        log_file.close()
-        print(f"\n✅ Process finished. Log at: {log_path}")
 
 
 if __name__ == "__main__":

@@ -1,4 +1,4 @@
-import os
+import logging
 import time
 from datetime import datetime
 from pathlib import Path
@@ -14,14 +14,25 @@ from selenium.webdriver.support.ui import WebDriverWait
 DRIVER_PATH = Path("/opt/homebrew/bin/chromedriver")
 URL = "https://www.ine.es/dynt3/inebase/index.htm?padre=525#"
 
+LOG_DIR = Path("logs") / "download_INE"
+LOG_PATH = LOG_DIR / f"{datetime.now().isoformat()}.log"
+
+
+def setup_logging() -> None:
+    """Configure root logger to log to stdout and file."""
+    LOG_DIR.mkdir(exist_ok=True)
+    logging.basicConfig(
+        level=logging.INFO,
+        format="%(asctime)s %(levelname)s [%(name)s] %(message)s",
+        handlers=[
+            logging.StreamHandler(),
+            logging.FileHandler(LOG_PATH),
+        ],
+    )
+
 
 def main():
-    # Log
-    log_dir = os.path.join(os.path.dirname(__file__), "log")
-    os.makedirs(log_dir, exist_ok=True)
-    timestamp = datetime.now().isoformat()
-    log_path = os.path.join(log_dir, f"log{timestamp}.log")
-    log_file = open(log_path, mode="w", encoding="utf-8")
+    setup_logging()
 
     # Selenium Config
     options = Options()
@@ -42,7 +53,7 @@ def main():
             print("📄 Download buttons were found")
         except TimeoutException:
             print("❌ Download buttons not found")
-            log_file.write(f"{datetime.now().isoformat()}\tERROR\tDownload buttons not found\n")
+            logging.error("Download buttons not found")
             driver.quit()
             exit()
 
@@ -74,22 +85,20 @@ def main():
                     href_csv = csv_format.get_attribute("href")
                     driver.get(href_csv)
                     print(f"⬇️ Downloading CSV for {provincia}")
-                    log_file.write(f"{datetime.now().isoformat()}\tSUCCESS\tDownloaded {provincia}\n")
+                    logging.info(f"Downloading CSV for {provincia}")
                     time.sleep(2)
                 else:
-                    print(f"⚠️ CSV format was not found for {provincia}")
-                    log_file.write(f"{datetime.now().isoformat()}\tERROE\tCSV not found for {provincia}\n")
+                    print(f"❌ CSV format was not found for {provincia}")
+                    logging.error(f"CSV format was not found for {provincia}")
 
                 driver.close()
                 driver.switch_to.window(driver.window_handles[0])
 
             except Exception as e:
                 print(f"❌ Error processing {provincia}: {e}")
-                log_file.write(f"{datetime.now().isoformat()}\tERROR\t{str(e)}\n")
+                logging.error(f"Error processing {provincia}: {e}")
     finally:
         driver.quit()
-        log_file.close()
-        print(f"\n✅ Process finished. Log at: {log_path}")
 
 
 if __name__ == "__main__":

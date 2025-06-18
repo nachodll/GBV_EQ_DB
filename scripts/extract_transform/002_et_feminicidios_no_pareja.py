@@ -1,4 +1,4 @@
-import os
+import logging
 from pathlib import Path
 
 import pandas as pd
@@ -8,6 +8,9 @@ from utils.normalization import normalize_comunidad_autonoma
 # Paths
 RAW_CSV_PATH = Path("data") / "raw" / "DGVG" / "DGVG002-020FeminicidiosFueraParejaExpareja.csv"
 CLEAN_CSV_PATH = Path("data") / "clean" / "feminicidios_no_pareja.csv"
+
+# Logger setup
+logger = logging.getLogger(__name__)
 
 
 def main():
@@ -42,10 +45,12 @@ def main():
         raise ValueError(f"Unmapped provinces found: {missing}")
 
     # Save cleaned CSV
-    os.makedirs(os.path.dirname(CLEAN_CSV_PATH), exist_ok=True)
+    CLEAN_CSV_PATH.parent.mkdir(parents=True, exist_ok=True)
     df.to_csv(CLEAN_CSV_PATH, index=False)
-    print(f"✅ Cleaned data saved to {CLEAN_CSV_PATH}")
+    logger.info(f"Data cleaned and saved to {CLEAN_CSV_PATH}")
 
 
 if __name__ == "__main__":
+    if not logging.getLogger().hasHandlers():
+        logging.basicConfig(level=logging.INFO, format="%(asctime)s - %(name)s - %(levelname)s - %(message)s")
     main()

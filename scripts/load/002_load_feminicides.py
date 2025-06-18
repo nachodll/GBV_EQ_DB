@@ -1,3 +1,4 @@
+import logging
 import os
 from pathlib import Path
 
@@ -6,6 +7,9 @@ from sqlalchemy import create_engine, text
 
 FEMINICIDIOS_PAREJA_PATH = Path("data") / "clean" / "feminicidios_pareja.csv"
 FEMINICIDIOS_NO_PAREJA_PATH = Path("data") / "clean" / "feminicidios_no_pareja.csv"
+
+# Logger setup
+logger = logging.getLogger(__name__)
 
 
 def main():
@@ -37,9 +41,11 @@ def main():
         feminicidios_pareja_df.to_sql("feminicidios_pareja", con=conn, if_exists="append", index=False)
         feminicidios_no_pareja_df.to_sql("feminicidios_no_pareja", con=conn, if_exists="append", index=False)
 
-    print("✅ Tables 'feminicidios_pareja' loaded succesfully.")
-    print("✅ Table 'feminicidios_no_pareja' loaded successfully.")
+    logging.info("Table 'feminicidios_pareja' loaded successfully.")
+    logging.info("Table 'feminicidios_no_pareja' loaded successfully.")
 
 
 if __name__ == "__main__":
+    if not logging.getLogger().hasHandlers():
+        logging.basicConfig(level=logging.INFO, format="%(asctime)s - %(name)s - %(levelname)s - %(message)s")
     main()

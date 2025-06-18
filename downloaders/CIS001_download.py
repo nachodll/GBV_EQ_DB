@@ -1,3 +1,4 @@
+import logging
 import os
 import time
 from datetime import datetime
@@ -16,13 +17,25 @@ URL = "https://www.cis.es/catalogo-estudios/resultados-definidos/barometros"
 CIS_EMAIL = os.getenv("CIS_EMAIL")
 
 
+LOG_DIR = Path("logs") / "download_CIS"
+LOG_PATH = LOG_DIR / f"{datetime.now().isoformat()}.log"
+
+
+def setup_logging() -> None:
+    """Configure root logger to log to stdout and file."""
+    LOG_DIR.mkdir(exist_ok=True)
+    logging.basicConfig(
+        level=logging.INFO,
+        format="%(asctime)s %(levelname)s [%(name)s] %(message)s",
+        handlers=[
+            logging.StreamHandler(),
+            logging.FileHandler(LOG_PATH),
+        ],
+    )
+
+
 def main():
-    # Log
-    log_dir = os.path.join(os.path.dirname(__file__), "log")
-    os.makedirs(log_dir, exist_ok=True)
-    timestamp = datetime.now().isoformat()
-    log_path = os.path.join(log_dir, f"log{timestamp}.log")
-    log_file = open(log_path, mode="w", encoding="utf-8")
+    setup_logging()
 
     # Selenium Config
     options = Options()
@@ -67,7 +80,7 @@ def main():
                     time.sleep(2)
             except Exception as e:
                 print(f"❌ Not able to check next page: {e}")
-                log_file.write(f"{datetime.now().isoformat()}\tERROR\tNot able to check the next page: {e}\n")
+                logging.error(f"Not able to check next page: {e}")
                 break
 
         print(f"\n🔗 Total number of studies found: {len(estudio_urls)}")
@@ -86,7 +99,7 @@ def main():
                     driver.execute_script("arguments[0].click();", data_zip_link)
                 except NoSuchElementException:
                     print("⚠️ No data zip file available for this study")
-                    log_file.write(f"{datetime.now().isoformat()}\tWARNING\tNo data zip file available for {url}\n")
+                    logging.warning(f"No data zip file available for {url}")
                     continue
 
                 if len(driver.window_handles) > 1:
@@ -123,7 +136,7 @@ def main():
                         checkbox.click()
                     except Exception:
                         print("❌ Checkbox not found")
-                        log_file.write(f"{datetime.now().isoformat()}\tERROR\tNo data zip file found for {url}\n")
+                        logging.error(f"Checkbox not found for {url}")
                         continue
 
                 submit_btn = driver.find_element(By.ID, "ddm-form-submit")
@@ -133,7 +146,7 @@ def main():
                 download_btn = driver.find_element(By.XPATH, "//a[contains(text(),'Descargar')]")
                 print(f"⬇️ Downloading from: {download_btn.get_attribute('href')}")
                 download_btn.click()
-                log_file.write(f"{datetime.now().isoformat()}\tSUCCESS\tDownloaded data for {url}\n")
+                logging.info(f"Downloaded data for {url}")
                 time.sleep(2)
 
                 if len(driver.window_handles) > 1:
@@ -142,11 +155,9 @@ def main():
 
             except Exception as e:
                 print(f"❌ Error processing {url}: {e}")
-                log_file.write(f"{datetime.now().isoformat()}\tERROR\t{str(e)} for {url}\n")
+                logging.error(f"Error processing {url}: {e}")
     finally:
         driver.quit()
-        log_file.close()
-        print(f"\n✅ Process finished. Log at: {log_path}")
 
 
 if __name__ == "__main__":

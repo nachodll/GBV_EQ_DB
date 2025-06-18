@@ -1,3 +1,4 @@
+import logging
 import os
 from pathlib import Path
 
@@ -6,6 +7,9 @@ from sqlalchemy import create_engine, text
 
 CCAA_PATH = Path("data") / "static" / "ComunidadesAutónomas.csv"
 PROV_PATH = Path("data") / "static" / "Provincias.csv"
+
+# Logger setup
+logger = logging.getLogger(__name__)
 
 
 def main():
@@ -35,9 +39,11 @@ def main():
         # Load provincias (FK comunidad_autonoma_id must already exist)
         prov_df.to_sql(name="provincias", con=conn, if_exists="append", index=False)
 
-    print("✅ Table 'comunidades_autonomas' loaded successfully.")
-    print("✅ Table 'provincias' loaded successfully.")
+    logger.info("Table 'comunidades_autonomas' loaded successfully.")
+    logger.info("Table 'provincias' loaded successfully.")
 
 
 if __name__ == "__main__":
+    if not logging.getLogger().hasHandlers():
+        logging.basicConfig(level=logging.INFO, format="%(asctime)s - %(name)s - %(levelname)s - %(message)s")
     main()
