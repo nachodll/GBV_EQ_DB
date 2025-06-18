@@ -117,12 +117,12 @@ dict_comunidad_autonoma = {
     "Rioja": 17,
     "Ceuta": 18,
     "Melilla": 19,
-    "España": "España",
-    "España (Total)": "España",
-    "Total España": "España",
-    "Total": "España",
-    "Total Nacional": "España",
-    "Nacional": "España",
+    "España": 0,
+    "España (Total)": 0,
+    "Total España": 0,
+    "Total": 0,
+    "Total Nacional": 0,
+    "Nacional": 0,
 }
 
 
@@ -133,14 +133,12 @@ def strip_accents(text: str) -> str:
     return "".join(c for c in unicodedata.normalize("NFD", text) if unicodedata.category(c) != "Mn")
 
 
-def normalize_name(name: str, normalization_dict: dict) -> str | None:
+def normalize_name(name: str, normalization_dict: dict[str, int]) -> int | None:
     """
     Generic normalization function for names using a provided normalization dictionary.
     Ignores case, accents, and any spaces (leading, trailing, or in the middle).
     Returns the normalized name, or None if not found.
     """
-    if not isinstance(name, str):
-        return None
     cleaned = name.strip()
     # Try direct match first
     if cleaned in normalization_dict:
@@ -156,7 +154,7 @@ def normalize_name(name: str, normalization_dict: dict) -> str | None:
             return normalization_dict[key]
 
     # Try accent-insensitive, case-insensitive, and space-insensitive match
-    def normalize_spaces(s):
+    def normalize_spaces(s: str):
         return strip_accents(s).replace(" ", "").lower()
 
     cleaned_no_spaces = normalize_spaces(cleaned)
@@ -166,14 +164,14 @@ def normalize_name(name: str, normalization_dict: dict) -> str | None:
     return None
 
 
-def normalize_provincia(name: str) -> str | None:
+def normalize_provincia(name: str) -> int | None:
     """
     Normalize a province name using the dict_provincia dictionary.
     """
     return normalize_name(name, dict_provincia)
 
 
-def normalize_comunidad_autonoma(name: str) -> str | None:
+def normalize_comunidad_autonoma(name: str) -> int | None:
     """
     Normalize a comunidad autónoma name using the dict_comunidad_autonoma dictionary.
     """

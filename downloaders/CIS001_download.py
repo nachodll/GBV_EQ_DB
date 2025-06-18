@@ -37,6 +37,10 @@ def setup_logging() -> None:
 def main():
     setup_logging()
 
+    if CIS_EMAIL is None:
+        logging.error("CIS_EMAIL environment variable is not set.")
+        raise ValueError("CIS_EMAIL environment variable is not set.")
+
     # Selenium Config
     options = Options()
     options.add_argument("--start-maximized")
@@ -57,7 +61,7 @@ def main():
 
         # Load table
         wait.until(EC.presence_of_element_located((By.ID, "tablaEstudios")))
-        estudio_urls = set()
+        estudio_urls: set[str] = set()
 
         while True:
             print("🔄 Processing page...")
@@ -65,14 +69,14 @@ def main():
             rows = driver.find_elements(By.CSS_SELECTOR, "table#tablaEstudios tbody tr")
 
             for row in rows:
-                id_estudio = row.get_attribute("id")
+                id_estudio = row.get_attribute("id")  # type: ignore
                 if id_estudio:
                     url_estudio = f"https://www.cis.es/es/detalle-ficha-estudio?idEstudio={id_estudio}"
                     estudio_urls.add(url_estudio)
 
             try:
                 next_btn = driver.find_element(By.ID, "tablaEstudios_next")
-                if "disabled" in next_btn.get_attribute("class"):
+                if "disabled" in next_btn.get_attribute("class"):  # type: ignore
                     print("✅ Last page reached")
                     break
                 else:
@@ -96,7 +100,7 @@ def main():
                     data_zip_link = driver.find_element(By.XPATH, "//a[contains(text(), 'Fichero datos')]")
                     print("📥 Data zip file available. Opening form...")
                     time.sleep(1)
-                    driver.execute_script("arguments[0].click();", data_zip_link)
+                    driver.execute_script("arguments[0].click();", data_zip_link)  # type: ignore
                 except NoSuchElementException:
                     print("⚠️ No data zip file available for this study")
                     logging.warning(f"No data zip file available for {url}")
@@ -116,12 +120,12 @@ def main():
                 label_email = driver.find_element(
                     By.XPATH, "//label[contains(., 'Email') and not(contains(., 'Confirmar'))]"
                 )
-                input_email = driver.find_element(By.ID, label_email.get_attribute("for"))
+                input_email = driver.find_element(By.ID, label_email.get_attribute("for"))  # type: ignore
                 input_email.clear()
                 input_email.send_keys(CIS_EMAIL)
 
                 label_confirm = driver.find_element(By.XPATH, "//label[contains(., 'Confirmar Email')]")
-                input_confirm = driver.find_element(By.ID, label_confirm.get_attribute("for"))
+                input_confirm = driver.find_element(By.ID, label_confirm.get_attribute("for"))  # type: ignore
                 input_confirm.clear()
                 input_confirm.send_keys(CIS_EMAIL)
 
@@ -144,7 +148,7 @@ def main():
 
                 wait.until(EC.element_to_be_clickable((By.XPATH, "//a[contains(text(),'Descargar')]")))
                 download_btn = driver.find_element(By.XPATH, "//a[contains(text(),'Descargar')]")
-                print(f"⬇️ Downloading from: {download_btn.get_attribute('href')}")
+                print(f"⬇️ Downloading from: {download_btn.get_attribute('href')}")  # type: ignore
                 download_btn.click()
                 logging.info(f"Downloaded data for {url}")
                 time.sleep(2)

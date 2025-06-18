@@ -14,8 +14,8 @@ logger = logging.getLogger(__name__)
 
 def main():
     # Load csvs to dataframes
-    ccaa_df = pd.read_csv(CCAA_PATH)
-    prov_df = pd.read_csv(PROV_PATH)
+    ccaa_df = pd.read_csv(CCAA_PATH)  # type: ignore
+    prov_df = pd.read_csv(PROV_PATH)  # type: ignore
 
     # Create database engine
     engine = create_engine(

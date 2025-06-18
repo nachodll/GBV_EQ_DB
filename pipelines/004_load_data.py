@@ -14,7 +14,7 @@ SCRIPTS = [
 logger = logging.getLogger(__name__)
 
 
-def run_script(script_path):
+def run_script(script_path: Path):
     logger.info(f"Running script: {script_path}")
     try:
         subprocess.run(["python", script_path], text=True, check=True)

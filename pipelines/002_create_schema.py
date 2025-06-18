@@ -11,11 +11,17 @@ SCHEMA_PATH = Path("sql") / "schema.sql"
 logger = logging.getLogger(__name__)
 
 
-def main() -> None:
+def main():
     logger.info("Creating the database schema...")
 
+    db_user = os.getenv("DB_USER")
+    db_name = os.getenv("DB_NAME")
+    if not db_user or not db_name:
+        logger.error("Environment variables DB_USER and DB_NAME must be set.")
+        raise ValueError("Missing required environment variables: DB_USER or DB_NAME")
+
     subprocess.run(
-        ["psql", "-U", os.getenv("DB_USER"), "-d", os.getenv("DB_NAME"), "-f", str(SCHEMA_PATH)],
+        ["psql", "-U", db_user, "-d", db_name, "-f", str(SCHEMA_PATH)],
         check=True,
     )
 

@@ -32,7 +32,7 @@ LOG_DIR = Path("logs") / "orchestrator"
 LOG_PATH = LOG_DIR / f"{datetime.now().isoformat()}.log"
 
 
-def setup_logging() -> None:
+def setup_logging():
     """Configure root logger to log to stdout and file."""
     LOG_DIR.mkdir(exist_ok=True)
     logging.basicConfig(
@@ -45,13 +45,13 @@ def setup_logging() -> None:
     )
 
 
-def run(script: Path) -> None:
+def run(script: Path):
     """Run a standalone script."""
     logging.info("Running %s", script.name)
     subprocess.run(["python", str(script)], check=True)
 
 
-def main() -> None:
+def main():
     setup_logging()
 
     parser = argparse.ArgumentParser(description="Run pipeline steps")

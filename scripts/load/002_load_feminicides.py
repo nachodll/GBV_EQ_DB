@@ -14,10 +14,10 @@ logger = logging.getLogger(__name__)
 
 def main():
     # Load CSVs to dataframes
-    feminicidios_pareja_df = pd.read_csv(FEMINICIDIOS_PAREJA_PATH)[
+    feminicidios_pareja_df = pd.read_csv(FEMINICIDIOS_PAREJA_PATH)[  # type: ignore
         ["feminicidios", "huerfanos_menores", "provincia_id", "año", "mes", "edad_grupo_victima", "edad_grupo_agresor"]
     ]
-    feminicidios_no_pareja_df = pd.read_csv(FEMINICIDIOS_NO_PAREJA_PATH)[
+    feminicidios_no_pareja_df = pd.read_csv(FEMINICIDIOS_NO_PAREJA_PATH)[  # type: ignore
         ["feminicidios", "tipo_feminicidio", "comunidad_autonoma_id", "año"]
     ]
 

@@ -63,13 +63,13 @@ def main():
 
         for button in download_buttons:
             try:
-                provincia_elem = button.find_element(By.XPATH, ".//ancestor::li//a[contains(@class, 'titulo')]")
+                provincia_elem = button.find_element(By.XPATH, ".//ancestor::li//a[contains(@class, 'titulo')]")  # type: ignore
                 provincia = provincia_elem.text.strip()
                 print(f"\n➡️ Processing {provincia}")
 
                 # Get direct link to pop up window
-                popup_link = button.get_attribute("href")
-                driver.execute_script("window.open(arguments[0]);", popup_link)
+                popup_link = button.get_attribute("href")  # type: ignore
+                driver.execute_script("window.open(arguments[0]);", popup_link)  # type: ignore
                 driver.switch_to.window(driver.window_handles[-1])
 
                 # Wait until pop up with file formats loads
@@ -77,16 +77,18 @@ def main():
                 formats = driver.find_elements(By.CSS_SELECTOR, "ul.export li a")
                 csv_format = None
                 for format in formats:
-                    if "CSV: separado por tabuladores" in format.get_attribute("title"):
+                    title = format.get_attribute("title")  # type: ignore
+                    if title is not None and "CSV: separado por tabuladores" in title:
                         csv_format = format
                         break
 
                 if csv_format:
-                    href_csv = csv_format.get_attribute("href")
-                    driver.get(href_csv)
-                    print(f"⬇️ Downloading CSV for {provincia}")
-                    logging.info(f"Downloading CSV for {provincia}")
-                    time.sleep(2)
+                    href_csv = csv_format.get_attribute("href")  # type: ignore
+                    if href_csv is not None:
+                        driver.get(href_csv)
+                        print(f"⬇️ Downloading CSV for {provincia}")
+                        logging.info(f"Downloading CSV for {provincia}")
+                        time.sleep(2)
                 else:
                     print(f"❌ CSV format was not found for {provincia}")
                     logging.error(f"CSV format was not found for {provincia}")
@@ -95,8 +97,8 @@ def main():
                 driver.switch_to.window(driver.window_handles[0])
 
             except Exception as e:
-                print(f"❌ Error processing {provincia}: {e}")
-                logging.error(f"Error processing {provincia}: {e}")
+                print(f"❌ Error processing: {e}")
+                logging.error(f"Error processing: {e}")
     finally:
         driver.quit()
 

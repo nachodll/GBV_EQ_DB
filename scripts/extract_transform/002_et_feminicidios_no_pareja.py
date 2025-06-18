@@ -15,7 +15,7 @@ logger = logging.getLogger(__name__)
 
 def main():
     # Read file
-    df = pd.read_csv(RAW_CSV_PATH)
+    df = pd.read_csv(RAW_CSV_PATH)  # type: ignore
 
     # Delete spaces
     df.columns = df.columns.str.strip()
@@ -31,17 +31,17 @@ def main():
     )
 
     # Validate year and cast to integer
-    df["año"] = pd.to_numeric(df["año"], errors="coerce")
-    df.loc[~df["año"].between(1900, 2050), "año"] = None
+    df["año"] = pd.to_numeric(df["año"], errors="coerce")  # type: ignore
+    df.loc[~df["año"].between(1900, 2050), "año"] = None  # type: ignore
     if df["año"].isnull().any():
-        invalid_years = df[df["año"].isnull()]["año"].unique()
+        invalid_years = df[df["año"].isnull()]["año"].unique()  # type: ignore
         raise ValueError(f"Invalid year values found: {invalid_years}")
     df["año"] = df["año"].astype(int)
 
     # Normalize provinces
-    df["comunidad_autonoma_id"] = df["comunidad_autonoma_id"].map(normalize_comunidad_autonoma)
+    df["comunidad_autonoma_id"] = df["comunidad_autonoma_id"].map(normalize_comunidad_autonoma)  # type: ignore
     if df["comunidad_autonoma_id"].isnull().any():
-        missing = df[df["comunidad_autonoma_id"].isnull()]["comunidad_autonoma_id"].unique()
+        missing = df[df["comunidad_autonoma_id"].isnull()]["comunidad_autonoma_id"].unique()  # type: ignore
         raise ValueError(f"Unmapped provinces found: {missing}")
 
     # Save cleaned CSV

@@ -15,7 +15,7 @@ logger = logging.getLogger(__name__)
 
 def main():
     # Read file
-    df = pd.read_csv(RAW_CSV_PATH)
+    df = pd.read_csv(str(RAW_CSV_PATH))  # type: ignore
 
     # Delete spaces
     df.columns = df.columns.str.strip()
@@ -34,23 +34,23 @@ def main():
     )
 
     # Validate year and cast to integer
-    df["año"] = pd.to_numeric(df["año"], errors="coerce")
-    df.loc[~df["año"].between(1900, 2050), "año"] = None
+    df["año"] = pd.to_numeric(df["año"], errors="coerce")  # type: ignore
+    df.loc[~df["año"].between(1900, 2050), "año"] = None  # type: ignore
     if df["año"].isnull().any():
-        invalid_years = df[df["año"].isnull()]["año"].unique()
+        invalid_years = df[df["año"].isnull()]["año"].unique()  # type: ignore
         raise ValueError(f"Invalid year values found: {invalid_years}")
     df["año"] = df["año"].astype(int)
 
     # Normalize months
-    df["mes"] = df["mes"].map(normalize_month)
+    df["mes"] = df["mes"].map(normalize_month)  # type: ignore
     if df["mes"].isnull().any():
-        missing_months = df[df["mes"].isnull()]["mes"].unique()
+        missing_months = df[df["mes"].isnull()]["mes"].unique()  # type: ignore
         raise ValueError(f"Unmapped months found: {missing_months}")
 
     # Normalize provinces
-    df["provincia_id"] = df["provincia_id"].map(normalize_provincia)
+    df["provincia_id"] = df["provincia_id"].map(normalize_provincia)  # type: ignore
     if df["provincia_id"].isnull().any():
-        missing = df[df["provincia_id"].isnull()]["provincia_id"].unique()
+        missing = df[df["provincia_id"].isnull()]["provincia_id"].unique()  # type: ignore
         raise ValueError(f"Unmapped provinces found: {missing}")
 
     # Save cleaned CSV

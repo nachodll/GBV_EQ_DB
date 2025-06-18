@@ -11,7 +11,7 @@ TEMPLATE_PATH = Path("sql") / "reset_db_template.sql"
 logger = logging.getLogger(__name__)
 
 
-def main() -> None:
+def main():
     logger.info("Resetting the database...")
 
     with open(TEMPLATE_PATH) as f:
