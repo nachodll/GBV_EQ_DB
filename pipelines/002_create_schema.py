@@ -1,4 +1,3 @@
-#!/usr/bin/env python3
 """Create the database schema."""
 
 import os

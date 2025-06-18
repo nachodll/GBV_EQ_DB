@@ -1,4 +1,3 @@
-#!/usr/bin/env python3
 """Reset the PostgreSQL database using the reset template."""
 
 import os

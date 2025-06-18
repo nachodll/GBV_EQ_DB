@@ -11,24 +11,10 @@ from selenium.webdriver.common.by import By
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.support.ui import WebDriverWait
 
-# Settings
 DRIVER_PATH = Path("/opt/homebrew/bin/chromedriver")
-
-# Terms to be consulted
 TERMS = ["pornhub", "xvideos"]
 MAX_RETRIES = 3
-
-# Log
-log_dir = os.path.join(os.path.dirname(__file__), "log")
-os.makedirs(log_dir, exist_ok=True)
-timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
-log_path = os.path.join(log_dir, f"log{timestamp}.log")
-log_file = open(log_path, mode="w", encoding="utf-8")
-
-# List of terms to be consulted
-
-# Comunidades Autónomas and its codes
-regions = {
+REGIONS = {
     "Andalucía": "ES-AN",
     "Aragón": "ES-AR",
     "Asturias": "ES-AS",
@@ -48,59 +34,72 @@ regions = {
     "La Rioja": "ES-RI",
 }
 
-# Selenium Config
-options = Options()
-options.add_argument("--start-maximized")
-# options.add_argument("--headless")  # Activar si no necesitas ver el navegador
-service = Service(str(DRIVER_PATH))
-driver = webdriver.Chrome(service=service, options=options)
-wait = WebDriverWait(driver, 15)
 
-try:
-    for term in TERMS:
-        for region_name, region_code in regions.items():
-            attemp = 0
-            success = False
-            while attemp < MAX_RETRIES and not success:
-                attemp += 1
-                timestamp = datetime.now().isoformat()
-                print(f"🔁 Attemp {attemp}: Popularity of '{term}' in {region_name}")
-                url = (
-                    f"https://trends.google.com/trends/explore"
-                    f"?date=all,all&geo=ES,{region_code}"
-                    f"&q={quote('google')},{quote(term)}"
-                    f"&hl=es"
-                )
+def main():
+    # Log
+    log_dir = os.path.join(os.path.dirname(__file__), "log")
+    os.makedirs(log_dir, exist_ok=True)
+    timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
+    log_path = os.path.join(log_dir, f"log{timestamp}.log")
+    log_file = open(log_path, mode="w", encoding="utf-8")
 
-                try:
-                    driver.get(url)
+    # Selenium Config
+    options = Options()
+    options.add_argument("--start-maximized")
+    # options.add_argument("--headless")  # Activar si no necesitas ver el navegador
+    service = Service(str(DRIVER_PATH))
+    driver = webdriver.Chrome(service=service, options=options)
+    wait = WebDriverWait(driver, 15)
 
-                    # Wait and click on export button
-                    xpath = (
-                        "//div[.//div[text()[contains(., 'Interés a lo largo del')]]]"
-                        "//button[@class='widget-actions-item export' and @title='CSV']"
+    try:
+        for term in TERMS:
+            for region_name, region_code in REGIONS.items():
+                attemp = 0
+                success = False
+                while attemp < MAX_RETRIES and not success:
+                    attemp += 1
+                    timestamp = datetime.now().isoformat()
+                    print(f"🔁 Attemp {attemp}: Popularity of '{term}' in {region_name}")
+                    url = (
+                        f"https://trends.google.com/trends/explore"
+                        f"?date=all,all&geo=ES,{region_code}"
+                        f"&q={quote('google')},{quote(term)}"
+                        f"&hl=es"
                     )
-                    export_button = wait.until(EC.element_to_be_clickable((By.XPATH, xpath)))
-                    export_button.click()
-                    print(f"✅ Download successful: {term} / {region_name}")
-                    log_file.write(f"{datetime.now().isoformat()}\tSUCCESS\tDownloaded [{term}/{region_name}]\n")
-                    time.sleep(1)
-                    success = True
 
-                except Exception as e:
-                    msg = f"Attemp {attemp} failed: {type(e).__name__} - {str(e)}"
-                    print(f"⚠️ {msg}")
-                    if attemp == MAX_RETRIES:
-                        print(f"❌ Downloaded failed for {term} / {region_name}")
-                        log_file.write(
-                            f"{datetime.now().isoformat()}\tERROR\tDownload failed for [{term}/{region_name}]\n"
+                    try:
+                        driver.get(url)
+
+                        # Wait and click on export button
+                        xpath = (
+                            "//div[.//div[text()[contains(., 'Interés a lo largo del')]]]"
+                            "//button[@class='widget-actions-item export' and @title='CSV']"
                         )
-                    else:
-                        log_file.write(
-                            f"{datetime.now().isoformat()}\tWARNING\tAttemp {attemp} failed for [{term}/{region_name}]\n"  # noqa: E501
-                        )
+                        export_button = wait.until(EC.element_to_be_clickable((By.XPATH, xpath)))
+                        export_button.click()
+                        print(f"✅ Download successful: {term} / {region_name}")
+                        log_file.write(f"{datetime.now().isoformat()}\tSUCCESS\tDownloaded [{term}/{region_name}]\n")
                         time.sleep(1)
-finally:
-    driver.quit()
-    log_file.close()
-    print(f"\n✅ Process finished. Log at: {log_path}")
+                        success = True
+
+                    except Exception as e:
+                        msg = f"Attemp {attemp} failed: {type(e).__name__} - {str(e)}"
+                        print(f"⚠️ {msg}")
+                        if attemp == MAX_RETRIES:
+                            print(f"❌ Downloaded failed for {term} / {region_name}")
+                            log_file.write(
+                                f"{datetime.now().isoformat()}\tERROR\tDownload failed for [{term}/{region_name}]\n"
+                            )
+                        else:
+                            log_file.write(
+                                f"{datetime.now().isoformat()}\tWARNING\tAttemp {attemp} failed for [{term}/{region_name}]\n"  # noqa: E501
+                            )
+                            time.sleep(1)
+    finally:
+        driver.quit()
+        log_file.close()
+        print(f"\n✅ Process finished. Log at: {log_path}")
+
+
+if __name__ == "__main__":
+    main()

@@ -19,5 +19,10 @@ def run_script(script_path):
         print(e.stderr)
 
 
-for script in SCRIPTS:
-    run_script(script)
+def main():
+    for script in SCRIPTS:
+        run_script(script)
+
+
+if __name__ == "__main__":
+    main()
