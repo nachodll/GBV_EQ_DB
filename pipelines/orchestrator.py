@@ -45,9 +45,21 @@ def setup_logging():
 
 
 def run(script: Path):
-    """Run a standalone script."""
+    """Run a standalone script and capture its output."""
     logging.info("Running %s", script.name)
-    subprocess.run(["python", str(script)], check=True)
+
+    result = subprocess.run(["python", str(script)], text=True, capture_output=True)
+
+    if result.stderr:
+        for line in result.stderr.splitlines():
+            if " - INFO - " in line:
+                logging.info(line)
+            elif " - WARNING - " in line:
+                logging.warning(line)
+            elif " - ERROR - " in line:
+                logging.error(line)
+
+    result.check_returncode()
 
 
 def main():
