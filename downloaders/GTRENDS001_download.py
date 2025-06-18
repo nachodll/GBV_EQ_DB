@@ -1,3 +1,5 @@
+"""Fetch Google Trends popularity data using Selenium."""
+
 import logging
 import time
 from datetime import datetime

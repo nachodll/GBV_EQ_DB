@@ -1,3 +1,5 @@
+"""Download CIS general survey data by automating the public website."""
+
 import logging
 import os
 import time

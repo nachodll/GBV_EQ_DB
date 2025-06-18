@@ -1,3 +1,10 @@
+"""Extract and transform data
+Sources:
+    DGVG002
+Target tables:
+    feminicios_no_pareja
+"""
+
 import logging
 from pathlib import Path
 

@@ -1,3 +1,9 @@
+"""Load static geographical data into the database.
+Target tables:
+    comunidades_autonomas
+    provincias
+"""
+
 import logging
 import os
 from pathlib import Path

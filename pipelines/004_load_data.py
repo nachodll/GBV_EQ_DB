@@ -1,3 +1,5 @@
+"""Execute load steps to populate the database tables."""
+
 import logging
 import subprocess
 from pathlib import Path

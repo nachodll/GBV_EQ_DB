@@ -1,3 +1,9 @@
+"""Load data into the database
+Target tables:
+    feminicidios_pareja
+    feminicidios_no_pareja
+"""
+
 import logging
 import os
 from pathlib import Path

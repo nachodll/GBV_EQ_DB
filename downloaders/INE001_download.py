@@ -1,3 +1,5 @@
+"""Download INE data files using Selenium."""
+
 import logging
 import time
 from datetime import datetime

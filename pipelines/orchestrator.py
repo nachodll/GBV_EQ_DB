@@ -11,8 +11,7 @@ Steps:
     load   - Run extract/transform and load pipelines
 
 If ``step`` is omitted, the script executes the full pipeline. When a ``step``
-is provided, all previous steps are also run unless ``--only`` is supplied.
-"""
+is provided, all previous steps are also run unless ``--only`` is supplied."""
 
 import argparse
 import logging
