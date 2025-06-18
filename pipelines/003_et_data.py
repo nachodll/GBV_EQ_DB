@@ -2,7 +2,7 @@ import os
 import subprocess
 
 # Define extract transform scripts to run
-et_scripts_dir = os.path.join("pipelines", "extract_transform")
+et_scripts_dir = os.path.join("scripts", "extract_transform")
 SCRIPTS = [
     "001_et_feminicidios_pareja.py",
     "002_et_feminicidios_no_pareja.py",

@@ -2,7 +2,7 @@ import os
 import subprocess
 
 # Define load scripts to run
-load_scripts_dir = os.path.join("pipelines", "load")
+load_scripts_dir = os.path.join("scripts", "load")
 SCRIPTS = [
     "001_load_geo.py",
     "002_load_feminicides.py",
