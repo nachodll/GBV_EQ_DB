@@ -14,14 +14,25 @@ logger = logging.getLogger(__name__)
 def main():
     logger.info("Creating the database schema...")
 
-    db_user = os.getenv("DB_USER")
+    host = os.getenv("DB_HOST")
+    port = os.getenv("DB_PORT")
     db_name = os.getenv("DB_NAME")
-    if not db_user or not db_name:
+    db_user = os.getenv("DB_USER")
+    db_password = os.getenv("DB_PASSWORD")
+
+    # Password is set in the environment for psql command
+    env = os.environ.copy()
+    if db_password:
+        env["PGPASSWORD"] = db_password
+
+    # Ensure required environment variables are set
+    if not all([host, port, db_name, db_user]):
         logger.error("Environment variables DB_USER and DB_NAME must be set.")
         raise ValueError("Missing required environment variables: DB_USER or DB_NAME")
 
     subprocess.run(
-        ["psql", "-U", db_user, "-d", db_name, "-f", str(SCHEMA_PATH)],
+        ["psql", "-h", str(host), "-p", str(port), "-U", str(db_user), "-d", str(db_name), "-f", str(SCHEMA_PATH)],
+        env=env,
         check=True,
     )
 
