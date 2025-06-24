@@ -182,7 +182,7 @@ def normalize_month(month: str) -> int | None:
     """
     Normalize a month name to its corresponding number.
     """
-    months = {
+    months_dict = {
         "Enero": 1,
         "Febrero": 2,
         "Marzo": 3,
@@ -196,4 +196,8 @@ def normalize_month(month: str) -> int | None:
         "Noviembre": 11,
         "Diciembre": 12,
     }
-    return months.get(month.strip(), None)
+    for key in months_dict:
+        if key.lower() == month.strip().lower():
+            return months_dict[key]
+
+    return None
