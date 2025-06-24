@@ -19,6 +19,8 @@ import subprocess
 from datetime import datetime
 from pathlib import Path
 
+from colorama import Fore, Style
+
 PIPELINES_DIR = Path("pipelines")
 ACTIONS: dict[str, list[Path]] = {
     "reset": [PIPELINES_DIR / "001_reset_db.py"],
@@ -31,17 +33,41 @@ LOG_DIR = Path("logs") / "orchestrator"
 LOG_PATH = LOG_DIR / f"{datetime.now().isoformat()}.log"
 
 
-def setup_logging():
-    """Configure root logger to log to stdout and file."""
+class ColorFormatter(logging.Formatter):
+    """Formatter that adds colors based on the log level."""
+
+    LEVEL_COLORS = {
+        logging.DEBUG: Fore.RED,
+        logging.INFO: Fore.BLUE,
+        logging.WARNING: Fore.YELLOW,
+        logging.ERROR: Fore.LIGHTMAGENTA_EX,
+        logging.CRITICAL: Fore.MAGENTA,
+    }
+
+    def format(self, record: logging.LogRecord):
+        levelname = record.levelname
+        color = self.LEVEL_COLORS.get(record.levelno, "")
+        record.levelname = f"{color}{levelname}{Style.RESET_ALL}"
+        try:
+            return super().format(record)
+        finally:
+            record.levelname = levelname
+
+
+def setup_logging() -> Path:
+    """Configure root logger with colored output and file logging."""
+
     LOG_DIR.mkdir(exist_ok=True)
-    logging.basicConfig(
-        level=logging.INFO,
-        format="%(asctime)s %(levelname)s [%(name)s] %(message)s",
-        handlers=[
-            logging.StreamHandler(),
-            logging.FileHandler(LOG_PATH),
-        ],
-    )
+    log_path = LOG_DIR / f"{datetime.now().isoformat()}.log"
+
+    stream_handler = logging.StreamHandler()
+    stream_handler.setFormatter(ColorFormatter("%(asctime)s %(levelname)s [%(name)s] %(message)s"))
+
+    file_handler = logging.FileHandler(log_path)
+    file_handler.setFormatter(logging.Formatter("%(asctime)s %(levelname)s [%(name)s] %(message)s"))
+
+    logging.basicConfig(level=logging.INFO, handlers=[stream_handler, file_handler])
+    return log_path
 
 
 def run(script: Path):
