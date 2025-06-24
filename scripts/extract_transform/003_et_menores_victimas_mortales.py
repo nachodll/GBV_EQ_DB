@@ -1,19 +1,19 @@
 """Extract and transform data
-Sources:
-    DGVG001
+Sourceses:
+    DGVG003
 Target tables:
-    feminicios_pareja"""
+    menores_victimas_mortales"""
 
 import logging
 from pathlib import Path
 
 import pandas as pd
 
-from utils.normalization import normalize_age_group, normalize_month, normalize_provincia
+from utils.normalization import normalize_month, normalize_provincia
 
 # Paths
-RAW_CSV_PATH = Path("data") / "raw" / "DGVG" / "DGVG001-010FeminicidiosPareja.csv"
-CLEAN_CSV_PATH = Path("data") / "clean" / "feminicidios_pareja_expareja.csv"
+RAW_CSV_PATH = Path("data") / "raw" / "DGVG" / "DGVG003-030MenoresVictimasMortales.csv"
+CLEAN_CSV_PATH = Path("data") / "clean" / "menores_victimas_mortales.csv"
 
 # Logger setup
 logger = logging.getLogger(__name__)
@@ -32,10 +32,9 @@ def main():
             "Provincia (As)": "provincia_id",
             "Año": "año",
             "Mes": "mes",
-            "VM Grupo de edad": "victima_grupo_edad",
-            "AG Grupo de edad": "agresor_grupo_edad",
-            "Feminicidios pareja o expareja": "num_feminicidios",
-            "Huérfanas y huérfanos menores de edad -1-": "num_huerfanos_menores",
+            "VM Vicaria -1-": "es_victima_vicaria",
+            "AG-VM Relación": "es_hijo_agresor",
+            "Menores víctimas mortales vdg": "num_menores_victimas_mortales",
         }
     )
 
@@ -59,23 +58,22 @@ def main():
         missing_provincias = df[df["provincia_id"].isnull()]["provincia_id"].unique()  # type: ignore
         raise ValueError(f"Unmapped provinces found: {missing_provincias}")
 
-    # Normalize victim age group
-    df["victima_grupo_edad"] = df["victima_grupo_edad"].map(normalize_age_group)  # type: ignore
-    if df["victima_grupo_edad"].isnull().any():
-        missing_victims = df[df["victima_grupo_edad"].isnull()]["victima_grupo_edad"].unique()  # type: ignore
-        raise ValueError(f"Unmapped victim age groups found: {missing_victims}")
+    # Map es_victima_vicaria to boolean
+    df["es_victima_vicaria"] = df["es_victima_vicaria"].map({"Sí vicaria": True, "No vicaria": False})  # type: ignore
+    if df["es_victima_vicaria"].isnull().any():
+        missing_vicaria = df[df["es_victima_vicaria"].isnull()]["es_victima_vicaria"].unique()  # type: ignore
+        raise ValueError(f"Unmapped es_victima_vicaria values found: {missing_vicaria}")
 
-    # Normalize aggressor age group
-    df["agresor_grupo_edad"] = df["agresor_grupo_edad"].map(normalize_age_group)  # type: ignore
-    if df["agresor_grupo_edad"].isnull().any():
-        missing_age_groups = df[df["agresor_grupo_edad"].isnull()]["agresor_grupo_edad"].unique()  # type: ignore
-        raise ValueError(f"Unmapped aggressor age groups found: {missing_age_groups}")
+    # Map es_hijo_agresor to boolean
+    df["es_hijo_agresor"] = df["es_hijo_agresor"].map(  # type: ignore
+        {"Padre biológico/adoptivo": True, "No padre biológico/adoptivo": False}
+    )  # type: ignore
 
-    # Check num columns are numeric and cast to integer
-    df["num_feminicidios"] = pd.to_numeric(df["num_feminicidios"], errors="coerce")  # type: ignore
-    df["num_feminicidios"] = df["num_feminicidios"].fillna(0).astype(int)  # type: ignore
-    df["num_huerfanos_menores"] = pd.to_numeric(df["num_huerfanos_menores"], errors="coerce")  # type: ignore
-    df["num_huerfanos_menores"] = df["num_huerfanos_menores"].fillna(0).astype(int)  # type: ignore
+    # Validate num_menores_victimas_mortales and cast to integer
+    df["num_menores_victimas_mortales"] = pd.to_numeric(df["num_menores_victimas_mortales"], errors="coerce")  # type: ignore
+    if df["num_menores_victimas_mortales"].isnull().any():
+        invalid_victimas = df[df["num_menores_victimas_mortales"].isnull()]["num_menores_victimas_mortales"].unique()  # type: ignore
+        raise ValueError(f"Invalid num_menores_victimas_mortales values found: {invalid_victimas}")
 
     # Save cleaned CSV
     CLEAN_CSV_PATH.parent.mkdir(parents=True, exist_ok=True)

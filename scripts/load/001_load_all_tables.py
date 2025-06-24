@@ -23,6 +23,7 @@ TABLES_TO_LOAD: List[Dict[str, Any]] = [
         "name": "feminicidios_fuera_pareja_expareja",
         "path": Path("data") / "clean" / "feminicidios_fuera_pareja_expareja.csv",
     },
+    {"name": "menores_victimas_mortales", "path": Path("data") / "clean" / "menores_victimas_mortales.csv"},
 ]
 
 # Logger setup

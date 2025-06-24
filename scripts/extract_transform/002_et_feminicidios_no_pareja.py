@@ -48,8 +48,8 @@ def main():
     # Normalize comunidades autónomas
     df["comunidad_autonoma_id"] = df["comunidad_autonoma_id"].map(normalize_comunidad_autonoma)  # type: ignore
     if df["comunidad_autonoma_id"].isnull().any():
-        missing = df[df["comunidad_autonoma_id"].isnull()]["comunidad_autonoma_id"].unique()  # type: ignore
-        raise ValueError(f"Unmapped comunidades autonomas found: {missing}")
+        missing_comunidades = df[df["comunidad_autonoma_id"].isnull()]["comunidad_autonoma_id"].unique()  # type: ignore
+        raise ValueError(f"Unmapped comunidades autonomas found: {missing_comunidades}")
 
     # Map tipo_feminicidio to enum values
     tipo_feminicidio_mapping = {

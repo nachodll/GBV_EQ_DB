@@ -37,7 +37,7 @@ CREATE TABLE
 CREATE TABLE
   "menores_victimas_mortales" (
     "menores_victimas_mortales_id" serial PRIMARY KEY,
-    "relacion_victima_agresor" varchar,
+    "es_hijo_agresor" boolean,
     "es_victima_vicaria" boolean,
     "num_menores_victimas_mortales" int,
     "provincia_id" int,
