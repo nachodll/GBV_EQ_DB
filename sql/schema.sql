@@ -8,7 +8,7 @@ CREATE TABLE
   "provincias" (
     "provincia_id" int PRIMARY KEY,
     "nombre" varchar UNIQUE NOT NULL,
-    "comunidad_id" int
+    "comunidad_autonoma_id" int
   );
 
 CREATE TABLE

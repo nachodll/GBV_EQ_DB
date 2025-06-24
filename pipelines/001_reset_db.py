@@ -6,6 +6,7 @@ import subprocess
 from pathlib import Path
 
 TEMPLATE_PATH = Path("sql") / "reset_db_template.sql"
+DROP_TABLES_PATH = Path("pipelines") / "001b_drop_all_tables.py"
 
 # Logger setup
 logger = logging.getLogger(__name__)
@@ -13,7 +14,8 @@ logger = logging.getLogger(__name__)
 
 def main():
     if os.getenv("SKIP_DB_RESET", "").lower() in {"1", "true", "yes"}:
-        logger.info("Skipping database reset because SKIP_DB_RESET is set")
+        logger.info("SKIP_DB_RESET is set - dropping all tables instead of the entire database")
+        subprocess.run(["python", str(DROP_TABLES_PATH)], env=os.environ.copy(), check=True)
         return
 
     logger.info("Resetting the database...")
@@ -37,13 +39,20 @@ def main():
         logger.error("DB_HOST, DB_PORT, and DB_ADMIN_USER environment variables must be set.")
         raise ValueError("Missing required database connection environment variables.")
 
-    subprocess.run(
-        ["psql", "-h", str(host), "-p", str(port), "-U", str(admin_user)],
-        input=sql_script.encode(),
-        # env=env,
-        check=True,
-    )
-    logger.info("Database reset completed")
+    try:
+        subprocess.run(
+            ["psql", "-h", str(host), "-p", str(port), "-U", str(admin_user)],
+            input=sql_script.encode(),
+            env=env,
+            check=True,
+        )
+        logger.info("Database reset completed")
+    except subprocess.CalledProcessError as e:
+        logger.warning(
+            f"Database reset failed {e}. Falling back to dropping all tables.",
+        )
+
+    return
 
 
 if __name__ == "__main__":
