@@ -208,7 +208,7 @@ def normalize_month(month: str) -> int | None:
 def normalize_age_group(raw: str) -> str | None:
     """
     Normalizes a raw age group string to the format '<min>-<max>'.
-    Returns None if the value is 'no consta' or not parsable.
+    Returns None if the value not parsable.
     """
     clean = raw.strip().lower().replace("años", "").replace(" ", "")
 

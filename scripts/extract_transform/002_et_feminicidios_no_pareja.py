@@ -63,6 +63,13 @@ def main():
         missing_tipo = df[df["tipo_feminicidio"].isnull()]["tipo_feminicidio"].unique()  # type: ignore
         raise ValueError(f"Unmapped tipo_feminicidio values found: {missing_tipo}")
 
+    # Validate num_feminicidios and cast to integer
+    df["num_feminicidios"] = pd.to_numeric(df["num_feminicidios"], errors="coerce")  # type: ignore
+    df.loc[df["num_feminicidios"] < 0, "num_feminicidios"] = None  # type: ignore
+    if df["num_feminicidios"].isnull().any():
+        invalid_feminicidios = df[df["num_feminicidios"].isnull()]["num_feminicidios"].unique()  # type: ignore
+        raise ValueError(f"Invalid num_feminicidios values found: {invalid_feminicidios}")
+
     # Save cleaned CSV
     CLEAN_CSV_PATH.parent.mkdir(parents=True, exist_ok=True)
     df.to_csv(CLEAN_CSV_PATH, index=False)

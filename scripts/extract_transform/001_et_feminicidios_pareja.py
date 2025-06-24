@@ -72,9 +72,11 @@ def main():
         missing = df[df["agresor_grupo_edad"].isnull()]["agresor_grupo_edad"].unique()  # type: ignore
         raise ValueError(f"Unmapped aggressor age groups found: {missing}")
 
-    # Check num columns are numeric
+    # Check num columns are numeric and cast to integer
     df["num_feminicidios"] = pd.to_numeric(df["num_feminicidios"], errors="coerce")  # type: ignore
+    df["num_feminicidios"] = df["num_feminicidios"].fillna(0).astype(int)  # type: ignore
     df["num_huerfanos_menores"] = pd.to_numeric(df["num_huerfanos_menores"], errors="coerce")  # type: ignore
+    df["num_huerfanos_menores"] = df["num_huerfanos_menores"].fillna(0).astype(int)  # type: ignore
 
     # Save cleaned CSV
     CLEAN_CSV_PATH.parent.mkdir(parents=True, exist_ok=True)
