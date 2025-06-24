@@ -10,7 +10,7 @@ from pathlib import Path
 
 import pandas as pd
 
-from utils.normalization import normalize_month, normalize_provincia
+from utils.normalization import normalize_age_group, normalize_month, normalize_provincia
 
 # Paths
 RAW_CSV_PATH = Path("data") / "raw" / "DGVG" / "DGVG001-010FeminicidiosPareja.csv"
@@ -59,6 +59,18 @@ def main():
     if df["provincia_id"].isnull().any():
         missing = df[df["provincia_id"].isnull()]["provincia_id"].unique()  # type: ignore
         raise ValueError(f"Unmapped provinces found: {missing}")
+
+    # Normalize victim age group
+    df["victima_grupo_edad"] = df["victima_grupo_edad"].map(normalize_age_group)  # type: ignore
+    if df["victima_grupo_edad"].isnull().any():
+        missing = df[df["victima_grupo_edad"].isnull()]["victima_grupo_edad"].unique()  # type: ignore
+        raise ValueError(f"Unmapped victim age groups found: {missing}")
+
+    # Normalize aggressor age group
+    df["agresor_grupo_edad"] = df["agresor_grupo_edad"].map(normalize_age_group)  # type: ignore
+    if df["agresor_grupo_edad"].isnull().any():
+        missing = df[df["agresor_grupo_edad"].isnull()]["agresor_grupo_edad"].unique()  # type: ignore
+        raise ValueError(f"Unmapped aggressor age groups found: {missing}")
 
     # Save cleaned CSV
     CLEAN_CSV_PATH.parent.mkdir(parents=True, exist_ok=True)

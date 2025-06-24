@@ -1,3 +1,4 @@
+import re
 import unicodedata
 
 dict_provincia = {
@@ -125,6 +126,21 @@ dict_comunidad_autonoma = {
     "Nacional": 0,
 }
 
+dict_months = {
+    "Enero": 1,
+    "Febrero": 2,
+    "Marzo": 3,
+    "Abril": 4,
+    "Mayo": 5,
+    "Junio": 6,
+    "Julio": 7,
+    "Agosto": 8,
+    "Septiembre": 9,
+    "Octubre": 10,
+    "Noviembre": 11,
+    "Diciembre": 12,
+}
+
 
 def strip_accents(text: str) -> str:
     """
@@ -182,22 +198,36 @@ def normalize_month(month: str) -> int | None:
     """
     Normalize a month name to its corresponding number.
     """
-    months_dict = {
-        "Enero": 1,
-        "Febrero": 2,
-        "Marzo": 3,
-        "Abril": 4,
-        "Mayo": 5,
-        "Junio": 6,
-        "Julio": 7,
-        "Agosto": 8,
-        "Septiembre": 9,
-        "Octubre": 10,
-        "Noviembre": 11,
-        "Diciembre": 12,
-    }
-    for key in months_dict:
+    for key in dict_months:
         if key.lower() == month.strip().lower():
-            return months_dict[key]
+            return dict_months[key]
+
+    return None
+
+
+def normalize_age_group(raw: str) -> str | None:
+    """
+    Normalizes a raw age group string to the format '<min>-<max>'.
+    Returns None if the value is 'no consta' or not parsable.
+    """
+    clean = raw.strip().lower().replace("años", "").replace(" ", "")
+
+    if clean == "noconsta":
+        return "No consta"
+
+    # Handle formats like 18-24
+    match_range = re.match(r"(\d+)-(\d+)", clean)
+    if match_range:
+        return f"{match_range.group(1)}-{match_range.group(2)}"
+
+    # Handle formats like <16 or +16
+    match_less = re.match(r"[<+](\d+)", clean)
+    if match_less:
+        return f"<{int(match_less.group(1))}"
+
+    # Handle formats like >84 or +84
+    match_greater = re.match(r"[>+](\d+)", clean)
+    if match_greater:
+        return f">{int(match_greater.group(1))}"
 
     return None
