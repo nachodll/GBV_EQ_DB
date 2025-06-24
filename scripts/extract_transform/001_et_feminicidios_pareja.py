@@ -72,6 +72,10 @@ def main():
         missing = df[df["agresor_grupo_edad"].isnull()]["agresor_grupo_edad"].unique()  # type: ignore
         raise ValueError(f"Unmapped aggressor age groups found: {missing}")
 
+    # Check num columns are numeric
+    df["num_feminicidios"] = pd.to_numeric(df["num_feminicidios"], errors="coerce")  # type: ignore
+    df["num_huerfanos_menores"] = pd.to_numeric(df["num_huerfanos_menores"], errors="coerce")  # type: ignore
+
     # Save cleaned CSV
     CLEAN_CSV_PATH.parent.mkdir(parents=True, exist_ok=True)
     df.to_csv(CLEAN_CSV_PATH, index=False)

@@ -1,3 +1,5 @@
+CREATE TYPE "tipo_feminicidio_enum" AS ENUM ('Familiar', 'Sexual', 'Social', 'Vicario');
+
 CREATE TABLE
   "comunidades_autonomas" (
     "comunidad_autonoma_id" int PRIMARY KEY,
@@ -27,7 +29,7 @@ CREATE TABLE
   "feminicidios_fuera_pareja_expareja" (
     "feminicidios_fuera_pareja_expareja_id" serial PRIMARY KEY,
     "num_feminicidios" int,
-    "tipo_feminicidio" varchar,
+    "tipo_feminicidio" tipo_feminicidio_enum,
     "comunidad_autonoma_id" int,
     "año" int
   );
@@ -156,7 +158,7 @@ CREATE TABLE
     "num_ayudas_cambio_residencia" int
   );
 
-ALTER TABLE "provincias" ADD FOREIGN KEY ("comunidad_id") REFERENCES "comunidades_autonomas" ("comunidad_autonoma_id");
+ALTER TABLE "provincias" ADD FOREIGN KEY ("comunidad_autonoma_id") REFERENCES "comunidades_autonomas" ("comunidad_autonoma_id");
 
 ALTER TABLE "feminicidios_pareja_expareja" ADD FOREIGN KEY ("provincia_id") REFERENCES "provincias" ("provincia_id");
 

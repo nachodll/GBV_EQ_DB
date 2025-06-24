@@ -45,11 +45,23 @@ def main():
         raise ValueError(f"Invalid year values found: {invalid_years}")
     df["año"] = df["año"].astype(int)
 
-    # Normalize provinces
+    # Normalize comunidades autónomas
     df["comunidad_autonoma_id"] = df["comunidad_autonoma_id"].map(normalize_comunidad_autonoma)  # type: ignore
     if df["comunidad_autonoma_id"].isnull().any():
         missing = df[df["comunidad_autonoma_id"].isnull()]["comunidad_autonoma_id"].unique()  # type: ignore
-        raise ValueError(f"Unmapped provinces found: {missing}")
+        raise ValueError(f"Unmapped comunidades autonomas found: {missing}")
+
+    # Map tipo_feminicidio to enum values
+    tipo_feminicidio_mapping = {
+        "F. vicario -1-": "Vicario",
+        "F. familiar": "Familiar",
+        "F. sexual": "Sexual",
+        "F. social": "Social",
+    }
+    df["tipo_feminicidio"] = df["tipo_feminicidio"].map(tipo_feminicidio_mapping)  # type: ignore
+    if df["tipo_feminicidio"].isnull().any():
+        missing_tipo = df[df["tipo_feminicidio"].isnull()]["tipo_feminicidio"].unique()  # type: ignore
+        raise ValueError(f"Unmapped tipo_feminicidio values found: {missing_tipo}")
 
     # Save cleaned CSV
     CLEAN_CSV_PATH.parent.mkdir(parents=True, exist_ok=True)
