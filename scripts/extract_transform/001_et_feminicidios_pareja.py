@@ -14,7 +14,7 @@ from utils.normalization import normalize_month, normalize_provincia
 
 # Paths
 RAW_CSV_PATH = Path("data") / "raw" / "DGVG" / "DGVG001-010FeminicidiosPareja.csv"
-CLEAN_CSV_PATH = Path("data") / "clean" / "feminicidios_pareja.csv"
+CLEAN_CSV_PATH = Path("data") / "clean" / "feminicidios_pareja_expareja.csv"
 
 # Logger setup
 logger = logging.getLogger(__name__)
@@ -33,10 +33,10 @@ def main():
             "Provincia (As)": "provincia_id",
             "Año": "año",
             "Mes": "mes",
-            "VM Grupo de edad": "edad_grupo_victima",
-            "AG Grupo de edad": "edad_grupo_agresor",
-            "Feminicidios pareja o expareja": "feminicidios",
-            "Huérfanas y huérfanos menores de edad -1-": "huerfanos_menores",
+            "VM Grupo de edad": "victima_grupo_edad",
+            "AG Grupo de edad": "agresor_grupo_edad",
+            "Feminicidios pareja o expareja": "num_feminicidios",
+            "Huérfanas y huérfanos menores de edad -1-": "num_huerfanos_menores",
         }
     )
 

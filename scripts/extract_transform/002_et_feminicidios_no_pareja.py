@@ -14,7 +14,7 @@ from utils.normalization import normalize_comunidad_autonoma
 
 # Paths
 RAW_CSV_PATH = Path("data") / "raw" / "DGVG" / "DGVG002-020FeminicidiosFueraParejaExpareja.csv"
-CLEAN_CSV_PATH = Path("data") / "clean" / "feminicidios_no_pareja.csv"
+CLEAN_CSV_PATH = Path("data") / "clean" / "feminicidios_fuera_pareja_expareja.csv"
 
 # Logger setup
 logger = logging.getLogger(__name__)
@@ -33,7 +33,7 @@ def main():
             "Comunidad autónoma (As)": "comunidad_autonoma_id",
             "Año": "año",
             "Tipo de feminicidio": "tipo_feminicidio",
-            "Feminicidos fuera pareja o expareja": "feminicidios",
+            "Feminicidos fuera pareja o expareja": "num_feminicidios",
         }
     )
 

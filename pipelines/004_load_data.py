@@ -7,8 +7,7 @@ from pathlib import Path
 # Define load scripts to run
 LOAD_SCRIPTS_DIR = Path("scripts") / "load"
 SCRIPTS = [
-    LOAD_SCRIPTS_DIR / "001_load_geo.py",
-    LOAD_SCRIPTS_DIR / "002_load_feminicides.py",
+    LOAD_SCRIPTS_DIR / "001_load_all_tables.py",
 ]
 
 
