@@ -1,6 +1,7 @@
 import re
 import unicodedata
 from datetime import datetime
+from typing import Union
 
 """Utility functions for normalizing various types of data, such as province names,
 comunidad autónoma names, months, years, age groups, and positive integers.
@@ -210,18 +211,22 @@ def normalize_month(month: str) -> int | None:
     return None
 
 
-def normalize_year(year: str) -> int | None:
+def normalize_year(year: Union[str, int, float]) -> int | None:
     """
-    Normalize a year string to an integer.
+    Normalize a year string, int or float to an integer.
     Returns None if the value is not parsable.
     """
     try:
-        year_int = int(year.strip())
+        if isinstance(year, str):
+            year_int = int(year.strip())
+        else:
+            year_int = int(year)
+
         if 1900 <= year_int <= datetime.now().year:
             return year_int
         else:
             return None
-    except ValueError:
+    except (ValueError, TypeError):
         return None
 
 
@@ -253,13 +258,16 @@ def normalize_age_group(raw: str) -> str | None:
     return None
 
 
-def normalize_positive_integer(value: str) -> int | None:
+def normalize_positive_integer(value: Union[str, int, float]) -> int | None:
     """
-    Normalize a string to a positive integer.
+    Normalize a string, int or float to a positive integer.
     Returns None if the value is not parsable or negative.
     """
     try:
-        num = int(value.strip())
+        if isinstance(value, str):
+            num = int(value.strip())
+        else:
+            num = int(value)
         if num >= 0:
             return num
         else:
