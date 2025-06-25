@@ -5,7 +5,7 @@ import subprocess
 from pathlib import Path
 
 # Define extract transform scripts to run
-ET_SCRIPTS_DIR = Path("scripts") / "extract_transform"
+ET_SCRIPTS_DIR = Path("pipelines") / "extract_transform"
 SCRIPTS = [
     ET_SCRIPTS_DIR / "001_et_feminicidios_pareja.py",
     ET_SCRIPTS_DIR / "002_et_feminicidios_no_pareja.py",
