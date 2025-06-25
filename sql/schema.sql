@@ -113,7 +113,7 @@ CREATE TABLE
     "mes" int NOT NULL CHECK (mes BETWEEN 1 AND 12),
     "num_altas" int NOT NULL CHECK (num_altas >= 0),
     "num_bajas" int NOT NULL CHECK (num_bajas >= 0),
-    "num_usuaria_activas" int NOT NULL CHECK (num_usuaria_activas >= 0)
+    "num_usuarias_activas" int NOT NULL CHECK (num_usuarias_activas >= 0)
   );
 
 CREATE TABLE
