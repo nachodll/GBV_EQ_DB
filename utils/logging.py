@@ -1,0 +1,59 @@
+import logging
+import re
+from datetime import datetime
+from pathlib import Path
+
+from colorama import Fore, Style
+
+
+class ColorFormatter(logging.Formatter):
+    """Formatter that adds colors based on the log level and applies it to the entire line."""
+
+    LEVEL_COLORS = {
+        logging.DEBUG: Fore.RED,
+        logging.INFO: Fore.BLUE,
+        logging.WARNING: Fore.YELLOW,
+        logging.ERROR: Fore.LIGHTMAGENTA_EX,
+        logging.CRITICAL: Fore.MAGENTA,
+    }
+
+    def format(self, record: logging.LogRecord):
+        levelname = record.levelname
+        color = self.LEVEL_COLORS.get(record.levelno, "")
+        record.levelname = f"{color}{levelname}{Style.RESET_ALL}"
+        try:
+            formatted = super().format(record)
+            return f"{color}{formatted}{Style.RESET_ALL}"
+        finally:
+            record.levelname = levelname
+
+
+def strip_metadata(line: str) -> tuple[str, int]:
+    """Strip repeated logging metadata and return indentation depth."""
+    pattern = re.compile(
+        r"^\d{4}-\d{2}-\d{2} \d{2}:\d{2}:\d{2},\d{3} - [^-]+ - (?:DEBUG|INFO|WARNING|ERROR|CRITICAL) - "
+    )
+    depth = 0
+    previous = None
+    while previous != line:
+        previous = line
+        line = pattern.sub("", line)
+        if previous != line:
+            depth += 1
+    return line, depth
+
+
+def setup_logging() -> Path:
+    """Configure root logger with colored output and file logging."""
+    log_dir = Path("logs") / "orchestrator"
+    log_dir.mkdir(exist_ok=True)
+    log_path = log_dir / f"{datetime.now().isoformat()}.log"
+
+    stream_handler = logging.StreamHandler()
+    stream_handler.setFormatter(ColorFormatter("%(asctime)s %(levelname)s [%(name)s] %(message)s"))
+
+    file_handler = logging.FileHandler(log_path)
+    file_handler.setFormatter(logging.Formatter("%(asctime)s %(levelname)s [%(name)s] %(message)s"))
+
+    logging.basicConfig(level=logging.INFO, handlers=[stream_handler, file_handler])
+    return log_path

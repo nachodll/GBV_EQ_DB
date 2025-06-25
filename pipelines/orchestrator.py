@@ -19,7 +19,7 @@ import subprocess
 from datetime import datetime
 from pathlib import Path
 
-from colorama import Fore, Style
+from utils.logging import setup_logging, strip_metadata
 
 PIPELINES_DIR = Path("pipelines")
 ACTIONS: dict[str, list[Path]] = {
@@ -27,47 +27,9 @@ ACTIONS: dict[str, list[Path]] = {
     "schema": [PIPELINES_DIR / "002_create_schema.py"],
     "load": [PIPELINES_DIR / "003_et_data.py", PIPELINES_DIR / "004_load_data.py"],
 }
-STEP_ORDER = ["reset", "schema", "load"]
 
 LOG_DIR = Path("logs") / "orchestrator"
 LOG_PATH = LOG_DIR / f"{datetime.now().isoformat()}.log"
-
-
-class ColorFormatter(logging.Formatter):
-    """Formatter that adds colors based on the log level."""
-
-    LEVEL_COLORS = {
-        logging.DEBUG: Fore.RED,
-        logging.INFO: Fore.BLUE,
-        logging.WARNING: Fore.YELLOW,
-        logging.ERROR: Fore.LIGHTMAGENTA_EX,
-        logging.CRITICAL: Fore.MAGENTA,
-    }
-
-    def format(self, record: logging.LogRecord):
-        levelname = record.levelname
-        color = self.LEVEL_COLORS.get(record.levelno, "")
-        record.levelname = f"{color}{levelname}{Style.RESET_ALL}"
-        try:
-            return super().format(record)
-        finally:
-            record.levelname = levelname
-
-
-def setup_logging() -> Path:
-    """Configure root logger with colored output and file logging."""
-
-    LOG_DIR.mkdir(exist_ok=True)
-    log_path = LOG_DIR / f"{datetime.now().isoformat()}.log"
-
-    stream_handler = logging.StreamHandler()
-    stream_handler.setFormatter(ColorFormatter("%(asctime)s %(levelname)s [%(name)s] %(message)s"))
-
-    file_handler = logging.FileHandler(log_path)
-    file_handler.setFormatter(logging.Formatter("%(asctime)s %(levelname)s [%(name)s] %(message)s"))
-
-    logging.basicConfig(level=logging.INFO, handlers=[stream_handler, file_handler])
-    return log_path
 
 
 def run(script: Path):
@@ -80,16 +42,22 @@ def run(script: Path):
 
     if result.stdout:
         for line in result.stdout.splitlines():
-            print("\t", line)
+            logging.info("\t" + line)
 
     if result.stderr:
         for line in result.stderr.splitlines():
-            if " - INFO - " in line:
-                logging.info(line)
+            clean, level = strip_metadata(line)
+            indent = "\t" * (level)
+            if " - DEBUG - " in line:
+                logging.debug(indent + clean)
             elif " - WARNING - " in line:
-                logging.warning(line)
+                logging.warning(indent + clean)
             elif " - ERROR - " in line:
-                logging.error(line)
+                logging.error(indent + clean)
+            elif " - CRITICAL - " in line:
+                logging.critical(indent + clean)
+            else:
+                logging.info(indent + clean)
 
     result.check_returncode()
 
@@ -112,15 +80,16 @@ def main():
     args = parser.parse_args()
 
     scripts_to_run: list[Path] = []
+    step_order = list(ACTIONS.keys())
 
     if args.step is None:
-        for step in STEP_ORDER:
+        for step in step_order:
             scripts_to_run.extend(ACTIONS[step])
     elif args.only:
         scripts_to_run.extend(ACTIONS[args.step])
     else:
-        end_index = STEP_ORDER.index(args.step) + 1
-        for step in STEP_ORDER[:end_index]:
+        end_index = step_order.index(args.step) + 1
+        for step in step_order[:end_index]:
             scripts_to_run.extend(ACTIONS[step])
 
     for script in scripts_to_run:

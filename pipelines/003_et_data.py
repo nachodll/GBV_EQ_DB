@@ -27,6 +27,15 @@ def run_script(script_path: Path):
         capture_output=True,
     )
 
+    if result.stderr:
+        for line in result.stderr.splitlines():
+            if " - INFO - " in line:
+                logging.info(line)
+            elif " - WARNING - " in line:
+                logging.warning(line)
+            elif " - ERROR - " in line:
+                logging.error(line)
+
     if result.returncode != 0:
         raise RuntimeError(f"Script {script_path} failed with error: {result.stderr.strip()}")
 
