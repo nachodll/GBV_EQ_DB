@@ -218,7 +218,11 @@ def normalize_year(year: Union[str, int, float]) -> int | None:
     """
     try:
         if isinstance(year, str):
-            year_int = int(year.strip())
+            match = re.search(r"\b(19\d{2}|20\d{2})\b", year)
+            if match:
+                year_int = int(match.group(1))
+            else:
+                year_int = int(year.strip())
         else:
             year_int = int(year)
 
