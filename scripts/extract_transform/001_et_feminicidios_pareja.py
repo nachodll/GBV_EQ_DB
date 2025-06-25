@@ -9,7 +9,13 @@ from pathlib import Path
 
 import pandas as pd
 
-from utils.normalization import normalize_age_group, normalize_month, normalize_provincia
+from utils.normalization import (
+    normalize_age_group,
+    normalize_month,
+    normalize_positive_integer,
+    normalize_provincia,
+    normalize_year,
+)
 
 # Paths
 RAW_CSV_PATH = Path("data") / "raw" / "DGVG" / "DGVG001-010FeminicidiosPareja.csv"
@@ -39,43 +45,20 @@ def main():
         }
     )
 
-    # Validate year and cast to integer
-    df["año"] = pd.to_numeric(df["año"], errors="coerce")  # type: ignore
-    df.loc[~df["año"].between(1900, 2050), "año"] = None  # type: ignore
-    if df["año"].isnull().any():
-        invalid_years = df[df["año"].isnull()]["año"].unique()  # type: ignore
-        raise ValueError(f"Invalid year values found: {invalid_years}")
-    df["año"] = df["año"].astype(int)
-
-    # Normalize months
+    # Normalize and validate all columns
+    df["año"] = df["año"].map(normalize_year)  # type: ignore
     df["mes"] = df["mes"].map(normalize_month)  # type: ignore
-    if df["mes"].isnull().any():
-        missing_months = df[df["mes"].isnull()]["mes"].unique()  # type: ignore
-        raise ValueError(f"Unmapped months found: {missing_months}")
-
-    # Normalize provinces
     df["provincia_id"] = df["provincia_id"].map(normalize_provincia)  # type: ignore
-    if df["provincia_id"].isnull().any():
-        missing_provincias = df[df["provincia_id"].isnull()]["provincia_id"].unique()  # type: ignore
-        raise ValueError(f"Unmapped provinces found: {missing_provincias}")
-
-    # Normalize victim age group
     df["victima_grupo_edad"] = df["victima_grupo_edad"].map(normalize_age_group)  # type: ignore
-    if df["victima_grupo_edad"].isnull().any():
-        missing_victims = df[df["victima_grupo_edad"].isnull()]["victima_grupo_edad"].unique()  # type: ignore
-        raise ValueError(f"Unmapped victim age groups found: {missing_victims}")
-
-    # Normalize aggressor age group
     df["agresor_grupo_edad"] = df["agresor_grupo_edad"].map(normalize_age_group)  # type: ignore
-    if df["agresor_grupo_edad"].isnull().any():
-        missing_age_groups = df[df["agresor_grupo_edad"].isnull()]["agresor_grupo_edad"].unique()  # type: ignore
-        raise ValueError(f"Unmapped aggressor age groups found: {missing_age_groups}")
+    df["num_feminicidios"] = df["num_feminicidios"].map(normalize_positive_integer)  # type: ignore
+    df["num_huerfanos_menores"] = df["num_huerfanos_menores"].map(normalize_positive_integer)  # type: ignore
 
-    # Check num columns are numeric and cast to integer
-    df["num_feminicidios"] = pd.to_numeric(df["num_feminicidios"], errors="coerce")  # type: ignore
-    df["num_feminicidios"] = df["num_feminicidios"].fillna(0).astype(int)  # type: ignore
-    df["num_huerfanos_menores"] = pd.to_numeric(df["num_huerfanos_menores"], errors="coerce")  # type: ignore
-    df["num_huerfanos_menores"] = df["num_huerfanos_menores"].fillna(0).astype(int)  # type: ignore
+    # Check for missing values (according to the schema constraints)
+    for column in df.columns:
+        if df[column].isnull().any():
+            logger.error(f"Missing values found in column '{column}'")
+            raise ValueError(f"Missing values found in column '{column}'")
 
     # Save cleaned CSV
     CLEAN_CSV_PATH.parent.mkdir(parents=True, exist_ok=True)

@@ -9,7 +9,7 @@ from pathlib import Path
 
 import pandas as pd
 
-from utils.normalization import normalize_month, normalize_provincia
+from utils.normalization import normalize_month, normalize_positive_integer, normalize_provincia, normalize_year
 
 # Paths
 RAW_CSV_PATH = Path("data") / "raw" / "DGVG" / "DGVG003-030MenoresVictimasMortales.csv"
@@ -38,42 +38,21 @@ def main():
         }
     )
 
-    # Validate year and cast to integer
-    df["año"] = pd.to_numeric(df["año"], errors="coerce")  # type: ignore
-    df.loc[~df["año"].between(1900, 2050), "año"] = None  # type: ignore
-    if df["año"].isnull().any():
-        invalid_years = df[df["año"].isnull()]["año"].unique()  # type: ignore
-        raise ValueError(f"Invalid year values found: {invalid_years}")
-    df["año"] = df["año"].astype(int)
-
-    # Normalize months
+    # Normalize and validate all columns
+    df["año"] = df["año"].map(normalize_year)  # type: ignore
     df["mes"] = df["mes"].map(normalize_month)  # type: ignore
-    if df["mes"].isnull().any():
-        missing_months = df[df["mes"].isnull()]["mes"].unique()  # type: ignore
-        raise ValueError(f"Unmapped months found: {missing_months}")
-
-    # Normalize provinces
     df["provincia_id"] = df["provincia_id"].map(normalize_provincia)  # type: ignore
-    if df["provincia_id"].isnull().any():
-        missing_provincias = df[df["provincia_id"].isnull()]["provincia_id"].unique()  # type: ignore
-        raise ValueError(f"Unmapped provinces found: {missing_provincias}")
-
-    # Map es_victima_vicaria to boolean
     df["es_victima_vicaria"] = df["es_victima_vicaria"].map({"Sí vicaria": True, "No vicaria": False})  # type: ignore
-    if df["es_victima_vicaria"].isnull().any():
-        missing_vicaria = df[df["es_victima_vicaria"].isnull()]["es_victima_vicaria"].unique()  # type: ignore
-        raise ValueError(f"Unmapped es_victima_vicaria values found: {missing_vicaria}")
-
-    # Map es_hijo_agresor to boolean
     df["es_hijo_agresor"] = df["es_hijo_agresor"].map(  # type: ignore
         {"Padre biológico/adoptivo": True, "No padre biológico/adoptivo": False}
     )  # type: ignore
+    df["num_menores_victimas_mortales"] = df["num_menores_victimas_mortales"].map(normalize_positive_integer)  # type: ignore
 
-    # Validate num_menores_victimas_mortales and cast to integer
-    df["num_menores_victimas_mortales"] = pd.to_numeric(df["num_menores_victimas_mortales"], errors="coerce")  # type: ignore
-    if df["num_menores_victimas_mortales"].isnull().any():
-        invalid_victimas = df[df["num_menores_victimas_mortales"].isnull()]["num_menores_victimas_mortales"].unique()  # type: ignore
-        raise ValueError(f"Invalid num_menores_victimas_mortales values found: {invalid_victimas}")
+    # Check for missing values (according to the schema constraints)
+    for column in df.columns:
+        if df[column].isnull().any():
+            logger.error(f"Missing values found in column '{column}'")
+            raise ValueError(f"Missing values found in column '{column}'")
 
     # Save cleaned CSV
     CLEAN_CSV_PATH.parent.mkdir(parents=True, exist_ok=True)

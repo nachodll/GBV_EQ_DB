@@ -2,13 +2,13 @@ CREATE TYPE "tipo_feminicidio_enum" AS ENUM ('Familiar', 'Sexual', 'Social', 'Vi
 
 CREATE TYPE "persona_consulta_enum" AS ENUM (
   'Usuaria',
-  'Familiares/Personas allegadas',
+  'Familiares/Allegados',
   'Otras personas',
   'No consta'
 );
 
 CREATE TYPE "tipo_violencia_enum" AS ENUM (
-  'Pareja/expareja',
+  'Pareja/Expareja',
   'No desagregada',
   'Familiar',
   'Sexual',
@@ -81,7 +81,7 @@ CREATE TABLE
 CREATE TABLE
   "servicio_016" (
     "servicio_016_id" serial PRIMARY KEY,
-    "provincia_id" int NOT NULL,
+    "provincia_id" int,
     "año" int NOT NULL CHECK (
       año BETWEEN 1900 AND EXTRACT(
         YEAR
