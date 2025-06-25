@@ -77,12 +77,14 @@ def main():
             if df is not None:
                 try:
                     df.to_sql(table_name, con=conn, if_exists="append", index=False)
-                    # Inncacurate logging, transactions do not commit until the end
                     logger.info(f"Loaded table: {table_name}")
                 except Exception as e:
                     logger.error(f"Failed to load '{table_name}': {e}")
+                    logger.warning("Performing rollback for all tables")
+                    raise RuntimeError(f"Failed to load table '{table_name}': {e}")
             else:
                 logger.error(f"No data for table: {table_name}")
+                raise RuntimeError(f"No data found for table '{table_name}'")
 
 
 if __name__ == "__main__":

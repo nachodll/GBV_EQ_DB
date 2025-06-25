@@ -72,11 +72,12 @@ def setup_logging() -> Path:
 
 def run(script: Path):
     """Run a standalone script and capture its output."""
-    logging.info("Running %s", script.name)
+    logging.info("----------------------------------------")
+    logging.info(f"Running {script.name}")
+    logging.info("----------------------------------------")
 
     result = subprocess.run(["python", str(script)], text=True, capture_output=True)
 
-    # Print all stdout
     if result.stdout:
         for line in result.stdout.splitlines():
             print("\t", line)

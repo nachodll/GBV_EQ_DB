@@ -20,11 +20,15 @@ logger = logging.getLogger(__name__)
 
 def run_script(script_path: Path):
     logger.info(f"Running script: {script_path}")
-    try:
-        subprocess.run(["python", script_path], text=True, check=True)
-    except subprocess.CalledProcessError as e:
-        logger.error(f"Script {script_path} failed with return code {e.returncode}")
-        print(e.stderr)
+
+    result = subprocess.run(
+        ["python", script_path],
+        text=True,
+        capture_output=True,
+    )
+
+    if result.returncode != 0:
+        raise RuntimeError(f"Script {script_path} failed with error: {result.stderr.strip()}")
 
 
 def main():
