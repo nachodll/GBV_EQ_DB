@@ -76,6 +76,11 @@ def run(script: Path):
 
     result = subprocess.run(["python", str(script)], text=True, capture_output=True)
 
+    # Print all stdout
+    if result.stdout:
+        for line in result.stdout.splitlines():
+            print("\t", line)
+
     if result.stderr:
         for line in result.stderr.splitlines():
             if " - INFO - " in line:

@@ -30,11 +30,29 @@ def main():
         logger.error("Environment variables DB_USER and DB_NAME must be set.")
         raise ValueError("Missing required environment variables: DB_USER or DB_NAME")
 
-    subprocess.run(
-        ["psql", "-h", str(host), "-p", str(port), "-U", str(db_user), "-d", str(db_name), "-f", str(SCHEMA_PATH)],
+    result = subprocess.run(
+        [
+            "psql",
+            "-v",
+            "ON_ERROR_STOP=1",
+            "-h",
+            str(host),
+            "-p",
+            str(port),
+            "-U",
+            str(db_user),
+            "-d",
+            str(db_name),
+            "-f",
+            str(SCHEMA_PATH),
+        ],
         env=env,
-        check=True,
+        capture_output=True,
     )
+
+    if result.returncode != 0:
+        logger.error(f"Failed to create schema: {result.stderr.decode()}")
+        raise RuntimeError(f"Schema creation failed with error: {result.stderr.decode()}")
 
     logger.info("Database schema created")
 

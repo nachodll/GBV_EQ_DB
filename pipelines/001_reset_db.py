@@ -39,19 +39,18 @@ def main():
         logger.error("DB_HOST, DB_PORT, and DB_ADMIN_USER environment variables must be set.")
         raise ValueError("Missing required database connection environment variables.")
 
-    try:
-        subprocess.run(
-            ["psql", "-h", str(host), "-p", str(port), "-U", str(admin_user)],
-            input=sql_script.encode(),
-            env=env,
-            check=True,
-        )
-        logger.info("Database reset completed")
-    except subprocess.CalledProcessError as e:
-        logger.warning(
-            f"Database reset failed {e}. Falling back to dropping all tables.",
-        )
+    result = subprocess.run(
+        ["psql", "-v", "ON_ERROR_STOP=1", "-h", str(host), "-p", str(port), "-U", str(admin_user)],
+        input=sql_script.encode(),
+        env=env,
+        capture_output=True,
+    )
 
+    if result.returncode != 0:
+        logger.error(f"Failed to reset database: {result.stderr.decode()}")
+        raise RuntimeError(f"Database reset failed with error: {result.stderr.decode()}")
+
+    logger.info("Database reset completed")
     return
 
 
