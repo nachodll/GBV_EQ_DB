@@ -1,36 +1,88 @@
-"""Execute load steps to populate the database tables."""
+"""Load all specified data files into
+the database tables with matching names.
+"""
 
 import logging
-import subprocess
+import os
 from pathlib import Path
+from typing import Any, Dict, List
 
-# Define load scripts to run
-LOAD_SCRIPTS_DIR = Path("scripts") / "load"
-SCRIPTS = [
-    LOAD_SCRIPTS_DIR / "001_load_all_tables.py",
+import pandas as pd
+from sqlalchemy import create_engine, text
+from sqlalchemy.engine import Connection
+
+# Path to clean CSV data
+# Name of the CSV files should match the table names
+# Name of the CSV columns should match the table columns
+# Ordered list of CSV files to load (without .csv extension)
+TABLES_TO_LOAD: List[Dict[str, Any]] = [
+    {"name": "comunidades_autonomas", "path": Path("data") / "static" / "comunidadesAutónomas.csv"},
+    {"name": "provincias", "path": Path("data") / "static" / "provincias.csv"},
+    {"name": "feminicidios_pareja_expareja", "path": Path("data") / "clean" / "feminicidios_pareja_expareja.csv"},
+    {
+        "name": "feminicidios_fuera_pareja_expareja",
+        "path": Path("data") / "clean" / "feminicidios_fuera_pareja_expareja.csv",
+    },
+    {"name": "menores_victimas_mortales", "path": Path("data") / "clean" / "menores_victimas_mortales.csv"},
+    {"name": "servicio_016", "path": Path("data") / "clean" / "servicio_016.csv"},
+    {"name": "usuarias_atenpro", "path": Path("data") / "clean" / "usuarias_atenpro.csv"},
 ]
-
 
 # Logger setup
 logger = logging.getLogger(__name__)
 
 
-def run_script(script_path: Path):
-    logger.info(f"Running script: {script_path}")
-    try:
-        subprocess.run(["python", script_path], text=True, check=True)
-    except subprocess.CalledProcessError as e:
-        logger.error(f"Script {script_path} failed with return code {e.returncode}")
-        print(e.stderr)
+def load_csv_files(tables: List[Dict[str, Any]]) -> Dict[str, pd.DataFrame]:
+    """Load CSV files as DataFrames"""
+    dataframes: Dict[str, pd.DataFrame] = {}
+    for entry in tables:
+        try:
+            df = pd.read_csv(entry["path"])  # type: ignore
+            dataframes[entry["name"]] = df
+        except Exception as e:
+            logger.error(f"Failed to read '{entry['path']}': {e}")
+    return dataframes
+
+
+def truncate_tables(conn: Connection, table_names: List[str]):
+    """Truncate each table before insert"""
+    for table in table_names:
+        try:
+            conn.execute(text(f"TRUNCATE {table} RESTART IDENTITY CASCADE"))
+            logger.info(f"Truncated table: {table}")
+        except Exception as e:
+            logger.error(f"Could not truncate table '{table}': {e}")
 
 
 def main():
-    logger.info("Starting load scripts...")
+    dataframes = load_csv_files(TABLES_TO_LOAD)
 
-    for script in SCRIPTS:
-        run_script(script)
+    # Create database engine
+    engine = create_engine(
+        (
+            f"postgresql://{os.getenv('DB_USER')}:"
+            f"{os.getenv('DB_PASSWORD')}@"
+            f"{os.getenv('DB_HOST', 'localhost')}/"
+            f"{os.getenv('DB_NAME')}"
+        ),
+    )
 
-    logger.info("All load scripts completed")
+    # Insert with full transaction
+    with engine.begin() as conn:
+        truncate_tables(conn, list(dataframes.keys()))
+
+        for table_entry in TABLES_TO_LOAD:
+            table_name = table_entry["name"]
+            df = dataframes.get(table_name)
+            if df is not None:
+                try:
+                    df.to_sql(table_name, con=conn, if_exists="append", index=False)
+                    # Inncacurate logging, transactions do not commit until the end
+                    logger.info(f"Loaded table: {table_name}")
+                except Exception as e:
+                    logger.error(f"Failed to load '{table_name}': {e}")
+            else:
+                logger.error(f"No data for table: {table_name}")
 
 
 if __name__ == "__main__":
