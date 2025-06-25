@@ -11,6 +11,8 @@ import pandas as pd
 from sqlalchemy import create_engine, text
 from sqlalchemy.engine import Connection
 
+from utils.logging import setup_logging
+
 # Path to clean CSV data
 # Name of the CSV files should match the table names
 # Name of the CSV columns should match the table columns
@@ -28,9 +30,6 @@ TABLES_TO_LOAD: List[Dict[str, Any]] = [
     {"name": "usuarias_atenpro", "path": Path("data") / "clean" / "usuarias_atenpro.csv"},
 ]
 
-# Logger setup
-logger = logging.getLogger(__name__)
-
 
 def load_csv_files(tables: List[Dict[str, Any]]) -> Dict[str, pd.DataFrame]:
     """Load CSV files as DataFrames"""
@@ -40,7 +39,7 @@ def load_csv_files(tables: List[Dict[str, Any]]) -> Dict[str, pd.DataFrame]:
             df = pd.read_csv(entry["path"])  # type: ignore
             dataframes[entry["name"]] = df
         except Exception as e:
-            logger.error(f"Failed to read '{entry['path']}': {e}")
+            logging.error(f"Failed to read '{entry['path']}': {e}")
     return dataframes
 
 
@@ -49,9 +48,9 @@ def truncate_tables(conn: Connection, table_names: List[str]):
     for table in table_names:
         try:
             conn.execute(text(f"TRUNCATE {table} RESTART IDENTITY CASCADE"))
-            logger.info(f"Truncated table: {table}")
+            logging.info(f"Truncated table: {table}")
         except Exception as e:
-            logger.error(f"Could not truncate table '{table}': {e}")
+            logging.error(f"Could not truncate table '{table}': {e}")
 
 
 def main():
@@ -77,17 +76,16 @@ def main():
             if df is not None:
                 try:
                     df.to_sql(table_name, con=conn, if_exists="append", index=False)
-                    logger.info(f"Loaded table: {table_name}")
+                    logging.info(f"Loaded table: {table_name}")
                 except Exception as e:
-                    logger.error(f"Failed to load '{table_name}': {e}")
-                    logger.warning("Performing rollback for all tables")
+                    logging.error(f"Failed to load '{table_name}': {e}")
+                    logging.warning("Performing rollback for all tables")
                     raise RuntimeError(f"Failed to load table '{table_name}': {e}")
             else:
-                logger.error(f"No data for table: {table_name}")
+                logging.error(f"No data for table: {table_name}")
                 raise RuntimeError(f"No data found for table '{table_name}'")
 
 
 if __name__ == "__main__":
-    if not logging.getLogger().hasHandlers():
-        logging.basicConfig(level=logging.INFO, format="%(asctime)s - %(name)s - %(levelname)s - %(message)s")
+    setup_logging()
     main()

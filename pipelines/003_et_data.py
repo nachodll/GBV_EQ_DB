@@ -3,6 +3,7 @@
 import logging
 from pathlib import Path
 
+from utils.logging import setup_logging
 from utils.run import run_python_script
 
 # Define extract transform scripts to run
@@ -15,20 +16,17 @@ SCRIPTS = [
     ET_SCRIPTS_DIR / "005_et_usuarias_atenpro.py",
 ]
 
-# Logger setup
-logger = logging.getLogger(__name__)
-
 
 def main():
-    logger.info("Starting extract-transform scripts...")
+    logging.info("Starting extract-transform scripts...")
 
     for script in SCRIPTS:
+        logging.info(f"Running script: {script.name}")
         run_python_script(script)
 
-    logger.info("All extract-transform scripts completed")
+    logging.info("All extract-transform scripts completed")
 
 
 if __name__ == "__main__":
-    if not logging.getLogger().hasHandlers():
-        logging.basicConfig(level=logging.INFO, format="%(asctime)s - %(name)s - %(levelname)s - %(message)s")
+    setup_logging()
     main()

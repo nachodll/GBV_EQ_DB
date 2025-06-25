@@ -14,7 +14,7 @@ class ColorFormatter(logging.Formatter):
         logging.INFO: Fore.BLUE,
         logging.WARNING: Fore.YELLOW,
         logging.ERROR: Fore.LIGHTMAGENTA_EX,
-        logging.CRITICAL: Fore.MAGENTA,
+        logging.CRITICAL: Fore.GREEN,
     }
 
     def format(self, record: logging.LogRecord):
@@ -30,17 +30,20 @@ class ColorFormatter(logging.Formatter):
 
 def strip_metadata(line: str) -> tuple[str, int]:
     """Strip repeated logging metadata and return indentation depth."""
+    # Remove ANSI escape sequences for colors
+    ansi_escape = re.compile(r"\x1b\[[0-9;]*m")
+    clean_line = ansi_escape.sub("", line)
     pattern = re.compile(
-        r"^\d{4}-\d{2}-\d{2} \d{2}:\d{2}:\d{2},\d{3} - [^-]+ - (?:DEBUG|INFO|WARNING|ERROR|CRITICAL) - "
+        r"^\d{4}-\d{2}-\d{2} \d{2}:\d{2}:\d{2},\d{3} (?:DEBUG|INFO|WARNING|ERROR|CRITICAL) \[[^\]]+\] "
     )
     depth = 0
     previous = None
-    while previous != line:
-        previous = line
-        line = pattern.sub("", line)
-        if previous != line:
+    while previous != clean_line:
+        previous = clean_line
+        clean_line = pattern.sub("", clean_line)
+        if previous != clean_line:
             depth += 1
-    return line, depth
+    return clean_line, depth
 
 
 def setup_logging() -> Path:

@@ -33,8 +33,6 @@ LOG_PATH = LOG_DIR / f"{datetime.now().isoformat()}.log"
 
 
 def main():
-    setup_logging()
-
     parser = argparse.ArgumentParser(description="Run pipeline steps")
     parser.add_argument(
         "step",
@@ -70,4 +68,5 @@ def main():
 
 
 if __name__ == "__main__":
+    setup_logging()
     main()

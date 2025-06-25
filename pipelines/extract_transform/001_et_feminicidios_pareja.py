@@ -9,6 +9,7 @@ from pathlib import Path
 
 import pandas as pd
 
+from utils.logging import setup_logging
 from utils.normalization import (
     normalize_age_group,
     normalize_month,
@@ -20,9 +21,6 @@ from utils.normalization import (
 # Paths
 RAW_CSV_PATH = Path("data") / "raw" / "DGVG" / "DGVG001-010FeminicidiosPareja.csv"
 CLEAN_CSV_PATH = Path("data") / "clean" / "feminicidios_pareja_expareja.csv"
-
-# Logger setup
-logger = logging.getLogger(__name__)
 
 
 def main():
@@ -64,16 +62,15 @@ def main():
     ]
     for column in required_columns:
         if df[column].isnull().any():
-            logger.error(f"Missing values found in column '{column}'")
+            logging.error(f"Missing values found in column '{column}'")
             raise ValueError(f"Missing values found in column '{column}'")
 
     # Save cleaned CSV
     CLEAN_CSV_PATH.parent.mkdir(parents=True, exist_ok=True)
     df.to_csv(CLEAN_CSV_PATH, index=False)
-    logger.info(f"Data cleaned and saved to {CLEAN_CSV_PATH}")
+    logging.info(f"Data cleaned and saved to {CLEAN_CSV_PATH}")
 
 
 if __name__ == "__main__":
-    if not logging.getLogger().hasHandlers():
-        logging.basicConfig(level=logging.INFO, format="%(asctime)s - %(name)s - %(levelname)s - %(message)s")
+    setup_logging()
     main()

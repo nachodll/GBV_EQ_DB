@@ -15,25 +15,20 @@ def run_python_script(script: Path):
         capture_output=True,
     )
 
-    if result.stdout:
-        for line in result.stdout.splitlines():
-            logging.info("\t" + line)
-
     if result.stderr:
         for line in result.stderr.splitlines():
             clean, level = strip_metadata(line)
             indent = "\t" * (level)
-            if " - DEBUG - " in line:
+            if "DEBUG" in line:
                 logging.debug(indent + clean)
-            elif " - WARNING - " in line:
+            elif "WARNING" in line:
                 logging.warning(indent + clean)
-            elif " - ERROR - " in line:
+            elif "ERROR" in line:
                 logging.error(indent + clean)
-            elif " - CRITICAL - " in line:
+            elif "CRITICAL" in line:
                 logging.critical(indent + clean)
-            else:
+            elif "INFO" in line:
                 logging.info(indent + clean)
-
     result.check_returncode()
 
 
@@ -63,6 +58,4 @@ def run_sql_script(script: str):
         capture_output=True,
     )
 
-    if result.returncode != 0:
-        logging.error(f"Failed to reset database: {result.stderr.decode()}")
-        raise RuntimeError(f"Database reset failed with error: {result.stderr.decode()}")
+    result.check_returncode()
