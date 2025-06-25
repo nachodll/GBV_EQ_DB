@@ -1,5 +1,10 @@
 import re
 import unicodedata
+from datetime import datetime
+
+"""Utility functions for normalizing various types of data, such as province names,
+comunidad autónoma names, months, years, age groups, and positive integers.
+All functions take a string input and return a normalized value, or None if the input is not valid."""
 
 dict_provincia = {
     "Araba/Álava": 1,
@@ -205,6 +210,21 @@ def normalize_month(month: str) -> int | None:
     return None
 
 
+def normalize_year(year: str) -> int | None:
+    """
+    Normalize a year string to an integer.
+    Returns None if the value is not parsable.
+    """
+    try:
+        year_int = int(year.strip())
+        if 1900 <= year_int <= datetime.now().year:
+            return year_int
+        else:
+            return None
+    except ValueError:
+        return None
+
+
 def normalize_age_group(raw: str) -> str | None:
     """
     Normalizes a raw age group string to the format '<min>-<max>'.
@@ -231,3 +251,18 @@ def normalize_age_group(raw: str) -> str | None:
         return f">{int(match_greater.group(1))}"
 
     return None
+
+
+def normalize_positive_integer(value: str) -> int | None:
+    """
+    Normalize a string to a positive integer.
+    Returns None if the value is not parsable or negative.
+    """
+    try:
+        num = int(value.strip())
+        if num >= 0:
+            return num
+        else:
+            return None
+    except ValueError:
+        return None

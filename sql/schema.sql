@@ -1,5 +1,20 @@
 CREATE TYPE "tipo_feminicidio_enum" AS ENUM ('Familiar', 'Sexual', 'Social', 'Vicario');
 
+CREATE TYPE "persona_consulta_enum" AS ENUM (
+  'Usuaria',
+  'Familiares/Personas allegadas',
+  'Otras personas',
+  'No consta'
+);
+
+CREATE TYPE "tipo_violencia_enum" AS ENUM (
+  'Pareja/expareja',
+  'No desagregada',
+  'Familiar',
+  'Sexual',
+  'Otras violencias'
+);
+
 CREATE TABLE
   "comunidades_autonomas" (
     "comunidad_autonoma_id" int PRIMARY KEY,
@@ -10,152 +25,236 @@ CREATE TABLE
   "provincias" (
     "provincia_id" int PRIMARY KEY,
     "nombre" varchar UNIQUE NOT NULL,
-    "comunidad_autonoma_id" int
+    "comunidad_autonoma_id" int NOT NULL
   );
 
 CREATE TABLE
   "feminicidios_pareja_expareja" (
     "feminicidios_pareja_expareja_id" serial PRIMARY KEY,
-    "num_feminicidios" int,
-    "num_huerfanos_menores" int,
-    "provincia_id" int,
-    "año" int,
-    "mes" int,
-    "victima_grupo_edad" varchar,
-    "agresor_grupo_edad" varchar
+    "num_feminicidios" int NOT NULL CHECK (num_feminicidios >= 0),
+    "num_huerfanos_menores" int NOT NULL CHECK (num_huerfanos_menores >= 0),
+    "provincia_id" int NOT NULL,
+    "año" int NOT NULL CHECK (
+      año BETWEEN 1900 AND EXTRACT(
+        YEAR
+        FROM
+          CURRENT_DATE
+      )
+    ),
+    "mes" int NOT NUL CHECK (mes BETWEEN 1 AND 12),
+    "victima_grupo_edad" varchar NOT NULL,
+    "agresor_grupo_edad" varchar NOT NULL
   );
 
 CREATE TABLE
   "feminicidios_fuera_pareja_expareja" (
     "feminicidios_fuera_pareja_expareja_id" serial PRIMARY KEY,
-    "num_feminicidios" int,
-    "tipo_feminicidio" tipo_feminicidio_enum,
-    "comunidad_autonoma_id" int,
-    "año" int
+    "num_feminicidios" int NOT NULL CHECK (num_feminicidios >= 0),
+    "tipo_feminicidio" tipo_feminicidio_enum NOT NULL,
+    "comunidad_autonoma_id" int NOT NULL,
+    "año" int NOT NULLCHECK (
+      año BETWEEN 1900 AND EXTRACT(
+        YEAR
+        FROM
+          CURRENT_DATE
+      )
+    ),
   );
 
 CREATE TABLE
   "menores_victimas_mortales" (
     "menores_victimas_mortales_id" serial PRIMARY KEY,
-    "es_hijo_agresor" boolean,
-    "es_victima_vicaria" boolean,
-    "num_menores_victimas_mortales" int,
-    "provincia_id" int,
-    "año" int,
-    "mes" int
+    "es_hijo_agresor" boolean NOT NULL,
+    "es_victima_vicaria" boolean NOT NULL,
+    "num_menores_victimas_mortales" int NOT NULL CHECK (num_menores_victimas_mortales >= 0),
+    "provincia_id" int NOT NULL,
+    "año" int NOT NULL CHECK (
+      año BETWEEN 1900 AND EXTRACT(
+        YEAR
+        FROM
+          CURRENT_DATE
+      )
+    ),
+    "mes" int NOT NULL CHECK (mes BETWEEN 1 AND 12),
   );
 
 CREATE TABLE
   "servicio_016" (
     "servicio_016_id" serial PRIMARY KEY,
-    "provincia_id" int,
-    "año" int,
-    "mes" int,
-    "persona_consulta" varchar,
-    "tipo_violencia" varchar,
-    "total_consultas" int,
-    "num_llamadas" int,
-    "num_whatsapps" int,
-    "num_emails" int,
-    "num_chats" int
+    "provincia_id" int NOT NULL,
+    "año" int NOT NULL CHECK (
+      año BETWEEN 1900 AND EXTRACT(
+        YEAR
+        FROM
+          CURRENT_DATE
+      )
+    ),
+    "mes" int NOT NULL CHECK (mes BETWEEN 1 AND 12),
+    "persona_consulta" persona_consulta_enum NOT NULL,
+    "tipo_violencia" tipo_violencia_enum NOT NULL,
+    "total_consultas" int NOT NULL CHECK (total_consultas >= 0),
+    "num_llamadas" int NOT NULL CHECK (num_llamadas >= 0),
+    "num_whatsapps" int NOT NULL CHECK (num_whatsapps >= 0),
+    "num_emails" int NOT NULL CHECK (num_emails >= 0),
+    "num_chats" int NOT NULL CHECK (num_chats >= 0),
   );
 
 CREATE TABLE
   "usuarias_atenpro" (
     "usuarias_atenpro_id" serial PRIMARY KEY,
-    "provincia_id" int,
-    "año" int,
-    "mes" int,
-    "num_altas" int,
-    "num_bajas" int,
-    "num_usuaria_activas" int
+    "provincia_id" int NOT NULL,
+    "año" int NOT NULL CHECK (
+      año BETWEEN 1900 AND EXTRACT(
+        YEAR
+        FROM
+          CURRENT_DATE
+      )
+    ),
+    "mes" int NOT NULL CHECK (mes BETWEEN 1 AND 12),
+    "num_altas" int NOT NULL CHECK (num_altas >= 0),
+    "num_bajas" int NOT NULL CHECK (num_bajas >= 0),
+    "num_usuaria_activas" int NOT NULL CHECK (num_usuaria_activas >= 0),
   );
 
 CREATE TABLE
   "dispositivos_electronicos_seguimiento" (
     "dispositivos_electronicos_seguimiento_id" serial PRIMARY KEY,
-    "provincia_id" int,
-    "año" int,
-    "mes" int,
-    "num_instalaciones_acumuladas" int,
-    "num_desinstalaciones_acumuladas" int,
-    "num_dispositivos_activos" int
+    "provincia_id" int NOT NULL,
+    "año" int NOT NULL CHECK (
+      año BETWEEN 1900 AND EXTRACT(
+        YEAR
+        FROM
+          CURRENT_DATE
+      )
+    ),
+    "mes" int NOT NULL CHECK (mes BETWEEN 1 AND 12),
+    "num_instalaciones_acumuladas" int NOT NULL CHECK (num_instalaciones_acumuladas >= 0),
+    "num_desinstalaciones_acumuladas" int NOT NULL CHECK (num_desinstalaciones_acumuladas >= 0),
+    "num_dispositivos_activos" int NOT NULL CHECK (num_dispositivos_activos >= 0)
   );
 
 CREATE TABLE
   "ayudas_articulo_27" (
     "ayudas_articulo_27_id" serial PRIMARY KEY,
-    "comunidad_autonoma_id" int,
-    "año" int,
-    "num_ayudas_concedidas" int
+    "comunidad_autonoma_id" int NOT NULL,
+    "año" int NOT NULL CHECK (
+      año BETWEEN 1900 AND EXTRACT(
+        YEAR
+        FROM
+          CURRENT_DATE
+      )
+    ),
+    "num_ayudas_concedidas" int NOT NULL CHECK (num_ayudas_concedidas >= 0),
   );
 
 CREATE TABLE
   "viogen" (
     "viogen_id" serial PRIMARY KEY,
-    "provincia_id" int,
-    "año" int,
-    "mes" int,
-    "nivel_riesgo" varchar,
-    "num_casos" int,
-    "num_casos_proteccion_policial" int
+    "provincia_id" int NOT NULL,
+    "año" int NOT NULL CHECK (
+      año BETWEEN 1900 AND EXTRACT(
+        YEAR
+        FROM
+          CURRENT_DATE
+      )
+    ),
+    "mes" int NOT NULL CHECK (mes BETWEEN 1 AND 12),
+    "nivel_riesgo" varchar NOT NULL,
+    "num_casos" int NOT NULL CHECK (num_casos >= 0),
+    "num_casos_proteccion_policial" int NOT NULL CHECK (num_casos_proteccion_policial >= 0),
   );
 
 CREATE TABLE
   "autorizaciones_residencia_trabajo_mevvg" (
     "autorizaciones_residencia_trabajo_mevvg_id" serial PRIMARY KEY,
-    "provincia_id" int,
-    "año" int,
-    "mes" int,
-    "num_autorizaciones_concedidas" int
+    "provincia_id" int NOT NULL,
+    "año" int NOT NULL CHECK (
+      año BETWEEN 1900 AND EXTRACT(
+        YEAR
+        FROM
+          CURRENT_DATE
+      )
+    ),
+    "mes" int NOT NULL CHECK (mes BETWEEN 1 AND 12),
+    "num_autorizaciones_concedidas" int NOT NULL CHECK (num_autorizaciones_concedidas >= 0),
   );
 
 CREATE TABLE
   "denuncias_vg_pareja" (
     "denuncias_vd_pareja_id" serial PRIMARY KEY,
-    "origen_denuncia" varchar,
-    "año" int,
-    "trimestre" int,
-    "provincia_id" int,
-    "num_denuncias_vg" int
+    "origen_denuncia" varchar NOT NULL,
+    "año" int NOT NULL CHECK (
+      año BETWEEN 1900 AND EXTRACT(
+        YEAR
+        FROM
+          CURRENT_DATE
+      )
+    ),
+    "trimestre" int NOT NULL CHECK (trimestre BETWEEN 1 AND 4),
+    "provincia_id" int NOT NULL,
+    "num_denuncias_vg" int NOT NULL CHECK (num_denuncias_vg >= 0),
   );
 
 CREATE TABLE
   "ordenes_proteccion" (
     "ordenes_proteccion_id" serial PRIMARY KEY,
-    "estado_denuncia" varchar,
-    "instancia" varchar,
-    "año" int,
-    "provincia_id" int,
-    "num_ordenes_proteccion" int
+    "estado_denuncia" varchar NOT NULL,
+    "instancia" varchar NOT NULL,
+    "año" int NOT NULL CHECK (
+      año BETWEEN 1900 AND EXTRACT(
+        YEAR
+        FROM
+          CURRENT_DATE
+      )
+    ),
+    "provincia_id" int NOT NULL,
+    "num_ordenes_proteccion" int NOT NULL CHECK (num_ordenes_proteccion >= 0),
   );
 
 CREATE TABLE
   "renta_activa_insercion" (
     "renta_activa_insercion_id" serial PRIMARY KEY,
-    "provincia_id" int,
-    "año" int,
-    "num_perceptoras" int
+    "provincia_id" int NOT NULL,
+    "año" int NOT NULL CHECK (
+      año BETWEEN 1900 AND EXTRACT(
+        YEAR
+        FROM
+          CURRENT_DATE
+      )
+    ),
+    "num_perceptoras" int NOT NULL CHECK (num_perceptoras >= 0),
   );
 
 CREATE TABLE
   "contratos_bonificados_sustitucion" (
-    "contratos_bonificados_sustitucion_id" serial PRIMARY KEY,
-    "num_contratos_bonificados" int,
-    "num_contratos_sustitucion" int,
-    "año" int,
-    "mes" int,
-    "provincia_id" int,
-    "colectivo" varchar,
-    "tipo_contrato" varchar
+    "contratos_bonificados_sustitucion_id" serial PRIMARY KEY NOT NULL,
+    "num_contratos_bonificados" int NOT NULL CHECK (num_contratos_bonificados >= 0),
+    "num_contratos_sustitucion" int NOT NULL CHECK (num_contratos_sustitucion >= 0),
+    "año" int NOT NULL CHECK (
+      año BETWEEN 1900 AND EXTRACT(
+        YEAR
+        FROM
+          CURRENT_DATE
+      )
+    ),
+    "mes" int NOT NULL CHECK (mes BETWEEN 1 AND 12),
+    "provincia_id" int NOT NULL,
+    "colectivo" varchar NOT NULL,
+    "tipo_contrato" varchar NOT NULL
   );
 
 CREATE TABLE
   "ayudas_cambio_residencia" (
     "ayudas_cambio_residencia_id" serial PRIMARY KEY,
-    "provincia_id" int,
-    "año" int,
-    "num_ayudas_cambio_residencia" int
+    "provincia_id" int NOT NULL,
+    "año" int NOT NULL CHECK (
+      año BETWEEN 1900 AND EXTRACT(
+        YEAR
+        FROM
+          CURRENT_DATE
+      )
+    ),
+    "num_ayudas_cambio_residencia" int NOT NULL CHECK (num_ayudas_cambio_residencia >= 0)
   );
 
 ALTER TABLE "provincias" ADD FOREIGN KEY ("comunidad_autonoma_id") REFERENCES "comunidades_autonomas" ("comunidad_autonoma_id");
