@@ -49,8 +49,9 @@ def main():
     df["num_feminicidios"] = df["num_feminicidios"].map(normalize_positive_integer)  # type: ignore
     df["tipo_feminicidio"] = df["tipo_feminicidio"].map(tipo_feminicidio_mapping)  # type: ignore
 
-    # Check for missing values (according to the schema constraints)
-    for column in df.columns:
+    # Check for missing values in required columns
+    required_columns = ["comunidad_autonoma_id", "año", "num_feminicidios", "tipo_feminicidio"]
+    for column in required_columns:
         if df[column].isnull().any():
             logger.error(f"Missing values found in column '{column}'")
             raise ValueError(f"Missing values found in column '{column}'")

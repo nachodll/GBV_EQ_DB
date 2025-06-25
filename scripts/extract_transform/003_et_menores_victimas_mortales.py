@@ -48,8 +48,16 @@ def main():
     )  # type: ignore
     df["num_menores_victimas_mortales"] = df["num_menores_victimas_mortales"].map(normalize_positive_integer)  # type: ignore
 
-    # Check for missing values (according to the schema constraints)
-    for column in df.columns:
+    # Check for missing values in required columns
+    required_columns = [
+        "provincia_id",
+        "año",
+        "mes",
+        "es_victima_vicaria",
+        "es_hijo_agresor",
+        "num_menores_victimas_mortales",
+    ]
+    for column in required_columns:
         if df[column].isnull().any():
             logger.error(f"Missing values found in column '{column}'")
             raise ValueError(f"Missing values found in column '{column}'")

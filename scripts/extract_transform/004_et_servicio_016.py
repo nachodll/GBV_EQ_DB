@@ -68,12 +68,22 @@ def main():
     df["num_emails"] = df["num_emails"].map(normalize_positive_integer)  # type: ignore
     df["num_chats"] = df["num_chats"].map(normalize_positive_integer)  # type: ignore
 
-    # Check for missing values (according to the schema constraints)
-    for column in df.columns:
-        if column != "provincia_id":
-            if df[column].isnull().any():
-                logger.error(f"Missing values found in column '{column}'")
-                raise ValueError(f"Missing values found in column '{column}'")
+    # Check for missing values in required columns
+    required_columns = [
+        "año",
+        "mes",
+        "persona_consulta",
+        "tipo_violencia",
+        "total_consultas",
+        "num_llamadas",
+        "num_whatsapps",
+        "num_emails",
+        "num_chats",
+    ]
+    for column in required_columns:
+        if df[column].isnull().any():
+            logger.error(f"Missing values found in column '{column}'")
+            raise ValueError(f"Missing values found in column '{column}'")
 
     # Save cleaned CSV
     CLEAN_CSV_PATH.parent.mkdir(parents=True, exist_ok=True)

@@ -242,7 +242,7 @@ def normalize_age_group(raw: str) -> str | None:
     clean = raw.strip().lower().replace("años", "").replace(" ", "")
 
     if clean == "noconsta":
-        return "No consta"
+        return None
 
     # Handle formats like 18-24
     match_range = re.match(r"(\d+)-(\d+)", clean)

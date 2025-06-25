@@ -42,8 +42,8 @@ CREATE TABLE
       )
     ),
     "mes" int NOT NULL CHECK (mes BETWEEN 1 AND 12),
-    "victima_grupo_edad" varchar NOT NULL,
-    "agresor_grupo_edad" varchar NOT NULL
+    "victima_grupo_edad" varchar,
+    "agresor_grupo_edad" varchar
   );
 
 CREATE TABLE

@@ -50,8 +50,9 @@ def main():
     # Drop rows with any NaN values in column num_altas or num_bajas
     df = df.dropna(subset=["num_altas", "num_bajas"])  # type: ignore
 
-    # Check for missing values (according to the schema constraints)
-    for column in df.columns:
+    # Check for missing values in required columns
+    required_columns = ["provincia_id", "año", "mes", "num_altas", "num_bajas", "num_usuarias_activas"]
+    for column in required_columns:
         if df[column].isnull().any():
             logger.error(f"Missing values found in column '{column}'")
             raise ValueError(f"Missing values found in column '{column}'")
