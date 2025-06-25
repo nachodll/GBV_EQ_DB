@@ -1,8 +1,9 @@
 """Run extract-transform steps for the raw datasets."""
 
 import logging
-import subprocess
 from pathlib import Path
+
+from utils.run import run_python_script
 
 # Define extract transform scripts to run
 ET_SCRIPTS_DIR = Path("pipelines") / "extract_transform"
@@ -18,33 +19,11 @@ SCRIPTS = [
 logger = logging.getLogger(__name__)
 
 
-def run_script(script_path: Path):
-    logger.info(f"Running script: {script_path}")
-
-    result = subprocess.run(
-        ["python", script_path],
-        text=True,
-        capture_output=True,
-    )
-
-    if result.stderr:
-        for line in result.stderr.splitlines():
-            if " - INFO - " in line:
-                logging.info(line)
-            elif " - WARNING - " in line:
-                logging.warning(line)
-            elif " - ERROR - " in line:
-                logging.error(line)
-
-    if result.returncode != 0:
-        raise RuntimeError(f"Script {script_path} failed with error: {result.stderr.strip()}")
-
-
 def main():
     logger.info("Starting extract-transform scripts...")
 
     for script in SCRIPTS:
-        run_script(script)
+        run_python_script(script)
 
     logger.info("All extract-transform scripts completed")
 

@@ -15,11 +15,11 @@ is provided, all previous steps are also run unless ``--only`` is supplied."""
 
 import argparse
 import logging
-import subprocess
 from datetime import datetime
 from pathlib import Path
 
-from utils.logging import setup_logging, strip_metadata
+from utils.logging import setup_logging
+from utils.run import run_python_script
 
 PIPELINES_DIR = Path("pipelines")
 ACTIONS: dict[str, list[Path]] = {
@@ -30,36 +30,6 @@ ACTIONS: dict[str, list[Path]] = {
 
 LOG_DIR = Path("logs") / "orchestrator"
 LOG_PATH = LOG_DIR / f"{datetime.now().isoformat()}.log"
-
-
-def run(script: Path):
-    """Run a standalone script and capture its output."""
-    logging.info("----------------------------------------")
-    logging.info(f"Running {script.name}")
-    logging.info("----------------------------------------")
-
-    result = subprocess.run(["python", str(script)], text=True, capture_output=True)
-
-    if result.stdout:
-        for line in result.stdout.splitlines():
-            logging.info("\t" + line)
-
-    if result.stderr:
-        for line in result.stderr.splitlines():
-            clean, level = strip_metadata(line)
-            indent = "\t" * (level)
-            if " - DEBUG - " in line:
-                logging.debug(indent + clean)
-            elif " - WARNING - " in line:
-                logging.warning(indent + clean)
-            elif " - ERROR - " in line:
-                logging.error(indent + clean)
-            elif " - CRITICAL - " in line:
-                logging.critical(indent + clean)
-            else:
-                logging.info(indent + clean)
-
-    result.check_returncode()
 
 
 def main():
@@ -93,7 +63,10 @@ def main():
             scripts_to_run.extend(ACTIONS[step])
 
     for script in scripts_to_run:
-        run(script)
+        logging.info("----------------------------------------")
+        logging.info(f"Running {script.name}")
+        logging.info("----------------------------------------")
+        run_python_script(script)
 
 
 if __name__ == "__main__":
