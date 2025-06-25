@@ -41,7 +41,7 @@ CREATE TABLE
           CURRENT_DATE
       )
     ),
-    "mes" int NOT NUL CHECK (mes BETWEEN 1 AND 12),
+    "mes" int NOT NULL CHECK (mes BETWEEN 1 AND 12),
     "victima_grupo_edad" varchar NOT NULL,
     "agresor_grupo_edad" varchar NOT NULL
   );
@@ -52,13 +52,13 @@ CREATE TABLE
     "num_feminicidios" int NOT NULL CHECK (num_feminicidios >= 0),
     "tipo_feminicidio" tipo_feminicidio_enum NOT NULL,
     "comunidad_autonoma_id" int NOT NULL,
-    "año" int NOT NULLCHECK (
+    "año" int NOT NULL CHECK (
       año BETWEEN 1900 AND EXTRACT(
         YEAR
         FROM
           CURRENT_DATE
       )
-    ),
+    )
   );
 
 CREATE TABLE
@@ -75,7 +75,7 @@ CREATE TABLE
           CURRENT_DATE
       )
     ),
-    "mes" int NOT NULL CHECK (mes BETWEEN 1 AND 12),
+    "mes" int NOT NULL CHECK (mes BETWEEN 1 AND 12)
   );
 
 CREATE TABLE
@@ -96,7 +96,7 @@ CREATE TABLE
     "num_llamadas" int NOT NULL CHECK (num_llamadas >= 0),
     "num_whatsapps" int NOT NULL CHECK (num_whatsapps >= 0),
     "num_emails" int NOT NULL CHECK (num_emails >= 0),
-    "num_chats" int NOT NULL CHECK (num_chats >= 0),
+    "num_chats" int NOT NULL CHECK (num_chats >= 0)
   );
 
 CREATE TABLE
@@ -113,7 +113,7 @@ CREATE TABLE
     "mes" int NOT NULL CHECK (mes BETWEEN 1 AND 12),
     "num_altas" int NOT NULL CHECK (num_altas >= 0),
     "num_bajas" int NOT NULL CHECK (num_bajas >= 0),
-    "num_usuaria_activas" int NOT NULL CHECK (num_usuaria_activas >= 0),
+    "num_usuaria_activas" int NOT NULL CHECK (num_usuaria_activas >= 0)
   );
 
 CREATE TABLE
@@ -144,7 +144,7 @@ CREATE TABLE
           CURRENT_DATE
       )
     ),
-    "num_ayudas_concedidas" int NOT NULL CHECK (num_ayudas_concedidas >= 0),
+    "num_ayudas_concedidas" int NOT NULL CHECK (num_ayudas_concedidas >= 0)
   );
 
 CREATE TABLE
@@ -161,7 +161,7 @@ CREATE TABLE
     "mes" int NOT NULL CHECK (mes BETWEEN 1 AND 12),
     "nivel_riesgo" varchar NOT NULL,
     "num_casos" int NOT NULL CHECK (num_casos >= 0),
-    "num_casos_proteccion_policial" int NOT NULL CHECK (num_casos_proteccion_policial >= 0),
+    "num_casos_proteccion_policial" int NOT NULL CHECK (num_casos_proteccion_policial >= 0)
   );
 
 CREATE TABLE
@@ -176,12 +176,12 @@ CREATE TABLE
       )
     ),
     "mes" int NOT NULL CHECK (mes BETWEEN 1 AND 12),
-    "num_autorizaciones_concedidas" int NOT NULL CHECK (num_autorizaciones_concedidas >= 0),
+    "num_autorizaciones_concedidas" int NOT NULL CHECK (num_autorizaciones_concedidas >= 0)
   );
 
 CREATE TABLE
   "denuncias_vg_pareja" (
-    "denuncias_vd_pareja_id" serial PRIMARY KEY,
+    "denuncias_vg_pareja_id" serial PRIMARY KEY,
     "origen_denuncia" varchar NOT NULL,
     "año" int NOT NULL CHECK (
       año BETWEEN 1900 AND EXTRACT(
@@ -192,7 +192,7 @@ CREATE TABLE
     ),
     "trimestre" int NOT NULL CHECK (trimestre BETWEEN 1 AND 4),
     "provincia_id" int NOT NULL,
-    "num_denuncias_vg" int NOT NULL CHECK (num_denuncias_vg >= 0),
+    "num_denuncias_vg" int NOT NULL CHECK (num_denuncias_vg >= 0)
   );
 
 CREATE TABLE
@@ -208,7 +208,7 @@ CREATE TABLE
       )
     ),
     "provincia_id" int NOT NULL,
-    "num_ordenes_proteccion" int NOT NULL CHECK (num_ordenes_proteccion >= 0),
+    "num_ordenes_proteccion" int NOT NULL CHECK (num_ordenes_proteccion >= 0)
   );
 
 CREATE TABLE
@@ -222,7 +222,7 @@ CREATE TABLE
           CURRENT_DATE
       )
     ),
-    "num_perceptoras" int NOT NULL CHECK (num_perceptoras >= 0),
+    "num_perceptoras" int NOT NULL CHECK (num_perceptoras >= 0)
   );
 
 CREATE TABLE

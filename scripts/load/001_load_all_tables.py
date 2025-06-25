@@ -24,6 +24,7 @@ TABLES_TO_LOAD: List[Dict[str, Any]] = [
         "path": Path("data") / "clean" / "feminicidios_fuera_pareja_expareja.csv",
     },
     {"name": "menores_victimas_mortales", "path": Path("data") / "clean" / "menores_victimas_mortales.csv"},
+    {"name": "servicio_016", "path": Path("data") / "clean" / "servicio_016.csv"},
 ]
 
 # Logger setup
@@ -38,7 +39,7 @@ def load_csv_files(tables: List[Dict[str, Any]]) -> Dict[str, pd.DataFrame]:
             df = pd.read_csv(entry["path"])  # type: ignore
             dataframes[entry["name"]] = df
         except Exception as e:
-            logger.warning(f"Failed to read '{entry['path']}': {e}")
+            logger.error(f"Failed to read '{entry['path']}': {e}")
     return dataframes
 
 
@@ -49,7 +50,7 @@ def truncate_tables(conn: Connection, table_names: List[str]):
             conn.execute(text(f"TRUNCATE {table} RESTART IDENTITY CASCADE"))
             logger.info(f"Truncated table: {table}")
         except Exception as e:
-            logger.warning(f"Could not truncate table '{table}': {e}")
+            logger.error(f"Could not truncate table '{table}': {e}")
 
 
 def main():
@@ -80,7 +81,7 @@ def main():
                 except Exception as e:
                     logger.error(f"Failed to load '{table_name}': {e}")
             else:
-                logger.warning(f"No data for table: {table_name}")
+                logger.error(f"No data for table: {table_name}")
 
 
 if __name__ == "__main__":
