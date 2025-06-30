@@ -8,7 +8,8 @@ Usage::
 Steps:
     reset  - Drop and recreate the database and user
     schema - Create database schema
-    load   - Run extract/transform and load pipelines
+    et     - Run extract and transform pipelines
+    load   - Load data into the database
 
 If ``step`` is omitted, the script executes the full pipeline. When a ``step``
 is provided, all previous steps are also run unless ``--only`` is supplied."""
@@ -23,9 +24,10 @@ from utils.run import run_python_script
 
 PIPELINES_DIR = Path("pipelines")
 ACTIONS: dict[str, list[Path]] = {
-    "reset": [PIPELINES_DIR / "001_reset_db.py"],
-    "schema": [PIPELINES_DIR / "002_create_schema.py"],
-    "load": [PIPELINES_DIR / "003_et_data.py", PIPELINES_DIR / "004_load_data.py"],
+    "reset": [PIPELINES_DIR / "reset_schema.py"],
+    "schema": [PIPELINES_DIR / "create_schema.py"],
+    "et": [PIPELINES_DIR / "extract_transform_data.py"],
+    "load": [PIPELINES_DIR / "load_data.py"],
 }
 
 LOG_DIR = Path("logs") / "orchestrator"
