@@ -11,6 +11,7 @@ import pandas as pd
 
 from utils.logging import setup_logging
 from utils.normalization import (
+    apply_and_check,  # type: ignore
     normalize_age_group,
     normalize_month,
     normalize_positive_integer,
@@ -44,26 +45,13 @@ def main():
     )
 
     # Normalize and validate all columns
-    df["año"] = df["año"].map(normalize_year)  # type: ignore
-    df["mes"] = df["mes"].map(normalize_month)  # type: ignore
-    df["provincia_id"] = df["provincia_id"].map(normalize_provincia)  # type: ignore
-    df["victima_grupo_edad"] = df["victima_grupo_edad"].map(normalize_age_group)  # type: ignore
-    df["agresor_grupo_edad"] = df["agresor_grupo_edad"].map(normalize_age_group)  # type: ignore
-    df["num_feminicidios"] = df["num_feminicidios"].map(normalize_positive_integer)  # type: ignore
-    df["num_huerfanos_menores"] = df["num_huerfanos_menores"].map(normalize_positive_integer)  # type: ignore
-
-    # Check for missing values in required columns
-    required_columns = [
-        "provincia_id",
-        "año",
-        "mes",
-        "num_feminicidios",
-        "num_huerfanos_menores",
-    ]
-    for column in required_columns:
-        if df[column].isnull().any():
-            logging.error(f"Missing values found in column '{column}'")
-            raise ValueError(f"Missing values found in column '{column}'")
+    df["año"] = apply_and_check(df["año"], normalize_year)
+    df["mes"] = apply_and_check(df["mes"], normalize_month)
+    df["provincia_id"] = apply_and_check(df["provincia_id"], normalize_provincia)
+    df["victima_grupo_edad"] = apply_and_check(df["victima_grupo_edad"], normalize_age_group)
+    df["agresor_grupo_edad"] = apply_and_check(df["agresor_grupo_edad"], normalize_age_group)
+    df["num_feminicidios"] = apply_and_check(df["num_feminicidios"], normalize_positive_integer)
+    df["num_huerfanos_menores"] = apply_and_check(df["num_huerfanos_menores"], normalize_positive_integer)
 
     # Save cleaned CSV
     CLEAN_CSV_PATH.parent.mkdir(parents=True, exist_ok=True)

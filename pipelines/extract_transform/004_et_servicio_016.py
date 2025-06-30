@@ -7,11 +7,19 @@ Target tables:
 
 import logging
 from pathlib import Path
+from typing import Optional
 
 import pandas as pd
 
 from utils.logging import setup_logging
-from utils.normalization import normalize_month, normalize_positive_integer, normalize_provincia, normalize_year
+from utils.normalization import (
+    apply_and_check,  # type: ignore
+    apply_and_check_dict,  # type: ignore
+    normalize_month,
+    normalize_positive_integer,
+    normalize_provincia,
+    normalize_year,
+)
 
 RAW_CSV_PATH = Path("data") / "raw" / "DGVG" / "DGVG004-040Servicio016.csv"
 CLEAN_CSV_PATH = Path("data") / "clean" / "servicio_016.csv"
@@ -40,12 +48,12 @@ def main():
         }
     )
 
-    persona_consulta_mapping = {
+    persona_consulta_mapping: dict[str, Optional[str]] = {
         "Usuaria": "Usuaria",
         "Familiares/Personas allegadas": "Familiares/Allegados",
         "Otras personas": "Otras personas",
-        "No consta": "No consta",
     }
+
     tipo_violencia_mapping = {
         "V. pareja o expareja": "Pareja/Expareja",
         "Violencia no desagregada": "No desagregada",
@@ -55,33 +63,16 @@ def main():
     }
 
     # Normalize and validate all columns
-    df["año"] = df["año"].map(normalize_year)  # type: ignore
-    df["mes"] = df["mes"].map(normalize_month)  # type: ignore
-    df["provincia_id"] = df["provincia_id"].map(normalize_provincia)  # type: ignore
-    df["persona_consulta"] = df["persona_consulta"].map(persona_consulta_mapping)  # type: ignore
-    df["tipo_violencia"] = df["tipo_violencia"].map(tipo_violencia_mapping)  # type: ignore
-    df["total_consultas"] = df["total_consultas"].map(normalize_positive_integer)  # type: ignore
-    df["num_llamadas"] = df["num_llamadas"].map(normalize_positive_integer)  # type: ignore
-    df["num_whatsapps"] = df["num_whatsapps"].map(normalize_positive_integer)  # type: ignore
-    df["num_emails"] = df["num_emails"].map(normalize_positive_integer)  # type: ignore
-    df["num_chats"] = df["num_chats"].map(normalize_positive_integer)  # type: ignore
-
-    # Check for missing values in required columns
-    required_columns = [
-        "año",
-        "mes",
-        "persona_consulta",
-        "tipo_violencia",
-        "total_consultas",
-        "num_llamadas",
-        "num_whatsapps",
-        "num_emails",
-        "num_chats",
-    ]
-    for column in required_columns:
-        if df[column].isnull().any():
-            logging.error(f"Missing values found in column '{column}'")
-            raise ValueError(f"Missing values found in column '{column}'")
+    df["año"] = apply_and_check(df["año"], normalize_year)
+    df["mes"] = apply_and_check(df["mes"], normalize_month)
+    df["provincia_id"] = apply_and_check(df["provincia_id"], normalize_provincia)
+    df["persona_consulta"] = apply_and_check_dict(df["persona_consulta"], persona_consulta_mapping)
+    df["tipo_violencia"] = apply_and_check_dict(df["tipo_violencia"], tipo_violencia_mapping)
+    df["total_consultas"] = apply_and_check(df["total_consultas"], normalize_positive_integer)
+    df["num_llamadas"] = apply_and_check(df["num_llamadas"], normalize_positive_integer)
+    df["num_whatsapps"] = apply_and_check(df["num_whatsapps"], normalize_positive_integer)
+    df["num_emails"] = apply_and_check(df["num_emails"], normalize_positive_integer)
+    df["num_chats"] = apply_and_check(df["num_chats"], normalize_positive_integer)
 
     # Save cleaned CSV
     CLEAN_CSV_PATH.parent.mkdir(parents=True, exist_ok=True)

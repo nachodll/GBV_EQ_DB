@@ -11,7 +11,12 @@ from pathlib import Path
 import pandas as pd
 
 from utils.logging import setup_logging
-from utils.normalization import normalize_comunidad_autonoma, normalize_positive_integer, normalize_year
+from utils.normalization import (
+    apply_and_check,  # type: ignore
+    normalize_comunidad_autonoma,
+    normalize_positive_integer,
+    normalize_year,
+)
 
 RAW_CSV_PATH = Path("data") / "raw" / "DGVG" / "DGVG007-070AyudasArtículo27.csv"
 CLEAN_CSV_PATH = Path("data") / "clean" / "ayudas_articulo_27.csv"
@@ -34,16 +39,9 @@ def main():
     )
 
     # Normalize and validate all columns
-    df["año"] = df["año"].map(normalize_year)  # type: ignore
-    df["comunidad_autonoma_id"] = df["comunidad_autonoma_id"].map(normalize_comunidad_autonoma)  # type: ignore
-    df["num_ayudas_concedidas"] = df["num_ayudas_concedidas"].map(normalize_positive_integer)  # type: ignore
-
-    # Check for missing values in required columns
-    required_columns = ["año", "num_ayudas_concedidas"]
-    for column in required_columns:
-        if df[column].isnull().any():
-            logging.error(f"Missing values found in column '{column}'")
-            raise ValueError(f"Missing values found in column '{column}'")
+    df["año"] = apply_and_check(df["año"], normalize_year)
+    df["comunidad_autonoma_id"] = apply_and_check(df["comunidad_autonoma_id"], normalize_comunidad_autonoma)
+    df["num_ayudas_concedidas"] = apply_and_check(df["num_ayudas_concedidas"], normalize_positive_integer)
 
     # Save clean data
     df.to_csv(CLEAN_CSV_PATH, index=False)

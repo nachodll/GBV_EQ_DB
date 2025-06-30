@@ -11,7 +11,13 @@ from pathlib import Path
 import pandas as pd
 
 from utils.logging import setup_logging
-from utils.normalization import normalize_month, normalize_positive_integer, normalize_provincia, normalize_year
+from utils.normalization import (
+    apply_and_check,  # type: ignore
+    normalize_month,
+    normalize_positive_integer,
+    normalize_provincia,
+    normalize_year,
+)
 
 RAW_CSV_PATH = Path("data") / "raw" / "DGVG" / "DGVG005-050UsuariasATENPRO.csv"
 CLEAN_CSV_PATH = Path("data") / "clean" / "usuarias_atenpro.csv"
@@ -37,23 +43,19 @@ def main():
     )
     df = df.drop(columns=["Comunidad autónoma"])
 
+    # Dropping rows with negative values in 'num_altas' or 'num_bajas'
+    rows_before = len(df)
+    df = df[df["num_altas"] >= 0]
+    df = df[df["num_bajas"] >= 0]
+    logging.warning(f"Dropped {rows_before - len(df)} rows with negative values in 'num_altas' or 'num_bajas'.")
+
     # Normalize and validate all columns
-    df["año"] = df["año"].map(normalize_year)  # type: ignore
-    df["mes"] = df["mes"].map(normalize_month)  # type: ignore
-    df["provincia_id"] = df["provincia_id"].map(normalize_provincia)  # type: ignore
-    df["num_altas"] = df["num_altas"].map(normalize_positive_integer)  # type: ignore
-    df["num_bajas"] = df["num_bajas"].map(normalize_positive_integer)  # type: ignore
-    df["num_usuarias_activas"] = df["num_usuarias_activas"].map(normalize_positive_integer)  # type: ignore
-
-    # Drop rows with any NaN values in column num_altas or num_bajas
-    df = df.dropna(subset=["num_altas", "num_bajas"])  # type: ignore
-
-    # Check for missing values in required columns
-    required_columns = ["provincia_id", "año", "mes", "num_altas", "num_bajas", "num_usuarias_activas"]
-    for column in required_columns:
-        if df[column].isnull().any():
-            logging.error(f"Missing values found in column '{column}'")
-            raise ValueError(f"Missing values found in column '{column}'")
+    df["año"] = apply_and_check(df["año"], normalize_year)
+    df["mes"] = apply_and_check(df["mes"], normalize_month)
+    df["provincia_id"] = apply_and_check(df["provincia_id"], normalize_provincia)
+    df["num_usuarias_activas"] = apply_and_check(df["num_usuarias_activas"], normalize_positive_integer)
+    df["num_altas"] = apply_and_check(df["num_altas"], normalize_positive_integer)
+    df["num_bajas"] = apply_and_check(df["num_bajas"], normalize_positive_integer)
 
     # Save clean CSV
     CLEAN_CSV_PATH.parent.mkdir(parents=True, exist_ok=True)

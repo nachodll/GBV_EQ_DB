@@ -11,7 +11,13 @@ from pathlib import Path
 import pandas as pd
 
 from utils.logging import setup_logging
-from utils.normalization import normalize_comunidad_autonoma, normalize_positive_integer, normalize_year
+from utils.normalization import (
+    apply_and_check,  # type: ignore
+    apply_and_check_dict,  # type: ignore
+    normalize_comunidad_autonoma,
+    normalize_positive_integer,
+    normalize_year,
+)
 
 # Paths
 RAW_CSV_PATH = Path("data") / "raw" / "DGVG" / "DGVG002-020FeminicidiosFueraParejaExpareja.csv"
@@ -34,6 +40,7 @@ def main():
             "Feminicidos fuera pareja o expareja": "num_feminicidios",
         }
     )
+
     tipo_feminicidio_mapping = {
         "F. vicario -1-": "Vicario",
         "F. familiar": "Familiar",
@@ -42,17 +49,10 @@ def main():
     }
 
     # Normalize and validate all columns
-    df["comunidad_autonoma_id"] = df["comunidad_autonoma_id"].map(normalize_comunidad_autonoma)  # type: ignore
-    df["año"] = df["año"].map(normalize_year)  # type: ignore
-    df["num_feminicidios"] = df["num_feminicidios"].map(normalize_positive_integer)  # type: ignore
-    df["tipo_feminicidio"] = df["tipo_feminicidio"].map(tipo_feminicidio_mapping)  # type: ignore
-
-    # Check for missing values in required columns
-    required_columns = ["comunidad_autonoma_id", "año", "num_feminicidios", "tipo_feminicidio"]
-    for column in required_columns:
-        if df[column].isnull().any():
-            logging.error(f"Missing values found in column '{column}'")
-            raise ValueError(f"Missing values found in column '{column}'")
+    df["comunidad_autonoma_id"] = apply_and_check(df["comunidad_autonoma_id"], normalize_comunidad_autonoma)
+    df["año"] = apply_and_check(df["año"], normalize_year)
+    df["num_feminicidios"] = apply_and_check(df["num_feminicidios"], normalize_positive_integer)
+    df["tipo_feminicidio"] = apply_and_check_dict(df["tipo_feminicidio"], tipo_feminicidio_mapping)
 
     # Save cleaned CSV
     CLEAN_CSV_PATH.parent.mkdir(parents=True, exist_ok=True)

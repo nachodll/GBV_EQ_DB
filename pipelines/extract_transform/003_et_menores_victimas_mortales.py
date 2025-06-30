@@ -10,7 +10,14 @@ from pathlib import Path
 import pandas as pd
 
 from utils.logging import setup_logging
-from utils.normalization import normalize_month, normalize_positive_integer, normalize_provincia, normalize_year
+from utils.normalization import (
+    apply_and_check,  # type: ignore
+    apply_and_check_dict,  # type: ignore
+    normalize_month,
+    normalize_positive_integer,
+    normalize_provincia,
+    normalize_year,
+)
 
 # Paths
 RAW_CSV_PATH = Path("data") / "raw" / "DGVG" / "DGVG003-030MenoresVictimasMortales.csv"
@@ -36,29 +43,24 @@ def main():
         }
     )
 
-    # Normalize and validate all columns
-    df["año"] = df["año"].map(normalize_year)  # type: ignore
-    df["mes"] = df["mes"].map(normalize_month)  # type: ignore
-    df["provincia_id"] = df["provincia_id"].map(normalize_provincia)  # type: ignore
-    df["es_victima_vicaria"] = df["es_victima_vicaria"].map({"Sí vicaria": True, "No vicaria": False})  # type: ignore
-    df["es_hijo_agresor"] = df["es_hijo_agresor"].map(  # type: ignore
-        {"Padre biológico/adoptivo": True, "No padre biológico/adoptivo": False}
-    )  # type: ignore
-    df["num_menores_victimas_mortales"] = df["num_menores_victimas_mortales"].map(normalize_positive_integer)  # type: ignore
+    es_victima_vicaria_mapping = {
+        "Sí vicaria": True,
+        "No vicaria": False,
+    }
+    es_hijo_agresor_mapping = {
+        "Padre biológico/adoptivo": True,
+        "No padre biológico/adoptivo": False,
+    }
 
-    # Check for missing values in required columns
-    required_columns = [
-        "provincia_id",
-        "año",
-        "mes",
-        "es_victima_vicaria",
-        "es_hijo_agresor",
-        "num_menores_victimas_mortales",
-    ]
-    for column in required_columns:
-        if df[column].isnull().any():
-            logging.error(f"Missing values found in column '{column}'")
-            raise ValueError(f"Missing values found in column '{column}'")
+    # Normalize and validate all columns
+    df["provincia_id"] = apply_and_check(df["provincia_id"], normalize_provincia)
+    df["año"] = apply_and_check(df["año"], normalize_year)
+    df["mes"] = apply_and_check(df["mes"], normalize_month)
+    df["es_victima_vicaria"] = apply_and_check_dict(df["es_victima_vicaria"], es_victima_vicaria_mapping)
+    df["es_hijo_agresor"] = apply_and_check_dict(df["es_hijo_agresor"], es_hijo_agresor_mapping)
+    df["num_menores_victimas_mortales"] = apply_and_check(
+        df["num_menores_victimas_mortales"], normalize_positive_integer
+    )
 
     # Save cleaned CSV
     CLEAN_CSV_PATH.parent.mkdir(parents=True, exist_ok=True)

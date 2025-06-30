@@ -1,13 +1,83 @@
 import re
 import unicodedata
+from dataclasses import dataclass
 from datetime import datetime
-from typing import Union
+from enum import Enum, auto
+from typing import Any, Callable, Optional, Union
 
-"""Utility functions for normalizing various types of data, such as province names,
-comunidad autónoma names, months, years, age groups, and positive integers.
-All functions take a string input and return a normalized value, or None if the input is not valid."""
+import pandas as pd
 
-dict_provincia = {
+"""Utility functions for normalizing various types of data.
+
+Each normalizer returns a :class:`NormalizationResult` describing the normalized
+value and whether the original input was valid, unknown or invalid."""
+
+
+class NormalizationStatus(Enum):
+    """Possible outcomes of a normalization attempt."""
+
+    VALID = auto()
+    UNKNOWN = auto()
+    INVALID = auto()
+
+
+@dataclass
+class NormalizationResult:
+    """Container for a normalization result."""
+
+    value: Optional[Any]
+    status: NormalizationStatus
+    raw: str
+
+
+UNKNOWN_STRINGS = {"", "unknown", "n/c", "no consta", "noconsta", "desconocida"}
+
+
+def _is_unknown(value: str) -> bool:
+    """Return True if the cleaned value represents an explicit unknown."""
+
+    return value.strip().lower() in UNKNOWN_STRINGS
+
+
+def _strip_accents(text: str) -> str:
+    """
+    Remove accents from a string.
+    """
+    return "".join(c for c in unicodedata.normalize("NFD", text) if unicodedata.category(c) != "Mn")
+
+
+def _normalize_region_name(name: str, normalization_dict: dict[str, int]) -> int | None:
+    """
+    Generic normalization function for names using a provided normalization dictionary.
+    Ignores case, accents, and any spaces (leading, trailing, or in the middle).
+    Returns the normalized name, or None if not found.
+    """
+    cleaned = name.strip()
+    # Try direct match first
+    if cleaned in normalization_dict:
+        return normalization_dict[cleaned]
+    # Try case-insensitive match
+    for key in normalization_dict:
+        if cleaned.lower() == key.lower():
+            return normalization_dict[key]
+    # Try accent-insensitive and case-insensitive match
+    cleaned_no_accents = _strip_accents(cleaned).lower()
+    for key in normalization_dict:
+        if _strip_accents(key).lower() == cleaned_no_accents:
+            return normalization_dict[key]
+
+    # Try accent-insensitive, case-insensitive, and space-insensitive match
+    def normalize_spaces(s: str):
+        return _strip_accents(s).replace(" ", "").lower()
+
+    cleaned_no_spaces = normalize_spaces(cleaned)
+    for key in normalization_dict:
+        if normalize_spaces(key) == cleaned_no_spaces:
+            return normalization_dict[key]
+    return None
+
+
+DICT_PROVINCIAS = {
     "Araba/Álava": 1,
     "Araba-Álava": 1,
     "Álava": 1,
@@ -82,7 +152,19 @@ dict_provincia = {
     "Melilla": 52,
 }
 
-dict_comunidad_autonoma = {
+
+def normalize_provincia(name: str) -> NormalizationResult:
+    """Normalize a province name using the dict_provincia dictionary."""
+
+    if _is_unknown(name.strip()):
+        return NormalizationResult(None, NormalizationStatus.UNKNOWN, name)
+    normalized = _normalize_region_name(name, DICT_PROVINCIAS)
+    if normalized is None:
+        return NormalizationResult(None, NormalizationStatus.INVALID, name)
+    return NormalizationResult(normalized, NormalizationStatus.VALID, name)
+
+
+DICT_COMUNIDADES_AUTOMAS = {
     "Andalucía": 1,
     "Aragón": 2,
     "Asturias": 3,
@@ -124,15 +206,28 @@ dict_comunidad_autonoma = {
     "Rioja": 17,
     "Ceuta": 18,
     "Melilla": 19,
-    "España": 0,
-    "España (Total)": 0,
-    "Total España": 0,
-    "Total": 0,
-    "Total Nacional": 0,
-    "Nacional": 0,
+    # "España": 0,
+    # "España (Total)": 0,
+    # "Total España": 0,
+    # "Total": 0,
+    # "Total Nacional": 0,
+    # "Nacional": 0,
 }
 
-dict_months = {
+
+def normalize_comunidad_autonoma(name: str) -> NormalizationResult:
+    """Normalize a comunidad autónoma name using the dict_comunidad_autonoma dictionary."""
+
+    if _is_unknown(name.strip()):
+        return NormalizationResult(None, NormalizationStatus.UNKNOWN, name)
+
+    normalized = _normalize_region_name(name, DICT_COMUNIDADES_AUTOMAS)
+    if normalized is None:
+        return NormalizationResult(None, NormalizationStatus.INVALID, name)
+    return NormalizationResult(normalized, NormalizationStatus.VALID, name)
+
+
+DICT_MONTHS = {
     "Enero": 1,
     "Febrero": 2,
     "Marzo": 3,
@@ -148,74 +243,26 @@ dict_months = {
 }
 
 
-def strip_accents(text: str) -> str:
-    """
-    Remove accents from a string.
-    """
-    return "".join(c for c in unicodedata.normalize("NFD", text) if unicodedata.category(c) != "Mn")
+def normalize_month(month: str) -> NormalizationResult:
+    """Normalize a month name to its corresponding number."""
 
+    if _is_unknown(month):
+        return NormalizationResult(None, NormalizationStatus.UNKNOWN, month)
 
-def normalize_name(name: str, normalization_dict: dict[str, int]) -> int | None:
-    """
-    Generic normalization function for names using a provided normalization dictionary.
-    Ignores case, accents, and any spaces (leading, trailing, or in the middle).
-    Returns the normalized name, or None if not found.
-    """
-    cleaned = name.strip()
-    # Try direct match first
-    if cleaned in normalization_dict:
-        return normalization_dict[cleaned]
-    # Try case-insensitive match
-    for key in normalization_dict:
-        if cleaned.lower() == key.lower():
-            return normalization_dict[key]
-    # Try accent-insensitive and case-insensitive match
-    cleaned_no_accents = strip_accents(cleaned).lower()
-    for key in normalization_dict:
-        if strip_accents(key).lower() == cleaned_no_accents:
-            return normalization_dict[key]
-
-    # Try accent-insensitive, case-insensitive, and space-insensitive match
-    def normalize_spaces(s: str):
-        return strip_accents(s).replace(" ", "").lower()
-
-    cleaned_no_spaces = normalize_spaces(cleaned)
-    for key in normalization_dict:
-        if normalize_spaces(key) == cleaned_no_spaces:
-            return normalization_dict[key]
-    return None
-
-
-def normalize_provincia(name: str) -> int | None:
-    """
-    Normalize a province name using the dict_provincia dictionary.
-    """
-    return normalize_name(name, dict_provincia)
-
-
-def normalize_comunidad_autonoma(name: str) -> int | None:
-    """
-    Normalize a comunidad autónoma name using the dict_comunidad_autonoma dictionary.
-    """
-    return normalize_name(name, dict_comunidad_autonoma)
-
-
-def normalize_month(month: str) -> int | None:
-    """
-    Normalize a month name to its corresponding number.
-    """
-    for key in dict_months:
+    for key in DICT_MONTHS:
         if key.lower() == month.strip().lower():
-            return dict_months[key]
+            return NormalizationResult(DICT_MONTHS[key], NormalizationStatus.VALID, month)
 
-    return None
+    return NormalizationResult(None, NormalizationStatus.INVALID, month)
 
 
-def normalize_year(year: Union[str, int, float]) -> int | None:
-    """
-    Normalize a year string, int or float to an integer.
-    Returns None if the value is not parsable.
-    """
+def normalize_year(year: Union[str, int, float]) -> NormalizationResult:
+    """Normalize a year string, int or float to an integer."""
+
+    raw_str = str(year)
+    if isinstance(year, str) and _is_unknown(year):
+        return NormalizationResult(None, NormalizationStatus.UNKNOWN, raw_str)
+
     try:
         if isinstance(year, str):
             match = re.search(r"\b(19\d{2}|20\d{2})\b", year)
@@ -227,54 +274,78 @@ def normalize_year(year: Union[str, int, float]) -> int | None:
             year_int = int(year)
 
         if 1900 <= year_int <= datetime.now().year:
-            return year_int
-        else:
-            return None
+            return NormalizationResult(year_int, NormalizationStatus.VALID, raw_str)
+
+        return NormalizationResult(None, NormalizationStatus.INVALID, raw_str)
+
     except (ValueError, TypeError):
-        return None
+        return NormalizationResult(None, NormalizationStatus.INVALID, raw_str)
 
 
-def normalize_age_group(raw: str) -> str | None:
-    """
-    Normalizes a raw age group string to the format '<min>-<max>'.
-    Returns None if the value not parsable.
-    """
+def normalize_age_group(raw: str) -> NormalizationResult:
+    """Normalizes a raw age group string to the format '<min>-<max>'."""
+
     clean = raw.strip().lower().replace("años", "").replace(" ", "")
 
-    if clean == "noconsta":
-        return None
+    if _is_unknown(clean) or clean == "noconsta":
+        return NormalizationResult(None, NormalizationStatus.UNKNOWN, raw)
 
     # Handle formats like 18-24
     match_range = re.match(r"(\d+)-(\d+)", clean)
     if match_range:
-        return f"{match_range.group(1)}-{match_range.group(2)}"
+        normalized = f"{match_range.group(1)}-{match_range.group(2)}"
+        return NormalizationResult(normalized, NormalizationStatus.VALID, raw)
 
     # Handle formats like <16 or +16
     match_less = re.match(r"[<+](\d+)", clean)
     if match_less:
-        return f"<{int(match_less.group(1))}"
+        normalized = f"<{int(match_less.group(1))}"
+        return NormalizationResult(normalized, NormalizationStatus.VALID, raw)
 
     # Handle formats like >84 or +84
     match_greater = re.match(r"[>+](\d+)", clean)
     if match_greater:
-        return f">{int(match_greater.group(1))}"
+        normalized = f">{int(match_greater.group(1))}"
+        return NormalizationResult(normalized, NormalizationStatus.VALID, raw)
 
-    return None
+    return NormalizationResult(None, NormalizationStatus.INVALID, raw)
 
 
-def normalize_positive_integer(value: Union[str, int, float]) -> int | None:
-    """
-    Normalize a string, int or float to a positive integer.
-    Returns None if the value is not parsable or negative.
-    """
+def normalize_positive_integer(value: Union[str, int, float]) -> NormalizationResult:
+    """Normalize a string, int or float to a positive integer."""
+    raw_str = str(value)
+    if isinstance(value, str) and _is_unknown(value):
+        return NormalizationResult(None, NormalizationStatus.UNKNOWN, raw_str)
     try:
         if isinstance(value, str):
             num = int(value.strip())
         else:
             num = int(value)
         if num >= 0:
-            return num
-        else:
-            return None
+            return NormalizationResult(num, NormalizationStatus.VALID, raw_str)
+        return NormalizationResult(None, NormalizationStatus.INVALID, raw_str)
     except ValueError:
-        return None
+        return NormalizationResult(None, NormalizationStatus.INVALID, raw_str)
+
+
+def apply_and_check(series: pd.Series, func: Callable[[Any], NormalizationResult]):  # type: ignore
+    """Apply a normalization function and fail on invalid results."""
+
+    results = series.apply(func)  # type: ignore
+    invalid = [r.raw for r in results if r.status is NormalizationStatus.INVALID]  # type: ignore
+    if invalid:
+        raise ValueError(f"Invalid values in column '{series.name}: {invalid}'")
+    return results.map(lambda r: r.value)  # type: ignore
+
+
+def apply_and_check_dict(series: pd.Series, mapping: dict[str, Any]):  # type: ignore
+    """Normalize a string using a custom mapping dictionary."""
+
+    def mapping_func(value: str) -> NormalizationResult:
+        if _is_unknown(value):
+            return NormalizationResult(None, NormalizationStatus.UNKNOWN, value)
+        if value in mapping:
+            return NormalizationResult(mapping[value], NormalizationStatus.VALID, value)
+        return NormalizationResult(None, NormalizationStatus.INVALID, value)
+
+    return apply_and_check(series, mapping_func)  # type: ignore

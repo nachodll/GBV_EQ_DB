@@ -90,7 +90,7 @@ CREATE TABLE
       )
     ),
     "mes" int NOT NULL CHECK (mes BETWEEN 1 AND 12),
-    "persona_consulta" persona_consulta_enum NOT NULL,
+    "persona_consulta" persona_consulta_enum,
     "tipo_violencia" tipo_violencia_enum NOT NULL,
     "total_consultas" int NOT NULL CHECK (total_consultas >= 0),
     "num_llamadas" int NOT NULL CHECK (num_llamadas >= 0),
