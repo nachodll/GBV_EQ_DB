@@ -23,29 +23,41 @@ CLEAN_CSV_PATH = Path("data") / "clean" / "ayudas_articulo_27.csv"
 
 
 def main():
-    # Read file
-    df = pd.read_csv(RAW_CSV_PATH)  # type: ignore
+    try:
+        # Read file
+        df = pd.read_csv(RAW_CSV_PATH)  # type: ignore
+        df.columns = df.columns.str.strip()
 
-    # Delete spaces
-    df.columns = df.columns.str.strip()
+        # Rename columns
+        df = df.rename(
+            columns={
+                "Año": "año",
+                "Comunidad autónoma": "comunidad_autonoma_id",
+                "Número de ayudas concedidas Art 27": "num_ayudas_concedidas",
+            }
+        )
 
-    # Rename columns
-    df = df.rename(
-        columns={
-            "Año": "año",
-            "Comunidad autónoma": "comunidad_autonoma_id",
-            "Número de ayudas concedidas Art 27": "num_ayudas_concedidas",
-        }
-    )
+        # Normalize and validate all columns
+        df["año"] = apply_and_check(df["año"], normalize_year)
+        df["comunidad_autonoma_id"] = apply_and_check(df["comunidad_autonoma_id"], normalize_comunidad_autonoma)
+        df["num_ayudas_concedidas"] = apply_and_check(df["num_ayudas_concedidas"], normalize_positive_integer)
 
-    # Normalize and validate all columns
-    df["año"] = apply_and_check(df["año"], normalize_year)
-    df["comunidad_autonoma_id"] = apply_and_check(df["comunidad_autonoma_id"], normalize_comunidad_autonoma)
-    df["num_ayudas_concedidas"] = apply_and_check(df["num_ayudas_concedidas"], normalize_positive_integer)
+        # Save clean data
+        df.to_csv(CLEAN_CSV_PATH, index=False)
+        logging.info(f"Clean data saved to {CLEAN_CSV_PATH}")
 
-    # Save clean data
-    df.to_csv(CLEAN_CSV_PATH, index=False)
-    logging.info(f"Clean data saved to {CLEAN_CSV_PATH}")
+    except FileNotFoundError as e:
+        logging.error(f"File not found: {e}")
+        raise
+    except pd.errors.ParserError as e:
+        logging.error(f"Could not parse: {e}")
+        raise
+    except ValueError as e:
+        logging.error(e)
+        raise
+    except Exception as e:
+        logging.exception(f"Unexpected error processing: {e}")
+        raise
 
 
 if __name__ == "__main__":

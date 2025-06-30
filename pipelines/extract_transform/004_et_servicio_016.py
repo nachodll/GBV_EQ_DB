@@ -26,58 +26,70 @@ CLEAN_CSV_PATH = Path("data") / "clean" / "servicio_016.csv"
 
 
 def main():
-    # Read file
-    df = pd.read_csv(RAW_CSV_PATH)  # type: ignore
+    try:
+        # Read file
+        df = pd.read_csv(RAW_CSV_PATH)  # type: ignore
+        df.columns = df.columns.str.strip()
 
-    # Delete spaces
-    df.columns = df.columns.str.strip()
+        # Rename columns
+        df = df.rename(
+            columns={
+                "Año": "año",
+                "Mes": "mes",
+                "Provincia": "provincia_id",
+                "Persona que consulta": "persona_consulta",
+                "Tipo violencia": "tipo_violencia",
+                "Total consultas pertinentes": "total_consultas",
+                "Llamadas pertinentes": "num_llamadas",
+                "WhatsApp pertinentes": "num_whatsapps",
+                "Correos electrónicos pertinentes": "num_emails",
+                "Chats pertinentes": "num_chats",
+            }
+        )
 
-    # Rename columns
-    df = df.rename(
-        columns={
-            "Año": "año",
-            "Mes": "mes",
-            "Provincia": "provincia_id",
-            "Persona que consulta": "persona_consulta",
-            "Tipo violencia": "tipo_violencia",
-            "Total consultas pertinentes": "total_consultas",
-            "Llamadas pertinentes": "num_llamadas",
-            "WhatsApp pertinentes": "num_whatsapps",
-            "Correos electrónicos pertinentes": "num_emails",
-            "Chats pertinentes": "num_chats",
+        persona_consulta_mapping: dict[str, Optional[str]] = {
+            "Usuaria": "Usuaria",
+            "Familiares/Personas allegadas": "Familiares/Allegados",
+            "Otras personas": "Otras personas",
         }
-    )
 
-    persona_consulta_mapping: dict[str, Optional[str]] = {
-        "Usuaria": "Usuaria",
-        "Familiares/Personas allegadas": "Familiares/Allegados",
-        "Otras personas": "Otras personas",
-    }
+        tipo_violencia_mapping = {
+            "V. pareja o expareja": "Pareja/Expareja",
+            "Violencia no desagregada": "No desagregada",
+            "V. familiar": "Familiar",
+            "V. sexual (LOGILS)": "Sexual",
+            "Otras violencias": "Otras violencias",
+        }
 
-    tipo_violencia_mapping = {
-        "V. pareja o expareja": "Pareja/Expareja",
-        "Violencia no desagregada": "No desagregada",
-        "V. familiar": "Familiar",
-        "V. sexual (LOGILS)": "Sexual",
-        "Otras violencias": "Otras violencias",
-    }
+        # Normalize and validate all columns
+        df["año"] = apply_and_check(df["año"], normalize_year)
+        df["mes"] = apply_and_check(df["mes"], normalize_month)
+        df["provincia_id"] = apply_and_check(df["provincia_id"], normalize_provincia)
+        df["persona_consulta"] = apply_and_check_dict(df["persona_consulta"], persona_consulta_mapping)
+        df["tipo_violencia"] = apply_and_check_dict(df["tipo_violencia"], tipo_violencia_mapping)
+        df["total_consultas"] = apply_and_check(df["total_consultas"], normalize_positive_integer)
+        df["num_llamadas"] = apply_and_check(df["num_llamadas"], normalize_positive_integer)
+        df["num_whatsapps"] = apply_and_check(df["num_whatsapps"], normalize_positive_integer)
+        df["num_emails"] = apply_and_check(df["num_emails"], normalize_positive_integer)
+        df["num_chats"] = apply_and_check(df["num_chats"], normalize_positive_integer)
 
-    # Normalize and validate all columns
-    df["año"] = apply_and_check(df["año"], normalize_year)
-    df["mes"] = apply_and_check(df["mes"], normalize_month)
-    df["provincia_id"] = apply_and_check(df["provincia_id"], normalize_provincia)
-    df["persona_consulta"] = apply_and_check_dict(df["persona_consulta"], persona_consulta_mapping)
-    df["tipo_violencia"] = apply_and_check_dict(df["tipo_violencia"], tipo_violencia_mapping)
-    df["total_consultas"] = apply_and_check(df["total_consultas"], normalize_positive_integer)
-    df["num_llamadas"] = apply_and_check(df["num_llamadas"], normalize_positive_integer)
-    df["num_whatsapps"] = apply_and_check(df["num_whatsapps"], normalize_positive_integer)
-    df["num_emails"] = apply_and_check(df["num_emails"], normalize_positive_integer)
-    df["num_chats"] = apply_and_check(df["num_chats"], normalize_positive_integer)
+        # Save cleaned CSV
+        CLEAN_CSV_PATH.parent.mkdir(parents=True, exist_ok=True)
+        df.to_csv(CLEAN_CSV_PATH, index=False)
+        logging.info(f"Data cleaned and saved to {CLEAN_CSV_PATH}")
 
-    # Save cleaned CSV
-    CLEAN_CSV_PATH.parent.mkdir(parents=True, exist_ok=True)
-    df.to_csv(CLEAN_CSV_PATH, index=False)
-    logging.info(f"Data cleaned and saved to {CLEAN_CSV_PATH}")
+    except FileNotFoundError as e:
+        logging.error(f"File not found: {e}")
+        raise
+    except pd.errors.ParserError as e:
+        logging.error(f"Could not parse: {e}")
+        raise
+    except ValueError as e:
+        logging.error(e)
+        raise
+    except Exception as e:
+        logging.exception(f"Unexpected error processing: {e}")
+        raise
 
 
 if __name__ == "__main__":

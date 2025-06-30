@@ -25,39 +25,51 @@ CLEAN_CSV_PATH = Path("data") / "clean" / "feminicidios_fuera_pareja_expareja.cs
 
 
 def main():
-    # Read file
-    df = pd.read_csv(RAW_CSV_PATH)  # type: ignore
+    try:
+        # Read file
+        df = pd.read_csv(RAW_CSV_PATH)  # type: ignore
+        df.columns = df.columns.str.strip()
 
-    # Delete spaces
-    df.columns = df.columns.str.strip()
+        # Rename columns
+        df = df.rename(
+            columns={
+                "Comunidad autónoma (As)": "comunidad_autonoma_id",
+                "Año": "año",
+                "Tipo de feminicidio": "tipo_feminicidio",
+                "Feminicidos fuera pareja o expareja": "num_feminicidios",
+            }
+        )
 
-    # Rename columns
-    df = df.rename(
-        columns={
-            "Comunidad autónoma (As)": "comunidad_autonoma_id",
-            "Año": "año",
-            "Tipo de feminicidio": "tipo_feminicidio",
-            "Feminicidos fuera pareja o expareja": "num_feminicidios",
+        tipo_feminicidio_mapping = {
+            "F. vicario -1-": "Vicario",
+            "F. familiar": "Familiar",
+            "F. sexual": "Sexual",
+            "F. social": "Social",
         }
-    )
 
-    tipo_feminicidio_mapping = {
-        "F. vicario -1-": "Vicario",
-        "F. familiar": "Familiar",
-        "F. sexual": "Sexual",
-        "F. social": "Social",
-    }
+        # Normalize and validate all columns
+        df["comunidad_autonoma_id"] = apply_and_check(df["comunidad_autonoma_id"], normalize_comunidad_autonoma)
+        df["año"] = apply_and_check(df["año"], normalize_year)
+        df["num_feminicidios"] = apply_and_check(df["num_feminicidios"], normalize_positive_integer)
+        df["tipo_feminicidio"] = apply_and_check_dict(df["tipo_feminicidio"], tipo_feminicidio_mapping)
 
-    # Normalize and validate all columns
-    df["comunidad_autonoma_id"] = apply_and_check(df["comunidad_autonoma_id"], normalize_comunidad_autonoma)
-    df["año"] = apply_and_check(df["año"], normalize_year)
-    df["num_feminicidios"] = apply_and_check(df["num_feminicidios"], normalize_positive_integer)
-    df["tipo_feminicidio"] = apply_and_check_dict(df["tipo_feminicidio"], tipo_feminicidio_mapping)
+        # Save cleaned CSV
+        CLEAN_CSV_PATH.parent.mkdir(parents=True, exist_ok=True)
+        df.to_csv(CLEAN_CSV_PATH, index=False)
+        logging.info(f"Data cleaned and saved to {CLEAN_CSV_PATH}")
 
-    # Save cleaned CSV
-    CLEAN_CSV_PATH.parent.mkdir(parents=True, exist_ok=True)
-    df.to_csv(CLEAN_CSV_PATH, index=False)
-    logging.info(f"Data cleaned and saved to {CLEAN_CSV_PATH}")
+    except FileNotFoundError as e:
+        logging.error(f"File not found: {e}")
+        raise
+    except pd.errors.ParserError as e:
+        logging.error(f"Could not parse: {e}")
+        raise
+    except ValueError as e:
+        logging.error(e)
+        raise
+    except Exception as e:
+        logging.exception(f"Unexpected error processing: {e}")
+        raise
 
 
 if __name__ == "__main__":

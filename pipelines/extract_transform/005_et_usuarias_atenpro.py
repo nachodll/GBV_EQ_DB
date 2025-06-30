@@ -24,43 +24,55 @@ CLEAN_CSV_PATH = Path("data") / "clean" / "usuarias_atenpro.csv"
 
 
 def main():
-    # Read file
-    df = pd.read_csv(RAW_CSV_PATH)  # type: ignore
+    try:
+        # Read file
+        df = pd.read_csv(RAW_CSV_PATH)  # type: ignore
+        df.columns = df.columns.str.strip()
 
-    # Delete spaces
-    df.columns = df.columns.str.strip()
+        # Rename columns
+        df = df.rename(
+            columns={
+                "Año": "año",
+                "Mes": "mes",
+                "Provincia": "provincia_id",
+                "Altas": "num_altas",
+                "Bajas": "num_bajas",
+                "Usuarias activas": "num_usuarias_activas",
+            }
+        )
+        df = df.drop(columns=["Comunidad autónoma"])
 
-    # Rename columns
-    df = df.rename(
-        columns={
-            "Año": "año",
-            "Mes": "mes",
-            "Provincia": "provincia_id",
-            "Altas": "num_altas",
-            "Bajas": "num_bajas",
-            "Usuarias activas": "num_usuarias_activas",
-        }
-    )
-    df = df.drop(columns=["Comunidad autónoma"])
+        # Dropping rows with negative values in 'num_altas' or 'num_bajas'
+        rows_before = len(df)
+        df = df[df["num_altas"] >= 0]
+        df = df[df["num_bajas"] >= 0]
+        logging.warning(f"Dropped {rows_before - len(df)} rows with negative values in 'num_altas' or 'num_bajas'.")
 
-    # Dropping rows with negative values in 'num_altas' or 'num_bajas'
-    rows_before = len(df)
-    df = df[df["num_altas"] >= 0]
-    df = df[df["num_bajas"] >= 0]
-    logging.warning(f"Dropped {rows_before - len(df)} rows with negative values in 'num_altas' or 'num_bajas'.")
+        # Normalize and validate all columns
+        df["año"] = apply_and_check(df["año"], normalize_year)
+        df["mes"] = apply_and_check(df["mes"], normalize_month)
+        df["provincia_id"] = apply_and_check(df["provincia_id"], normalize_provincia)
+        df["num_usuarias_activas"] = apply_and_check(df["num_usuarias_activas"], normalize_positive_integer)
+        df["num_altas"] = apply_and_check(df["num_altas"], normalize_positive_integer)
+        df["num_bajas"] = apply_and_check(df["num_bajas"], normalize_positive_integer)
 
-    # Normalize and validate all columns
-    df["año"] = apply_and_check(df["año"], normalize_year)
-    df["mes"] = apply_and_check(df["mes"], normalize_month)
-    df["provincia_id"] = apply_and_check(df["provincia_id"], normalize_provincia)
-    df["num_usuarias_activas"] = apply_and_check(df["num_usuarias_activas"], normalize_positive_integer)
-    df["num_altas"] = apply_and_check(df["num_altas"], normalize_positive_integer)
-    df["num_bajas"] = apply_and_check(df["num_bajas"], normalize_positive_integer)
+        # Save clean CSV
+        CLEAN_CSV_PATH.parent.mkdir(parents=True, exist_ok=True)
+        df.to_csv(CLEAN_CSV_PATH, index=False)
+        logging.info(f"Data cleaned and saved to {CLEAN_CSV_PATH}")
 
-    # Save clean CSV
-    CLEAN_CSV_PATH.parent.mkdir(parents=True, exist_ok=True)
-    df.to_csv(CLEAN_CSV_PATH, index=False)
-    logging.info(f"Data cleaned and saved to {CLEAN_CSV_PATH}")
+    except FileNotFoundError as e:
+        logging.error(f"File not found: {e}")
+        raise
+    except pd.errors.ParserError as e:
+        logging.error(f"Could not parse: {e}")
+        raise
+    except ValueError as e:
+        logging.error(e)
+        raise
+    except Exception as e:
+        logging.exception(f"Unexpected error processing: {e}")
+        raise
 
 
 if __name__ == "__main__":
