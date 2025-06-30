@@ -15,6 +15,7 @@ SCRIPTS = [
     ET_SCRIPTS_DIR / "004_et_servicio_016.py",
     ET_SCRIPTS_DIR / "005_et_usuarias_atenpro.py",
     ET_SCRIPTS_DIR / "006_et_dispositivos_electronicos_seguimientos.py",
+    ET_SCRIPTS_DIR / "007_et_ayudas_articulo_27.py",
 ]
 
 

@@ -136,7 +136,7 @@ CREATE TABLE
 CREATE TABLE
   "ayudas_articulo_27" (
     "ayudas_articulo_27_id" serial PRIMARY KEY,
-    "comunidad_autonoma_id" int NOT NULL,
+    "comunidad_autonoma_id" int,
     "año" int NOT NULL CHECK (
       año BETWEEN 1900 AND EXTRACT(
         YEAR
