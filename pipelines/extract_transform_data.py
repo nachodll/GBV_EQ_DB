@@ -21,6 +21,7 @@ SCRIPTS = [
     ET_SCRIPTS_DIR / "010_et_denuncias_vg_pareja.py",
     ET_SCRIPTS_DIR / "011_et_ordenes_proteccion.py",
     ET_SCRIPTS_DIR / "012_et_renta_activa_insercion.py",
+    ET_SCRIPTS_DIR / "013_et_contratos_bonificados_sustitucion.py",
 ]
 
 

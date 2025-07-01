@@ -49,6 +49,20 @@ CREATE TYPE "instancia_orden_proteccion_enum" AS ENUM (
   'A instancia de la Administración'
 );
 
+CREATE TYPE "colectivo_contratos_bonificados_sustitucion_enum" AS ENUM (
+  'Contratos de sustitución por vg',
+  'Transformación en indefinidos de contratos de vvg',
+  'Trata y mujeres en contexto de prostitución',
+  'Violencia de genero',
+  'Violencia domestica',
+  'Contrato de sustitución por violencia sexual',
+  'Transformación en indefinidos de contratos de vdomestica',
+  'Violencia sexual',
+  'Cargas familiares de vdomestica'
+);
+
+CREATE TYPE "tipo_contrato_enum" AS ENUM ('Indefinido', 'Temporal');
+
 CREATE TABLE
   "comunidades_autonomas" (
     "comunidad_autonoma_id" int PRIMARY KEY,
@@ -273,9 +287,9 @@ CREATE TABLE
       )
     ),
     "mes" int NOT NULL CHECK (mes BETWEEN 1 AND 12),
-    "provincia_id" int NOT NULL,
-    "colectivo" varchar NOT NULL,
-    "tipo_contrato" varchar NOT NULL
+    "provincia_id" int,
+    "colectivo" colectivo_contratos_bonificados_sustitucion_enum NOT NULL,
+    "tipo_contrato" tipo_contrato_enum NOT NULL
   );
 
 CREATE TABLE
