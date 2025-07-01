@@ -15,6 +15,14 @@ CREATE TYPE "tipo_violencia_enum" AS ENUM (
   'Otras violencias'
 );
 
+CREATE TYPE "nivel_riesgo_viogen_enum" AS ENUM (
+  'No apreciado',
+  'Bajo',
+  'Medio',
+  'Alto',
+  'Extremo'
+);
+
 CREATE TABLE
   "comunidades_autonomas" (
     "comunidad_autonoma_id" int PRIMARY KEY,
@@ -159,7 +167,7 @@ CREATE TABLE
       )
     ),
     "mes" int NOT NULL CHECK (mes BETWEEN 1 AND 12),
-    "nivel_riesgo" varchar NOT NULL,
+    "nivel_riesgo" nivel_riesgo_viogen_enum NOT NULL,
     "num_casos" int NOT NULL CHECK (num_casos >= 0),
     "num_casos_proteccion_policial" int NOT NULL CHECK (num_casos_proteccion_policial >= 0)
   );
