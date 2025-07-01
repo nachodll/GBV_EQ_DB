@@ -56,7 +56,7 @@ def main():
         logging.error(e)
         raise
     except Exception as e:
-        logging.exception(f"Unexpected error processing: {e}")
+        logging.error(f"Unexpected error processing: {e}")
         raise
 
 
