@@ -173,9 +173,9 @@ CREATE TABLE
   );
 
 CREATE TABLE
-  "autorizaciones_residencia_trabajo_mevvg" (
-    "autorizaciones_residencia_trabajo_mevvg_id" serial PRIMARY KEY,
-    "provincia_id" int NOT NULL,
+  "autorizaciones_residencia_trabajo_vvg" (
+    "autorizaciones_residencia_trabajo_vvg_id" serial PRIMARY KEY,
+    "provincia_id" int,
     "año" int NOT NULL CHECK (
       año BETWEEN 1900 AND EXTRACT(
         YEAR
@@ -283,7 +283,7 @@ ALTER TABLE "ayudas_articulo_27" ADD FOREIGN KEY ("comunidad_autonoma_id") REFER
 
 ALTER TABLE "viogen" ADD FOREIGN KEY ("provincia_id") REFERENCES "provincias" ("provincia_id");
 
-ALTER TABLE "autorizaciones_residencia_trabajo_mevvg" ADD FOREIGN KEY ("provincia_id") REFERENCES "provincias" ("provincia_id");
+ALTER TABLE "autorizaciones_residencia_trabajo_vvg" ADD FOREIGN KEY ("provincia_id") REFERENCES "provincias" ("provincia_id");
 
 ALTER TABLE "denuncias_vg_pareja" ADD FOREIGN KEY ("provincia_id") REFERENCES "provincias" ("provincia_id");
 

@@ -34,6 +34,10 @@ TABLES_TO_LOAD: List[Dict[str, Any]] = [
     },
     {"name": "ayudas_articulo_27", "path": Path("data") / "clean" / "ayudas_articulo_27.csv"},
     {"name": "viogen", "path": Path("data") / "clean" / "viogen.csv"},
+    {
+        "name": "autorizaciones_residencia_trabajo_vvg",
+        "path": Path("data") / "clean" / "autorizaciones_residencia_trabajo_vvg.csv",
+    },
 ]
 
 
