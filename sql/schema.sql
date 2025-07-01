@@ -33,6 +33,22 @@ CREATE TYPE "origen_denuncia_enum" AS ENUM (
   'Servicios asistencia - Terceros en general'
 );
 
+CREATE TYPE "estado_orden_proteccion_enum" AS ENUM (
+  'Incoadas',
+  'Adoptadas',
+  'Denegadas',
+  'Inadmitidas',
+  'Pendientes'
+);
+
+CREATE TYPE "instancia_orden_proteccion_enum" AS ENUM (
+  'A instancia de la víctima',
+  'A instancia de otras personas',
+  'A instancia del Minist. Fiscal',
+  'De oficio',
+  'A instancia de la Administración'
+);
+
 CREATE TABLE
   "comunidades_autonomas" (
     "comunidad_autonoma_id" int PRIMARY KEY,
@@ -216,8 +232,8 @@ CREATE TABLE
 CREATE TABLE
   "ordenes_proteccion" (
     "ordenes_proteccion_id" serial PRIMARY KEY,
-    "estado_denuncia" varchar NOT NULL,
-    "instancia" varchar NOT NULL,
+    "estado_proceso" estado_orden_proteccion_enum NOT NULL,
+    "instancia" instancia_orden_proteccion_enum NOT NULL,
     "año" int NOT NULL CHECK (
       año BETWEEN 1900 AND EXTRACT(
         YEAR
@@ -225,6 +241,7 @@ CREATE TABLE
           CURRENT_DATE
       )
     ),
+    "trimestre" int NOT NULL CHECK (trimestre BETWEEN 1 AND 4),
     "provincia_id" int NOT NULL,
     "num_ordenes_proteccion" int NOT NULL CHECK (num_ordenes_proteccion >= 0)
   );
