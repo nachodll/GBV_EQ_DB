@@ -50,7 +50,6 @@ def main():
             "Parte de lesiones": "Parte de lesiones",
             "Servicios asistencia-Terceros  en general": "Servicios asistencia - Terceros en general",
         }
-        logging.warning(df["trimestre"].unique())  # type: ignore
 
         # Normalize and validate all columns
         df["año"] = apply_and_check(df["año"], normalize_year)
