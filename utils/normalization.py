@@ -1,4 +1,3 @@
-import logging
 import re
 import unicodedata
 from dataclasses import dataclass
@@ -370,9 +369,6 @@ def apply_and_check(series: pd.Series, func: Callable[[Any], NormalizationResult
     """Apply a normalization function and fail on invalid results."""
 
     results = series.apply(func)  # type: ignore
-    unknown = [r.raw for r in results if r.status is NormalizationStatus.UNKNOWN]  # type: ignore
-    if unknown:
-        logging.warning(f"Unknown values in column '{series.name}': {unknown}")
     invalid = [r.raw for r in results if r.status is NormalizationStatus.INVALID]  # type: ignore
     if invalid:
         raise ValueError(f"Invalid values in column '{series.name}: {invalid}'")
