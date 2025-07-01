@@ -23,6 +23,16 @@ CREATE TYPE "nivel_riesgo_viogen_enum" AS ENUM (
   'Extremo'
 );
 
+CREATE TYPE "origen_denuncia_enum" AS ENUM (
+  'Presentada directamente por víctima',
+  'Presentada directamente por familiares',
+  'Atestados policiales - con denuncia víctima',
+  'Atestados policiales - con denuncia familiar',
+  'Atestados policiales - por intervención directa policial',
+  'Parte de lesiones',
+  'Servicios asistencia - Terceros en general'
+);
+
 CREATE TABLE
   "comunidades_autonomas" (
     "comunidad_autonoma_id" int PRIMARY KEY,
@@ -190,7 +200,7 @@ CREATE TABLE
 CREATE TABLE
   "denuncias_vg_pareja" (
     "denuncias_vg_pareja_id" serial PRIMARY KEY,
-    "origen_denuncia" varchar NOT NULL,
+    "origen_denuncia" origen_denuncia_enum NOT NULL,
     "año" int NOT NULL CHECK (
       año BETWEEN 1900 AND EXTRACT(
         YEAR
@@ -200,7 +210,7 @@ CREATE TABLE
     ),
     "trimestre" int NOT NULL CHECK (trimestre BETWEEN 1 AND 4),
     "provincia_id" int NOT NULL,
-    "num_denuncias_vg" int NOT NULL CHECK (num_denuncias_vg >= 0)
+    "num_denuncias" int NOT NULL CHECK (num_denuncias >= 0)
   );
 
 CREATE TABLE
