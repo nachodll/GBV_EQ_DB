@@ -9,8 +9,8 @@ from utils.run import run_python_script
 # Define extract transform scripts to run
 ET_SCRIPTS_DIR = Path("pipelines") / "extract_transform"
 SCRIPTS = [
-    ET_SCRIPTS_DIR / "001_et_feminicidios_pareja.py",
-    ET_SCRIPTS_DIR / "002_et_feminicidios_no_pareja.py",
+    ET_SCRIPTS_DIR / "001_et_feminicidios_pareja_expareja.py",
+    ET_SCRIPTS_DIR / "002_et_feminicidios_fuera_pareja_expareja.py",
     ET_SCRIPTS_DIR / "003_et_menores_victimas_mortales.py",
     ET_SCRIPTS_DIR / "004_et_servicio_016.py",
     ET_SCRIPTS_DIR / "005_et_usuarias_atenpro.py",
