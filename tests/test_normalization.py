@@ -10,6 +10,7 @@ from utils.normalization import (
     normalize_month,
     normalize_positive_integer,
     normalize_provincia,
+    normalize_quarter,
     normalize_year,
 )
 
@@ -107,6 +108,35 @@ def test_normalize_month_invalid():
     assert result.status is NormalizationStatus.INVALID
 
 
+# ---------------------- quarter normalization ----------------------
+def test_normalize_quarter_basic():
+    r1 = normalize_quarter("Primero")
+    r2 = normalize_quarter(1)
+    r3 = normalize_quarter("1")
+    assert r1.value == 1 and r2.value == 1 and r3.value == 1
+    assert r1.status is r2.status is r3.status is NormalizationStatus.VALID
+
+
+def test_normalize_quarter_out_of_bound():
+    r1 = normalize_quarter("Quinto")
+    r2 = normalize_quarter(5)
+    r3 = normalize_quarter("5")
+    assert r1.value is None and r2.value is None and r3.value is None
+    assert r1.status is r2.status is r3.status is NormalizationStatus.INVALID
+
+
+def normalize_quarter_unknown():
+    result = normalize_quarter("No consta")
+    assert result.value is None
+    assert result.status is NormalizationStatus.UNKNOWN
+
+
+def test_normalize_quarter_invalid():
+    result = normalize_quarter("Foo")
+    assert result.value is None
+    assert result.status is NormalizationStatus.INVALID
+
+
 # ---------------------- year normalization ----------------------
 def test_normalize_year_basic_and_string():
     r1 = normalize_year(2021)
@@ -129,7 +159,7 @@ def normalize_year_unknown():
     assert result.status is NormalizationStatus.UNKNOWN
 
 
-def normalize_year_out_of_range():
+def normalize_year_out_of_bound():
     r1 = normalize_year(1800)
     r2 = normalize_year(2200)
     assert r1.value is None and r2.value is None

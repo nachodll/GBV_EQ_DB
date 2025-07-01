@@ -1,3 +1,4 @@
+import logging
 import re
 import unicodedata
 from dataclasses import dataclass
@@ -282,6 +283,43 @@ def normalize_year(year: Union[str, int, float]) -> NormalizationResult:
         return NormalizationResult(None, NormalizationStatus.INVALID, raw_str)
 
 
+DICT_QUARTER = {
+    "primero": 1,
+    "segundo": 2,
+    "tercero": 3,
+    "cuarto": 4,
+}
+
+
+def normalize_quarter(quarter: Union[str, int]) -> NormalizationResult:
+    """Normalize a quarter string or int to an integer between 1 and 4."""
+
+    raw_str = str(quarter)
+    if isinstance(quarter, str) and _is_unknown(quarter):
+        return NormalizationResult(None, NormalizationStatus.UNKNOWN, raw_str)
+
+    if isinstance(quarter, str):
+        quarter = quarter.strip()
+        if quarter.isdigit():
+            # "1", "2", etc
+            q = int(quarter)
+            if 1 <= q <= 4:
+                return NormalizationResult(q, NormalizationStatus.VALID, raw_str)
+            return NormalizationResult(None, NormalizationStatus.INVALID, raw_str)
+
+        else:
+            # "primero", "segundo", etc
+            quarter = quarter.lower()
+            if quarter in DICT_QUARTER:
+                return NormalizationResult(DICT_QUARTER[quarter], NormalizationStatus.VALID, raw_str)
+            return NormalizationResult(None, NormalizationStatus.INVALID, raw_str)
+    else:
+        q = int(quarter)
+        if 1 <= q <= 4:
+            return NormalizationResult(q, NormalizationStatus.VALID, raw_str)
+        return NormalizationResult(None, NormalizationStatus.INVALID, raw_str)
+
+
 def normalize_age_group(raw: str) -> NormalizationResult:
     """Normalizes a raw age group string to the format '<min>-<max>'."""
 
@@ -332,6 +370,9 @@ def apply_and_check(series: pd.Series, func: Callable[[Any], NormalizationResult
     """Apply a normalization function and fail on invalid results."""
 
     results = series.apply(func)  # type: ignore
+    unknown = [r.raw for r in results if r.status is NormalizationStatus.UNKNOWN]  # type: ignore
+    if unknown:
+        logging.warning(f"Unknown values in column '{series.name}': {unknown}")
     invalid = [r.raw for r in results if r.status is NormalizationStatus.INVALID]  # type: ignore
     if invalid:
         raise ValueError(f"Invalid values in column '{series.name}: {invalid}'")
