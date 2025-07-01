@@ -9,6 +9,10 @@ from utils.logging import strip_metadata
 def run_python_script(script: Path):
     """Run a standalone python script and capture its output."""
 
+    if not script.exists():
+        logging.error(f"Script path does not exist: {script}")
+        raise FileNotFoundError(f"Script path does not exist: {script}")
+
     result = subprocess.run(
         ["python", script],
         text=True,
