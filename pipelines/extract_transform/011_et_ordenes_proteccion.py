@@ -65,7 +65,10 @@ def main():
         df["instancia"] = apply_and_check_dict(df["instancia"], instancia_mapping)
 
         # Save to CSV
-        df.to_csv(CLEAN_CSV_PATH, index=False, encoding="utf-8")
+        CLEAN_CSV_PATH.parent.mkdir(parents=True, exist_ok=True)
+        df.to_csv(CLEAN_CSV_PATH, index=False)
+        logging.info(f"Cleaned data saved to {CLEAN_CSV_PATH}")
+
     except FileNotFoundError as e:
         logging.error(f"File not found: {e}")
         raise
