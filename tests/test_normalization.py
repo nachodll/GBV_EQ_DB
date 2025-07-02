@@ -18,9 +18,10 @@ from utils.normalization import (
 
 # ---------------------- municipio normalization ----------------------
 def test_normalize_municipio_basic():
-    result = normalize_municipio("Asparrena", "Álava")
-    assert result.value == 1009
-    assert result.status is NormalizationStatus.VALID
+    r1 = normalize_municipio("Asparrena", "Álava")
+    r2 = normalize_municipio("Portaje", 10)
+    assert r1.value == 1009 and r2.value == 10150
+    assert r1.status is r2.status is NormalizationStatus.VALID
 
 
 def test_normalize_municipio_accent_and_case():
@@ -72,6 +73,13 @@ def test_normalize_municipio_slash_and_commma():
         and r2.status is NormalizationStatus.VALID
         and r3.status is NormalizationStatus.VALID
     )
+
+
+def test_normalize_municipio_same_name_different_province():
+    r1 = normalize_municipio("Rebollar", "Cáceres")
+    r2 = normalize_municipio("Rebollar", "Soria")
+    assert r1.value == 10154 and r2.value == 42151
+    assert r1.status is NormalizationStatus.VALID and r2.status is NormalizationStatus.VALID
 
 
 def test_normalize_municipio_unknown():
