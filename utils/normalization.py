@@ -10,6 +10,7 @@ import pandas as pd
 from utils.normalization_dicts import (
     DICT_COMUNIDADES_AUTOMAS,
     DICT_MONTHS,
+    DICT_MUNICIPIOS,
     DICT_PROVINCIAS,
     DICT_QUARTER,
     DICT_UNKNOWN_STRINGS,
@@ -100,6 +101,31 @@ def normalize_comunidad_autonoma(name: str) -> NormalizationResult:
         return NormalizationResult(None, NormalizationStatus.UNKNOWN, name)
 
     normalized = _normalize_region_name(name, DICT_COMUNIDADES_AUTOMAS)
+    if normalized is None:
+        return NormalizationResult(None, NormalizationStatus.INVALID, name)
+    return NormalizationResult(normalized, NormalizationStatus.VALID, name)
+
+
+def normalize_municipio(name: str, provincia: Union[str, int]) -> NormalizationResult:
+    """Normalize a municipio name within a given province."""
+
+    if _is_unknown(name.strip()):
+        return NormalizationResult(None, NormalizationStatus.UNKNOWN, name)
+
+    # Normalize provincia
+    if isinstance(provincia, str):
+        prov_result = normalize_provincia(provincia)
+        if prov_result.status is not NormalizationStatus.VALID:
+            return NormalizationResult(None, NormalizationStatus.INVALID, name)
+        provincia_id = int(prov_result.value)  # type: ignore
+    else:
+        provincia_id = int(provincia)
+
+    prov_dict = DICT_MUNICIPIOS.get(provincia_id)
+    if prov_dict is None:
+        return NormalizationResult(None, NormalizationStatus.INVALID, name)
+
+    normalized = normalized = _normalize_region_name(name, prov_dict)
     if normalized is None:
         return NormalizationResult(None, NormalizationStatus.INVALID, name)
     return NormalizationResult(normalized, NormalizationStatus.VALID, name)

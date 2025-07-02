@@ -1,3 +1,40 @@
+import csv
+from pathlib import Path
+
+
+def _load_municipios_dict() -> dict[int, dict[str, int]]:
+    """Load municipios data keyed by provincia id"""
+    MUNICIPIOS_PATH = Path("data") / "static" / "Municipios.csv"
+    municipios_dict: dict[int, dict[str, int]] = {}
+    with open(MUNICIPIOS_PATH, "r", encoding="utf-8") as f:
+        reader = csv.DictReader(f, delimiter=";")  # type: ignore
+        for row in reader:  # type: ignore
+            provincia_id = int(row["provincia_id"])  # type: ignore
+            municipio_name = row["nombre"].strip()  # type: ignore
+            municipio_id = int(row["municipio_id"])  # type: ignore
+            prov_dict = municipios_dict.setdefault(provincia_id, {})
+            prov_dict.setdefault(municipio_name, municipio_id)  # type: ignore
+
+            # Special case "/" (Arrasate/Mondragón)
+            slash_variants = [part.strip() for part in municipio_name.split("/")]
+            for variant in slash_variants:
+                prov_dict.setdefault(variant, municipio_id)
+                # Nested special case "/" and "," (Alqueries, les/Alquerías del Niño Perdido)
+                if "," in variant:
+                    base, article = [s.strip() for s in variant.split(",", 1)]
+                    prov_dict.setdefault(base, municipio_id)
+                    prov_dict.setdefault(f"{base} ({article})", municipio_id)
+
+            # Special case "," (Jonquera, La)
+            if "," in municipio_name and len(slash_variants) == 1:
+                base, article = [s.strip() for s in municipio_name.split(",", 1)]
+                prov_dict.setdefault(base, municipio_id)
+                prov_dict.setdefault(f"{base} ({article})", municipio_id)
+    return municipios_dict
+
+
+DICT_MUNICIPIOS: dict[int, dict[str, int]] = _load_municipios_dict()
+
 DICT_UNKNOWN_STRINGS = {
     "",
     "unknown",

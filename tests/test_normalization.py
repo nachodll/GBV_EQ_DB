@@ -8,66 +8,83 @@ from utils.normalization import (
     normalize_age_group,
     normalize_comunidad_autonoma,
     normalize_month,
-    # normalize_municipio,
+    normalize_municipio,
     normalize_positive_integer,
     normalize_provincia,
     normalize_quarter,
     normalize_year,
 )
 
+
 # ---------------------- municipio normalization ----------------------
-# def test_normalize_municipio_basic():
-#     result = normalize_municipio("Asparrena")
-#     assert result.value == 1009
-#     assert result.status is NormalizationStatus.VALID
+def test_normalize_municipio_basic():
+    result = normalize_municipio("Asparrena", "Álava")
+    assert result.value == 1009
+    assert result.status is NormalizationStatus.VALID
 
 
-# def test_normalize_municipio_accent_and_case():
-#     result = normalize_municipio("aRmiñon")
-#     assert result.value == 1006
-#     assert result.status is NormalizationStatus.VALID
+def test_normalize_municipio_accent_and_case():
+    result = normalize_municipio("aRmiñon", "alAva")
+    assert result.value == 1006
+    assert result.status is NormalizationStatus.VALID
 
 
-# def test_normalize_municipio_spaces_case():
-#     result = normalize_municipio("  ChinchiLLa   de Monte-Aragón")
-#     assert result.value == 2029
-#     assert result.status is NormalizationStatus.VALID
+def test_normalize_municipio_spaces_case():
+    result = normalize_municipio("  ChinchiLLa   de Monte-Aragón", "Albacete")
+    assert result.value == 2029
+    assert result.status is NormalizationStatus.VALID
 
 
-# def test_normalize_municipio_commma():
-#     r1 = normalize_municipio("Gineta, La")
-#     r2 = normalize_municipio("Gineta")
-#     r3 = normalize_municipio("Gineta (La)")
-#     assert r1.value == 2035 and r2.value == 2035 and r3.value == 2035
-#     assert (
-#         r1.status is NormalizationStatus.VALID
-#         and r2.status is NormalizationStatus.VALID
-#         and r3.status is NormalizationStatus.VALID
-#     )
+def test_normalize_municipio_commma():
+    r1 = normalize_municipio("Gineta, La", "Albacete")
+    r2 = normalize_municipio("Gineta", "Albacete")
+    r3 = normalize_municipio("Gineta (La)", "Albacete")
+    expeted_value = 2035
+    assert r1.value == expeted_value and r2.value == expeted_value and r3.value == expeted_value
+    assert (
+        r1.status is NormalizationStatus.VALID
+        and r2.status is NormalizationStatus.VALID
+        and r3.status is NormalizationStatus.VALID
+    )
 
 
-# def test_normalize_municipio_slash():
-#     r1 = normalize_municipio("Elx/Elche")
-#     r2 = normalize_municipio("Elx")
-#     r3 = normalize_municipio("Elche")
-#     assert r1.value == 3065 and r2.value == 3065 and r3.value == 3065
-#     assert (
-#         r1.status is NormalizationStatus.VALID
-#         and r2.status is NormalizationStatus.VALID
-#         and r3.status is NormalizationStatus.VALID
-#     )
+def test_normalize_municipio_slash():
+    r1 = normalize_municipio("Elx/Elche", "Alicante")
+    r2 = normalize_municipio("Elx", "Alicante")
+    r3 = normalize_municipio("Elche", "Alicante")
+    expected_value = 3065
+    assert r1.value == expected_value and r2.value == expected_value and r3.value == expected_value
+    assert (
+        r1.status is NormalizationStatus.VALID
+        and r2.status is NormalizationStatus.VALID
+        and r3.status is NormalizationStatus.VALID
+    )
 
 
-# def test_normalize_municipio_unknown():
-#     result = normalize_municipio("Desconocida")
-#     assert result.value is None
-#     assert result.status is NormalizationStatus.UNKNOWN
+def test_normalize_municipio_slash_and_commma():
+    r1 = normalize_municipio("Alqueries, les/Alquerías del Niño Perdido", "Castellón")
+    r2 = normalize_municipio("Alqueries, les", "Castellón")
+    r3 = normalize_municipio("Alquerías del Niño Perdido", "Castellón")
+    expected_value = 12901
+    assert r1.value == expected_value and r2.value == expected_value and r3.value == expected_value
+    assert (
+        r1.status is NormalizationStatus.VALID
+        and r2.status is NormalizationStatus.VALID
+        and r3.status is NormalizationStatus.VALID
+    )
 
 
-# def test_normalize_municipio_invalid():
-#     result = normalize_municipio("Andromeda")
-#     assert result.value is None
-#     assert result.status is NormalizationStatus.INVALID
+def test_normalize_municipio_unknown():
+    result = normalize_municipio("Desconocida", "Alava")
+    assert result.value is None
+    assert result.status is NormalizationStatus.UNKNOWN
+
+
+def test_normalize_municipio_invalid():
+    r1 = normalize_municipio("Andromeda", "Málaga")
+    r2 = normalize_municipio("Famorca", "Venus")
+    assert r1.value is r2.value is None
+    assert r1.status is r2.status is NormalizationStatus.INVALID
 
 
 # ---------------------- provincia normalization ----------------------
