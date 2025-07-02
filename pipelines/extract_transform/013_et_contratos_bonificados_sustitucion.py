@@ -33,7 +33,7 @@ def main():
         # Rename columns
         df = df.rename(
             columns={
-                "Año": "año",
+                "Año": "anio",
                 "Mes": "mes",
                 "Provincia": "provincia_id",
                 "Colectivo": "colectivo",
@@ -60,7 +60,7 @@ def main():
         }
 
         # Normalize and validate all columns
-        df["año"] = apply_and_check(df["año"], normalize_year)
+        df["anio"] = apply_and_check(df["anio"], normalize_year)
         df["mes"] = apply_and_check(df["mes"], normalize_month)
         df["provincia_id"] = apply_and_check(df["provincia_id"], normalize_provincia)
         df["colectivo"] = apply_and_check_dict(df["colectivo"], colectivo_mapping)

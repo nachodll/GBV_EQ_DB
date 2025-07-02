@@ -34,7 +34,7 @@ def main():
         df.rename(
             columns={
                 "Municipios": "municipio_id",
-                "Periodo": "año",
+                "Periodo": "anio",
                 "Sexo": "sexo",
                 "Total": "total_poblacion",
             },
@@ -51,7 +51,7 @@ def main():
         logging.warning(f"Dropped {num_rows_before - len(df)} rows with missing 'total_poblacion' values.")
 
         # Normalize and validate all columns (municipio_id is already validated)
-        df["año"] = apply_and_check(df["año"], normalize_year)
+        df["anio"] = apply_and_check(df["anio"], normalize_year)
         df["sexo"] = apply_and_check_dict(
             df["sexo"],
             {

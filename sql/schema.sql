@@ -89,8 +89,8 @@ CREATE TABLE
   "poblacion_municipios" (
     "poblacion_municipios_id" serial PRIMARY KEY,
     "municipio_id" int NOT NULL,
-    "año" int NOT NULL CHECK (
-      año BETWEEN 1900 AND EXTRACT(
+    "anio" int NOT NULL CHECK (
+      anio BETWEEN 1900 AND EXTRACT(
         YEAR
         FROM
           CURRENT_DATE
@@ -106,8 +106,8 @@ CREATE TABLE
     "num_feminicidios" int NOT NULL CHECK (num_feminicidios >= 0),
     "num_huerfanos_menores" int NOT NULL CHECK (num_huerfanos_menores >= 0),
     "provincia_id" int NOT NULL,
-    "año" int NOT NULL CHECK (
-      año BETWEEN 1900 AND EXTRACT(
+    "anio" int NOT NULL CHECK (
+      anio BETWEEN 1900 AND EXTRACT(
         YEAR
         FROM
           CURRENT_DATE
@@ -124,8 +124,8 @@ CREATE TABLE
     "num_feminicidios" int NOT NULL CHECK (num_feminicidios >= 0),
     "tipo_feminicidio" tipo_feminicidio_enum NOT NULL,
     "comunidad_autonoma_id" int NOT NULL,
-    "año" int NOT NULL CHECK (
-      año BETWEEN 1900 AND EXTRACT(
+    "anio" int NOT NULL CHECK (
+      anio BETWEEN 1900 AND EXTRACT(
         YEAR
         FROM
           CURRENT_DATE
@@ -140,8 +140,8 @@ CREATE TABLE
     "es_victima_vicaria" boolean NOT NULL,
     "num_menores_victimas_mortales" int NOT NULL CHECK (num_menores_victimas_mortales >= 0),
     "provincia_id" int NOT NULL,
-    "año" int NOT NULL CHECK (
-      año BETWEEN 1900 AND EXTRACT(
+    "anio" int NOT NULL CHECK (
+      anio BETWEEN 1900 AND EXTRACT(
         YEAR
         FROM
           CURRENT_DATE
@@ -154,8 +154,8 @@ CREATE TABLE
   "servicio_016" (
     "servicio_016_id" serial PRIMARY KEY,
     "provincia_id" int,
-    "año" int NOT NULL CHECK (
-      año BETWEEN 1900 AND EXTRACT(
+    "anio" int NOT NULL CHECK (
+      anio BETWEEN 1900 AND EXTRACT(
         YEAR
         FROM
           CURRENT_DATE
@@ -175,8 +175,8 @@ CREATE TABLE
   "usuarias_atenpro" (
     "usuarias_atenpro_id" serial PRIMARY KEY,
     "provincia_id" int NOT NULL,
-    "año" int NOT NULL CHECK (
-      año BETWEEN 1900 AND EXTRACT(
+    "anio" int NOT NULL CHECK (
+      anio BETWEEN 1900 AND EXTRACT(
         YEAR
         FROM
           CURRENT_DATE
@@ -192,8 +192,8 @@ CREATE TABLE
   "dispositivos_electronicos_seguimiento" (
     "dispositivos_electronicos_seguimiento_id" serial PRIMARY KEY,
     "provincia_id" int NOT NULL,
-    "año" int NOT NULL CHECK (
-      año BETWEEN 1900 AND EXTRACT(
+    "anio" int NOT NULL CHECK (
+      anio BETWEEN 1900 AND EXTRACT(
         YEAR
         FROM
           CURRENT_DATE
@@ -209,8 +209,8 @@ CREATE TABLE
   "ayudas_articulo_27" (
     "ayudas_articulo_27_id" serial PRIMARY KEY,
     "comunidad_autonoma_id" int,
-    "año" int NOT NULL CHECK (
-      año BETWEEN 1900 AND EXTRACT(
+    "anio" int NOT NULL CHECK (
+      anio BETWEEN 1900 AND EXTRACT(
         YEAR
         FROM
           CURRENT_DATE
@@ -223,8 +223,8 @@ CREATE TABLE
   "viogen" (
     "viogen_id" serial PRIMARY KEY,
     "provincia_id" int NOT NULL,
-    "año" int NOT NULL CHECK (
-      año BETWEEN 1900 AND EXTRACT(
+    "anio" int NOT NULL CHECK (
+      anio BETWEEN 1900 AND EXTRACT(
         YEAR
         FROM
           CURRENT_DATE
@@ -240,8 +240,8 @@ CREATE TABLE
   "autorizaciones_residencia_trabajo_vvg" (
     "autorizaciones_residencia_trabajo_vvg_id" serial PRIMARY KEY,
     "provincia_id" int,
-    "año" int NOT NULL CHECK (
-      año BETWEEN 1900 AND EXTRACT(
+    "anio" int NOT NULL CHECK (
+      anio BETWEEN 1900 AND EXTRACT(
         YEAR
         FROM
           CURRENT_DATE
@@ -255,8 +255,8 @@ CREATE TABLE
   "denuncias_vg_pareja" (
     "denuncias_vg_pareja_id" serial PRIMARY KEY,
     "origen_denuncia" origen_denuncia_enum NOT NULL,
-    "año" int NOT NULL CHECK (
-      año BETWEEN 1900 AND EXTRACT(
+    "anio" int NOT NULL CHECK (
+      anio BETWEEN 1900 AND EXTRACT(
         YEAR
         FROM
           CURRENT_DATE
@@ -272,8 +272,8 @@ CREATE TABLE
     "ordenes_proteccion_id" serial PRIMARY KEY,
     "estado_proceso" estado_orden_proteccion_enum NOT NULL,
     "instancia" instancia_orden_proteccion_enum NOT NULL,
-    "año" int NOT NULL CHECK (
-      año BETWEEN 1900 AND EXTRACT(
+    "anio" int NOT NULL CHECK (
+      anio BETWEEN 1900 AND EXTRACT(
         YEAR
         FROM
           CURRENT_DATE
@@ -288,8 +288,8 @@ CREATE TABLE
   "renta_activa_insercion" (
     "renta_activa_insercion_id" serial PRIMARY KEY,
     "provincia_id" int NOT NULL,
-    "año" int NOT NULL CHECK (
-      año BETWEEN 1900 AND EXTRACT(
+    "anio" int NOT NULL CHECK (
+      anio BETWEEN 1900 AND EXTRACT(
         YEAR
         FROM
           CURRENT_DATE
@@ -303,8 +303,8 @@ CREATE TABLE
     "contratos_bonificados_sustitucion_id" serial PRIMARY KEY NOT NULL,
     "num_contratos_bonificados" int NOT NULL CHECK (num_contratos_bonificados >= 0),
     "num_contratos_sustitucion" int NOT NULL CHECK (num_contratos_sustitucion >= 0),
-    "año" int NOT NULL CHECK (
-      año BETWEEN 1900 AND EXTRACT(
+    "anio" int NOT NULL CHECK (
+      anio BETWEEN 1900 AND EXTRACT(
         YEAR
         FROM
           CURRENT_DATE
@@ -320,8 +320,8 @@ CREATE TABLE
   "ayudas_cambio_residencia" (
     "ayudas_cambio_residencia_id" serial PRIMARY KEY,
     "provincia_id" int NOT NULL,
-    "año" int NOT NULL CHECK (
-      año BETWEEN 1900 AND EXTRACT(
+    "anio" int NOT NULL CHECK (
+      anio BETWEEN 1900 AND EXTRACT(
         YEAR
         FROM
           CURRENT_DATE

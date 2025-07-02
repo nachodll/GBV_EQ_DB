@@ -34,7 +34,7 @@ def main():
         df = df.rename(
             columns={
                 "Provincia (As)": "provincia_id",
-                "Año": "año",
+                "Año": "anio",
                 "Mes": "mes",
                 "VM Grupo de edad": "victima_grupo_edad",
                 "AG Grupo de edad": "agresor_grupo_edad",
@@ -44,7 +44,7 @@ def main():
         )
 
         # Normalize and validate all columns
-        df["año"] = apply_and_check(df["año"], normalize_year)
+        df["anio"] = apply_and_check(df["anio"], normalize_year)
         df["mes"] = apply_and_check(df["mes"], normalize_month)
         df["provincia_id"] = apply_and_check(df["provincia_id"], normalize_provincia)
         df["victima_grupo_edad"] = apply_and_check(df["victima_grupo_edad"], normalize_age_group)

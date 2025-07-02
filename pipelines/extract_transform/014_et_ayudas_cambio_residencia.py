@@ -31,7 +31,7 @@ def main():
         # Rename columns
         df = df.rename(
             columns={
-                "Año": "año",
+                "Año": "anio",
                 "Provincia": "provincia_id",
                 "Número de ayudas para cambio de residencia": "num_ayudas_cambio_residencia",
             }
@@ -39,7 +39,7 @@ def main():
         df = df.drop(columns=["Comunidad autónoma"])
 
         # Normalize and validate all columns
-        df["año"] = apply_and_check(df["año"], normalize_year)
+        df["anio"] = apply_and_check(df["anio"], normalize_year)
         df["provincia_id"] = apply_and_check(df["provincia_id"], normalize_provincia)
         df["num_ayudas_cambio_residencia"] = apply_and_check(
             df["num_ayudas_cambio_residencia"], normalize_positive_integer

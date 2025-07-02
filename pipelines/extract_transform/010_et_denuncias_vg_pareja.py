@@ -33,7 +33,7 @@ def main():
         # Rename columns
         df = df.rename(
             columns={
-                "Año": "año",
+                "Año": "anio",
                 "Trimestre": "trimestre",
                 "Provincia": "provincia_id",
                 "Origen de la denuncia": "origen_denuncia",
@@ -52,7 +52,7 @@ def main():
         }
 
         # Normalize and validate all columns
-        df["año"] = apply_and_check(df["año"], normalize_year)
+        df["anio"] = apply_and_check(df["anio"], normalize_year)
         df["trimestre"] = apply_and_check(df["trimestre"], normalize_quarter)
         df["provincia_id"] = apply_and_check(df["provincia_id"], normalize_provincia)
         df["num_denuncias"] = apply_and_check(df["num_denuncias"], normalize_positive_integer)

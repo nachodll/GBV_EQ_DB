@@ -34,7 +34,7 @@ def main():
         df = df.rename(
             columns={
                 "Provincia (As)": "provincia_id",
-                "Año": "año",
+                "Año": "anio",
                 "Mes": "mes",
                 "VM Vicaria -1-": "es_victima_vicaria",
                 "AG-VM Relación": "es_hijo_agresor",
@@ -53,7 +53,7 @@ def main():
 
         # Normalize and validate all columns
         df["provincia_id"] = apply_and_check(df["provincia_id"], normalize_provincia)
-        df["año"] = apply_and_check(df["año"], normalize_year)
+        df["anio"] = apply_and_check(df["anio"], normalize_year)
         df["mes"] = apply_and_check(df["mes"], normalize_month)
         df["es_victima_vicaria"] = apply_and_check_dict(df["es_victima_vicaria"], es_victima_vicaria_mapping)
         df["es_hijo_agresor"] = apply_and_check_dict(df["es_hijo_agresor"], es_hijo_agresor_mapping)

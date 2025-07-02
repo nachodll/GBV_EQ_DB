@@ -34,7 +34,7 @@ def main():
         df = df.rename(
             columns={
                 "Comunidad autónoma (As)": "comunidad_autonoma_id",
-                "Año": "año",
+                "Año": "anio",
                 "Tipo de feminicidio": "tipo_feminicidio",
                 "Feminicidos fuera pareja o expareja": "num_feminicidios",
             }
@@ -49,7 +49,7 @@ def main():
 
         # Normalize and validate all columns
         df["comunidad_autonoma_id"] = apply_and_check(df["comunidad_autonoma_id"], normalize_comunidad_autonoma)
-        df["año"] = apply_and_check(df["año"], normalize_year)
+        df["anio"] = apply_and_check(df["anio"], normalize_year)
         df["num_feminicidios"] = apply_and_check(df["num_feminicidios"], normalize_positive_integer)
         df["tipo_feminicidio"] = apply_and_check_dict(df["tipo_feminicidio"], tipo_feminicidio_mapping)
 
