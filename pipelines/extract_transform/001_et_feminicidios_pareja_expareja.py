@@ -54,7 +54,7 @@ def main():
 
         # Save cleaned CSV
         CLEAN_CSV_PATH.parent.mkdir(parents=True, exist_ok=True)
-        df.to_csv(CLEAN_CSV_PATH, index=False)
+        df.to_csv(CLEAN_CSV_PATH, index=False, sep=";")
         logging.info(f"Data cleaned and saved to {CLEAN_CSV_PATH}")
 
     except FileNotFoundError as e:

@@ -77,6 +77,13 @@ CREATE TABLE
   );
 
 CREATE TABLE
+  "municipios" (
+    "municipio_id" int PRIMARY KEY,
+    "nombre" varchar NOT NULL,
+    "provincia_id" int NOT NULL
+  );
+
+CREATE TABLE
   "feminicidios_pareja_expareja" (
     "feminicidios_pareja_expareja_id" serial PRIMARY KEY,
     "num_feminicidios" int NOT NULL CHECK (num_feminicidios >= 0),

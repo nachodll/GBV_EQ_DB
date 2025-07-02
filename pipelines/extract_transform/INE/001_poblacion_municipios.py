@@ -1,8 +1,8 @@
 """Extract and transform data
 Sources:
-    DGVG004
+    INE001
 Target tables:
-    servicio_016
+    poblacion_municipios
 """
 
 import logging

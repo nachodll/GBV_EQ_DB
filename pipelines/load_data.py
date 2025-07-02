@@ -20,6 +20,7 @@ from utils.logging import setup_logging
 TABLES_TO_LOAD: List[Dict[str, Any]] = [
     {"name": "comunidades_autonomas", "path": Path("data") / "static" / "comunidadesAutónomas.csv"},
     {"name": "provincias", "path": Path("data") / "static" / "provincias.csv"},
+    {"name": "municipios", "path": Path("data") / "static" / "municipios.csv"},
     {"name": "feminicidios_pareja_expareja", "path": Path("data") / "clean" / "feminicidios_pareja_expareja.csv"},
     {
         "name": "feminicidios_fuera_pareja_expareja",
@@ -54,7 +55,7 @@ def load_csv_files(tables: List[Dict[str, Any]]) -> Dict[str, pd.DataFrame]:
     dataframes: Dict[str, pd.DataFrame] = {}
     for entry in tables:
         try:
-            df = pd.read_csv(entry["path"])  # type: ignore
+            df = pd.read_csv(entry["path"], sep=";")  # type: ignore
             dataframes[entry["name"]] = df
         except Exception as e:
             logging.error(f"Failed to read '{entry['path']}': {e}")

@@ -43,7 +43,7 @@ def main():
         df["num_ayudas_concedidas"] = apply_and_check(df["num_ayudas_concedidas"], normalize_positive_integer)
 
         # Save clean data
-        df.to_csv(CLEAN_CSV_PATH, index=False)
+        df.to_csv(CLEAN_CSV_PATH, index=False, sep=";")
         logging.info(f"Clean data saved to {CLEAN_CSV_PATH}")
 
     except FileNotFoundError as e:
