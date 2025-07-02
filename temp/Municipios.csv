@@ -1,0 +1,8133 @@
+provincia_id;nombre;municipio_id
+1;Agurain/Salvatierra;1051
+1;Alegría-Dulantzi;1001
+1;Amurrio;1002
+1;Añana;1049
+1;Aramaio;1003
+1;Armiñón;1006
+1;Arraia-Maeztu;1037
+1;Arratzua-Ubarrundia;1008
+1;Artziniega;1004
+1;Asparrena;1009
+1;Ayala/Aiara;1010
+1;Baños de Ebro/Mañueta;1011
+1;Barrundia;1013
+1;Berantevilla;1014
+1;Bernedo;1016
+1;Campezo/Kanpezu;1017
+1;Elburgo/Burgelu;1021
+1;Elciego;1022
+1;Elvillar/Bilar;1023
+1;Erriberagoitia/Ribera Alta;1046
+1;Harana/Valle de Arana;1056
+1;Iruña Oka/Iruña de Oca;1901
+1;Iruraiz-Gauna;1027
+1;Kripan;1019
+1;Kuartango;1020
+1;Labastida/Bastida;1028
+1;Lagrán;1030
+1;Laguardia;1031
+1;Lanciego/Lantziego;1032
+1;Lantarón;1902
+1;Lapuebla de Labarca;1033
+1;Laudio/Llodio;1036
+1;Legutio;1058
+1;Leza;1034
+1;Moreda de Álava/Moreda Araba;1039
+1;Navaridas;1041
+1;Okondo;1042
+1;Oyón-Oion;1043
+1;Peñacerrada-Urizaharra;1044
+1;Ribera Baja/Erriberabeitia;1047
+1;Samaniego;1052
+1;San Millán/Donemiliaga;1053
+1;Urkabustaiz;1054
+1;Valdegovía/Gaubea;1055
+1;Villabuena de Álava/Eskuernaga;1057
+1;Vitoria-Gasteiz;1059
+1;Yécora/Iekora;1060
+1;Zalduondo;1061
+1;Zambrana;1062
+1;Zigoitia;1018
+1;Zuia;1063
+2;Abengibre;2001
+2;Alatoz;2002
+2;Albacete;2003
+2;Albatana;2004
+2;Alborea;2005
+2;Alcadozo;2006
+2;Alcalá del Júcar;2007
+2;Alcaraz;2008
+2;Almansa;2009
+2;Alpera;2010
+2;Ayna;2011
+2;Balazote;2012
+2;Ballestero, El;2014
+2;Balsa de Ves;2013
+2;Barrax;2015
+2;Bienservida;2016
+2;Bogarra;2017
+2;Bonete;2018
+2;Bonillo, El;2019
+2;Carcelén;2020
+2;Casas de Juan Núñez;2021
+2;Casas de Lázaro;2022
+2;Casas de Ves;2023
+2;Casas-Ibáñez;2024
+2;Caudete;2025
+2;Cenizate;2026
+2;Chinchilla de Monte-Aragón;2029
+2;Corral-Rubio;2027
+2;Cotillas;2028
+2;Elche de la Sierra;2030
+2;Férez;2031
+2;Fuensanta;2032
+2;Fuente-Álamo;2033
+2;Fuentealbilla;2034
+2;Gineta, La;2035
+2;Golosalvo;2036
+2;Hellín;2037
+2;Herrera, La;2038
+2;Higueruela;2039
+2;Hoya-Gonzalo;2040
+2;Jorquera;2041
+2;Letur;2042
+2;Lezuza;2043
+2;Liétor;2044
+2;Madrigueras;2045
+2;Mahora;2046
+2;Masegoso;2047
+2;Minaya;2048
+2;Molinicos;2049
+2;Montalvos;2050
+2;Montealegre del Castillo;2051
+2;Motilleja;2052
+2;Munera;2053
+2;Navas de Jorquera;2054
+2;Nerpio;2055
+2;Ontur;2056
+2;Ossa de Montiel;2057
+2;Paterna del Madera;2058
+2;Peñas de San Pedro;2060
+2;Peñascosa;2059
+2;Pétrola;2061
+2;Povedilla;2062
+2;Pozo Cañada;2901
+2;Pozohondo;2063
+2;Pozo-Lorente;2064
+2;Pozuelo;2065
+2;Recueja, La;2066
+2;Riópar;2067
+2;Robledo;2068
+2;Roda, La;2069
+2;Salobre;2070
+2;San Pedro;2071
+2;Socovos;2072
+2;Tarazona de la Mancha;2073
+2;Tobarra;2074
+2;Valdeganga;2075
+2;Vianos;2076
+2;Villa de Ves;2077
+2;Villalgordo del Júcar;2078
+2;Villamalea;2079
+2;Villapalacios;2080
+2;Villarrobledo;2081
+2;Villatoya;2082
+2;Villavaliente;2083
+2;Villaverde de Guadalimar;2084
+2;Viveros;2085
+2;Yeste;2086
+3;Agost;3002
+3;Agres;3003
+3;Aigües;3004
+3;Alacant/Alicante;3014
+3;Albatera;3005
+3;Alcalalí;3006
+3;Alcoi/Alcoy;3009
+3;Alcoleja;3008
+3;Alcosser;3007
+3;Alfafara;3010
+3;Alfàs del Pi, l';3011
+3;Algorfa;3012
+3;Algueña;3013
+3;Almoradí;3015
+3;Almudaina;3016
+3;Alqueria d'Asnar, l';3017
+3;Altea;3018
+3;Aspe;3019
+3;Atzúbia, l';3001
+3;Balones;3020
+3;Banyeres de Mariola;3021
+3;Benasau;3022
+3;Beneixama;3023
+3;Benejúzar;3024
+3;Benferri;3025
+3;Beniarbeig;3026
+3;Beniardà;3027
+3;Beniarrés;3028
+3;Benidoleig;3030
+3;Benidorm;3031
+3;Benifallim;3032
+3;Benifato;3033
+3;Benigembla;3029
+3;Benijófar;3034
+3;Benilloba;3035
+3;Benillup;3036
+3;Benimantell;3037
+3;Benimarfull;3038
+3;Benimassot;3039
+3;Benimeli;3040
+3;Benissa;3041
+3;Biar;3043
+3;Bigastro;3044
+3;Bolulla;3045
+3;Busot;3046
+3;Callosa de Segura;3049
+3;Callosa d'en Sarrià;3048
+3;Calp;3047
+3;Camp de Mirra, el/Campo de Mirra;3051
+3;Campello, el;3050
+3;Cañada;3052
+3;Castalla;3053
+3;Castell de Castells;3054
+3;Castell de Guadalest, el;3075
+3;Catral;3055
+3;Cocentaina;3056
+3;Confrides;3057
+3;Cox;3058
+3;Crevillent;3059
+3;Daya Nueva;3061
+3;Daya Vieja;3062
+3;Dénia;3063
+3;Dolores;3064
+3;Elda;3066
+3;Elx/Elche;3065
+3;Fageca;3067
+3;Famorca;3068
+3;Finestrat;3069
+3;Fondó de les Neus, el/Hondón de las Nieves;3077
+3;Formentera del Segura;3070
+3;Gaianes;3072
+3;Gata de Gorgos;3071
+3;Gorga;3073
+3;Granja de Rocamora;3074
+3;Guardamar del Segura;3076
+3;Hondón de los Frailes;3078
+3;Ibi;3079
+3;Jacarilla;3080
+3;Llíber;3085
+3;Millena;3086
+3;Monforte del Cid;3088
+3;Monòver/Monóvar;3089
+3;Montesinos, Los;3903
+3;Murla;3091
+3;Muro de Alcoy;3092
+3;Mutxamel;3090
+3;Novelda;3093
+3;Nucia, la;3094
+3;Ondara;3095
+3;Onil;3096
+3;Orba;3097
+3;Orihuela;3099
+3;Orxa, l'/Lorcha;3084
+3;Orxeta;3098
+3;Parcent;3100
+3;Pedreguer;3101
+3;Pego;3102
+3;Penàguila;3103
+3;Petrer;3104
+3;Pilar de la Horadada;3902
+3;Pinós, el/Pinoso;3105
+3;Planes;3106
+3;Poble Nou de Benitatxell, el/Benitachell;3042
+3;Poblets, els;3901
+3;Polop;3107
+3;Quatretondeta;3060
+3;Rafal;3109
+3;Ràfol d'Almúnia, el;3110
+3;Redován;3111
+3;Relleu;3112
+3;Rojales;3113
+3;Romana, la;3114
+3;Sagra;3115
+3;Salinas;3116
+3;San Fulgencio;3118
+3;San Isidro;3904
+3;San Miguel de Salinas;3120
+3;Sanet y Negrals;3117
+3;Sant Joan d'Alacant;3119
+3;Sant Vicent del Raspeig/San Vicente del Raspeig;3122
+3;Santa Pola;3121
+3;Sax;3123
+3;Sella;3124
+3;Senija;3125
+3;Tàrbena;3127
+3;Teulada;3128
+3;Tibi;3129
+3;Tollos;3130
+3;Tormos;3131
+3;Torre de les Maçanes, la/Torremanzanas;3132
+3;Torrevieja;3133
+3;Vall d'Alcalà, la;3134
+3;Vall de Gallinera, la;3136
+3;Vall de Laguar, la;3137
+3;Vall d'Ebo, la;3135
+3;Verger, el;3138
+3;Vila Joiosa, la/Villajoyosa;3139
+3;Villena;3140
+3;Xàbia/Jávea;3082
+3;Xaló;3081
+3;Xixona/Jijona;3083
+4;Abla;4001
+4;Abrucena;4002
+4;Adra;4003
+4;Albanchez;4004
+4;Alboloduy;4005
+4;Albox;4006
+4;Alcolea;4007
+4;Alcóntar;4008
+4;Alcudia de Monteagud;4009
+4;Alhabia;4010
+4;Alhama de Almería;4011
+4;Alicún;4012
+4;Almería;4013
+4;Almócita;4014
+4;Alsodux;4015
+4;Antas;4016
+4;Arboleas;4017
+4;Armuña de Almanzora;4018
+4;Bacares;4019
+4;Balanegra;4904
+4;Bayárcal;4020
+4;Bayarque;4021
+4;Bédar;4022
+4;Beires;4023
+4;Benahadux;4024
+4;Benitagla;4026
+4;Benizalón;4027
+4;Bentarique;4028
+4;Berja;4029
+4;Canjáyar;4030
+4;Cantoria;4031
+4;Carboneras;4032
+4;Castro de Filabres;4033
+4;Chercos;4036
+4;Chirivel;4037
+4;Cóbdar;4034
+4;Cuevas del Almanzora;4035
+4;Dalías;4038
+4;Ejido, El;4902
+4;Enix;4041
+4;Felix;4043
+4;Fines;4044
+4;Fiñana;4045
+4;Fondón;4046
+4;Gádor;4047
+4;Gallardos, Los;4048
+4;Garrucha;4049
+4;Gérgal;4050
+4;Huécija;4051
+4;Huércal de Almería;4052
+4;Huércal-Overa;4053
+4;Íllar;4054
+4;Instinción;4055
+4;Laroya;4056
+4;Laujar de Andarax;4057
+4;Líjar;4058
+4;Lubrín;4059
+4;Lucainena de las Torres;4060
+4;Lúcar;4061
+4;Macael;4062
+4;María;4063
+4;Mojácar;4064
+4;Mojonera, La;4903
+4;Nacimiento;4065
+4;Níjar;4066
+4;Ohanes;4067
+4;Olula de Castro;4068
+4;Olula del Río;4069
+4;Oria;4070
+4;Padules;4071
+4;Partaloa;4072
+4;Paterna del Río;4073
+4;Pechina;4074
+4;Pulpí;4075
+4;Purchena;4076
+4;Rágol;4077
+4;Rioja;4078
+4;Roquetas de Mar;4079
+4;Santa Cruz de Marchena;4080
+4;Santa Fe de Mondújar;4081
+4;Senés;4082
+4;Serón;4083
+4;Sierro;4084
+4;Somontín;4085
+4;Sorbas;4086
+4;Suflí;4087
+4;Tabernas;4088
+4;Taberno;4089
+4;Tahal;4090
+4;Terque;4091
+4;Tíjola;4092
+4;Tres Villas, Las;4901
+4;Turre;4093
+4;Turrillas;4094
+4;Uleila del Campo;4095
+4;Urrácal;4096
+4;Velefique;4097
+4;Vélez-Blanco;4098
+4;Vélez-Rubio;4099
+4;Vera;4100
+4;Viator;4101
+4;Vícar;4102
+4;Zurgena;4103
+5;Adanero;5001
+5;Adrada, La;5002
+5;Albornos;5005
+5;Aldeanueva de Santa Cruz;5007
+5;Aldeaseca;5008
+5;Aldehuela, La;5010
+5;Amavida;5012
+5;Arenal, El;5013
+5;Arenas de San Pedro;5014
+5;Arevalillo;5015
+5;Arévalo;5016
+5;Aveinte;5017
+5;Avellaneda;5018
+5;Ávila;5019
+5;Barco de Ávila, El;5021
+5;Barraco, El;5022
+5;Barromán;5023
+5;Becedas;5024
+5;Becedillas;5025
+5;Bercial de Zapardiel;5026
+5;Berlanas, Las;5027
+5;Bernuy-Zapardiel;5029
+5;Berrocalejo de Aragona;5030
+5;Blascomillán;5033
+5;Blasconuño de Matacabras;5034
+5;Blascosancho;5035
+5;Bohodón, El;5036
+5;Bohoyo;5037
+5;Bonilla de la Sierra;5038
+5;Brabos;5039
+5;Bularros;5040
+5;Burgohondo;5041
+5;Cabezas de Alambre;5042
+5;Cabezas del Pozo;5043
+5;Cabezas del Villar;5044
+5;Cabizuela;5045
+5;Canales;5046
+5;Candeleda;5047
+5;Cantiveros;5048
+5;Cardeñosa;5049
+5;Carrera, La;5051
+5;Casas del Puerto;5052
+5;Casasola;5053
+5;Casavieja;5054
+5;Casillas;5055
+5;Castellanos de Zapardiel;5056
+5;Cebreros;5057
+5;Cepeda la Mora;5058
+5;Chamartín;5067
+5;Cillán;5059
+5;Cisla;5060
+5;Colilla, La;5061
+5;Collado de Contreras;5062
+5;Collado del Mirón;5063
+5;Constanzana;5064
+5;Crespos;5065
+5;Cuevas del Valle;5066
+5;Diego del Carpio;5903
+5;Donjimeno;5069
+5;Donvidas;5070
+5;Espinosa de los Caballeros;5072
+5;Flores de Ávila;5073
+5;Fontiveros;5074
+5;Fresnedilla;5075
+5;Fresno, El;5076
+5;Fuente el Saúz;5077
+5;Fuentes de Año;5078
+5;Gallegos de Altamiros;5079
+5;Gallegos de Sobrinos;5080
+5;Garganta del Villar;5081
+5;Gavilanes;5082
+5;Gemuño;5083
+5;Gil García;5085
+5;Gilbuena;5084
+5;Gimialcón;5086
+5;Gotarrendura;5087
+5;Grandes y San Martín;5088
+5;Guisando;5089
+5;Gutierre-Muñoz;5090
+5;Hernansancho;5092
+5;Herradón de Pinares;5093
+5;Herreros de Suso;5094
+5;Higuera de las Dueñas;5095
+5;Hija de Dios, La;5096
+5;Horcajada, La;5097
+5;Horcajo de las Torres;5099
+5;Hornillo, El;5100
+5;Hoyo de Pinares, El;5102
+5;Hoyocasero;5101
+5;Hoyorredondo;5103
+5;Hoyos de Miguel Muñoz;5106
+5;Hoyos del Collado;5104
+5;Hoyos del Espino;5105
+5;Hurtumpascual;5107
+5;Junciana;5108
+5;Langa;5109
+5;Lanzahíta;5110
+5;Llanos de Tormes, Los;5113
+5;Losar del Barco, El;5112
+5;Madrigal de las Altas Torres;5114
+5;Maello;5115
+5;Malpartida de Corneja;5116
+5;Mamblas;5117
+5;Mancera de Arriba;5118
+5;Manjabálago y Ortigosa de Rioalmar;5119
+5;Marlín;5120
+5;Martiherrero;5121
+5;Martínez;5122
+5;Mediana de Voltoya;5123
+5;Medinilla;5124
+5;Mengamuñoz;5125
+5;Mesegar de Corneja;5126
+5;Mijares;5127
+5;Mingorría;5128
+5;Mirón, El;5129
+5;Mironcillo;5130
+5;Mirueña de los Infanzones;5131
+5;Mombeltrán;5132
+5;Monsalupe;5133
+5;Moraleja de Matacabras;5134
+5;Muñana;5135
+5;Muñico;5136
+5;Muñogalindo;5138
+5;Muñogrande;5139
+5;Muñomer del Peco;5140
+5;Muñopepe;5141
+5;Muñosancho;5142
+5;Muñotello;5143
+5;Narrillos del Álamo;5144
+5;Narrillos del Rebollar;5145
+5;Narros de Saldueña;5149
+5;Narros del Castillo;5147
+5;Narros del Puerto;5148
+5;Nava de Arévalo;5152
+5;Nava del Barco;5153
+5;Navacepedilla de Corneja;5151
+5;Navadijos;5154
+5;Navaescurial;5155
+5;Navahondilla;5156
+5;Navalacruz;5157
+5;Navalmoral;5158
+5;Navalonguilla;5159
+5;Navalosa;5160
+5;Navalperal de Pinares;5161
+5;Navalperal de Tormes;5162
+5;Navaluenga;5163
+5;Navaquesera;5164
+5;Navarredonda de Gredos;5165
+5;Navarredondilla;5166
+5;Navarrevisca;5167
+5;Navas del Marqués, Las;5168
+5;Navatalgordo;5169
+5;Navatejares;5170
+5;Neila de San Miguel;5171
+5;Niharra;5172
+5;Ojos-Albos;5173
+5;Orbita;5174
+5;Oso, El;5175
+5;Padiernos;5176
+5;Pajares de Adaja;5177
+5;Palacios de Goda;5178
+5;Papatrigo;5179
+5;Parral, El;5180
+5;Pascualcobo;5181
+5;Pedro Bernardo;5182
+5;Pedro-Rodríguez;5183
+5;Peguerinos;5184
+5;Peñalba de Ávila;5185
+5;Piedrahíta;5186
+5;Piedralaves;5187
+5;Poveda;5188
+5;Poyales del Hoyo;5189
+5;Pozanco;5190
+5;Pradosegar;5191
+5;Puerto Castilla;5192
+5;Rasueros;5193
+5;Riocabado;5194
+5;Riofrío;5195
+5;Rivilla de Barajas;5196
+5;Salobral;5197
+5;Salvadiós;5198
+5;San Bartolomé de Béjar;5199
+5;San Bartolomé de Corneja;5200
+5;San Bartolomé de Pinares;5201
+5;San Esteban de los Patos;5206
+5;San Esteban de Zapardiel;5208
+5;San Esteban del Valle;5207
+5;San García de Ingelmos;5209
+5;San Juan de Gredos;5901
+5;San Juan de la Encinilla;5210
+5;San Juan de la Nava;5211
+5;San Juan del Molinillo;5212
+5;San Juan del Olmo;5213
+5;San Lorenzo de Tormes;5214
+5;San Martín de la Vega del Alberche;5215
+5;San Martín del Pimpollar;5216
+5;San Miguel de Corneja;5217
+5;San Miguel de Serrezuela;5218
+5;San Pascual;5219
+5;San Pedro del Arroyo;5220
+5;San Vicente de Arévalo;5231
+5;Sanchidrián;5204
+5;Sanchorreja;5205
+5;Santa Cruz de Pinares;5222
+5;Santa Cruz del Valle;5221
+5;Santa María de los Caballeros;5226
+5;Santa María del Arroyo;5224
+5;Santa María del Berrocal;5225
+5;Santa María del Cubillo;5902
+5;Santa María del Tiétar;5227
+5;Santiago del Collado;5228
+5;Santiago del Tormes;5904
+5;Santo Domingo de las Posadas;5229
+5;Santo Tomé de Zabarcos;5230
+5;Serrada, La;5232
+5;Serranillos;5233
+5;Sigeres;5234
+5;Sinlabajos;5235
+5;Solana de Ávila;5236
+5;Solana de Rioalmar;5237
+5;Solosancho;5238
+5;Sotalbo;5239
+5;Sotillo de la Adrada;5240
+5;Tiemblo, El;5241
+5;Tiñosillos;5242
+5;Tolbaños;5243
+5;Tormellas;5244
+5;Tornadizos de Ávila;5245
+5;Torre, La;5247
+5;Tórtoles;5246
+5;Umbrías;5249
+5;Vadillo de la Sierra;5251
+5;Valdecasa;5252
+5;Vega de Santa María;5253
+5;Velayos;5254
+5;Villaflor;5256
+5;Villafranca de la Sierra;5257
+5;Villanueva de Ávila;5905
+5;Villanueva de Gómez;5258
+5;Villanueva del Aceral;5259
+5;Villanueva del Campillo;5260
+5;Villar de Corneja;5261
+5;Villarejo del Valle;5262
+5;Villatoro;5263
+5;Viñegra de Moraña;5264
+5;Vita;5265
+5;Zapardiel de la Cañada;5266
+5;Zapardiel de la Ribera;5267
+6;Acedera;6001
+6;Aceuchal;6002
+6;Ahillones;6003
+6;Alange;6004
+6;Albuera, La;6005
+6;Alburquerque;6006
+6;Alconchel;6007
+6;Alconera;6008
+6;Aljucén;6009
+6;Almendral;6010
+6;Almendralejo;6011
+6;Arroyo de San Serván;6012
+6;Atalaya;6013
+6;Azuaga;6014
+6;Badajoz;6015
+6;Barcarrota;6016
+6;Baterno;6017
+6;Benquerencia de la Serena;6018
+6;Berlanga;6019
+6;Bienvenida;6020
+6;Bodonal de la Sierra;6021
+6;Burguillos del Cerro;6022
+6;Cabeza del Buey;6023
+6;Cabeza la Vaca;6024
+6;Calamonte;6025
+6;Calera de León;6026
+6;Calzadilla de los Barros;6027
+6;Campanario;6028
+6;Campillo de Llerena;6029
+6;Capilla;6030
+6;Carmonita;6031
+6;Carrascalejo, El;6032
+6;Casas de Don Pedro;6033
+6;Casas de Reina;6034
+6;Castilblanco;6035
+6;Castuera;6036
+6;Cheles;6042
+6;Codosera, La;6037
+6;Cordobilla de Lácara;6038
+6;Coronada, La;6039
+6;Corte de Peleas;6040
+6;Cristina;6041
+6;Don Álvaro;6043
+6;Don Benito;6044
+6;Entrín Bajo;6045
+6;Esparragalejo;6046
+6;Esparragosa de la Serena;6047
+6;Esparragosa de Lares;6048
+6;Feria;6049
+6;Fregenal de la Sierra;6050
+6;Fuenlabrada de los Montes;6051
+6;Fuente de Cantos;6052
+6;Fuente del Arco;6053
+6;Fuente del Maestre;6054
+6;Fuentes de León;6055
+6;Garbayuela;6056
+6;Garlitos;6057
+6;Garrovilla, La;6058
+6;Granja de Torrehermosa;6059
+6;Guadiana;6903
+6;Guareña;6060
+6;Haba, La;6061
+6;Helechosa de los Montes;6062
+6;Herrera del Duque;6063
+6;Higuera de la Serena;6064
+6;Higuera de Llerena;6065
+6;Higuera de Vargas;6066
+6;Higuera la Real;6067
+6;Hinojosa del Valle;6068
+6;Hornachos;6069
+6;Jerez de los Caballeros;6070
+6;Lapa, La;6071
+6;Llera;6073
+6;Llerena;6074
+6;Lobón;6072
+6;Magacela;6075
+6;Maguilla;6076
+6;Malcocinado;6077
+6;Malpartida de la Serena;6078
+6;Manchita;6079
+6;Medellín;6080
+6;Medina de las Torres;6081
+6;Mengabril;6082
+6;Mérida;6083
+6;Mirandilla;6084
+6;Monesterio;6085
+6;Montemolín;6086
+6;Monterrubio de la Serena;6087
+6;Montijo;6088
+6;Morera, La;6089
+6;Nava de Santiago, La;6090
+6;Navalvillar de Pela;6091
+6;Nogales;6092
+6;Oliva de la Frontera;6093
+6;Oliva de Mérida;6094
+6;Olivenza;6095
+6;Orellana de la Sierra;6096
+6;Orellana la Vieja;6097
+6;Palomas;6098
+6;Parra, La;6099
+6;Peñalsordo;6100
+6;Peraleda del Zaucejo;6101
+6;Puebla de Alcocer;6102
+6;Puebla de la Calzada;6103
+6;Puebla de la Reina;6104
+6;Puebla de Obando;6107
+6;Puebla de Sancho Pérez;6108
+6;Puebla del Maestre;6105
+6;Puebla del Prior;6106
+6;Pueblonuevo del Guadiana;6902
+6;Quintana de la Serena;6109
+6;Reina;6110
+6;Rena;6111
+6;Retamal de Llerena;6112
+6;Ribera del Fresno;6113
+6;Risco;6114
+6;Roca de la Sierra, La;6115
+6;Salvaleón;6116
+6;Salvatierra de los Barros;6117
+6;San Pedro de Mérida;6119
+6;San Vicente de Alcántara;6123
+6;Sancti-Spíritus;6118
+6;Santa Amalia;6120
+6;Santa Marta;6121
+6;Santos de Maimona, Los;6122
+6;Segura de León;6124
+6;Siruela;6125
+6;Solana de los Barros;6126
+6;Talarrubias;6127
+6;Talavera la Real;6128
+6;Táliga;6129
+6;Tamurejo;6130
+6;Torre de Miguel Sesmero;6131
+6;Torremayor;6132
+6;Torremejía;6133
+6;Trasierra;6134
+6;Trujillanos;6135
+6;Usagre;6136
+6;Valdecaballeros;6137
+6;Valdelacalzada;6901
+6;Valdetorres;6138
+6;Valencia de las Torres;6139
+6;Valencia del Mombuey;6140
+6;Valencia del Ventoso;6141
+6;Valle de la Serena;6146
+6;Valle de Matamoros;6147
+6;Valle de Santa Ana;6148
+6;Valverde de Burguillos;6142
+6;Valverde de Leganés;6143
+6;Valverde de Llerena;6144
+6;Valverde de Mérida;6145
+6;Villafranca de los Barros;6149
+6;Villagarcía de la Torre;6150
+6;Villagonzalo;6151
+6;Villalba de los Barros;6152
+6;Villanueva de la Serena;6153
+6;Villanueva del Fresno;6154
+6;Villar de Rena;6156
+6;Villar del Rey;6155
+6;Villarta de los Montes;6157
+6;Zafra;6158
+6;Zahínos;6159
+6;Zalamea de la Serena;6160
+6;Zarza, La;6162
+6;Zarza-Capilla;6161
+7;Alaior;7002
+7;Alaró;7001
+7;Alcúdia;7003
+7;Algaida;7004
+7;Andratx;7005
+7;Ariany;7901
+7;Artà;7006
+7;Banyalbufar;7007
+7;Binissalem;7008
+7;Búger;7009
+7;Bunyola;7010
+7;Calvià;7011
+7;Campanet;7012
+7;Campos;7013
+7;Capdepera;7014
+7;Castell, Es;7064
+7;Ciutadella de Menorca;7015
+7;Consell;7016
+7;Costitx;7017
+7;Deià;7018
+7;Eivissa;7026
+7;Escorca;7019
+7;Esporles;7020
+7;Estellencs;7021
+7;Felanitx;7022
+7;Ferreries;7023
+7;Formentera;7024
+7;Fornalutx;7025
+7;Inca;7027
+7;Lloret de Vistalegre;7028
+7;Lloseta;7029
+7;Llubí;7030
+7;Llucmajor;7031
+7;Manacor;7033
+7;Mancor de la Vall;7034
+7;Maó;7032
+7;Maria de la Salut;7035
+7;Marratxí;7036
+7;Mercadal, Es;7037
+7;Migjorn Gran, Es;7902
+7;Montuïri;7038
+7;Muro;7039
+7;Palma;7040
+7;Petra;7041
+7;Pobla, Sa;7044
+7;Pollença;7042
+7;Porreres;7043
+7;Puigpunyent;7045
+7;Salines, Ses;7059
+7;Sant Antoni de Portmany;7046
+7;Sant Joan;7049
+7;Sant Joan de Labritja;7050
+7;Sant Josep de sa Talaia;7048
+7;Sant Llorenç des Cardassar;7051
+7;Sant Lluís;7052
+7;Santa Eugènia;7053
+7;Santa Eulària des Riu;7054
+7;Santa Margalida;7055
+7;Santa María del Camí;7056
+7;Santanyí;7057
+7;Selva;7058
+7;Sencelles;7047
+7;Sineu;7060
+7;Sóller;7061
+7;Son Servera;7062
+7;Valldemossa;7063
+7;Vilafranca de Bonany;7065
+8;Abrera;8001
+8;Aguilar de Segarra;8002
+8;Aiguafreda;8014
+8;Alella;8003
+8;Alpens;8004
+8;Ametlla del Vallès, L';8005
+8;Arenys de Mar;8006
+8;Arenys de Munt;8007
+8;Argençola;8008
+8;Argentona;8009
+8;Artés;8010
+8;Avià;8011
+8;Avinyó;8012
+8;Avinyonet del Penedès;8013
+8;Badalona;8015
+8;Badia del Vallès;8904
+8;Bagà;8016
+8;Balenyà;8017
+8;Balsareny;8018
+8;Barberà del Vallès;8252
+8;Barcelona;8019
+8;Begues;8020
+8;Bellprat;8021
+8;Berga;8022
+8;Bigues i Riells del Fai;8023
+8;Borredà;8024
+8;Bruc, El;8025
+8;Brull, El;8026
+8;Cabanyes, Les;8027
+8;Cabrera d'Anoia;8028
+8;Cabrera de Mar;8029
+8;Cabrils;8030
+8;Calaf;8031
+8;Calders;8034
+8;Caldes de Montbui;8033
+8;Caldes d'Estrac;8032
+8;Calella;8035
+8;Calldetenes;8037
+8;Callús;8038
+8;Calonge de Segarra;8036
+8;Campins;8039
+8;Canet de Mar;8040
+8;Canovelles;8041
+8;Cànoves i Samalús;8042
+8;Canyelles;8043
+8;Capellades;8044
+8;Capolat;8045
+8;Cardedeu;8046
+8;Cardona;8047
+8;Carme;8048
+8;Casserres;8049
+8;Castell de l'Areny;8057
+8;Castellar de n'Hug;8052
+8;Castellar del Riu;8050
+8;Castellar del Vallès;8051
+8;Castellbell i el Vilar;8053
+8;Castellbisbal;8054
+8;Castellcir;8055
+8;Castelldefels;8056
+8;Castellet i la Gornal;8058
+8;Castellfollit de Riubregós;8060
+8;Castellfollit del Boix;8059
+8;Castellgalí;8061
+8;Castellnou de Bages;8062
+8;Castellolí;8063
+8;Castellterçol;8064
+8;Castellví de la Marca;8065
+8;Castellví de Rosanes;8066
+8;Centelles;8067
+8;Cercs;8268
+8;Cerdanyola del Vallès;8266
+8;Cervelló;8068
+8;Collbató;8069
+8;Collsuspina;8070
+8;Copons;8071
+8;Corbera de Llobregat;8072
+8;Cornellà de Llobregat;8073
+8;Cubelles;8074
+8;Dosrius;8075
+8;Esparreguera;8076
+8;Esplugues de Llobregat;8077
+8;Espunyola, L';8078
+8;Esquirol, L';8254
+8;Estany, L';8079
+8;Figaró-Montmany;8134
+8;Fígols;8080
+8;Fogars de la Selva;8082
+8;Fogars de Montclús;8081
+8;Folgueroles;8083
+8;Fonollosa;8084
+8;Font-rubí;8085
+8;Franqueses del Vallès, Les;8086
+8;Gaià;8090
+8;Gallifa;8087
+8;Garriga, La;8088
+8;Gavà;8089
+8;Gelida;8091
+8;Gironella;8092
+8;Gisclareny;8093
+8;Granada, La;8094
+8;Granera;8095
+8;Granollers;8096
+8;Gualba;8097
+8;Guardiola de Berguedà;8099
+8;Gurb;8100
+8;Hospitalet de Llobregat, L';8101
+8;Hostalets de Pierola, Els;8162
+8;Igualada;8102
+8;Jorba;8103
+8;Llacuna, La;8104
+8;Llagosta, La;8105
+8;Lliçà d'Amunt;8107
+8;Lliçà de Vall;8108
+8;Llinars del Vallès;8106
+8;Lluçà;8109
+8;Malgrat de Mar;8110
+8;Malla;8111
+8;Manlleu;8112
+8;Manresa;8113
+8;Marganell;8242
+8;Martorell;8114
+8;Martorelles;8115
+8;Masies de Roda, Les;8116
+8;Masies de Voltregà, Les;8117
+8;Masnou, El;8118
+8;Masquefa;8119
+8;Matadepera;8120
+8;Mataró;8121
+8;Mediona;8122
+8;Moià;8138
+8;Molins de Rei;8123
+8;Mollet del Vallès;8124
+8;Monistrol de Calders;8128
+8;Monistrol de Montserrat;8127
+8;Montcada i Reixac;8125
+8;Montclar;8130
+8;Montesquiu;8131
+8;Montgat;8126
+8;Montmajor;8132
+8;Montmaneu;8133
+8;Montmeló;8135
+8;Montornès del Vallès;8136
+8;Montseny;8137
+8;Muntanyola;8129
+8;Mura;8139
+8;Navarcles;8140
+8;Navàs;8141
+8;Nou de Berguedà, La;8142
+8;Òdena;8143
+8;Olèrdola;8145
+8;Olesa de Bonesvalls;8146
+8;Olesa de Montserrat;8147
+8;Olivella;8148
+8;Olost;8149
+8;Olvan;8144
+8;Orís;8150
+8;Oristà;8151
+8;Orpí;8152
+8;Òrrius;8153
+8;Pacs del Penedès;8154
+8;Palafolls;8155
+8;Palau-solità i Plegamans;8156
+8;Pallejà;8157
+8;Palma de Cervelló, La;8905
+8;Papiol, El;8158
+8;Parets del Vallès;8159
+8;Perafita;8160
+8;Piera;8161
+8;Pineda de Mar;8163
+8;Pla del Penedès, El;8164
+8;Pobla de Claramunt, La;8165
+8;Pobla de Lillet, La;8166
+8;Polinyà;8167
+8;Pont de Vilomara i Rocafort, El;8182
+8;Pontons;8168
+8;Prat de Llobregat, El;8169
+8;Prats de Lluçanès;8171
+8;Prats de Rei, Els;8170
+8;Premià de Dalt;8230
+8;Premià de Mar;8172
+8;Puigdàlber;8174
+8;Puig-reig;8175
+8;Pujalt;8176
+8;Quar, La;8177
+8;Rajadell;8178
+8;Rellinars;8179
+8;Ripollet;8180
+8;Roca del Vallès, La;8181
+8;Roda de Ter;8183
+8;Rubí;8184
+8;Rubió;8185
+8;Rupit i Pruit;8901
+8;Sabadell;8187
+8;Sagàs;8188
+8;Saldes;8190
+8;Sallent;8191
+8;Sant Adrià de Besòs;8194
+8;Sant Agustí de Lluçanès;8195
+8;Sant Andreu de la Barca;8196
+8;Sant Andreu de Llavaneres;8197
+8;Sant Antoni de Vilamajor;8198
+8;Sant Bartomeu del Grau;8199
+8;Sant Boi de Llobregat;8200
+8;Sant Boi de Lluçanès;8201
+8;Sant Cebrià de Vallalta;8203
+8;Sant Celoni;8202
+8;Sant Climent de Llobregat;8204
+8;Sant Cugat del Vallès;8205
+8;Sant Cugat Sesgarrigues;8206
+8;Sant Esteve de Palautordera;8207
+8;Sant Esteve Sesrovires;8208
+8;Sant Feliu de Codines;8210
+8;Sant Feliu de Llobregat;8211
+8;Sant Feliu Sasserra;8212
+8;Sant Fost de Campsentelles;8209
+8;Sant Fruitós de Bages;8213
+8;Sant Hipòlit de Voltregà;8215
+8;Sant Iscle de Vallalta;8193
+8;Sant Jaume de Frontanyà;8216
+8;Sant Joan de Vilatorrada;8218
+8;Sant Joan Despí;8217
+8;Sant Julià de Cerdanyola;8903
+8;Sant Julià de Vilatorta;8220
+8;Sant Just Desvern;8221
+8;Sant Llorenç d'Hortons;8222
+8;Sant Llorenç Savall;8223
+8;Sant Martí d'Albars;8225
+8;Sant Martí de Centelles;8224
+8;Sant Martí de Tous;8226
+8;Sant Martí Sarroca;8227
+8;Sant Martí Sesgueioles;8228
+8;Sant Mateu de Bages;8229
+8;Sant Pere de Ribes;8231
+8;Sant Pere de Riudebitlles;8232
+8;Sant Pere de Torelló;8233
+8;Sant Pere de Vilamajor;8234
+8;Sant Pere Sallavinera;8189
+8;Sant Pol de Mar;8235
+8;Sant Quintí de Mediona;8236
+8;Sant Quirze de Besora;8237
+8;Sant Quirze del Vallès;8238
+8;Sant Quirze Safaja;8239
+8;Sant Sadurní d'Anoia;8240
+8;Sant Sadurní d'Osormort;8241
+8;Sant Salvador de Guardiola;8098
+8;Sant Vicenç de Castellet;8262
+8;Sant Vicenç de Montalt;8264
+8;Sant Vicenç de Torelló;8265
+8;Sant Vicenç dels Horts;8263
+8;Santa Cecília de Voltregà;8243
+8;Santa Coloma de Cervelló;8244
+8;Santa Coloma de Gramenet;8245
+8;Santa Eugènia de Berga;8246
+8;Santa Eulàlia de Riuprimer;8247
+8;Santa Eulàlia de Ronçana;8248
+8;Santa Fe del Penedès;8249
+8;Santa Margarida de Montbui;8250
+8;Santa Margarida i els Monjos;8251
+8;Santa Maria de Besora;8253
+8;Santa Maria de Martorelles;8256
+8;Santa Maria de Merlès;8255
+8;Santa Maria de Miralles;8257
+8;Santa Maria de Palautordera;8259
+8;Santa Maria d'Oló;8258
+8;Santa Perpètua de Mogoda;8260
+8;Santa Susanna;8261
+8;Santpedor;8192
+8;Sentmenat;8267
+8;Seva;8269
+8;Sitges;8270
+8;Sobremunt;8271
+8;Sora;8272
+8;Subirats;8273
+8;Súria;8274
+8;Tagamanent;8276
+8;Talamanca;8277
+8;Taradell;8278
+8;Tavèrnoles;8275
+8;Tavertet;8280
+8;Teià;8281
+8;Terrassa;8279
+8;Tiana;8282
+8;Tona;8283
+8;Tordera;8284
+8;Torelló;8285
+8;Torre de Claramunt, La;8286
+8;Torrelavit;8287
+8;Torrelles de Foix;8288
+8;Torrelles de Llobregat;8289
+8;Ullastrell;8290
+8;Vacarisses;8291
+8;Vallbona d'Anoia;8292
+8;Vallcebre;8293
+8;Vallgorguina;8294
+8;Vallirana;8295
+8;Vallromanes;8296
+8;Veciana;8297
+8;Vic;8298
+8;Vilada;8299
+8;Viladecans;8301
+8;Viladecavalls;8300
+8;Vilafranca del Penedès;8305
+8;Vilalba Sasserra;8306
+8;Vilanova de Sau;8303
+8;Vilanova del Camí;8302
+8;Vilanova del Vallès;8902
+8;Vilanova i la Geltrú;8307
+8;Vilassar de Dalt;8214
+8;Vilassar de Mar;8219
+8;Vilobí del Penedès;8304
+8;Viver i Serrateix;8308
+9;Abajas;9001
+9;Adrada de Haza;9003
+9;Aguas Cándidas;9006
+9;Aguilar de Bureba;9007
+9;Albillos;9009
+9;Alcocero de Mola;9010
+9;Alfoz de Bricia;9011
+9;Alfoz de Quintanadueñas;9907
+9;Alfoz de Santa Gadea;9012
+9;Altable;9013
+9;Altos, Los;9014
+9;Ameyugo;9016
+9;Anguix;9017
+9;Aranda de Duero;9018
+9;Arandilla;9019
+9;Arauzo de Miel;9020
+9;Arauzo de Salce;9021
+9;Arauzo de Torre;9022
+9;Arcos;9023
+9;Arenillas de Riopisuerga;9024
+9;Arija;9025
+9;Arlanzón;9026
+9;Arraya de Oca;9027
+9;Atapuerca;9029
+9;Ausines, Los;9030
+9;Avellanosa de Muñó;9032
+9;Bahabón de Esgueva;9033
+9;Balbases, Los;9034
+9;Baños de Valdearados;9035
+9;Bañuelos de Bureba;9036
+9;Barbadillo de Herreros;9037
+9;Barbadillo del Mercado;9038
+9;Barbadillo del Pez;9039
+9;Barrio de Muñó;9041
+9;Barrios de Bureba, Los;9043
+9;Barrios de Colina;9044
+9;Basconcillos del Tozo;9045
+9;Bascuñana;9046
+9;Belbimbre;9047
+9;Belorado;9048
+9;Berberana;9050
+9;Berlangas de Roa;9051
+9;Berzosa de Bureba;9052
+9;Bozoó;9054
+9;Brazacorta;9055
+9;Briviesca;9056
+9;Bugedo;9057
+9;Buniel;9058
+9;Burgos;9059
+9;Busto de Bureba;9060
+9;Cabañes de Esgueva;9061
+9;Cabezón de la Sierra;9062
+9;Caleruega;9064
+9;Campillo de Aranda;9065
+9;Campolara;9066
+9;Canicosa de la Sierra;9067
+9;Cantabrana;9068
+9;Carazo;9070
+9;Carcedo de Bureba;9071
+9;Carcedo de Burgos;9072
+9;Cardeñadijo;9073
+9;Cardeñajimeno;9074
+9;Cardeñuela Riopico;9075
+9;Carrias;9076
+9;Cascajares de Bureba;9077
+9;Cascajares de la Sierra;9078
+9;Castellanos de Castro;9079
+9;Castil de Peones;9083
+9;Castildelgado;9082
+9;Castrillo de la Reina;9084
+9;Castrillo de la Vega;9085
+9;Castrillo de Riopisuerga;9088
+9;Castrillo del Val;9086
+9;Castrillo Mota de Judíos;9090
+9;Castrojeriz;9091
+9;Cavia;9063
+9;Cayuela;9093
+9;Cebrecos;9094
+9;Celada del Camino;9095
+9;Cerezo de Río Tirón;9098
+9;Cerratón de Juarros;9100
+9;Ciadoncha;9101
+9;Cillaperlata;9102
+9;Cilleruelo de Abajo;9103
+9;Cilleruelo de Arriba;9104
+9;Ciruelos de Cervera;9105
+9;Cogollos;9108
+9;Condado de Treviño;9109
+9;Contreras;9110
+9;Coruña del Conde;9112
+9;Covarrubias;9113
+9;Cubillo del Campo;9114
+9;Cubo de Bureba;9115
+9;Cueva de Roa, La;9117
+9;Cuevas de San Clemente;9119
+9;Encío;9120
+9;Espinosa de Cervera;9122
+9;Espinosa de los Monteros;9124
+9;Espinosa del Camino;9123
+9;Estépar;9125
+9;Fontioso;9127
+9;Frandovínez;9128
+9;Fresneda de la Sierra Tirón;9129
+9;Fresneña;9130
+9;Fresnillo de las Dueñas;9131
+9;Fresno de Río Tirón;9132
+9;Fresno de Rodilla;9133
+9;Frías;9134
+9;Fuentebureba;9135
+9;Fuentecén;9136
+9;Fuentelcésped;9137
+9;Fuentelisendo;9138
+9;Fuentemolinos;9139
+9;Fuentenebro;9140
+9;Fuentespina;9141
+9;Galbarros;9143
+9;Gallega, La;9144
+9;Grijalba;9148
+9;Grisaleña;9149
+9;Gumiel de Izán;9151
+9;Gumiel de Mercado;9152
+9;Hacinas;9154
+9;Haza;9155
+9;Hontanas;9159
+9;Hontangas;9160
+9;Hontoria de la Cantera;9162
+9;Hontoria de Valdearados;9164
+9;Hontoria del Pinar;9163
+9;Hormazas, Las;9166
+9;Hornillos del Camino;9167
+9;Horra, La;9168
+9;Hortigüela;9169
+9;Hoyales de Roa;9170
+9;Huérmeces;9172
+9;Huerta de Arriba;9173
+9;Huerta de Rey;9174
+9;Humada;9175
+9;Hurones;9176
+9;Ibeas de Juarros;9177
+9;Ibrillos;9178
+9;Iglesiarrubia;9179
+9;Iglesias;9180
+9;Isar;9181
+9;Itero del Castillo;9182
+9;Jaramillo de la Fuente;9183
+9;Jaramillo Quemado;9184
+9;Junta de Traslaloma;9189
+9;Junta de Villalba de Losa;9190
+9;Jurisdicción de Lara;9191
+9;Jurisdicción de San Zadornil;9192
+9;Lerma;9194
+9;Llano de Bureba;9195
+9;Madrigal del Monte;9196
+9;Madrigalejo del Monte;9197
+9;Mahamud;9198
+9;Mambrilla de Castrejón;9199
+9;Mambrillas de Lara;9200
+9;Mamolar;9201
+9;Manciles;9202
+9;Mazuela;9206
+9;Mecerreyes;9208
+9;Medina de Pomar;9209
+9;Melgar de Fernamental;9211
+9;Merindad de Cuesta-Urria;9213
+9;Merindad de Montija;9214
+9;Merindad de Río Ubierna;9906
+9;Merindad de Sotoscueva;9215
+9;Merindad de Valdeporres;9216
+9;Merindad de Valdivielso;9217
+9;Milagros;9218
+9;Miranda de Ebro;9219
+9;Miraveche;9220
+9;Modúbar de la Emparedada;9221
+9;Monasterio de la Sierra;9223
+9;Monasterio de Rodilla;9224
+9;Moncalvillo;9225
+9;Monterrubio de la Demanda;9226
+9;Montorio;9227
+9;Moradillo de Roa;9228
+9;Nava de Roa;9229
+9;Navas de Bureba;9230
+9;Nebreda;9231
+9;Neila;9232
+9;Olmedillo de Roa;9235
+9;Olmillos de Muñó;9236
+9;Oña;9238
+9;Oquillas;9239
+9;Orbaneja Riopico;9241
+9;Padilla de Abajo;9242
+9;Padilla de Arriba;9243
+9;Padrones de Bureba;9244
+9;Palacios de la Sierra;9246
+9;Palacios de Riopisuerga;9247
+9;Palazuelos de la Sierra;9248
+9;Palazuelos de Muñó;9249
+9;Pampliega;9250
+9;Pancorbo;9251
+9;Pardilla;9253
+9;Partido de la Sierra en Tobalina;9255
+9;Pedrosa de Duero;9256
+9;Pedrosa de Río Úrbel;9259
+9;Pedrosa del Páramo;9257
+9;Pedrosa del Príncipe;9258
+9;Peñaranda de Duero;9261
+9;Peral de Arlanza;9262
+9;Piérnigas;9265
+9;Pineda de la Sierra;9266
+9;Pineda Trasmonte;9267
+9;Pinilla de los Barruecos;9268
+9;Pinilla de los Moros;9269
+9;Pinilla Trasmonte;9270
+9;Poza de la Sal;9272
+9;Prádanos de Bureba;9273
+9;Pradoluengo;9274
+9;Presencio;9275
+9;Puebla de Arganzón, La;9276
+9;Puentedura;9277
+9;Quemada;9279
+9;Quintana del Pidio;9281
+9;Quintanabureba;9280
+9;Quintanaélez;9283
+9;Quintanaortuño;9287
+9;Quintanapalla;9288
+9;Quintanar de la Sierra;9289
+9;Quintanavides;9292
+9;Quintanilla de la Mata;9294
+9;Quintanilla del Agua y Tordueles;9901
+9;Quintanilla del Coco;9295
+9;Quintanilla San García;9298
+9;Quintanilla Vivar;9301
+9;Quintanillas, Las;9297
+9;Rabanera del Pinar;9302
+9;Rábanos;9303
+9;Rabé de las Calzadas;9304
+9;Rebolledo de la Torre;9306
+9;Redecilla del Camino;9307
+9;Redecilla del Campo;9308
+9;Regumiel de la Sierra;9309
+9;Reinoso;9310
+9;Retuerta;9311
+9;Revilla del Campo;9314
+9;Revilla Vallejera;9316
+9;Revilla y Ahedo, La;9312
+9;Revillarruz;9315
+9;Rezmondo;9317
+9;Riocavado de la Sierra;9318
+9;Roa;9321
+9;Rojas;9323
+9;Royuela de Río Franco;9325
+9;Rubena;9326
+9;Rublacedo de Abajo;9327
+9;Rucandio;9328
+9;Salas de Bureba;9329
+9;Salas de los Infantes;9330
+9;Saldaña de Burgos;9332
+9;Salinillas de Bureba;9334
+9;San Adrián de Juarros;9335
+9;San Juan del Monte;9337
+9;San Mamés de Burgos;9338
+9;San Martín de Rubiales;9339
+9;San Millán de Lara;9340
+9;San Vicente del Valle;9360
+9;Santa Cecilia;9343
+9;Santa Cruz de la Salceda;9345
+9;Santa Cruz del Valle Urbión;9346
+9;Santa Gadea del Cid;9347
+9;Santa Inés;9348
+9;Santa María del Campo;9350
+9;Santa María del Invierno;9351
+9;Santa María del Mercadillo;9352
+9;Santa María Ribarredonda;9353
+9;Santa Olalla de Bureba;9354
+9;Santibáñez de Esgueva;9355
+9;Santibáñez del Val;9356
+9;Santo Domingo de Silos;9358
+9;Sargentes de la Lora;9361
+9;Sarracín;9362
+9;Sasamón;9363
+9;Sequera de Haza, La;9365
+9;Solarana;9366
+9;Sordillos;9368
+9;Sotillo de la Ribera;9369
+9;Sotragero;9372
+9;Sotresgudo;9373
+9;Susinos del Páramo;9374
+9;Tamarón;9375
+9;Tardajos;9377
+9;Tejada;9378
+9;Terradillos de Esgueva;9380
+9;Tinieblas de la Sierra;9381
+9;Tobar;9382
+9;Tordómar;9384
+9;Torrecilla del Monte;9386
+9;Torregalindo;9387
+9;Torrelara;9388
+9;Torrepadre;9389
+9;Torresandino;9390
+9;Tórtoles de Esgueva;9391
+9;Tosantos;9392
+9;Trespaderne;9394
+9;Tubilla del Agua;9395
+9;Tubilla del Lago;9396
+9;Úrbel del Castillo;9398
+9;Vadocondes;9400
+9;Valdeande;9403
+9;Valdezate;9405
+9;Valdorros;9406
+9;Vallarta de Bureba;9408
+9;Valle de las Navas;9904
+9;Valle de Losa;9908
+9;Valle de Manzanedo;9409
+9;Valle de Mena;9410
+9;Valle de Oca;9411
+9;Valle de Santibáñez;9902
+9;Valle de Sedano;9905
+9;Valle de Tobalina;9412
+9;Valle de Valdebezana;9413
+9;Valle de Valdelaguna;9414
+9;Valle de Valdelucio;9415
+9;Valle de Zamanzas;9416
+9;Vallejera;9417
+9;Valles de Palenzuela;9418
+9;Valluércanes;9419
+9;Valmala;9407
+9;Vid de Bureba, La;9422
+9;Vid y Barrios, La;9421
+9;Vileña;9423
+9;Villadiego;9427
+9;Villaescusa de Roa;9428
+9;Villaescusa la Sombría;9429
+9;Villaespasa;9430
+9;Villafranca Montes de Oca;9431
+9;Villafruela;9432
+9;Villagalijo;9433
+9;Villagonzalo Pedernales;9434
+9;Villahoz;9437
+9;Villalba de Duero;9438
+9;Villalbilla de Burgos;9439
+9;Villalbilla de Gumiel;9440
+9;Villaldemiro;9441
+9;Villalmanzo;9442
+9;Villamayor de los Montes;9443
+9;Villamayor de Treviño;9444
+9;Villambistia;9445
+9;Villamedianilla;9446
+9;Villamiel de la Sierra;9447
+9;Villangómez;9448
+9;Villanueva de Argaño;9449
+9;Villanueva de Carazo;9450
+9;Villanueva de Gumiel;9451
+9;Villanueva de Teba;9454
+9;Villaquirán de la Puebla;9455
+9;Villaquirán de los Infantes;9456
+9;Villarcayo de Merindad de Castilla la Vieja;9903
+9;Villariezo;9458
+9;Villasandino;9460
+9;Villasur de Herreros;9463
+9;Villatuelda;9464
+9;Villaverde del Monte;9466
+9;Villaverde-Mogina;9467
+9;Villayerno Morquillas;9471
+9;Villazopeque;9472
+9;Villegas;9473
+9;Villoruebo;9476
+9;Viloria de Rioja;9424
+9;Vilviestre del Pinar;9425
+9;Vizcaínos;9478
+9;Zael;9480
+9;Zarzosa de Río Pisuerga;9482
+9;Zazuar;9483
+9;Zuñeda;9485
+10;Abadía;10001
+10;Abertura;10002
+10;Acebo;10003
+10;Acehúche;10004
+10;Aceituna;10005
+10;Ahigal;10006
+10;Alagón del Río;10903
+10;Albalá;10007
+10;Alcántara;10008
+10;Alcollarín;10009
+10;Alcuéscar;10010
+10;Aldea del Cano;10012
+10;Aldea del Obispo, La;10013
+10;Aldeacentenera;10011
+10;Aldeanueva de la Vera;10014
+10;Aldeanueva del Camino;10015
+10;Aldehuela de Jerte;10016
+10;Alía;10017
+10;Aliseda;10018
+10;Almaraz;10019
+10;Almoharín;10020
+10;Arroyo de la Luz;10021
+10;Arroyomolinos;10023
+10;Arroyomolinos de la Vera;10022
+10;Baños de Montemayor;10024
+10;Barrado;10025
+10;Belvís de Monroy;10026
+10;Benquerencia;10027
+10;Berrocalejo;10028
+10;Berzocana;10029
+10;Bohonal de Ibor;10030
+10;Botija;10031
+10;Brozas;10032
+10;Cabañas del Castillo;10033
+10;Cabezabellosa;10034
+10;Cabezuela del Valle;10035
+10;Cabrero;10036
+10;Cáceres;10037
+10;Cachorrilla;10038
+10;Cadalso;10039
+10;Calzadilla;10040
+10;Caminomorisco;10041
+10;Campillo de Deleitosa;10042
+10;Campo Lugar;10043
+10;Cañamero;10044
+10;Cañaveral;10045
+10;Carbajo;10046
+10;Carcaboso;10047
+10;Carrascalejo;10048
+10;Casar de Cáceres;10049
+10;Casar de Palomero;10050
+10;Casares de las Hurdes;10051
+10;Casas de Don Antonio;10052
+10;Casas de Don Gómez;10053
+10;Casas de Millán;10056
+10;Casas de Miravete;10057
+10;Casas del Castañar;10054
+10;Casas del Monte;10055
+10;Casatejada;10058
+10;Casillas de Coria;10059
+10;Castañar de Ibor;10060
+10;Ceclavín;10061
+10;Cedillo;10062
+10;Cerezo;10063
+10;Cilleros;10064
+10;Collado de la Vera;10065
+10;Conquista de la Sierra;10066
+10;Coria;10067
+10;Cuacos de Yuste;10068
+10;Cumbre, La;10069
+10;Deleitosa;10070
+10;Descargamaría;10071
+10;Eljas;10072
+10;Escurial;10073
+10;Fresnedoso de Ibor;10075
+10;Galisteo;10076
+10;Garciaz;10077
+10;Garganta la Olla;10079
+10;Garganta, La;10078
+10;Gargantilla;10080
+10;Gargüera;10081
+10;Garrovillas de Alconétar;10082
+10;Garvín;10083
+10;Gata;10084
+10;Gordo, El;10085
+10;Granja, La;10086
+10;Guadalupe;10087
+10;Guijo de Coria;10088
+10;Guijo de Galisteo;10089
+10;Guijo de Granadilla;10090
+10;Guijo de Santa Bárbara;10091
+10;Herguijuela;10092
+10;Hernán-Pérez;10093
+10;Herrera de Alcántara;10094
+10;Herreruela;10095
+10;Hervás;10096
+10;Higuera de Albalat;10097
+10;Hinojal;10098
+10;Holguera;10099
+10;Hoyos;10100
+10;Huélaga;10101
+10;Ibahernando;10102
+10;Jaraicejo;10103
+10;Jaraíz de la Vera;10104
+10;Jarandilla de la Vera;10105
+10;Jarilla;10106
+10;Jerte;10107
+10;Ladrillar;10108
+10;Logrosán;10109
+10;Losar de la Vera;10110
+10;Madrigal de la Vera;10111
+10;Madrigalejo;10112
+10;Madroñera;10113
+10;Majadas;10114
+10;Malpartida de Cáceres;10115
+10;Malpartida de Plasencia;10116
+10;Marchagaz;10117
+10;Mata de Alcántara;10118
+10;Membrío;10119
+10;Mesas de Ibor;10120
+10;Miajadas;10121
+10;Millanes;10122
+10;Mirabel;10123
+10;Mohedas de Granadilla;10124
+10;Monroy;10125
+10;Montánchez;10126
+10;Montehermoso;10127
+10;Moraleja;10128
+10;Morcillo;10129
+10;Navaconcejo;10130
+10;Navalmoral de la Mata;10131
+10;Navalvillar de Ibor;10132
+10;Navas del Madroño;10133
+10;Navezuelas;10134
+10;Nuñomoral;10135
+10;Oliva de Plasencia;10136
+10;Palomero;10137
+10;Pasarón de la Vera;10138
+10;Pedroso de Acim;10139
+10;Peraleda de la Mata;10140
+10;Peraleda de San Román;10141
+10;Perales del Puerto;10142
+10;Pescueza;10143
+10;Pesga, La;10144
+10;Piedras Albas;10145
+10;Pinofranqueado;10146
+10;Piornal;10147
+10;Plasencia;10148
+10;Plasenzuela;10149
+10;Portaje;10150
+10;Portezuelo;10151
+10;Pozuelo de Zarzón;10152
+10;Pueblonuevo de Miramontes;10905
+10;Puerto de Santa Cruz;10153
+10;Rebollar;10154
+10;Riolobos;10155
+10;Robledillo de Gata;10156
+10;Robledillo de la Vera;10157
+10;Robledillo de Trujillo;10158
+10;Robledollano;10159
+10;Romangordo;10160
+10;Rosalejo;10901
+10;Ruanes;10161
+10;Salorino;10162
+10;Salvatierra de Santiago;10163
+10;San Martín de Trevejo;10164
+10;Santa Ana;10165
+10;Santa Cruz de la Sierra;10166
+10;Santa Cruz de Paniagua;10167
+10;Santa Marta de Magasca;10168
+10;Santiago de Alcántara;10169
+10;Santiago del Campo;10170
+10;Santibáñez el Alto;10171
+10;Santibáñez el Bajo;10172
+10;Saucedilla;10173
+10;Segura de Toro;10174
+10;Serradilla;10175
+10;Serrejón;10176
+10;Sierra de Fuentes;10177
+10;Talaván;10178
+10;Talaveruela de la Vera;10179
+10;Talayuela;10180
+10;Tejeda de Tiétar;10181
+10;Tiétar;10904
+10;Toril;10182
+10;Tornavacas;10183
+10;Torno, El;10184
+10;Torre de Don Miguel;10187
+10;Torre de Santa María;10188
+10;Torrecilla de los Ángeles;10185
+10;Torrecillas de la Tiesa;10186
+10;Torrejón el Rubio;10190
+10;Torrejoncillo;10189
+10;Torremenga;10191
+10;Torremocha;10192
+10;Torreorgaz;10193
+10;Torrequemada;10194
+10;Trujillo;10195
+10;Valdastillas;10196
+10;Valdecañas de Tajo;10197
+10;Valdefuentes;10198
+10;Valdehúncar;10199
+10;Valdelacasa de Tajo;10200
+10;Valdemorales;10201
+10;Valdeobispo;10202
+10;Valencia de Alcántara;10203
+10;Valverde de la Vera;10204
+10;Valverde del Fresno;10205
+10;Vegaviana;10902
+10;Viandar de la Vera;10206
+10;Villa del Campo;10207
+10;Villa del Rey;10208
+10;Villamesías;10209
+10;Villamiel;10210
+10;Villanueva de la Sierra;10211
+10;Villanueva de la Vera;10212
+10;Villar de Plasencia;10214
+10;Villar del Pedroso;10213
+10;Villasbuenas de Gata;10215
+10;Zarza de Granadilla;10216
+10;Zarza de Montánchez;10217
+10;Zarza la Mayor;10218
+10;Zorita;10219
+11;Alcalá de los Gazules;11001
+11;Alcalá del Valle;11002
+11;Algar;11003
+11;Algeciras;11004
+11;Algodonales;11005
+11;Arcos de la Frontera;11006
+11;Barbate;11007
+11;Barrios, Los;11008
+11;Benalup-Casas Viejas;11901
+11;Benaocaz;11009
+11;Bornos;11010
+11;Bosque, El;11011
+11;Cádiz;11012
+11;Castellar de la Frontera;11013
+11;Chiclana de la Frontera;11015
+11;Chipiona;11016
+11;Conil de la Frontera;11014
+11;Espera;11017
+11;Gastor, El;11018
+11;Grazalema;11019
+11;Jerez de la Frontera;11020
+11;Jimena de la Frontera;11021
+11;Línea de la Concepción, La;11022
+11;Medina Sidonia;11023
+11;Olvera;11024
+11;Paterna de Rivera;11025
+11;Prado del Rey;11026
+11;Puerto de Santa María, El;11027
+11;Puerto Real;11028
+11;Puerto Serrano;11029
+11;Rota;11030
+11;San Fernando;11031
+11;San José del Valle;11902
+11;San Martín del Tesorillo;11903
+11;San Roque;11033
+11;Sanlúcar de Barrameda;11032
+11;Setenil de las Bodegas;11034
+11;Tarifa;11035
+11;Torre Alháquime;11036
+11;Trebujena;11037
+11;Ubrique;11038
+11;Vejer de la Frontera;11039
+11;Villaluenga del Rosario;11040
+11;Villamartín;11041
+11;Zahara;11042
+12;Aín;12002
+12;Albocàsser;12003
+12;Alcalà de Xivert;12004
+12;Alcora, l';12005
+12;Alcudia de Veo;12006
+12;Alfondeguilla;12007
+12;Algimia de Almonacid;12008
+12;Almassora;12009
+12;Almedíjar;12010
+12;Almenara;12011
+12;Alqueries, les/Alquerías del Niño Perdido;12901
+12;Altura;12012
+12;Arañuel;12013
+12;Ares del Maestrat;12014
+12;Argelita;12015
+12;Artana;12016
+12;Atzeneta del Maestrat;12001
+12;Ayódar;12017
+12;Azuébar;12018
+12;Barracas;12020
+12;Bejís;12022
+12;Benafer;12024
+12;Benafigos;12025
+12;Benassal;12026
+12;Benicarló;12027
+12;Benicàssim/Benicasim;12028
+12;Benlloc;12029
+12;Betxí;12021
+12;Borriana/Burriana;12032
+12;Borriol;12031
+12;Cabanes;12033
+12;Càlig;12034
+12;Canet lo Roig;12036
+12;Castell de Cabres;12037
+12;Castellfort;12038
+12;Castellnovo;12039
+12;Castelló de la Plana/Castellón de la Plana;12040
+12;Castillo de Villamalefa;12041
+12;Catí;12042
+12;Caudiel;12043
+12;Cervera del Maestre;12044
+12;Chilches/Xilxes;12053
+12;Chóvar;12056
+12;Cinctorres;12045
+12;Cirat;12046
+12;Cortes de Arenoso;12048
+12;Costur;12049
+12;Coves de Vinromà, les;12050
+12;Culla;12051
+12;Eslida;12057
+12;Espadilla;12058
+12;Fanzara;12059
+12;Figueroles;12060
+12;Forcall;12061
+12;Fuente la Reina;12063
+12;Fuentes de Ayódar;12064
+12;Gaibiel;12065
+12;Geldo;12067
+12;Herbers;12068
+12;Higueras;12069
+12;Jana, la;12070
+12;Jérica;12071
+12;Llosa, la;12074
+12;Llucena/Lucena del Cid;12072
+12;Ludiente;12073
+12;Mata de Morella, la;12075
+12;Matet;12076
+12;Moncofa;12077
+12;Montán;12078
+12;Montanejos;12079
+12;Morella;12080
+12;Navajas;12081
+12;Nules;12082
+12;Olocau del Rey;12083
+12;Onda;12084
+12;Orpesa/Oropesa del Mar;12085
+12;Palanques;12087
+12;Pavías;12088
+12;Peníscola/Peñíscola;12089
+12;Pina de Montalgrao;12090
+12;Pobla de Benifassà, la;12093
+12;Pobla Tornesa, la;12094
+12;Portell de Morella;12091
+12;Puebla de Arenoso;12092
+12;Ribesalbes;12095
+12;Rossell;12096
+12;Sacañet;12097
+12;Salzadella, la;12098
+12;San Rafael del Río;12101
+12;Sant Joan de Moró;12902
+12;Sant Jordi/San Jorge;12099
+12;Sant Mateu;12100
+12;Santa Magdalena de Pulpis;12102
+12;Segorbe;12104
+12;Serratella, la;12103
+12;Sierra Engarcerán;12105
+12;Soneja;12106
+12;Sot de Ferrer;12107
+12;Suera/Sueras;12108
+12;Tales;12109
+12;Teresa;12110
+12;Tírig;12111
+12;Todolella;12112
+12;Toga;12113
+12;Torás;12114
+12;Toro, El;12115
+12;Torralba del Pinar;12116
+12;Torre d'en Besora, la;12119
+12;Torre d'en Doménec, la;12120
+12;Torreblanca;12117
+12;Torrechiva;12118
+12;Traiguera;12121
+12;Useres, les/Useras;12122
+12;Vall d'Alba;12124
+12;Vall de Almonacid;12125
+12;Vall d'Uixó, la;12126
+12;Vallat;12123
+12;Vallibona;12127
+12;Vilafamés;12128
+12;Vilafranca/Villafranca del Cid;12129
+12;Vilanova d'Alcolea;12132
+12;Vilar de Canes;12134
+12;Vila-real;12135
+12;Vilavella, la;12136
+12;Villahermosa del Río;12130
+12;Villamalur;12131
+12;Villanueva de Viver;12133
+12;Villores;12137
+12;Vinaròs;12138
+12;Vistabella del Maestrat;12139
+12;Viver;12140
+12;Xert;12052
+12;Xodos/Chodos;12055
+12;Zorita del Maestrazgo;12141
+12;Zucaina;12142
+13;Abenójar;13001
+13;Agudo;13002
+13;Alamillo;13003
+13;Albaladejo;13004
+13;Alcázar de San Juan;13005
+13;Alcoba;13006
+13;Alcolea de Calatrava;13007
+13;Alcubillas;13008
+13;Aldea del Rey;13009
+13;Alhambra;13010
+13;Almadén;13011
+13;Almadenejos;13012
+13;Almagro;13013
+13;Almedina;13014
+13;Almodóvar del Campo;13015
+13;Almuradiel;13016
+13;Anchuras;13017
+13;Arenales de San Gregorio;13903
+13;Arenas de San Juan;13018
+13;Argamasilla de Alba;13019
+13;Argamasilla de Calatrava;13020
+13;Arroba de los Montes;13021
+13;Ballesteros de Calatrava;13022
+13;Bolaños de Calatrava;13023
+13;Brazatortas;13024
+13;Cabezarados;13025
+13;Cabezarrubias del Puerto;13026
+13;Calzada de Calatrava;13027
+13;Campo de Criptana;13028
+13;Cañada de Calatrava;13029
+13;Caracuel de Calatrava;13030
+13;Carrión de Calatrava;13031
+13;Carrizosa;13032
+13;Castellar de Santiago;13033
+13;Chillón;13038
+13;Ciudad Real;13034
+13;Corral de Calatrava;13035
+13;Cortijos, Los;13036
+13;Cózar;13037
+13;Daimiel;13039
+13;Fernán Caballero;13040
+13;Fontanarejo;13041
+13;Fuencaliente;13042
+13;Fuenllana;13043
+13;Fuente el Fresno;13044
+13;Granátula de Calatrava;13045
+13;Guadalmez;13046
+13;Herencia;13047
+13;Hinojosas de Calatrava;13048
+13;Horcajo de los Montes;13049
+13;Labores, Las;13050
+13;Llanos del Caudillo;13904
+13;Luciana;13051
+13;Malagón;13052
+13;Manzanares;13053
+13;Membrilla;13054
+13;Mestanza;13055
+13;Miguelturra;13056
+13;Montiel;13057
+13;Moral de Calatrava;13058
+13;Navalpino;13059
+13;Navas de Estena;13060
+13;Pedro Muñoz;13061
+13;Picón;13062
+13;Piedrabuena;13063
+13;Poblete;13064
+13;Porzuna;13065
+13;Pozuelo de Calatrava;13066
+13;Pozuelos de Calatrava, Los;13067
+13;Puebla de Don Rodrigo;13068
+13;Puebla del Príncipe;13069
+13;Puerto Lápice;13070
+13;Puertollano;13071
+13;Retuerta del Bullaque;13072
+13;Robledo, El;13901
+13;Ruidera;13902
+13;Saceruela;13073
+13;San Carlos del Valle;13074
+13;San Lorenzo de Calatrava;13075
+13;Santa Cruz de los Cáñamos;13076
+13;Santa Cruz de Mudela;13077
+13;Socuéllamos;13078
+13;Solana del Pino;13080
+13;Solana, La;13079
+13;Terrinches;13081
+13;Tomelloso;13082
+13;Torralba de Calatrava;13083
+13;Torre de Juan Abad;13084
+13;Torrenueva;13085
+13;Valdemanco del Esteras;13086
+13;Valdepeñas;13087
+13;Valenzuela de Calatrava;13088
+13;Villahermosa;13089
+13;Villamanrique;13090
+13;Villamayor de Calatrava;13091
+13;Villanueva de la Fuente;13092
+13;Villanueva de los Infantes;13093
+13;Villanueva de San Carlos;13094
+13;Villar del Pozo;13095
+13;Villarrubia de los Ojos;13096
+13;Villarta de San Juan;13097
+13;Viso del Marqués;13098
+14;Adamuz;14001
+14;Aguilar de la Frontera;14002
+14;Alcaracejos;14003
+14;Almedinilla;14004
+14;Almodóvar del Río;14005
+14;Añora;14006
+14;Baena;14007
+14;Belalcázar;14008
+14;Belmez;14009
+14;Benamejí;14010
+14;Blázquez, Los;14011
+14;Bujalance;14012
+14;Cabra;14013
+14;Cañete de las Torres;14014
+14;Carcabuey;14015
+14;Cardeña;14016
+14;Carlota, La;14017
+14;Carpio, El;14018
+14;Castro del Río;14019
+14;Conquista;14020
+14;Córdoba;14021
+14;Doña Mencía;14022
+14;Dos Torres;14023
+14;Encinas Reales;14024
+14;Espejo;14025
+14;Espiel;14026
+14;Fernán-Núñez;14027
+14;Fuente Carreteros;14901
+14;Fuente la Lancha;14028
+14;Fuente Obejuna;14029
+14;Fuente Palmera;14030
+14;Fuente-Tójar;14031
+14;Granjuela, La;14032
+14;Guadalcázar;14033
+14;Guijarrosa, La;14902
+14;Guijo, El;14034
+14;Hinojosa del Duque;14035
+14;Hornachuelos;14036
+14;Iznájar;14037
+14;Lucena;14038
+14;Luque;14039
+14;Montalbán de Córdoba;14040
+14;Montemayor;14041
+14;Montilla;14042
+14;Montoro;14043
+14;Monturque;14044
+14;Moriles;14045
+14;Nueva Carteya;14046
+14;Obejo;14047
+14;Palenciana;14048
+14;Palma del Río;14049
+14;Pedro Abad;14050
+14;Pedroche;14051
+14;Peñarroya-Pueblonuevo;14052
+14;Posadas;14053
+14;Pozoblanco;14054
+14;Priego de Córdoba;14055
+14;Puente Genil;14056
+14;Rambla, La;14057
+14;Rute;14058
+14;San Sebastián de los Ballesteros;14059
+14;Santa Eufemia;14061
+14;Santaella;14060
+14;Torrecampo;14062
+14;Valenzuela;14063
+14;Valsequillo;14064
+14;Victoria, La;14065
+14;Villa del Río;14066
+14;Villafranca de Córdoba;14067
+14;Villaharta;14068
+14;Villanueva de Córdoba;14069
+14;Villanueva del Duque;14070
+14;Villanueva del Rey;14071
+14;Villaralto;14072
+14;Villaviciosa de Córdoba;14073
+14;Viso, El;14074
+14;Zuheros;14075
+15;Abegondo;15001
+15;Ames;15002
+15;Aranga;15003
+15;Ares;15004
+15;Arteixo;15005
+15;Arzúa;15006
+15;Baña, A;15007
+15;Bergondo;15008
+15;Betanzos;15009
+15;Boimorto;15010
+15;Boiro;15011
+15;Boqueixón;15012
+15;Brión;15013
+15;Cabana de Bergantiños;15014
+15;Cabanas;15015
+15;Camariñas;15016
+15;Cambre;15017
+15;Capela, A;15018
+15;Carballo;15019
+15;Cariño;15901
+15;Carnota;15020
+15;Carral;15021
+15;Cedeira;15022
+15;Cee;15023
+15;Cerceda;15024
+15;Cerdido;15025
+15;Coirós;15027
+15;Corcubión;15028
+15;Coristanco;15029
+15;Coruña, A;15030
+15;Culleredo;15031
+15;Curtis;15032
+15;Dodro;15033
+15;Dumbría;15034
+15;Fene;15035
+15;Ferrol;15036
+15;Fisterra;15037
+15;Frades;15038
+15;Irixoa;15039
+15;Laracha, A;15041
+15;Laxe;15040
+15;Lousame;15042
+15;Malpica de Bergantiños;15043
+15;Mañón;15044
+15;Mazaricos;15045
+15;Melide;15046
+15;Mesía;15047
+15;Miño;15048
+15;Moeche;15049
+15;Monfero;15050
+15;Mugardos;15051
+15;Muros;15053
+15;Muxía;15052
+15;Narón;15054
+15;Neda;15055
+15;Negreira;15056
+15;Noia;15057
+15;Oleiros;15058
+15;Ordes;15059
+15;Oroso;15060
+15;Ortigueira;15061
+15;Outes;15062
+15;Oza-Cesuras;15902
+15;Paderne;15064
+15;Padrón;15065
+15;Pino, O;15066
+15;Pobra do Caramiñal, A;15067
+15;Ponteceso;15068
+15;Pontedeume;15069
+15;Pontes de García Rodríguez, As;15070
+15;Porto do Son;15071
+15;Rianxo;15072
+15;Ribeira;15073
+15;Rois;15074
+15;Sada;15075
+15;San Sadurniño;15076
+15;Santa Comba;15077
+15;Santiago de Compostela;15078
+15;Santiso;15079
+15;Sobrado;15080
+15;Somozas, As;15081
+15;Teo;15082
+15;Toques;15083
+15;Tordoia;15084
+15;Touro;15085
+15;Trazo;15086
+15;Val do Dubra;15088
+15;Valdoviño;15087
+15;Vedra;15089
+15;Vilarmaior;15091
+15;Vilasantar;15090
+15;Vimianzo;15092
+15;Zas;15093
+16;Abia de la Obispalía;16001
+16;Acebrón, El;16002
+16;Alarcón;16003
+16;Albaladejo del Cuende;16004
+16;Albalate de las Nogueras;16005
+16;Albendea;16006
+16;Alberca de Záncara, La;16007
+16;Alcalá de la Vega;16008
+16;Alcantud;16009
+16;Alcázar del Rey;16010
+16;Alcohujate;16011
+16;Alconchel de la Estrella;16012
+16;Algarra;16013
+16;Aliaguilla;16014
+16;Almarcha, La;16015
+16;Almendros;16016
+16;Almodóvar del Pinar;16017
+16;Almonacid del Marquesado;16018
+16;Altarejos;16019
+16;Arandilla del Arroyo;16020
+16;Arcas;16905
+16;Arcos de la Sierra;16022
+16;Arguisuelas;16024
+16;Arrancacepas;16025
+16;Atalaya del Cañavate;16026
+16;Barajas de Melo;16027
+16;Barchín del Hoyo;16029
+16;Bascuñana de San Pedro;16030
+16;Beamud;16031
+16;Belinchón;16032
+16;Belmonte;16033
+16;Belmontejo;16034
+16;Beteta;16035
+16;Boniches;16036
+16;Buciegas;16038
+16;Buenache de Alarcón;16039
+16;Buenache de la Sierra;16040
+16;Buendía;16041
+16;Campillo de Altobuey;16042
+16;Campillos-Paravientos;16043
+16;Campillos-Sierra;16044
+16;Campos del Paraíso;16901
+16;Canalejas del Arroyo;16045
+16;Cañada del Hoyo;16046
+16;Cañada Juncosa;16047
+16;Cañamares;16048
+16;Cañavate, El;16049
+16;Cañaveras;16050
+16;Cañaveruelas;16051
+16;Cañete;16052
+16;Cañizares;16053
+16;Carboneras de Guadazaón;16055
+16;Cardenete;16056
+16;Carrascosa;16057
+16;Carrascosa de Haro;16058
+16;Casas de Benítez;16060
+16;Casas de Fernando Alonso;16061
+16;Casas de Garcimolina;16062
+16;Casas de Guijarro;16063
+16;Casas de Haro;16064
+16;Casas de los Pinos;16065
+16;Casasimarro;16066
+16;Castejón;16067
+16;Castillejo de Iniesta;16068
+16;Castillejo-Sierra;16070
+16;Castillo de Garcimuñoz;16072
+16;Castillo-Albaráñez;16071
+16;Cervera del Llano;16073
+16;Chillarón de Cuenca;16023
+16;Chumillas;16081
+16;Cierva, La;16074
+16;Cuenca;16078
+16;Cueva del Hierro;16079
+16;Enguídanos;16082
+16;Fresneda de Altarejos;16083
+16;Fresneda de la Sierra;16084
+16;Frontera, La;16085
+16;Fuente de Pedro Naharro;16086
+16;Fuentelespino de Haro;16087
+16;Fuentelespino de Moya;16088
+16;Fuentenava de Jábaga;16904
+16;Fuentes;16089
+16;Fuertescusa;16091
+16;Gabaldón;16092
+16;Garaballa;16093
+16;Gascueña;16094
+16;Graja de Campalbo;16095
+16;Graja de Iniesta;16096
+16;Henarejos;16097
+16;Herrumblar, El;16098
+16;Hinojosa, La;16099
+16;Hinojosos, Los;16100
+16;Hito, El;16101
+16;Honrubia;16102
+16;Hontanaya;16103
+16;Hontecillas;16104
+16;Horcajo de Santiago;16106
+16;Huélamo;16107
+16;Huelves;16108
+16;Huérguina;16109
+16;Huerta de la Obispalía;16110
+16;Huerta del Marquesado;16111
+16;Huete;16112
+16;Iniesta;16113
+16;Laguna del Marquesado;16115
+16;Lagunaseca;16116
+16;Landete;16117
+16;Ledaña;16118
+16;Leganiel;16119
+16;Majadas, Las;16121
+16;Mariana;16122
+16;Masegosa;16123
+16;Mesas, Las;16124
+16;Minglanilla;16125
+16;Mira;16126
+16;Monreal del Llano;16128
+16;Montalbanejo;16129
+16;Montalbo;16130
+16;Monteagudo de las Salinas;16131
+16;Mota de Altarejos;16132
+16;Mota del Cuervo;16133
+16;Motilla del Palancar;16134
+16;Moya;16135
+16;Narboneta;16137
+16;Olivares de Júcar;16139
+16;Olmeda de la Cuesta;16140
+16;Olmeda del Rey;16141
+16;Olmedilla de Alarcón;16142
+16;Olmedilla de Eliz;16143
+16;Osa de la Vega;16145
+16;Pajarón;16146
+16;Pajaroncillo;16147
+16;Palomares del Campo;16148
+16;Palomera;16149
+16;Paracuellos;16150
+16;Paredes;16151
+16;Parra de las Vegas, La;16152
+16;Pedernoso, El;16153
+16;Pedroñeras, Las;16154
+16;Peral, El;16155
+16;Peraleja, La;16156
+16;Pesquera, La;16157
+16;Picazo, El;16158
+16;Pinarejo;16159
+16;Pineda de Gigüela;16160
+16;Piqueras del Castillo;16161
+16;Portalrubio de Guadamejud;16162
+16;Portilla;16163
+16;Poyatos;16165
+16;Pozoamargo;16166
+16;Pozorrubielos de la Mancha;16908
+16;Pozorrubio de Santiago;16167
+16;Pozuelo, El;16169
+16;Priego;16170
+16;Provencio, El;16171
+16;Puebla de Almenara;16172
+16;Puebla del Salvador;16174
+16;Quintanar del Rey;16175
+16;Rada de Haro;16176
+16;Reíllo;16177
+16;Rozalén del Monte;16181
+16;Saceda-Trasierra;16185
+16;Saelices;16186
+16;Salinas del Manzano;16187
+16;Salmeroncillos;16188
+16;Salvacañete;16189
+16;San Clemente;16190
+16;San Lorenzo de la Parrilla;16191
+16;San Martín de Boniches;16192
+16;San Pedro Palmiches;16193
+16;Santa Cruz de Moya;16194
+16;Santa María de los Llanos;16196
+16;Santa María del Campo Rus;16195
+16;Santa María del Val;16197
+16;Sisante;16198
+16;Solera de Gabaldón;16199
+16;Sotorribas;16909
+16;Talayuelas;16202
+16;Tarancón;16203
+16;Tébar;16204
+16;Tejadillos;16205
+16;Tinajas;16206
+16;Torralba;16209
+16;Torrejoncillo del Rey;16211
+16;Torrubia del Campo;16212
+16;Torrubia del Castillo;16213
+16;Tragacete;16215
+16;Tresjuncos;16216
+16;Tribaldos;16217
+16;Uclés;16218
+16;Uña;16219
+16;Valdecolmenas, Los;16906
+16;Valdemeca;16224
+16;Valdemorillo de la Sierra;16225
+16;Valdemoro-Sierra;16227
+16;Valdeolivas;16228
+16;Valdetórtola;16902
+16;Valeras, Las;16903
+16;Valhermoso de la Fuente;16231
+16;Valle de Altomira, El;16173
+16;Valsalobre;16234
+16;Valverde de Júcar;16236
+16;Valverdejo;16237
+16;Vara de Rey;16238
+16;Vega del Codorno;16239
+16;Vellisca;16240
+16;Villaconejos de Trabaque;16242
+16;Villaescusa de Haro;16243
+16;Villagarcía del Llano;16244
+16;Villalba de la Sierra;16245
+16;Villalba del Rey;16246
+16;Villalgordo del Marquesado;16247
+16;Villalpardo;16248
+16;Villamayor de Santiago;16249
+16;Villanueva de Guadamejud;16250
+16;Villanueva de la Jara;16251
+16;Villar de Cañas;16253
+16;Villar de Domingo García;16254
+16;Villar de la Encina;16255
+16;Villar de Olalla;16263
+16;Villar del Humo;16258
+16;Villar del Infantado;16259
+16;Villar y Velasco;16910
+16;Villarejo de Fuentes;16264
+16;Villarejo de la Peñuela;16265
+16;Villarejo-Periesteban;16266
+16;Villares del Saz;16269
+16;Villarrubio;16270
+16;Villarta;16271
+16;Villas de la Ventosa;16272
+16;Villaverde y Pasaconsol;16273
+16;Víllora;16274
+16;Vindel;16275
+16;Yémeda;16276
+16;Zafra de Záncara;16277
+16;Zafrilla;16278
+16;Zarza de Tajo;16279
+16;Zarzuela;16280
+17;Agullana;17001
+17;Aiguaviva;17002
+17;Albanyà;17003
+17;Albons;17004
+17;Alp;17006
+17;Amer;17007
+17;Anglès;17008
+17;Arbúcies;17009
+17;Argelaguer;17010
+17;Armentera, L';17011
+17;Avinyonet de Puigventós;17012
+17;Banyoles;17015
+17;Bàscara;17016
+17;Begur;17013
+17;Bellcaire d'Empordà;17018
+17;Besalú;17019
+17;Bescanó;17020
+17;Beuda;17021
+17;Bisbal d'Empordà, La;17022
+17;Biure;17234
+17;Blanes;17023
+17;Boadella i les Escaules;17029
+17;Bolvir;17024
+17;Bordils;17025
+17;Borrassà;17026
+17;Breda;17027
+17;Brunyola i Sant Martí Sapresa;17028
+17;Cabanelles;17031
+17;Cabanes;17030
+17;Cadaqués;17032
+17;Caldes de Malavella;17033
+17;Calonge i Sant Antoni;17034
+17;Camós;17035
+17;Campdevànol;17036
+17;Campelles;17037
+17;Campllong;17038
+17;Camprodon;17039
+17;Canet d'Adri;17040
+17;Cantallops;17041
+17;Capmany;17042
+17;Cassà de la Selva;17044
+17;Castell d'Aro, Platja d'Aro i s'Agaró;17048
+17;Castellfollit de la Roca;17046
+17;Castelló d'Empúries;17047
+17;Cellera de Ter, La;17189
+17;Celrà;17049
+17;Cervià de Ter;17050
+17;Cistella;17051
+17;Colera;17054
+17;Colomers;17055
+17;Corçà;17057
+17;Cornellà del Terri;17056
+17;Crespià;17058
+17;Cruïlles, Monells i Sant Sadurní de l'Heura;17901
+17;Darnius;17060
+17;Das;17061
+17;Escala, L';17062
+17;Espinelves;17063
+17;Espolla;17064
+17;Esponellà;17065
+17;Far d'Empordà, El;17005
+17;Figueres;17066
+17;Flaçà;17067
+17;Foixà;17068
+17;Fontanals de Cerdanya;17069
+17;Fontanilles;17070
+17;Fontcoberta;17071
+17;Forallac;17902
+17;Fornells de la Selva;17073
+17;Fortià;17074
+17;Garrigàs;17075
+17;Garrigoles;17076
+17;Garriguella;17077
+17;Ger;17078
+17;Girona;17079
+17;Gombrèn;17080
+17;Gualta;17081
+17;Guils de Cerdanya;17082
+17;Hostalric;17083
+17;Isòvol;17084
+17;Jafre;17085
+17;Jonquera, La;17086
+17;Juià;17087
+17;Lladó;17088
+17;Llagostera;17089
+17;Llambilles;17090
+17;Llanars;17091
+17;Llançà;17092
+17;Llers;17093
+17;Llívia;17094
+17;Lloret de Mar;17095
+17;Llosses, Les;17096
+17;Maçanet de Cabrenys;17102
+17;Maçanet de la Selva;17103
+17;Madremanya;17097
+17;Maià de Montcal;17098
+17;Masarac i Vilarnadal;17100
+17;Massanes;17101
+17;Meranges;17099
+17;Mieres;17105
+17;Mollet de Peralada;17106
+17;Molló;17107
+17;Montagut i Oix;17109
+17;Mont-ras;17110
+17;Navata;17111
+17;Ogassa;17112
+17;Olot;17114
+17;Ordis;17115
+17;Osor;17116
+17;Palafrugell;17117
+17;Palamós;17118
+17;Palau de Santa Eulàlia;17119
+17;Palau-sator;17121
+17;Palau-saverdera;17120
+17;Palol de Revardit;17123
+17;Pals;17124
+17;Pardines;17125
+17;Parlavà;17126
+17;Pau;17128
+17;Pedret i Marzà;17129
+17;Pera, La;17130
+17;Peralada;17132
+17;Planes d'Hostoles, Les;17133
+17;Planoles;17134
+17;Pont de Molins;17135
+17;Pontós;17136
+17;Porqueres;17137
+17;Port de la Selva, El;17140
+17;Portbou;17138
+17;Preses, Les;17139
+17;Puigcerdà;17141
+17;Quart;17142
+17;Queralbs;17043
+17;Rabós;17143
+17;Regencós;17144
+17;Ribes de Freser;17145
+17;Riells i Viabrea;17146
+17;Ripoll;17147
+17;Riudarenes;17148
+17;Riudaura;17149
+17;Riudellots de la Selva;17150
+17;Riumors;17151
+17;Roses;17152
+17;Rupià;17153
+17;Sales de Llierca;17154
+17;Salt;17155
+17;Sant Andreu Salou;17157
+17;Sant Aniol de Finestres;17183
+17;Sant Climent Sescebes;17158
+17;Sant Feliu de Buixalleu;17159
+17;Sant Feliu de Guíxols;17160
+17;Sant Feliu de Pallerols;17161
+17;Sant Ferriol;17162
+17;Sant Gregori;17163
+17;Sant Hilari Sacalm;17164
+17;Sant Jaume de Llierca;17165
+17;Sant Joan de les Abadesses;17167
+17;Sant Joan de Mollet;17168
+17;Sant Joan les Fonts;17185
+17;Sant Jordi Desvalls;17166
+17;Sant Julià de Ramis;17169
+17;Sant Julià del Llor i Bonmatí;17903
+17;Sant Llorenç de la Muga;17171
+17;Sant Martí de Llémena;17172
+17;Sant Martí Vell;17173
+17;Sant Miquel de Campmajor;17174
+17;Sant Miquel de Fluvià;17175
+17;Sant Mori;17176
+17;Sant Pau de Segúries;17177
+17;Sant Pere Pescador;17178
+17;Santa Coloma de Farners;17180
+17;Santa Cristina d'Aro;17181
+17;Santa Llogaia d'Àlguema;17182
+17;Santa Pau;17184
+17;Sarrià de Ter;17186
+17;Saus, Camallera i Llampaies;17187
+17;Selva de Mar, La;17188
+17;Serinyà;17190
+17;Serra de Daró;17191
+17;Setcases;17192
+17;Sils;17193
+17;Siurana;17052
+17;Susqueda;17194
+17;Tallada d'Empordà, La;17195
+17;Terrades;17196
+17;Torrent;17197
+17;Torroella de Fluvià;17198
+17;Torroella de Montgrí;17199
+17;Tortellà;17200
+17;Toses;17201
+17;Tossa de Mar;17202
+17;Ullà;17204
+17;Ullastret;17205
+17;Ultramort;17203
+17;Urús;17206
+17;Vajol, La;17014
+17;Vall de Bianya, La;17208
+17;Vall d'en Bas, La;17207
+17;Vallfogona de Ripollès;17170
+17;Vall-llobrega;17209
+17;Ventalló;17210
+17;Verges;17211
+17;Vidrà;17212
+17;Vidreres;17213
+17;Vilabertran;17214
+17;Vilablareix;17215
+17;Viladamat;17217
+17;Viladasens;17216
+17;Vilademuls;17218
+17;Viladrau;17220
+17;Vilafant;17221
+17;Vilajuïga;17223
+17;Vilallonga de Ter;17224
+17;Vilamacolum;17225
+17;Vilamalla;17226
+17;Vilamaniscle;17227
+17;Vilanant;17228
+17;Vila-sacra;17230
+17;Vilaür;17222
+17;Vilobí d'Onyar;17233
+17;Vilopriu;17232
+18;Agrón;18001
+18;Alamedilla;18002
+18;Albolote;18003
+18;Albondón;18004
+18;Albuñán;18005
+18;Albuñol;18006
+18;Albuñuelas;18007
+18;Aldeire;18010
+18;Alfacar;18011
+18;Algarinejo;18012
+18;Alhama de Granada;18013
+18;Alhendín;18014
+18;Alicún de Ortega;18015
+18;Almegíjar;18016
+18;Almuñécar;18017
+18;Alpujarra de la Sierra;18904
+18;Alquife;18018
+18;Arenas del Rey;18020
+18;Armilla;18021
+18;Atarfe;18022
+18;Baza;18023
+18;Beas de Granada;18024
+18;Beas de Guadix;18025
+18;Benalúa;18027
+18;Benalúa de las Villas;18028
+18;Benamaurel;18029
+18;Bérchules;18030
+18;Bubión;18032
+18;Busquístar;18033
+18;Cacín;18034
+18;Cádiar;18035
+18;Cájar;18036
+18;Calahorra, La;18114
+18;Calicasas;18037
+18;Campotéjar;18038
+18;Caniles;18039
+18;Cáñar;18040
+18;Capileira;18042
+18;Carataunas;18043
+18;Cástaras;18044
+18;Castilléjar;18045
+18;Castril;18046
+18;Cenes de la Vega;18047
+18;Chauchina;18059
+18;Chimeneas;18061
+18;Churriana de la Vega;18062
+18;Cijuela;18048
+18;Cogollos de Guadix;18049
+18;Cogollos de la Vega;18050
+18;Colomera;18051
+18;Cortes de Baza;18053
+18;Cortes y Graena;18054
+18;Cuevas del Campo;18912
+18;Cúllar;18056
+18;Cúllar Vega;18057
+18;Darro;18063
+18;Dehesas de Guadix;18064
+18;Dehesas Viejas;18065
+18;Deifontes;18066
+18;Diezma;18067
+18;Dílar;18068
+18;Dólar;18069
+18;Domingo Pérez de Granada;18915
+18;Dúdar;18070
+18;Dúrcal;18071
+18;Escúzar;18072
+18;Ferreira;18074
+18;Fonelas;18076
+18;Fornes;18077
+18;Freila;18078
+18;Fuente Vaqueros;18079
+18;Gabias, Las;18905
+18;Galera;18082
+18;Gobernador;18083
+18;Gójar;18084
+18;Gor;18085
+18;Gorafe;18086
+18;Granada;18087
+18;Guadahortuna;18088
+18;Guadix;18089
+18;Guájares, Los;18906
+18;Gualchos;18093
+18;Güéjar Sierra;18094
+18;Güevéjar;18095
+18;Huélago;18096
+18;Huéneja;18097
+18;Huéscar;18098
+18;Huétor de Santillán;18099
+18;Huétor Tájar;18100
+18;Huétor Vega;18101
+18;Íllora;18102
+18;Ítrabo;18103
+18;Iznalloz;18105
+18;Játar;18106
+18;Jayena;18107
+18;Jérez del Marquesado;18108
+18;Jete;18109
+18;Jun;18111
+18;Juviles;18112
+18;Láchar;18115
+18;Lanjarón;18116
+18;Lanteira;18117
+18;Lecrín;18119
+18;Lentegí;18120
+18;Lobras;18121
+18;Loja;18122
+18;Lugros;18123
+18;Lújar;18124
+18;Malahá, La;18126
+18;Maracena;18127
+18;Marchal;18128
+18;Moclín;18132
+18;Molvízar;18133
+18;Monachil;18134
+18;Montefrío;18135
+18;Montejícar;18136
+18;Montillana;18137
+18;Moraleda de Zafayona;18138
+18;Morelábor;18909
+18;Motril;18140
+18;Murtas;18141
+18;Nevada;18903
+18;Nigüelas;18143
+18;Nívar;18144
+18;Ogíjares;18145
+18;Orce;18146
+18;Órgiva;18147
+18;Otívar;18148
+18;Padul;18150
+18;Pampaneira;18151
+18;Pedro Martínez;18152
+18;Peligros;18153
+18;Peza, La;18154
+18;Pinar, El;18910
+18;Pinos Genil;18157
+18;Pinos Puente;18158
+18;Píñar;18159
+18;Polícar;18161
+18;Polopos;18162
+18;Pórtugos;18163
+18;Puebla de Don Fadrique;18164
+18;Pulianas;18165
+18;Purullena;18167
+18;Quéntar;18168
+18;Rubite;18170
+18;Salar;18171
+18;Salobreña;18173
+18;Santa Cruz del Comercio;18174
+18;Santa Fe;18175
+18;Soportújar;18176
+18;Sorvilán;18177
+18;Taha, La;18901
+18;Torre-Cardela;18178
+18;Torrenueva Costa;18916
+18;Torvizcón;18179
+18;Trevélez;18180
+18;Turón;18181
+18;Ugíjar;18182
+18;Valderrubio;18914
+18;Valle del Zalabí;18907
+18;Valle, El;18902
+18;Válor;18183
+18;Vegas del Genil;18911
+18;Vélez de Benaudalla;18184
+18;Ventas de Huelma;18185
+18;Villa de Otura;18149
+18;Villamena;18908
+18;Villanueva de las Torres;18187
+18;Villanueva Mesía;18188
+18;Víznar;18189
+18;Zafarraya;18192
+18;Zagra;18913
+18;Zubia, La;18193
+18;Zújar;18194
+19;Abánades;19001
+19;Ablanque;19002
+19;Adobes;19003
+19;Alaminos;19004
+19;Alarilla;19005
+19;Albalate de Zorita;19006
+19;Albares;19007
+19;Albendiego;19008
+19;Alcocer;19009
+19;Alcolea de las Peñas;19010
+19;Alcolea del Pinar;19011
+19;Alcoroches;19013
+19;Aldeanueva de Guadalajara;19015
+19;Algar de Mesa;19016
+19;Algora;19017
+19;Alhóndiga;19018
+19;Alique;19019
+19;Almadrones;19020
+19;Almoguera;19021
+19;Almonacid de Zorita;19022
+19;Alocén;19023
+19;Alovera;19024
+19;Alustante;19027
+19;Angón;19031
+19;Anguita;19032
+19;Anquela del Ducado;19033
+19;Anquela del Pedregal;19034
+19;Aranzueque;19036
+19;Arbancón;19037
+19;Arbeteta;19038
+19;Argecilla;19039
+19;Armallones;19040
+19;Armuña de Tajuña;19041
+19;Arroyo de las Fraguas;19042
+19;Atanzón;19043
+19;Atienza;19044
+19;Auñón;19045
+19;Azuqueca de Henares;19046
+19;Baides;19047
+19;Baños de Tajo;19048
+19;Bañuelos;19049
+19;Barriopedro;19050
+19;Berninches;19051
+19;Bodera, La;19052
+19;Brihuega;19053
+19;Budia;19054
+19;Bujalaro;19055
+19;Bustares;19057
+19;Cabanillas del Campo;19058
+19;Campillo de Dueñas;19059
+19;Campillo de Ranas;19060
+19;Campisábalos;19061
+19;Canredondo;19064
+19;Cantalojas;19065
+19;Cañizar;19066
+19;Cardoso de la Sierra, El;19067
+19;Casa de Uceda;19070
+19;Casar, El;19071
+19;Casas de San Galindo;19073
+19;Caspueñas;19074
+19;Castejón de Henares;19075
+19;Castellar de la Muela;19076
+19;Castilforte;19078
+19;Castilnuevo;19079
+19;Cendejas de Enmedio;19080
+19;Cendejas de la Torre;19081
+19;Centenera;19082
+19;Checa;19103
+19;Chequilla;19104
+19;Chillarón del Rey;19106
+19;Chiloeches;19105
+19;Cifuentes;19086
+19;Cincovillas;19087
+19;Ciruelas;19088
+19;Ciruelos del Pinar;19089
+19;Cobeta;19090
+19;Cogollor;19091
+19;Cogolludo;19092
+19;Condemios de Abajo;19095
+19;Condemios de Arriba;19096
+19;Congostrina;19097
+19;Copernal;19098
+19;Corduente;19099
+19;Cubillo de Uceda, El;19102
+19;Driebes;19107
+19;Durón;19108
+19;Embid;19109
+19;Escamilla;19110
+19;Escariche;19111
+19;Escopete;19112
+19;Espinosa de Henares;19113
+19;Esplegares;19114
+19;Establés;19115
+19;Estriégana;19116
+19;Fontanar;19117
+19;Fuembellida;19118
+19;Fuencemillán;19119
+19;Fuentelahiguera de Albatages;19120
+19;Fuentelencina;19121
+19;Fuentelsaz;19122
+19;Fuentelviejo;19123
+19;Fuentenovilla;19124
+19;Gajanejos;19125
+19;Galápagos;19126
+19;Galve de Sorbe;19127
+19;Gascueña de Bornova;19129
+19;Guadalajara;19130
+19;Henche;19132
+19;Heras de Ayuso;19133
+19;Herrería;19134
+19;Hiendelaencina;19135
+19;Hijes;19136
+19;Hita;19138
+19;Hombrados;19139
+19;Hontoba;19142
+19;Horche;19143
+19;Hortezuela de Océn;19145
+19;Huerce, La;19146
+19;Huérmeces del Cerro;19147
+19;Huertahernando;19148
+19;Hueva;19150
+19;Humanes;19151
+19;Illana;19152
+19;Iniéstola;19153
+19;Inviernas, Las;19154
+19;Irueste;19155
+19;Jadraque;19156
+19;Jirueque;19157
+19;Ledanca;19159
+19;Loranca de Tajuña;19160
+19;Lupiana;19161
+19;Luzaga;19162
+19;Luzón;19163
+19;Majaelrayo;19165
+19;Málaga del Fresno;19166
+19;Malaguilla;19167
+19;Mandayona;19168
+19;Mantiel;19169
+19;Maranchón;19170
+19;Marchamalo;19171
+19;Masegoso de Tajuña;19172
+19;Matarrubia;19173
+19;Matillas;19174
+19;Mazarete;19175
+19;Mazuecos;19176
+19;Medranda;19177
+19;Megina;19178
+19;Membrillera;19179
+19;Miedes de Atienza;19181
+19;Mierla, La;19182
+19;Millana;19184
+19;Milmarcos;19183
+19;Miñosa, La;19185
+19;Mirabueno;19186
+19;Miralrío;19187
+19;Mochales;19188
+19;Mohernando;19189
+19;Molina de Aragón;19190
+19;Monasterio;19191
+19;Mondéjar;19192
+19;Montarrón;19193
+19;Moratilla de los Meleros;19194
+19;Morenilla;19195
+19;Muduex;19196
+19;Navas de Jadraque, Las;19197
+19;Negredo;19198
+19;Ocentejo;19199
+19;Olivar, El;19200
+19;Olmeda de Cobeta;19201
+19;Olmeda de Jadraque, La;19202
+19;Ordial, El;19203
+19;Orea;19204
+19;Pálmaces de Jadraque;19208
+19;Pardos;19209
+19;Paredes de Sigüenza;19210
+19;Pareja;19211
+19;Pastrana;19212
+19;Pedregal, El;19213
+19;Peñalén;19214
+19;Peñalver;19215
+19;Peralejos de las Truchas;19216
+19;Peralveche;19217
+19;Pinilla de Jadraque;19218
+19;Pinilla de Molina;19219
+19;Pioz;19220
+19;Piqueras;19221
+19;Pobo de Dueñas, El;19222
+19;Poveda de la Sierra;19223
+19;Pozo de Almoguera;19224
+19;Pozo de Guadalajara;19225
+19;Prádena de Atienza;19226
+19;Prados Redondos;19227
+19;Puebla de Beleña;19228
+19;Puebla de Valles;19229
+19;Quer;19230
+19;Rebollosa de Jadraque;19231
+19;Recuenco, El;19232
+19;Renera;19233
+19;Retiendas;19234
+19;Riba de Saelices;19235
+19;Rillo de Gallo;19237
+19;Riofrío del Llano;19238
+19;Robledillo de Mohernando;19239
+19;Robledo de Corpes;19240
+19;Romanillos de Atienza;19241
+19;Romanones;19242
+19;Rueda de la Sierra;19243
+19;Sacecorbo;19244
+19;Sacedón;19245
+19;Saelices de la Sal;19246
+19;Salmerón;19247
+19;San Andrés del Congosto;19248
+19;San Andrés del Rey;19249
+19;Santiuste;19250
+19;Saúca;19251
+19;Sayatón;19252
+19;Selas;19254
+19;Semillas;19901
+19;Setiles;19255
+19;Sienes;19256
+19;Sigüenza;19257
+19;Solanillos del Extremo;19258
+19;Somolinos;19259
+19;Sotillo, El;19260
+19;Sotodosos;19261
+19;Tamajón;19262
+19;Taragudo;19263
+19;Taravilla;19264
+19;Tartanedo;19265
+19;Tendilla;19266
+19;Terzaga;19267
+19;Tierzo;19268
+19;Toba, La;19269
+19;Tordellego;19271
+19;Tordelrábano;19270
+19;Tordesilos;19272
+19;Torija;19274
+19;Torre del Burgo;19279
+19;Torrecuadrada de Molina;19277
+19;Torrecuadradilla;19278
+19;Torrejón del Rey;19280
+19;Torremocha de Jadraque;19281
+19;Torremocha del Campo;19282
+19;Torremocha del Pinar;19283
+19;Torremochuela;19284
+19;Torrubia;19285
+19;Tórtola de Henares;19286
+19;Tortuera;19287
+19;Tortuero;19288
+19;Traíd;19289
+19;Trijueque;19290
+19;Trillo;19291
+19;Uceda;19293
+19;Ujados;19294
+19;Utande;19296
+19;Valdarachas;19297
+19;Valdearenas;19298
+19;Valdeavellano;19299
+19;Valdeaveruelo;19300
+19;Valdeconcha;19301
+19;Valdegrudas;19302
+19;Valdelcubo;19303
+19;Valdenuño Fernández;19304
+19;Valdepeñas de la Sierra;19305
+19;Valderrebollo;19306
+19;Valdesotos;19307
+19;Valfermoso de Tajuña;19308
+19;Valhermoso;19309
+19;Valtablado del Río;19310
+19;Valverde de los Arroyos;19311
+19;Viana de Jadraque;19314
+19;Villanueva de Alcorón;19317
+19;Villanueva de Argecilla;19318
+19;Villanueva de la Torre;19319
+19;Villares de Jadraque;19321
+19;Villaseca de Henares;19322
+19;Villaseca de Uceda;19323
+19;Villel de Mesa;19324
+19;Viñuelas;19325
+19;Yebes;19326
+19;Yebra;19327
+19;Yélamos de Abajo;19329
+19;Yélamos de Arriba;19330
+19;Yunquera de Henares;19331
+19;Yunta, La;19332
+19;Zaorejas;19333
+19;Zarzuela de Jadraque;19334
+19;Zorita de los Canes;19335
+20;Abaltzisketa;20001
+20;Aduna;20002
+20;Aia;20016
+20;Aizarnazabal;20003
+20;Albiztur;20004
+20;Alegia;20005
+20;Alkiza;20006
+20;Altzaga;20906
+20;Altzo;20007
+20;Amezketa;20008
+20;Andoain;20009
+20;Anoeta;20010
+20;Antzuola;20011
+20;Arama;20012
+20;Aretxabaleta;20013
+20;Arrasate/Mondragón;20055
+20;Asteasu;20014
+20;Astigarraga;20903
+20;Ataun;20015
+20;Azkoitia;20017
+20;Azpeitia;20018
+20;Baliarrain;20904
+20;Beasain;20019
+20;Beizama;20020
+20;Belauntza;20021
+20;Berastegi;20022
+20;Bergara;20074
+20;Berrobi;20023
+20;Bidania-Goiatz;20024
+20;Deba;20029
+20;Donostia/San Sebastián;20069
+20;Eibar;20030
+20;Elduain;20031
+20;Elgeta;20033
+20;Elgoibar;20032
+20;Errenteria;20067
+20;Errezil;20066
+20;Eskoriatza;20034
+20;Ezkio-Itsaso;20035
+20;Gabiria;20038
+20;Gaintza;20037
+20;Gaztelu;20907
+20;Getaria;20039
+20;Hernani;20040
+20;Hernialde;20041
+20;Hondarribia;20036
+20;Ibarra;20042
+20;Idiazabal;20043
+20;Ikaztegieta;20044
+20;Irun;20045
+20;Irura;20046
+20;Itsasondo;20047
+20;Larraul;20048
+20;Lasarte-Oria;20902
+20;Lazkao;20049
+20;Leaburu;20050
+20;Legazpi;20051
+20;Legorreta;20052
+20;Leintz-Gatzaga;20068
+20;Lezo;20053
+20;Lizartza;20054
+20;Mendaro;20901
+20;Mutiloa;20057
+20;Mutriku;20056
+20;Oiartzun;20063
+20;Olaberria;20058
+20;Oñati;20059
+20;Ordizia;20076
+20;Orendain;20905
+20;Orexa;20060
+20;Orio;20061
+20;Ormaiztegi;20062
+20;Pasaia;20064
+20;Segura;20070
+20;Soraluze-Placencia de las Armas;20065
+20;Tolosa;20071
+20;Urnieta;20072
+20;Urretxu;20077
+20;Usurbil;20073
+20;Villabona;20075
+20;Zaldibia;20078
+20;Zarautz;20079
+20;Zegama;20025
+20;Zerain;20026
+20;Zestoa;20027
+20;Zizurkil;20028
+20;Zumaia;20081
+20;Zumarraga;20080
+21;Alájar;21001
+21;Aljaraque;21002
+21;Almendro, El;21003
+21;Almonaster la Real;21004
+21;Almonte;21005
+21;Alosno;21006
+21;Aracena;21007
+21;Aroche;21008
+21;Arroyomolinos de León;21009
+21;Ayamonte;21010
+21;Beas;21011
+21;Berrocal;21012
+21;Bollullos Par del Condado;21013
+21;Bonares;21014
+21;Cabezas Rubias;21015
+21;Cala;21016
+21;Calañas;21017
+21;Campillo, El;21018
+21;Campofrío;21019
+21;Cañaveral de León;21020
+21;Cartaya;21021
+21;Castaño del Robledo;21022
+21;Cerro de Andévalo, El;21023
+21;Chucena;21030
+21;Corteconcepción;21024
+21;Cortegana;21025
+21;Cortelazor;21026
+21;Cumbres de Enmedio;21027
+21;Cumbres de San Bartolomé;21028
+21;Cumbres Mayores;21029
+21;Encinasola;21031
+21;Escacena del Campo;21032
+21;Fuenteheridos;21033
+21;Galaroza;21034
+21;Gibraleón;21035
+21;Granada de Río-Tinto, La;21036
+21;Granado, El;21037
+21;Higuera de la Sierra;21038
+21;Hinojales;21039
+21;Hinojos;21040
+21;Huelva;21041
+21;Isla Cristina;21042
+21;Jabugo;21043
+21;Lepe;21044
+21;Linares de la Sierra;21045
+21;Lucena del Puerto;21046
+21;Manzanilla;21047
+21;Marines, Los;21048
+21;Minas de Riotinto;21049
+21;Moguer;21050
+21;Nava, La;21051
+21;Nerva;21052
+21;Niebla;21053
+21;Palma del Condado, La;21054
+21;Palos de la Frontera;21055
+21;Paterna del Campo;21056
+21;Paymogo;21057
+21;Puebla de Guzmán;21058
+21;Puerto Moral;21059
+21;Punta Umbría;21060
+21;Rociana del Condado;21061
+21;Rosal de la Frontera;21062
+21;San Bartolomé de la Torre;21063
+21;San Juan del Puerto;21064
+21;San Silvestre de Guzmán;21066
+21;Sanlúcar de Guadiana;21065
+21;Santa Ana la Real;21067
+21;Santa Bárbara de Casa;21068
+21;Santa Olalla del Cala;21069
+21;Trigueros;21070
+21;Valdelarco;21071
+21;Valverde del Camino;21072
+21;Villablanca;21073
+21;Villalba del Alcor;21074
+21;Villanueva de las Cruces;21075
+21;Villanueva de los Castillejos;21076
+21;Villarrasa;21077
+21;Zalamea la Real;21078
+21;Zarza-Perrunal, La;21902
+21;Zufre;21079
+22;Abiego;22001
+22;Abizanda;22002
+22;Adahuesca;22003
+22;Agüero;22004
+22;Aínsa-Sobrarbe;22907
+22;Aisa;22006
+22;Albalate de Cinca;22007
+22;Albalatillo;22008
+22;Albelda;22009
+22;Albero Alto;22011
+22;Albero Bajo;22012
+22;Alberuela de Tubo;22013
+22;Alcalá de Gurrea;22014
+22;Alcalá del Obispo;22015
+22;Alcampell;22016
+22;Alcolea de Cinca;22017
+22;Alcubierre;22018
+22;Alerre;22019
+22;Alfántega;22020
+22;Almudévar;22021
+22;Almunia de San Juan;22022
+22;Almuniente;22023
+22;Alquézar;22024
+22;Altorricón;22025
+22;Angüés;22027
+22;Ansó;22028
+22;Antillón;22029
+22;Aragüés del Puerto;22032
+22;Arén;22035
+22;Argavieso;22036
+22;Arguis;22037
+22;Ayerbe;22039
+22;Azanuy-Alins;22040
+22;Azara;22041
+22;Azlor;22042
+22;Baélls;22043
+22;Bailo;22044
+22;Baldellou;22045
+22;Ballobar;22046
+22;Banastás;22047
+22;Barbastro;22048
+22;Barbués;22049
+22;Barbuñales;22050
+22;Bárcabo;22051
+22;Belver de Cinca;22052
+22;Benabarre;22053
+22;Benasque;22054
+22;Beranuy;22246
+22;Berbegal;22055
+22;Bielsa;22057
+22;Bierge;22058
+22;Biescas;22059
+22;Binaced;22060
+22;Binéfar;22061
+22;Bisaurri;22062
+22;Biscarrués;22063
+22;Blecua y Torres;22064
+22;Boltaña;22066
+22;Bonansa;22067
+22;Borau;22068
+22;Broto;22069
+22;Caldearenas;22072
+22;Campo;22074
+22;Camporrélls;22075
+22;Canal de Berdún;22076
+22;Candasnos;22077
+22;Canfranc;22078
+22;Capdesaso;22079
+22;Capella;22080
+22;Casbas de Huesca;22081
+22;Castejón de Monegros;22083
+22;Castejón de Sos;22084
+22;Castejón del Puente;22082
+22;Castelflorite;22085
+22;Castiello de Jaca;22086
+22;Castigaleu;22087
+22;Castillazuelo;22088
+22;Castillonroy;22089
+22;Chalamera;22094
+22;Chía;22095
+22;Chimillas;22096
+22;Colungo;22090
+22;Esplús;22099
+22;Estada;22102
+22;Estadilla;22103
+22;Estopiñán del Castillo;22105
+22;Fago;22106
+22;Fanlo;22107
+22;Fiscal;22109
+22;Fonz;22110
+22;Foradada del Toscar;22111
+22;Fraga;22112
+22;Fueva, La;22113
+22;Gistaín;22114
+22;Grado, El;22115
+22;Grañén;22116
+22;Graus;22117
+22;Gurrea de Gállego;22119
+22;Hoz de Jaca;22122
+22;Hoz y Costean;22908
+22;Huerto;22124
+22;Huesca;22125
+22;Ibieca;22126
+22;Igriés;22127
+22;Ilche;22128
+22;Isábena;22129
+22;Jaca;22130
+22;Jasa;22131
+22;Labuerda;22133
+22;Laluenga;22135
+22;Lalueza;22136
+22;Lanaja;22137
+22;Laperdiguera;22139
+22;Lascellas-Ponzano;22141
+22;Lascuarre;22142
+22;Laspaúles;22143
+22;Laspuña;22144
+22;Loarre;22149
+22;Loporzano;22150
+22;Loscorrales;22151
+22;Lupiñén-Ortilla;22905
+22;Monesma y Cajigar;22155
+22;Monflorite-Lascasas;22156
+22;Montanuy;22157
+22;Monzón;22158
+22;Naval;22160
+22;Novales;22162
+22;Nueno;22163
+22;Olvena;22164
+22;Ontiñena;22165
+22;Osso de Cinca;22167
+22;Palo;22168
+22;Panticosa;22170
+22;Peñalba;22172
+22;Peñas de Riglos, Las;22173
+22;Peralta de Alcofea;22174
+22;Peralta de Calasanz;22175
+22;Peraltilla;22176
+22;Perarrúa;22177
+22;Pertusa;22178
+22;Piracés;22181
+22;Plan;22182
+22;Poleñino;22184
+22;Pozán de Vero;22186
+22;Puebla de Castro, La;22187
+22;Puente de Montañana;22188
+22;Puente la Reina de Jaca;22902
+22;Puértolas;22189
+22;Pueyo de Araguás, El;22190
+22;Pueyo de Santa Cruz;22193
+22;Quicena;22195
+22;Robres;22197
+22;Sabiñánigo;22199
+22;Sahún;22200
+22;Salas Altas;22201
+22;Salas Bajas;22202
+22;Salillas;22203
+22;Sallent de Gállego;22204
+22;San Esteban de Litera;22205
+22;San Juan de Plan;22207
+22;San Miguel del Cinca;22903
+22;Sangarrén;22206
+22;Santa Cilia;22208
+22;Santa Cruz de la Serós;22209
+22;Santa María de Dulcis;22906
+22;Santaliestra y San Quílez;22212
+22;Sariñena;22213
+22;Secastilla;22214
+22;Seira;22215
+22;Sena;22217
+22;Senés de Alcubierre;22218
+22;Sesa;22220
+22;Sesué;22221
+22;Siétamo;22222
+22;Sopeira;22223
+22;Sotonera, La;22904
+22;Tamarite de Litera;22225
+22;Tardienta;22226
+22;Tella-Sin;22227
+22;Tierz;22228
+22;Tolva;22229
+22;Torla-Ordesa;22230
+22;Torralba de Aragón;22232
+22;Torre la Ribera;22233
+22;Torrente de Cinca;22234
+22;Torres de Alcanadre;22235
+22;Torres de Barbués;22236
+22;Tramaced;22239
+22;Valfarta;22242
+22;Valle de Bardají;22243
+22;Valle de Hecho;22901
+22;Valle de Lierp;22244
+22;Velilla de Cinca;22245
+22;Vencillón;22909
+22;Viacamp y Litera;22247
+22;Vicién;22248
+22;Villanova;22249
+22;Villanúa;22250
+22;Villanueva de Sigena;22251
+22;Yebra de Basa;22252
+22;Yésero;22253
+22;Zaidín;22254
+23;Albanchez de Mágina;23001
+23;Alcalá la Real;23002
+23;Alcaudete;23003
+23;Aldeaquemada;23004
+23;Andújar;23005
+23;Arjona;23006
+23;Arjonilla;23007
+23;Arquillos;23008
+23;Arroyo del Ojanco;23905
+23;Baeza;23009
+23;Bailén;23010
+23;Baños de la Encina;23011
+23;Beas de Segura;23012
+23;Bedmar y Garcíez;23902
+23;Begíjar;23014
+23;Bélmez de la Moraleda;23015
+23;Benatae;23016
+23;Cabra del Santo Cristo;23017
+23;Cambil;23018
+23;Campillo de Arenas;23019
+23;Canena;23020
+23;Carboneros;23021
+23;Cárcheles;23901
+23;Carolina, La;23024
+23;Castellar;23025
+23;Castillo de Locubín;23026
+23;Cazalilla;23027
+23;Cazorla;23028
+23;Chiclana de Segura;23029
+23;Chilluévar;23030
+23;Escañuela;23031
+23;Espeluy;23032
+23;Frailes;23033
+23;Fuensanta de Martos;23034
+23;Fuerte del Rey;23035
+23;Génave;23037
+23;Guardia de Jaén, La;23038
+23;Guarromán;23039
+23;Higuera de Calatrava;23041
+23;Hinojares;23042
+23;Hornos;23043
+23;Huelma;23044
+23;Huesa;23045
+23;Ibros;23046
+23;Iruela, La;23047
+23;Iznatoraf;23048
+23;Jabalquinto;23049
+23;Jaén;23050
+23;Jamilena;23051
+23;Jimena;23052
+23;Jódar;23053
+23;Lahiguera;23040
+23;Larva;23054
+23;Linares;23055
+23;Lopera;23056
+23;Lupión;23057
+23;Mancha Real;23058
+23;Marmolejo;23059
+23;Martos;23060
+23;Mengíbar;23061
+23;Montizón;23062
+23;Navas de San Juan;23063
+23;Noalejo;23064
+23;Orcera;23065
+23;Peal de Becerro;23066
+23;Pegalajar;23067
+23;Porcuna;23069
+23;Pozo Alcón;23070
+23;Puente de Génave;23071
+23;Puerta de Segura, La;23072
+23;Quesada;23073
+23;Rus;23074
+23;Sabiote;23075
+23;Santa Elena;23076
+23;Santiago de Calatrava;23077
+23;Santiago-Pontones;23904
+23;Santisteban del Puerto;23079
+23;Santo Tomé;23080
+23;Segura de la Sierra;23081
+23;Siles;23082
+23;Sorihuela del Guadalimar;23084
+23;Torreblascopedro;23085
+23;Torredelcampo;23086
+23;Torredonjimeno;23087
+23;Torreperogil;23088
+23;Torres;23090
+23;Torres de Albánchez;23091
+23;Úbeda;23092
+23;Valdepeñas de Jaén;23093
+23;Vilches;23094
+23;Villacarrillo;23095
+23;Villanueva de la Reina;23096
+23;Villanueva del Arzobispo;23097
+23;Villardompardo;23098
+23;Villares, Los;23099
+23;Villarrodrigo;23101
+23;Villatorres;23903
+24;Acebedo;24001
+24;Algadefe;24002
+24;Alija del Infantado;24003
+24;Almanza;24004
+24;Antigua, La;24005
+24;Ardón;24006
+24;Arganza;24007
+24;Astorga;24008
+24;Balboa;24009
+24;Bañeza, La;24010
+24;Barjas;24011
+24;Barrios de Luna, Los;24012
+24;Bembibre;24014
+24;Benavides;24015
+24;Benuza;24016
+24;Bercianos del Páramo;24017
+24;Bercianos del Real Camino;24018
+24;Berlanga del Bierzo;24019
+24;Boca de Huérgano;24020
+24;Boñar;24021
+24;Borrenes;24022
+24;Brazuelo;24023
+24;Burgo Ranero, El;24024
+24;Burón;24025
+24;Bustillo del Páramo;24026
+24;Cabañas Raras;24027
+24;Cabreros del Río;24028
+24;Cabrillanes;24029
+24;Cacabelos;24030
+24;Calzada del Coto;24031
+24;Campazas;24032
+24;Campo de Villavidel;24033
+24;Camponaraya;24034
+24;Cármenes;24037
+24;Carracedelo;24038
+24;Carrizo;24039
+24;Carrocera;24040
+24;Carucedo;24041
+24;Castilfalé;24042
+24;Castrillo de Cabrera;24043
+24;Castrillo de la Valduerna;24044
+24;Castrocalbón;24046
+24;Castrocontrigo;24047
+24;Castropodame;24049
+24;Castrotierra de Valmadrigal;24050
+24;Cea;24051
+24;Cebanico;24052
+24;Cebrones del Río;24053
+24;Chozas de Abajo;24065
+24;Cimanes de la Vega;24054
+24;Cimanes del Tejar;24055
+24;Cistierna;24056
+24;Congosto;24057
+24;Corbillos de los Oteros;24058
+24;Corullón;24059
+24;Crémenes;24060
+24;Cuadros;24061
+24;Cubillas de los Oteros;24062
+24;Cubillas de Rueda;24063
+24;Cubillos del Sil;24064
+24;Destriana;24066
+24;Encinedo;24067
+24;Ercina, La;24068
+24;Escobar de Campos;24069
+24;Fabero;24070
+24;Folgoso de la Ribera;24071
+24;Fresno de la Vega;24073
+24;Fuentes de Carbajal;24074
+24;Garrafe de Torío;24076
+24;Gordaliza del Pino;24077
+24;Gordoncillo;24078
+24;Gradefes;24079
+24;Grajal de Campos;24080
+24;Gusendos de los Oteros;24081
+24;Hospital de Órbigo;24082
+24;Igüeña;24083
+24;Izagre;24084
+24;Joarilla de las Matas;24086
+24;Laguna Dalga;24087
+24;Laguna de Negrillos;24088
+24;León;24089
+24;Llamas de la Ribera;24092
+24;Lucillo;24090
+24;Luyego;24091
+24;Magaz de Cepeda;24093
+24;Mansilla de las Mulas;24094
+24;Mansilla Mayor;24095
+24;Maraña;24096
+24;Matadeón de los Oteros;24097
+24;Matallana de Torío;24098
+24;Matanza;24099
+24;Molinaseca;24100
+24;Murias de Paredes;24101
+24;Noceda del Bierzo;24102
+24;Oencia;24103
+24;Omañas, Las;24104
+24;Onzonilla;24105
+24;Oseja de Sajambre;24106
+24;Pajares de los Oteros;24107
+24;Palacios de la Valduerna;24108
+24;Palacios del Sil;24109
+24;Páramo del Sil;24110
+24;Peranzanes;24112
+24;Pobladura de Pelayo García;24113
+24;Pola de Gordón, La;24114
+24;Ponferrada;24115
+24;Posada de Valdeón;24116
+24;Pozuelo del Páramo;24117
+24;Prado de la Guzpeña;24118
+24;Priaranza del Bierzo;24119
+24;Prioro;24120
+24;Puebla de Lillo;24121
+24;Puente de Domingo Flórez;24122
+24;Quintana del Castillo;24123
+24;Quintana del Marco;24124
+24;Quintana y Congosto;24125
+24;Regueras de Arriba;24127
+24;Reyero;24129
+24;Riaño;24130
+24;Riego de la Vega;24131
+24;Riello;24132
+24;Rioseco de Tapia;24133
+24;Robla, La;24134
+24;Roperuelos del Páramo;24136
+24;Sabero;24137
+24;Sahagún;24139
+24;San Adrián del Valle;24141
+24;San Andrés del Rabanedo;24142
+24;San Cristóbal de la Polantera;24144
+24;San Emiliano;24145
+24;San Esteban de Nogales;24146
+24;San Justo de la Vega;24148
+24;San Millán de los Caballeros;24149
+24;San Pedro Bercianos;24150
+24;Sancedo;24143
+24;Santa Colomba de Curueño;24151
+24;Santa Colomba de Somoza;24152
+24;Santa Cristina de Valmadrigal;24153
+24;Santa Elena de Jamuz;24154
+24;Santa María de la Isla;24155
+24;Santa María de Ordás;24158
+24;Santa María del Monte de Cea;24156
+24;Santa María del Páramo;24157
+24;Santa Marina del Rey;24159
+24;Santas Martas;24160
+24;Santiago Millas;24161
+24;Santovenia de la Valdoncina;24162
+24;Sariegos;24163
+24;Sena de Luna;24164
+24;Sobrado;24165
+24;Soto de la Vega;24166
+24;Soto y Amío;24167
+24;Toral de los Guzmanes;24168
+24;Toral de los Vados;24206
+24;Toreno;24169
+24;Torre del Bierzo;24170
+24;Trabadelo;24171
+24;Truchas;24172
+24;Turcia;24173
+24;Urdiales del Páramo;24174
+24;Val de San Lorenzo;24185
+24;Valdefresno;24175
+24;Valdefuentes del Páramo;24176
+24;Valdelugueros;24177
+24;Valdemora;24178
+24;Valdepiélago;24179
+24;Valdepolo;24180
+24;Valderas;24181
+24;Valderrey;24182
+24;Valderrueda;24183
+24;Valdesamario;24184
+24;Valdevimbre;24187
+24;Valencia de Don Juan;24188
+24;Valle de Ancares;24036
+24;Vallecillo;24191
+24;Valverde de la Virgen;24189
+24;Valverde-Enrique;24190
+24;Vecilla, La;24193
+24;Vega de Espinareda;24196
+24;Vega de Infanzones;24197
+24;Vega de Valcarce;24198
+24;Vegacervera;24194
+24;Vegaquemada;24199
+24;Vegas del Condado;24201
+24;Villablino;24202
+24;Villabraz;24203
+24;Villadangos del Páramo;24205
+24;Villademor de la Vega;24207
+24;Villafranca del Bierzo;24209
+24;Villagatón;24210
+24;Villamandos;24211
+24;Villamanín;24901
+24;Villamañán;24212
+24;Villamartín de Don Sancho;24213
+24;Villamejil;24214
+24;Villamol;24215
+24;Villamontán de la Valduerna;24216
+24;Villamoratiel de las Matas;24217
+24;Villanueva de las Manzanas;24218
+24;Villaobispo de Otero;24219
+24;Villaornate y Castro;24902
+24;Villaquejida;24221
+24;Villaquilambre;24222
+24;Villarejo de Órbigo;24223
+24;Villares de Órbigo;24224
+24;Villasabariego;24225
+24;Villaselán;24226
+24;Villaturiel;24227
+24;Villazala;24228
+24;Villazanzo de Valderaduey;24229
+24;Zotes del Páramo;24230
+25;Abella de la Conca;25001
+25;Àger;25002
+25;Agramunt;25003
+25;Aitona;25038
+25;Alamús, Els;25004
+25;Alàs i Cerc;25005
+25;Albagés, L';25006
+25;Albatàrrec;25007
+25;Albesa;25008
+25;Albi, L';25009
+25;Alcanó;25010
+25;Alcarràs;25011
+25;Alcoletge;25012
+25;Alfarràs;25013
+25;Alfés;25014
+25;Algerri;25015
+25;Alguaire;25016
+25;Alins;25017
+25;Almacelles;25019
+25;Almatret;25020
+25;Almenar;25021
+25;Alòs de Balaguer;25022
+25;Alpicat;25023
+25;Alt Àneu;25024
+25;Anglesola;25027
+25;Arbeca;25029
+25;Arres;25031
+25;Arsèguel;25032
+25;Artesa de Lleida;25033
+25;Artesa de Segre;25034
+25;Aspa;25036
+25;Avellanes i Santa Linya, Les;25037
+25;Baix Pallars;25039
+25;Balaguer;25040
+25;Barbens;25041
+25;Baronia de Rialb, La;25042
+25;Bassella;25044
+25;Bausen;25045
+25;Belianes;25046
+25;Bellaguarda;25170
+25;Bellcaire d'Urgell;25047
+25;Bell-lloc d'Urgell;25048
+25;Bellmunt d'Urgell;25049
+25;Bellpuig;25050
+25;Bellver de Cerdanya;25051
+25;Bellvís;25052
+25;Benavent de Segrià;25053
+25;Biosca;25055
+25;Bòrdes, Es;25057
+25;Borges Blanques, Les;25058
+25;Bossòst;25059
+25;Bovera;25056
+25;Cabanabona;25060
+25;Cabó;25061
+25;Camarasa;25062
+25;Canejan;25063
+25;Castell de Mur;25904
+25;Castellar de la Ribera;25064
+25;Castelldans;25067
+25;Castellnou de Seana;25068
+25;Castelló de Farfanya;25069
+25;Castellserà;25070
+25;Cava;25071
+25;Cervera;25072
+25;Cervià de les Garrigues;25073
+25;Ciutadilla;25074
+25;Clariana de Cardener;25075
+25;Cogul, El;25076
+25;Coll de Nargó;25077
+25;Coma i la Pedra, La;25163
+25;Conca de Dalt;25161
+25;Corbins;25078
+25;Cubells;25079
+25;Espluga Calba, L';25081
+25;Espot;25082
+25;Estamariu;25088
+25;Estaràs;25085
+25;Esterri d'Àneu;25086
+25;Esterri de Cardós;25087
+25;Farrera;25089
+25;Fígols i Alinyà;25908
+25;Floresta, La;25092
+25;Fondarella;25093
+25;Foradada;25094
+25;Fuliola, La;25096
+25;Fulleda;25097
+25;Gavet de la Conca;25098
+25;Gimenells i el Pla de la Font;25912
+25;Golmés;25099
+25;Gósol;25100
+25;Granadella, La;25101
+25;Granja d'Escarp, La;25102
+25;Granyanella;25103
+25;Granyena de les Garrigues;25105
+25;Granyena de Segarra;25104
+25;Guimerà;25109
+25;Guingueta d'Àneu, La;25903
+25;Guissona;25110
+25;Guixers;25111
+25;Isona i Conca Dellà;25115
+25;Ivars de Noguera;25112
+25;Ivars d'Urgell;25113
+25;Ivorra;25114
+25;Josa i Tuixén;25910
+25;Juncosa;25118
+25;Juneda;25119
+25;Les;25121
+25;Linyola;25122
+25;Lladorre;25123
+25;Lladurs;25124
+25;Llardecans;25125
+25;Llavorsí;25126
+25;Lleida;25120
+25;Lles de Cerdanya;25127
+25;Llimiana;25128
+25;Llobera;25129
+25;Maials;25133
+25;Maldà;25130
+25;Massalcoreig;25131
+25;Massoteres;25132
+25;Menàrguens;25134
+25;Miralcamp;25135
+25;Mollerussa;25137
+25;Molsosa, La;25136
+25;Montellà i Martinet;25139
+25;Montferrer i Castellbò;25140
+25;Montgai;25138
+25;Montoliu de Lleida;25142
+25;Montoliu de Segarra;25141
+25;Montornès de Segarra;25143
+25;Nalec;25145
+25;Naut Aran;25025
+25;Navès;25146
+25;Odèn;25148
+25;Oliana;25149
+25;Oliola;25150
+25;Olius;25151
+25;Oluges, Les;25152
+25;Omellons, Els;25153
+25;Omells de na Gaia, Els;25154
+25;Organyà;25155
+25;Os de Balaguer;25156
+25;Ossó de Sió;25157
+25;Palau d'Anglesola, El;25158
+25;Penelles;25164
+25;Peramola;25165
+25;Pinell de Solsonès;25166
+25;Pinós;25167
+25;Plans de Sió, Els;25911
+25;Poal, El;25168
+25;Pobla de Cérvoles, La;25169
+25;Pobla de Segur, La;25171
+25;Pont de Bar, El;25030
+25;Pont de Suert, El;25173
+25;Ponts;25172
+25;Portella, La;25174
+25;Prats i Sansor;25175
+25;Preixana;25176
+25;Preixens;25177
+25;Prullans;25179
+25;Puiggròs;25180
+25;Puigverd d'Agramunt;25181
+25;Puigverd de Lleida;25182
+25;Rialp;25183
+25;Ribera d'Ondara;25905
+25;Ribera d'Urgellet;25185
+25;Riner;25186
+25;Riu de Cerdanya;25913
+25;Rosselló;25189
+25;Salàs de Pallars;25190
+25;Sanaüja;25191
+25;Sant Esteve de la Sarga;25196
+25;Sant Guim de Freixenet;25192
+25;Sant Guim de la Plana;25197
+25;Sant Llorenç de Morunys;25193
+25;Sant Martí de Riucorb;25902
+25;Sant Ramon;25194
+25;Sarroca de Bellera;25201
+25;Sarroca de Lleida;25200
+25;Senterada;25202
+25;Sentiu de Sió, La;25035
+25;Seròs;25204
+25;Seu d'Urgell, La;25203
+25;Sidamon;25205
+25;Soleràs, El;25206
+25;Solsona;25207
+25;Soriguera;25208
+25;Sort;25209
+25;Soses;25210
+25;Sudanell;25211
+25;Sunyer;25212
+25;Talarn;25215
+25;Talavera;25216
+25;Tàrrega;25217
+25;Tarrés;25218
+25;Tarroja de Segarra;25219
+25;Térmens;25220
+25;Tírvia;25221
+25;Tiurana;25222
+25;Torà;25223
+25;Torms, Els;25224
+25;Tornabous;25225
+25;Torre de Cabdella, La;25227
+25;Torrebesses;25226
+25;Torrefarrera;25228
+25;Torrefeta i Florejacs;25907
+25;Torregrossa;25230
+25;Torrelameu;25231
+25;Torres de Segre;25232
+25;Torre-serona;25233
+25;Tremp;25234
+25;Vall de Boí, La;25043
+25;Vall de Cardós;25901
+25;Vallbona de les Monges;25238
+25;Vallfogona de Balaguer;25240
+25;Valls d'Aguilar, Les;25906
+25;Valls de Valira, Les;25239
+25;Vansa i Fórnols, La;25909
+25;Verdú;25242
+25;Vielha e Mijaran;25243
+25;Vilagrassa;25244
+25;Vilaller;25245
+25;Vilamòs;25247
+25;Vilanova de Bellpuig;25248
+25;Vilanova de la Barca;25254
+25;Vilanova de l'Aguda;25249
+25;Vilanova de Meià;25250
+25;Vilanova de Segrià;25251
+25;Vila-sana;25252
+25;Vilosell, El;25253
+25;Vinaixa;25255
+26;Ábalos;26001
+26;Agoncillo;26002
+26;Aguilar del Río Alhama;26003
+26;Ajamil de Cameros;26004
+26;Albelda de Iregua;26005
+26;Alberite;26006
+26;Alcanadre;26007
+26;Aldeanueva de Ebro;26008
+26;Alesanco;26009
+26;Alesón;26010
+26;Alfaro;26011
+26;Almarza de Cameros;26012
+26;Anguciana;26013
+26;Anguiano;26014
+26;Arenzana de Abajo;26015
+26;Arenzana de Arriba;26016
+26;Arnedillo;26017
+26;Arnedo;26018
+26;Arrúbal;26019
+26;Ausejo;26020
+26;Autol;26021
+26;Azofra;26022
+26;Badarán;26023
+26;Bañares;26024
+26;Baños de Río Tobía;26026
+26;Baños de Rioja;26025
+26;Berceo;26027
+26;Bergasa;26028
+26;Bergasillas Bajera;26029
+26;Bezares;26030
+26;Bobadilla;26031
+26;Brieva de Cameros;26032
+26;Briñas;26033
+26;Briones;26034
+26;Cabezón de Cameros;26035
+26;Calahorra;26036
+26;Camprovín;26037
+26;Canales de la Sierra;26038
+26;Canillas de Río Tuerto;26039
+26;Cañas;26040
+26;Cárdenas;26041
+26;Casalarreina;26042
+26;Castañares de Rioja;26043
+26;Castroviejo;26044
+26;Cellorigo;26045
+26;Cenicero;26046
+26;Cervera del Río Alhama;26047
+26;Cidamón;26048
+26;Cihuri;26049
+26;Cirueña;26050
+26;Clavijo;26051
+26;Cordovín;26052
+26;Corera;26053
+26;Cornago;26054
+26;Corporales;26055
+26;Cuzcurrita de Río Tirón;26056
+26;Daroca de Rioja;26057
+26;Enciso;26058
+26;Entrena;26059
+26;Estollo;26060
+26;Ezcaray;26061
+26;Foncea;26062
+26;Fonzaleche;26063
+26;Fuenmayor;26064
+26;Galbárruli;26065
+26;Galilea;26066
+26;Gallinero de Cameros;26067
+26;Gimileo;26068
+26;Grañón;26069
+26;Grávalos;26070
+26;Haro;26071
+26;Herce;26072
+26;Herramélluri;26073
+26;Hervías;26074
+26;Hormilla;26075
+26;Hormilleja;26076
+26;Hornillos de Cameros;26077
+26;Hornos de Moncalvillo;26078
+26;Huércanos;26079
+26;Igea;26080
+26;Jalón de Cameros;26081
+26;Laguna de Cameros;26082
+26;Lagunilla del Jubera;26083
+26;Lardero;26084
+26;Ledesma de la Cogolla;26086
+26;Leiva;26087
+26;Leza de Río Leza;26088
+26;Logroño;26089
+26;Lumbreras de Cameros;26091
+26;Manjarrés;26092
+26;Mansilla de la Sierra;26093
+26;Manzanares de Rioja;26094
+26;Matute;26095
+26;Medrano;26096
+26;Munilla;26098
+26;Murillo de Río Leza;26099
+26;Muro de Aguas;26100
+26;Muro en Cameros;26101
+26;Nájera;26102
+26;Nalda;26103
+26;Navajún;26104
+26;Navarrete;26105
+26;Nestares;26106
+26;Nieva de Cameros;26107
+26;Ochánduri;26109
+26;Ocón;26108
+26;Ojacastro;26110
+26;Ollauri;26111
+26;Ortigosa de Cameros;26112
+26;Pazuengos;26113
+26;Pedroso;26114
+26;Pinillos;26115
+26;Pradejón;26117
+26;Pradillo;26118
+26;Préjano;26119
+26;Quel;26120
+26;Rabanera;26121
+26;Rasillo de Cameros, El;26122
+26;Redal, El;26123
+26;Ribafrecha;26124
+26;Rincón de Soto;26125
+26;Robres del Castillo;26126
+26;Rodezno;26127
+26;Sajazarra;26128
+26;San Asensio;26129
+26;San Millán de la Cogolla;26130
+26;San Millán de Yécora;26131
+26;San Román de Cameros;26132
+26;San Torcuato;26139
+26;San Vicente de la Sonsierra;26142
+26;Santa Coloma;26134
+26;Santa Engracia del Jubera;26135
+26;Santa Eulalia Bajera;26136
+26;Santo Domingo de la Calzada;26138
+26;Santurde de Rioja;26140
+26;Santurdejo;26141
+26;Sojuela;26143
+26;Sorzano;26144
+26;Sotés;26145
+26;Soto en Cameros;26146
+26;Terroba;26147
+26;Tirgo;26148
+26;Tobía;26149
+26;Tormantos;26150
+26;Torre en Cameros;26153
+26;Torrecilla en Cameros;26151
+26;Torrecilla sobre Alesanco;26152
+26;Torremontalbo;26154
+26;Treviana;26155
+26;Tricio;26157
+26;Tudelilla;26158
+26;Uruñuela;26160
+26;Valdemadera;26161
+26;Valgañón;26162
+26;Ventosa;26163
+26;Ventrosa;26164
+26;Viguera;26165
+26;Villalba de Rioja;26166
+26;Villalobar de Rioja;26167
+26;Villamediana de Iregua;26168
+26;Villanueva de Cameros;26169
+26;Villar de Arnedo, El;26170
+26;Villar de Torre;26171
+26;Villarejo;26172
+26;Villarroya;26173
+26;Villarta-Quintana;26174
+26;Villavelayo;26175
+26;Villaverde de Rioja;26176
+26;Villoslada de Cameros;26177
+26;Viniegra de Abajo;26178
+26;Viniegra de Arriba;26179
+26;Zarratón;26180
+26;Zarzosa;26181
+26;Zorraquín;26183
+27;Abadín;27001
+27;Alfoz;27002
+27;Antas de Ulla;27003
+27;Baleira;27004
+27;Baralla;27901
+27;Barreiros;27005
+27;Becerreá;27006
+27;Begonte;27007
+27;Bóveda;27008
+27;Burela;27902
+27;Carballedo;27009
+27;Castro de Rei;27010
+27;Castroverde;27011
+27;Cervantes;27012
+27;Cervo;27013
+27;Chantada;27016
+27;Corgo, O;27014
+27;Cospeito;27015
+27;Folgoso do Courel;27017
+27;Fonsagrada, A;27018
+27;Foz;27019
+27;Friol;27020
+27;Guitiriz;27022
+27;Guntín;27023
+27;Incio, O;27024
+27;Láncara;27026
+27;Lourenzá;27027
+27;Lugo;27028
+27;Meira;27029
+27;Mondoñedo;27030
+27;Monforte de Lemos;27031
+27;Monterroso;27032
+27;Muras;27033
+27;Navia de Suarna;27034
+27;Negueira de Muñiz;27035
+27;Nogais, As;27037
+27;Ourol;27038
+27;Outeiro de Rei;27039
+27;Palas de Rei;27040
+27;Pantón;27041
+27;Paradela;27042
+27;Páramo, O;27043
+27;Pastoriza, A;27044
+27;Pedrafita do Cebreiro;27045
+27;Pobra do Brollón, A;27047
+27;Pol;27046
+27;Pontenova, A;27048
+27;Portomarín;27049
+27;Quiroga;27050
+27;Rábade;27056
+27;Ribadeo;27051
+27;Ribas de Sil;27052
+27;Ribeira de Piquín;27053
+27;Riotorto;27054
+27;Samos;27055
+27;Sarria;27057
+27;Saviñao, O;27058
+27;Sober;27059
+27;Taboada;27060
+27;Trabada;27061
+27;Triacastela;27062
+27;Valadouro, O;27063
+27;Vicedo, O;27064
+27;Vilalba;27065
+27;Viveiro;27066
+27;Xermade;27021
+27;Xove;27025
+28;Acebeda, La;28001
+28;Ajalvir;28002
+28;Alameda del Valle;28003
+28;Álamo, El;28004
+28;Alcalá de Henares;28005
+28;Alcobendas;28006
+28;Alcorcón;28007
+28;Aldea del Fresno;28008
+28;Algete;28009
+28;Alpedrete;28010
+28;Ambite;28011
+28;Anchuelo;28012
+28;Aranjuez;28013
+28;Arganda del Rey;28014
+28;Arroyomolinos;28015
+28;Atazar, El;28016
+28;Batres;28017
+28;Becerril de la Sierra;28018
+28;Belmonte de Tajo;28019
+28;Berrueco, El;28021
+28;Berzosa del Lozoya;28020
+28;Boadilla del Monte;28022
+28;Boalo, El;28023
+28;Braojos;28024
+28;Brea de Tajo;28025
+28;Brunete;28026
+28;Buitrago del Lozoya;28027
+28;Bustarviejo;28028
+28;Cabanillas de la Sierra;28029
+28;Cabrera, La;28030
+28;Cadalso de los Vidrios;28031
+28;Camarma de Esteruelas;28032
+28;Campo Real;28033
+28;Canencia;28034
+28;Carabaña;28035
+28;Casarrubuelos;28036
+28;Cenicientos;28037
+28;Cercedilla;28038
+28;Cervera de Buitrago;28039
+28;Chapinería;28051
+28;Chinchón;28052
+28;Ciempozuelos;28040
+28;Cobeña;28041
+28;Collado Mediano;28046
+28;Collado Villalba;28047
+28;Colmenar de Oreja;28043
+28;Colmenar del Arroyo;28042
+28;Colmenar Viejo;28045
+28;Colmenarejo;28044
+28;Corpa;28048
+28;Coslada;28049
+28;Cubas de la Sagra;28050
+28;Daganzo de Arriba;28053
+28;Escorial, El;28054
+28;Estremera;28055
+28;Fresnedillas de la Oliva;28056
+28;Fresno de Torote;28057
+28;Fuenlabrada;28058
+28;Fuente el Saz de Jarama;28059
+28;Fuentidueña de Tajo;28060
+28;Galapagar;28061
+28;Garganta de los Montes;28062
+28;Gargantilla del Lozoya y Pinilla de Buitrago;28063
+28;Gascones;28064
+28;Getafe;28065
+28;Griñón;28066
+28;Guadalix de la Sierra;28067
+28;Guadarrama;28068
+28;Hiruela, La;28069
+28;Horcajo de la Sierra-Aoslos;28070
+28;Horcajuelo de la Sierra;28071
+28;Hoyo de Manzanares;28072
+28;Humanes de Madrid;28073
+28;Leganés;28074
+28;Loeches;28075
+28;Lozoya;28076
+28;Lozoyuela-Navas-Sieteiglesias;28901
+28;Madarcos;28078
+28;Madrid;28079
+28;Majadahonda;28080
+28;Manzanares el Real;28082
+28;Meco;28083
+28;Mejorada del Campo;28084
+28;Miraflores de la Sierra;28085
+28;Molar, El;28086
+28;Molinos, Los;28087
+28;Montejo de la Sierra;28088
+28;Moraleja de Enmedio;28089
+28;Moralzarzal;28090
+28;Morata de Tajuña;28091
+28;Móstoles;28092
+28;Navacerrada;28093
+28;Navalafuente;28094
+28;Navalagamella;28095
+28;Navalcarnero;28096
+28;Navarredonda y San Mamés;28097
+28;Navas del Rey;28099
+28;Nuevo Baztán;28100
+28;Olmeda de las Fuentes;28101
+28;Orusco de Tajuña;28102
+28;Paracuellos de Jarama;28104
+28;Parla;28106
+28;Patones;28107
+28;Pedrezuela;28108
+28;Pelayos de la Presa;28109
+28;Perales de Tajuña;28110
+28;Pezuela de las Torres;28111
+28;Pinilla del Valle;28112
+28;Pinto;28113
+28;Piñuécar-Gandullas;28114
+28;Pozuelo de Alarcón;28115
+28;Pozuelo del Rey;28116
+28;Prádena del Rincón;28117
+28;Puebla de la Sierra;28118
+28;Puentes Viejas;28902
+28;Quijorna;28119
+28;Rascafría;28120
+28;Redueña;28121
+28;Ribatejada;28122
+28;Rivas-Vaciamadrid;28123
+28;Robledillo de la Jara;28124
+28;Robledo de Chavela;28125
+28;Robregordo;28126
+28;Rozas de Madrid, Las;28127
+28;Rozas de Puerto Real;28128
+28;San Agustín del Guadalix;28129
+28;San Fernando de Henares;28130
+28;San Lorenzo de El Escorial;28131
+28;San Martín de la Vega;28132
+28;San Martín de Valdeiglesias;28133
+28;San Sebastián de los Reyes;28134
+28;Santa María de la Alameda;28135
+28;Santorcaz;28136
+28;Santos de la Humosa, Los;28137
+28;Serna del Monte, La;28138
+28;Serranillos del Valle;28140
+28;Sevilla la Nueva;28141
+28;Somosierra;28143
+28;Soto del Real;28144
+28;Talamanca de Jarama;28145
+28;Tielmes;28146
+28;Titulcia;28147
+28;Torrejón de Ardoz;28148
+28;Torrejón de la Calzada;28149
+28;Torrejón de Velasco;28150
+28;Torrelaguna;28151
+28;Torrelodones;28152
+28;Torremocha de Jarama;28153
+28;Torres de la Alameda;28154
+28;Tres Cantos;28903
+28;Valdaracete;28155
+28;Valdeavero;28156
+28;Valdelaguna;28157
+28;Valdemanco;28158
+28;Valdemaqueda;28159
+28;Valdemorillo;28160
+28;Valdemoro;28161
+28;Valdeolmos-Alalpardo;28162
+28;Valdepiélagos;28163
+28;Valdetorres de Jarama;28164
+28;Valdilecha;28165
+28;Valverde de Alcalá;28166
+28;Velilla de San Antonio;28167
+28;Vellón, El;28168
+28;Venturada;28169
+28;Villa del Prado;28171
+28;Villaconejos;28170
+28;Villalbilla;28172
+28;Villamanrique de Tajo;28173
+28;Villamanta;28174
+28;Villamantilla;28175
+28;Villanueva de la Cañada;28176
+28;Villanueva de Perales;28178
+28;Villanueva del Pardillo;28177
+28;Villar del Olmo;28179
+28;Villarejo de Salvanés;28180
+28;Villaviciosa de Odón;28181
+28;Villavieja del Lozoya;28182
+28;Zarzalejo;28183
+29;Alameda;29001
+29;Alcaucín;29002
+29;Alfarnate;29003
+29;Alfarnatejo;29004
+29;Algarrobo;29005
+29;Algatocín;29006
+29;Alhaurín de la Torre;29007
+29;Alhaurín el Grande;29008
+29;Almáchar;29009
+29;Almargen;29010
+29;Almogía;29011
+29;Álora;29012
+29;Alozaina;29013
+29;Alpandeire;29014
+29;Antequera;29015
+29;Árchez;29016
+29;Archidona;29017
+29;Ardales;29018
+29;Arenas;29019
+29;Arriate;29020
+29;Atajate;29021
+29;Benadalid;29022
+29;Benahavís;29023
+29;Benalauría;29024
+29;Benalmádena;29025
+29;Benamargosa;29026
+29;Benamocarra;29027
+29;Benaoján;29028
+29;Benarrabá;29029
+29;Borge, El;29030
+29;Burgo, El;29031
+29;Campillos;29032
+29;Canillas de Aceituno;29033
+29;Canillas de Albaida;29034
+29;Cañete la Real;29035
+29;Carratraca;29036
+29;Cartajima;29037
+29;Cártama;29038
+29;Casabermeja;29039
+29;Casarabonela;29040
+29;Casares;29041
+29;Coín;29042
+29;Colmenar;29043
+29;Comares;29044
+29;Cómpeta;29045
+29;Cortes de la Frontera;29046
+29;Cuevas Bajas;29047
+29;Cuevas de San Marcos;29049
+29;Cuevas del Becerro;29048
+29;Cútar;29050
+29;Estepona;29051
+29;Faraján;29052
+29;Frigiliana;29053
+29;Fuengirola;29054
+29;Fuente de Piedra;29055
+29;Gaucín;29056
+29;Genalguacil;29057
+29;Guaro;29058
+29;Humilladero;29059
+29;Igualeja;29060
+29;Istán;29061
+29;Iznate;29062
+29;Jimera de Líbar;29063
+29;Jubrique;29064
+29;Júzcar;29065
+29;Macharaviaya;29066
+29;Málaga;29067
+29;Manilva;29068
+29;Marbella;29069
+29;Mijas;29070
+29;Moclinejo;29071
+29;Mollina;29072
+29;Monda;29073
+29;Montecorto;29903
+29;Montejaque;29074
+29;Nerja;29075
+29;Ojén;29076
+29;Parauta;29077
+29;Periana;29079
+29;Pizarra;29080
+29;Pujerra;29081
+29;Rincón de la Victoria;29082
+29;Riogordo;29083
+29;Ronda;29084
+29;Salares;29085
+29;Sayalonga;29086
+29;Sedella;29087
+29;Serrato;29904
+29;Sierra de Yeguas;29088
+29;Teba;29089
+29;Tolox;29090
+29;Torremolinos;29901
+29;Torrox;29091
+29;Totalán;29092
+29;Valle de Abdalajís;29093
+29;Vélez-Málaga;29094
+29;Villanueva de Algaidas;29095
+29;Villanueva de la Concepción;29902
+29;Villanueva de Tapia;29098
+29;Villanueva del Rosario;29096
+29;Villanueva del Trabuco;29097
+29;Viñuela;29099
+29;Yunquera;29100
+30;Abanilla;30001
+30;Abarán;30002
+30;Águilas;30003
+30;Albudeite;30004
+30;Alcantarilla;30005
+30;Alcázares, Los;30902
+30;Aledo;30006
+30;Alguazas;30007
+30;Alhama de Murcia;30008
+30;Archena;30009
+30;Beniel;30010
+30;Blanca;30011
+30;Bullas;30012
+30;Calasparra;30013
+30;Campos del Río;30014
+30;Caravaca de la Cruz;30015
+30;Cartagena;30016
+30;Cehegín;30017
+30;Ceutí;30018
+30;Cieza;30019
+30;Fortuna;30020
+30;Fuente Álamo de Murcia;30021
+30;Jumilla;30022
+30;Librilla;30023
+30;Lorca;30024
+30;Lorquí;30025
+30;Mazarrón;30026
+30;Molina de Segura;30027
+30;Moratalla;30028
+30;Mula;30029
+30;Murcia;30030
+30;Ojós;30031
+30;Pliego;30032
+30;Puerto Lumbreras;30033
+30;Ricote;30034
+30;San Javier;30035
+30;San Pedro del Pinatar;30036
+30;Santomera;30901
+30;Torre-Pacheco;30037
+30;Torres de Cotillas, Las;30038
+30;Totana;30039
+30;Ulea;30040
+30;Unión, La;30041
+30;Villanueva del Río Segura;30042
+30;Yecla;30043
+31;Abáigar;31001
+31;Abárzuza/Abartzuza;31002
+31;Abaurregaina/Abaurrea Alta;31003
+31;Abaurrepea/Abaurrea Baja;31004
+31;Aberin;31005
+31;Ablitas;31006
+31;Adiós;31007
+31;Aguilar de Codés;31008
+31;Aibar/Oibar;31009
+31;Allín/Allin;31011
+31;Allo;31012
+31;Altsasu/Alsasua;31010
+31;Améscoa Baja;31013
+31;Ancín/Antzin;31014
+31;Andosilla;31015
+31;Ansoáin/Antsoain;31016
+31;Anue;31017
+31;Añorbe;31018
+31;Aoiz/Agoitz;31019
+31;Araitz;31020
+31;Arakil;31025
+31;Aranarache/Aranaratxe;31021
+31;Aranguren;31023
+31;Arano;31024
+31;Arantza;31022
+31;Aras;31026
+31;Arbizu;31027
+31;Arce/Artzi;31028
+31;Arcos, Los;31029
+31;Arellano;31030
+31;Areso;31031
+31;Arguedas;31032
+31;Aria;31033
+31;Aribe;31034
+31;Armañanzas;31035
+31;Arróniz;31036
+31;Arruazu;31037
+31;Artajona;31038
+31;Artazu;31039
+31;Atetz;31040
+31;Auritz/Burguete;31058
+31;Ayegui/Aiegi;31041
+31;Azagra;31042
+31;Azuelo;31043
+31;Bakaiku;31044
+31;Barañáin/Barañain;31901
+31;Barásoain;31045
+31;Barbarin;31046
+31;Bargota;31047
+31;Barillas;31048
+31;Basaburua;31049
+31;Baztan;31050
+31;Beintza-Labaien;31137
+31;Beire;31051
+31;Belascoáin;31052
+31;Bera;31250
+31;Berbinzana;31053
+31;Beriáin;31905
+31;Berrioplano/Berriobeiti;31902
+31;Berriozar;31903
+31;Bertizarana;31054
+31;Betelu;31055
+31;Bidaurreta;31253
+31;Biurrun-Olcoz;31056
+31;Buñuel;31057
+31;Burgui/Burgi;31059
+31;Burlada/Burlata;31060
+31;Busto, El;31061
+31;Cabanillas;31062
+31;Cabredo;31063
+31;Cadreita;31064
+31;Caparroso;31065
+31;Cárcar;31066
+31;Carcastillo;31067
+31;Cascante;31068
+31;Cáseda;31069
+31;Castejón;31070
+31;Castillonuevo;31071
+31;Cendea de Olza/Oltza Zendea;31193
+31;Cintruénigo;31072
+31;Cirauqui/Zirauki;31074
+31;Ciriza/Ziritza;31075
+31;Cizur;31076
+31;Corella;31077
+31;Cortes;31078
+31;Desojo;31079
+31;Dicastillo;31080
+31;Donamaria;31081
+31;Doneztebe/Santesteban;31221
+31;Echarri/Etxarri;31083
+31;Elgorriaga;31087
+31;Enériz/Eneritz;31089
+31;Eratsun;31090
+31;Ergoiena;31091
+31;Erro;31092
+31;Eslava;31094
+31;Esparza de Salazar/Espartza Zaraitzu;31095
+31;Espronceda;31096
+31;Estella-Lizarra;31097
+31;Esteribar;31098
+31;Etayo;31099
+31;Etxalar;31082
+31;Etxarri Aranatz;31084
+31;Etxauri;31085
+31;Eulate;31100
+31;Ezcabarte;31101
+31;Ezcároz/Ezkaroze;31093
+31;Ezkurra;31102
+31;Ezprogui;31103
+31;Falces;31104
+31;Fitero;31105
+31;Fontellas;31106
+31;Funes;31107
+31;Fustiñana;31108
+31;Galar;31109
+31;Gallipienzo/Galipentzu;31110
+31;Gallués/Galoze;31111
+31;Garaioa;31112
+31;Garde;31113
+31;Garínoain;31114
+31;Garralda;31115
+31;Genevilla;31116
+31;Goizueta;31117
+31;Goñi;31118
+31;Güesa/Gorza;31119
+31;Guesálaz/Gesalatz;31120
+31;Guirguillano;31121
+31;Hiriberri/Villanueva de Aezkoa;31256
+31;Huarte/Uharte;31122
+31;Ibargoiti;31124
+31;Igantzi;31259
+31;Igúzquiza;31125
+31;Imotz;31126
+31;Irañeta;31127
+31;Irurtzun;31904
+31;Isaba/Izaba;31128
+31;Ituren;31129
+31;Iturmendi;31130
+31;Iza/Itza;31131
+31;Izagaondoa;31132
+31;Izalzu/Itzaltzu;31133
+31;Jaurrieta;31134
+31;Javier;31135
+31;Juslapeña/Txulapain;31136
+31;Lakuntza;31138
+31;Lana;31139
+31;Lantz;31140
+31;Lapoblación;31141
+31;Larraga;31142
+31;Larraona;31143
+31;Larraun;31144
+31;Lazagurría;31145
+31;Leache/Leatxe;31146
+31;Legarda;31147
+31;Legaria;31148
+31;Leitza;31149
+31;Lekunberri;31908
+31;Leoz/Leotz;31150
+31;Lerga;31151
+31;Lerín;31152
+31;Lesaka;31153
+31;Lezaun;31154
+31;Liédena;31155
+31;Lizoain-Arriasgoiti/Lizoainibar-Arriasgoiti;31156
+31;Lodosa;31157
+31;Lónguida/Longida;31158
+31;Lumbier;31159
+31;Luquin;31160
+31;Luzaide/Valcarlos;31248
+31;Mañeru;31161
+31;Marañón;31162
+31;Marcilla;31163
+31;Mélida;31164
+31;Mendavia;31165
+31;Mendaza;31166
+31;Mendigorria;31167
+31;Metauten;31168
+31;Milagro;31169
+31;Mirafuentes;31170
+31;Miranda de Arga;31171
+31;Monreal/Elo;31172
+31;Monteagudo;31173
+31;Morentin;31174
+31;Mues;31175
+31;Murchante;31176
+31;Murieta;31177
+31;Murillo el Cuende;31178
+31;Murillo el Fruto;31179
+31;Muruzábal;31180
+31;Navascués/Nabaskoze;31181
+31;Nazar;31182
+31;Noáin (Valle de Elorz)/Noain (Elortzibar);31088
+31;Obanos;31183
+31;Ochagavía/Otsagabia;31185
+31;Oco;31184
+31;Odieta;31186
+31;Oiz;31187
+31;Olaibar;31188
+31;Olazti/Olazagutía;31189
+31;Olejua;31190
+31;Olite/Erriberri;31191
+31;Olóriz/Oloritz;31192
+31;Orbaizeta;31195
+31;Orbara;31196
+31;Orísoain;31197
+31;Orkoien;31906
+31;Oronz/Orontze;31198
+31;Oroz-Betelu/Orotz-Betelu;31199
+31;Orreaga/Roncesvalles;31211
+31;Oteiza;31200
+31;Pamplona/Iruña;31201
+31;Peralta/Azkoien;31202
+31;Petilla de Aragón;31203
+31;Piedramillera;31204
+31;Pitillas;31205
+31;Puente la Reina/Gares;31206
+31;Pueyo/Puiu;31207
+31;Ribaforada;31208
+31;Romanzado/Erromantzatua;31209
+31;Roncal/Erronkari;31210
+31;Sada;31212
+31;Saldías;31213
+31;Salinas de Oro/Jaitz;31214
+31;San Adrián;31215
+31;San Martín de Unx;31217
+31;Sangüesa/Zangoza;31216
+31;Sansol;31219
+31;Santacara;31220
+31;Sarriés/Sartze;31222
+31;Sartaguda;31223
+31;Sesma;31224
+31;Sorlada;31225
+31;Sunbilla;31226
+31;Tafalla;31227
+31;Tiebas-Muruarte de Reta;31228
+31;Tirapu;31229
+31;Torralba del Río;31230
+31;Torres del Río;31231
+31;Tudela;31232
+31;Tulebras;31233
+31;Ucar;31234
+31;Uharte Arakil;31123
+31;Ujué/Uxue;31235
+31;Ultzama;31236
+31;Unciti;31237
+31;Unzué/Untzue;31238
+31;Urdazubi/Urdax;31239
+31;Urdiain;31240
+31;Urraul Alto;31241
+31;Urraul Bajo;31242
+31;Urroz;31244
+31;Urroz-Villa;31243
+31;Urzainqui/Urzainki;31245
+31;Uterga;31246
+31;Uztárroz/Uztarroze;31247
+31;Valle de Egüés/Eguesibar;31086
+31;Valle de Ollo/Ollaran;31194
+31;Valle de Yerri/Deierri;31260
+31;Valtierra;31249
+31;Viana;31251
+31;Vidángoz/Bidankoze;31252
+31;Villafranca;31254
+31;Villamayor de Monjardín;31255
+31;Villatuerta;31257
+31;Villava/Atarrabia;31258
+31;Yesa;31261
+31;Zabalza/Zabaltza;31262
+31;Ziordia;31073
+31;Zizur Mayor/Zizur Nagusia;31907
+31;Zubieta;31263
+31;Zugarramurdi;31264
+31;Zúñiga;31265
+32;Allariz;32001
+32;Amoeiro;32002
+32;Arnoia, A;32003
+32;Avión;32004
+32;Baltar;32005
+32;Bande;32006
+32;Baños de Molgas;32007
+32;Barbadás;32008
+32;Barco de Valdeorras, O;32009
+32;Beade;32010
+32;Beariz;32011
+32;Blancos, Os;32012
+32;Boborás;32013
+32;Bola, A;32014
+32;Bolo, O;32015
+32;Calvos de Randín;32016
+32;Carballeda de Avia;32018
+32;Carballeda de Valdeorras;32017
+32;Carballiño, O;32019
+32;Cartelle;32020
+32;Castrelo de Miño;32022
+32;Castrelo do Val;32021
+32;Castro Caldelas;32023
+32;Celanova;32024
+32;Cenlle;32025
+32;Chandrexa de Queixa;32029
+32;Coles;32026
+32;Cortegada;32027
+32;Cualedro;32028
+32;Entrimo;32030
+32;Esgos;32031
+32;Gomesende;32033
+32;Gudiña, A;32034
+32;Irixo, O;32035
+32;Larouco;32038
+32;Laza;32039
+32;Leiro;32040
+32;Lobeira;32041
+32;Lobios;32042
+32;Maceda;32043
+32;Manzaneda;32044
+32;Maside;32045
+32;Melón;32046
+32;Merca, A;32047
+32;Mezquita, A;32048
+32;Montederramo;32049
+32;Monterrei;32050
+32;Muíños;32051
+32;Nogueira de Ramuín;32052
+32;Oímbra;32053
+32;Ourense;32054
+32;Paderne de Allariz;32055
+32;Padrenda;32056
+32;Parada de Sil;32057
+32;Pereiro de Aguiar, O;32058
+32;Peroxa, A;32059
+32;Petín;32060
+32;Piñor;32061
+32;Pobra de Trives, A;32063
+32;Pontedeva;32064
+32;Porqueira;32062
+32;Punxín;32065
+32;Quintela de Leirado;32066
+32;Rairiz de Veiga;32067
+32;Ramirás;32068
+32;Ribadavia;32069
+32;Riós;32071
+32;Rúa, A;32072
+32;Rubiá;32073
+32;San Amaro;32074
+32;San Cibrao das Viñas;32075
+32;San Cristovo de Cea;32076
+32;San Xoán de Río;32070
+32;Sandiás;32077
+32;Sarreaus;32078
+32;Taboadela;32079
+32;Teixeira, A;32080
+32;Toén;32081
+32;Trasmiras;32082
+32;Veiga, A;32083
+32;Verea;32084
+32;Verín;32085
+32;Viana do Bolo;32086
+32;Vilamarín;32087
+32;Vilamartín de Valdeorras;32088
+32;Vilar de Barrio;32089
+32;Vilar de Santos;32090
+32;Vilardevós;32091
+32;Vilariño de Conso;32092
+32;Xinzo de Limia;32032
+32;Xunqueira de Ambía;32036
+32;Xunqueira de Espadanedo;32037
+33;Allande;33001
+33;Aller;33002
+33;Amieva;33003
+33;Avilés;33004
+33;Belmonte de Miranda;33005
+33;Bimenes;33006
+33;Boal;33007
+33;Cabrales;33008
+33;Cabranes;33009
+33;Candamo;33010
+33;Cangas de Onís;33012
+33;Cangas del Narcea;33011
+33;Caravia;33013
+33;Carreño;33014
+33;Caso;33015
+33;Castrillón;33016
+33;Castropol;33017
+33;Coaña;33018
+33;Colunga;33019
+33;Corvera de Asturias;33020
+33;Cudillero;33021
+33;Degaña;33022
+33;Franco, El;33023
+33;Gijón;33024
+33;Gozón;33025
+33;Grado;33026
+33;Grandas de Salime;33027
+33;Ibias;33028
+33;Illano;33029
+33;Illas;33030
+33;Langreo;33031
+33;Laviana;33032
+33;Lena;33033
+33;Llanera;33035
+33;Llanes;33036
+33;Mieres;33037
+33;Morcín;33038
+33;Muros de Nalón;33039
+33;Nava;33040
+33;Navia;33041
+33;Noreña;33042
+33;Onís;33043
+33;Oviedo;33044
+33;Parres;33045
+33;Peñamellera Alta;33046
+33;Peñamellera Baja;33047
+33;Pesoz;33048
+33;Piloña;33049
+33;Ponga;33050
+33;Pravia;33051
+33;Proaza;33052
+33;Quirós;33053
+33;Regueras, Las;33054
+33;Ribadedeva;33055
+33;Ribadesella;33056
+33;Ribera de Arriba;33057
+33;Riosa;33058
+33;Salas;33059
+33;San Martín de Oscos;33061
+33;San Martín del Rey Aurelio;33060
+33;San Tirso de Abres;33063
+33;Santa Eulalia de Oscos;33062
+33;Santo Adriano;33064
+33;Sariego;33065
+33;Siero;33066
+33;Sobrescobio;33067
+33;Somiedo;33068
+33;Soto del Barco;33069
+33;Tapia de Casariego;33070
+33;Taramundi;33071
+33;Teverga;33072
+33;Tineo;33073
+33;Valdés;33034
+33;Vegadeo;33074
+33;Villanueva de Oscos;33075
+33;Villaviciosa;33076
+33;Villayón;33077
+33;Yernes y Tameza;33078
+34;Abarca de Campos;34001
+34;Abia de las Torres;34003
+34;Aguilar de Campoo;34004
+34;Alar del Rey;34005
+34;Alba de Cerrato;34006
+34;Amayuelas de Arriba;34009
+34;Ampudia;34010
+34;Amusco;34011
+34;Antigüedad;34012
+34;Arconada;34015
+34;Astudillo;34017
+34;Autilla del Pino;34018
+34;Autillo de Campos;34019
+34;Ayuela;34020
+34;Baltanás;34022
+34;Baquerín de Campos;34024
+34;Bárcena de Campos;34025
+34;Barruelo de Santullán;34027
+34;Báscones de Ojeda;34028
+34;Becerril de Campos;34029
+34;Belmonte de Campos;34031
+34;Berzosilla;34032
+34;Boada de Campos;34033
+34;Boadilla de Rioseco;34035
+34;Boadilla del Camino;34034
+34;Brañosera;34036
+34;Buenavista de Valdavia;34037
+34;Bustillo de la Vega;34038
+34;Bustillo del Páramo de Carrión;34039
+34;Calahorra de Boedo;34041
+34;Calzada de los Molinos;34042
+34;Capillas;34045
+34;Cardeñosa de Volpejera;34046
+34;Carrión de los Condes;34047
+34;Castil de Vela;34048
+34;Castrejón de la Peña;34049
+34;Castrillo de Don Juan;34050
+34;Castrillo de Onielo;34051
+34;Castrillo de Villavega;34052
+34;Castromocho;34053
+34;Cervatos de la Cueza;34055
+34;Cervera de Pisuerga;34056
+34;Cevico de la Torre;34057
+34;Cevico Navero;34058
+34;Cisneros;34059
+34;Cobos de Cerrato;34060
+34;Collazos de Boedo;34061
+34;Congosto de Valdavia;34062
+34;Cordovilla la Real;34063
+34;Cubillas de Cerrato;34066
+34;Dehesa de Montejo;34067
+34;Dehesa de Romanos;34068
+34;Dueñas;34069
+34;Espinosa de Cerrato;34070
+34;Espinosa de Villagonzalo;34071
+34;Frechilla;34072
+34;Fresno del Río;34073
+34;Frómista;34074
+34;Fuentes de Nava;34076
+34;Fuentes de Valdepero;34077
+34;Grijota;34079
+34;Guardo;34080
+34;Guaza de Campos;34081
+34;Hérmedes de Cerrato;34082
+34;Herrera de Pisuerga;34083
+34;Herrera de Valdecañas;34084
+34;Hontoria de Cerrato;34086
+34;Hornillos de Cerrato;34087
+34;Husillos;34088
+34;Itero de la Vega;34089
+34;Lagartos;34091
+34;Lantadilla;34092
+34;Ledigos;34094
+34;Loma de Ucieza;34903
+34;Lomas;34096
+34;Magaz de Pisuerga;34098
+34;Manquillos;34099
+34;Mantinos;34100
+34;Marcilla de Campos;34101
+34;Mazariegos;34102
+34;Mazuecos de Valdeginate;34103
+34;Melgar de Yuso;34104
+34;Meneses de Campos;34106
+34;Micieces de Ojeda;34107
+34;Monzón de Campos;34108
+34;Moratinos;34109
+34;Mudá;34110
+34;Nogal de las Huertas;34112
+34;Olea de Boedo;34113
+34;Olmos de Ojeda;34114
+34;Osornillo;34116
+34;Osorno la Mayor;34901
+34;Palencia;34120
+34;Palenzuela;34121
+34;Páramo de Boedo;34122
+34;Paredes de Nava;34123
+34;Payo de Ojeda;34124
+34;Pedraza de Campos;34125
+34;Pedrosa de la Vega;34126
+34;Perales;34127
+34;Pernía, La;34904
+34;Pino del Río;34129
+34;Piña de Campos;34130
+34;Población de Arroyo;34131
+34;Población de Campos;34132
+34;Población de Cerrato;34133
+34;Polentinos;34134
+34;Pomar de Valdivia;34135
+34;Poza de la Vega;34136
+34;Pozo de Urama;34137
+34;Prádanos de Ojeda;34139
+34;Puebla de Valdavia, La;34140
+34;Quintana del Puente;34141
+34;Quintanilla de Onsoña;34143
+34;Reinoso de Cerrato;34146
+34;Renedo de la Vega;34147
+34;Requena de Campos;34149
+34;Respenda de la Peña;34151
+34;Revenga de Campos;34152
+34;Revilla de Collazos;34154
+34;Ribas de Campos;34155
+34;Riberos de la Cueza;34156
+34;Saldaña;34157
+34;Salinas de Pisuerga;34158
+34;San Cebrián de Campos;34159
+34;San Cebrián de Mudá;34160
+34;San Cristóbal de Boedo;34161
+34;San Mamés de Campos;34163
+34;San Román de la Cuba;34165
+34;Santa Cecilia del Alcor;34167
+34;Santa Cruz de Boedo;34168
+34;Santervás de la Vega;34169
+34;Santibáñez de Ecla;34170
+34;Santibáñez de la Peña;34171
+34;Santoyo;34174
+34;Serna, La;34175
+34;Soto de Cerrato;34177
+34;Sotobañado y Priorato;34176
+34;Tabanera de Cerrato;34178
+34;Tabanera de Valdavia;34179
+34;Támara de Campos;34180
+34;Tariego de Cerrato;34181
+34;Torquemada;34182
+34;Torremormojón;34184
+34;Triollo;34185
+34;Valbuena de Pisuerga;34186
+34;Valdeolmillos;34189
+34;Valderrábano;34190
+34;Valde-Ucieza;34192
+34;Valle de Cerrato;34196
+34;Valle del Retortillo;34902
+34;Velilla del Río Carrión;34199
+34;Venta de Baños;34023
+34;Vertavillo;34201
+34;Vid de Ojeda, La;34093
+34;Villabasta de Valdavia;34202
+34;Villacidaler;34204
+34;Villaconancio;34205
+34;Villada;34206
+34;Villaeles de Valdavia;34208
+34;Villahán;34210
+34;Villaherreros;34211
+34;Villalaco;34213
+34;Villalba de Guardo;34214
+34;Villalcázar de Sirga;34215
+34;Villalcón;34216
+34;Villalobón;34217
+34;Villaluenga de la Vega;34218
+34;Villamartín de Campos;34220
+34;Villamediana;34221
+34;Villameriel;34222
+34;Villamoronta;34223
+34;Villamuera de la Cueza;34224
+34;Villamuriel de Cerrato;34225
+34;Villanueva del Rebollar;34227
+34;Villanuño de Valdavia;34228
+34;Villaprovedo;34229
+34;Villarmentero de Campos;34230
+34;Villarrabé;34231
+34;Villarramiel;34232
+34;Villasarracino;34233
+34;Villasila de Valdavia;34234
+34;Villaturde;34236
+34;Villaumbrales;34237
+34;Villaviudas;34238
+34;Villerías de Campos;34240
+34;Villodre;34241
+34;Villodrigo;34242
+34;Villoldo;34243
+34;Villota del Páramo;34245
+34;Villovieco;34246
+35;Agaete;35001
+35;Agüimes;35002
+35;Aldea de San Nicolás, La;35020
+35;Antigua;35003
+35;Arrecife;35004
+35;Artenara;35005
+35;Arucas;35006
+35;Betancuria;35007
+35;Firgas;35008
+35;Gáldar;35009
+35;Haría;35010
+35;Ingenio;35011
+35;Mogán;35012
+35;Moya;35013
+35;Oliva, La;35014
+35;Pájara;35015
+35;Palmas de Gran Canaria, Las;35016
+35;Puerto del Rosario;35017
+35;San Bartolomé;35018
+35;San Bartolomé de Tirajana;35019
+35;Santa Brígida;35021
+35;Santa Lucía de Tirajana;35022
+35;Santa María de Guía de Gran Canaria;35023
+35;Teguise;35024
+35;Tejeda;35025
+35;Telde;35026
+35;Teror;35027
+35;Tías;35028
+35;Tinajo;35029
+35;Tuineje;35030
+35;Valleseco;35032
+35;Valsequillo de Gran Canaria;35031
+35;Vega de San Mateo;35033
+35;Yaiza;35034
+36;Agolada;36020
+36;Arbo;36001
+36;Baiona;36003
+36;Barro;36002
+36;Bueu;36004
+36;Caldas de Reis;36005
+36;Cambados;36006
+36;Campo Lameiro;36007
+36;Cangas;36008
+36;Cañiza, A;36009
+36;Catoira;36010
+36;Cerdedo-Cotobade;36902
+36;Covelo;36013
+36;Crecente;36014
+36;Cuntis;36015
+36;Dozón;36016
+36;Estrada, A;36017
+36;Forcarei;36018
+36;Fornelos de Montes;36019
+36;Gondomar;36021
+36;Grove, O;36022
+36;Guarda, A;36023
+36;Illa de Arousa, A;36901
+36;Lalín;36024
+36;Lama, A;36025
+36;Marín;36026
+36;Meaño;36027
+36;Meis;36028
+36;Moaña;36029
+36;Mondariz;36030
+36;Mondariz-Balneario;36031
+36;Moraña;36032
+36;Mos;36033
+36;Neves, As;36034
+36;Nigrán;36035
+36;Oia;36036
+36;Pazos de Borbén;36037
+36;Poio;36041
+36;Ponte Caldelas;36043
+36;Ponteareas;36042
+36;Pontecesures;36044
+36;Pontevedra;36038
+36;Porriño, O;36039
+36;Portas;36040
+36;Redondela;36045
+36;Ribadumia;36046
+36;Rodeiro;36047
+36;Rosal, O;36048
+36;Salceda de Caselas;36049
+36;Salvaterra de Miño;36050
+36;Sanxenxo;36051
+36;Silleda;36052
+36;Soutomaior;36053
+36;Tomiño;36054
+36;Tui;36055
+36;Valga;36056
+36;Vigo;36057
+36;Vila de Cruces;36059
+36;Vilaboa;36058
+36;Vilagarcía de Arousa;36060
+36;Vilanova de Arousa;36061
+37;Abusejo;37001
+37;Agallas;37002
+37;Ahigal de los Aceiteros;37003
+37;Ahigal de Villarino;37004
+37;Alameda de Gardón, La;37005
+37;Alamedilla, La;37006
+37;Alaraz;37007
+37;Alba de Tormes;37008
+37;Alba de Yeltes;37009
+37;Alberca, La;37010
+37;Alberguería de Argañán, La;37011
+37;Alconada;37012
+37;Aldea del Obispo;37015
+37;Aldeacipreste;37013
+37;Aldeadávila de la Ribera;37014
+37;Aldealengua;37016
+37;Aldeanueva de Figueroa;37017
+37;Aldeanueva de la Sierra;37018
+37;Aldearrodrigo;37019
+37;Aldearrubia;37020
+37;Aldeaseca de Alba;37021
+37;Aldeaseca de la Frontera;37022
+37;Aldeatejada;37023
+37;Aldeavieja de Tormes;37024
+37;Aldehuela de la Bóveda;37025
+37;Aldehuela de Yeltes;37026
+37;Almenara de Tormes;37027
+37;Almendra;37028
+37;Anaya de Alba;37029
+37;Añover de Tormes;37030
+37;Arabayona de Mógica;37031
+37;Arapiles;37032
+37;Arcediano;37033
+37;Arco, El;37034
+37;Armenteros;37035
+37;Atalaya, La;37037
+37;Babilafuente;37038
+37;Bañobárez;37039
+37;Barbadillo;37040
+37;Barbalos;37041
+37;Barceo;37042
+37;Barruecopardo;37044
+37;Bastida, La;37045
+37;Béjar;37046
+37;Beleña;37047
+37;Bermellar;37049
+37;Berrocal de Huebra;37050
+37;Berrocal de Salvatierra;37051
+37;Boada;37052
+37;Bodón, El;37054
+37;Bogajo;37055
+37;Bouza, La;37056
+37;Bóveda del Río Almar;37057
+37;Brincones;37058
+37;Buenamadre;37059
+37;Buenavista;37060
+37;Cabaco, El;37061
+37;Cabeza de Béjar, La;37063
+37;Cabeza del Caballo;37065
+37;Cabezabellosa de la Calzada;37062
+37;Cabrerizos;37067
+37;Cabrillas;37068
+37;Calvarrasa de Abajo;37069
+37;Calvarrasa de Arriba;37070
+37;Calzada de Béjar, La;37071
+37;Calzada de Don Diego;37072
+37;Calzada de Valdunciel;37073
+37;Campillo de Azaba;37074
+37;Campo de Peñaranda, El;37077
+37;Candelario;37078
+37;Canillas de Abajo;37079
+37;Cantagallo;37080
+37;Cantalapiedra;37081
+37;Cantalpino;37082
+37;Cantaracillo;37083
+37;Carbajosa de la Sagrada;37085
+37;Carpio de Azaba;37086
+37;Carrascal de Barregas;37087
+37;Carrascal del Obispo;37088
+37;Casafranca;37089
+37;Casas del Conde, Las;37090
+37;Casillas de Flores;37091
+37;Castellanos de Moriscos;37092
+37;Castellanos de Villiquera;37185
+37;Castillejo de Martín Viejo;37096
+37;Castraz;37097
+37;Cepeda;37098
+37;Cereceda de la Sierra;37099
+37;Cerezal de Peñahorcada;37100
+37;Cerralbo;37101
+37;Cerro, El;37102
+37;Cespedosa de Tormes;37103
+37;Chagarcía Medianero;37114
+37;Cilleros de la Bastida;37104
+37;Cipérez;37106
+37;Ciudad Rodrigo;37107
+37;Coca de Alba;37108
+37;Colmenar de Montemayor;37109
+37;Cordovilla;37110
+37;Cristóbal;37112
+37;Cubo de Don Sancho, El;37113
+37;Dios le Guarde;37115
+37;Doñinos de Ledesma;37116
+37;Doñinos de Salamanca;37117
+37;Éjeme;37118
+37;Encina de San Silvestre;37120
+37;Encina, La;37119
+37;Encinas de Abajo;37121
+37;Encinas de Arriba;37122
+37;Encinasola de los Comendadores;37123
+37;Endrinal;37124
+37;Escurial de la Sierra;37125
+37;Espadaña;37126
+37;Espeja;37127
+37;Espino de la Orbada;37128
+37;Florida de Liébana;37129
+37;Forfoleda;37130
+37;Frades de la Sierra;37131
+37;Fregeneda, La;37132
+37;Fresnedoso;37133
+37;Fresno Alhándiga;37134
+37;Fuente de San Esteban, La;37135
+37;Fuenteguinaldo;37136
+37;Fuenteliante;37137
+37;Fuenterroble de Salvatierra;37138
+37;Fuentes de Béjar;37139
+37;Fuentes de Oñoro;37140
+37;Gajates;37141
+37;Galindo y Perahuy;37142
+37;Galinduste;37143
+37;Galisancho;37144
+37;Gallegos de Argañán;37145
+37;Gallegos de Solmirón;37146
+37;Garcibuey;37147
+37;Garcihernández;37148
+37;Garcirrey;37149
+37;Gejuelo del Barro;37150
+37;Golpejas;37151
+37;Gomecello;37152
+37;Guadramiro;37154
+37;Guijo de Ávila;37155
+37;Guijuelo;37156
+37;Herguijuela de Ciudad Rodrigo;37157
+37;Herguijuela de la Sierra;37158
+37;Herguijuela del Campo;37159
+37;Hinojosa de Duero;37160
+37;Horcajo de Montemayor;37161
+37;Horcajo Medianero;37162
+37;Hoya, La;37163
+37;Huerta;37164
+37;Iruelos;37165
+37;Ituero de Azaba;37166
+37;Juzbado;37167
+37;Lagunilla;37168
+37;Larrodrigo;37169
+37;Ledesma;37170
+37;Ledrada;37171
+37;Linares de Riofrío;37172
+37;Lumbrales;37173
+37;Machacón;37175
+37;Macotera;37174
+37;Madroñal;37176
+37;Maíllo, El;37177
+37;Malpartida;37178
+37;Mancera de Abajo;37179
+37;Manzano, El;37180
+37;Martiago;37181
+37;Martín de Yeltes;37183
+37;Martinamor;37182
+37;Masueco;37184
+37;Mata de Ledesma, La;37186
+37;Matilla de los Caños del Río;37187
+37;Maya, La;37188
+37;Membribe de la Sierra;37189
+37;Mieza;37190
+37;Milano, El;37191
+37;Miranda de Azán;37192
+37;Miranda del Castañar;37193
+37;Mogarraz;37194
+37;Molinillo;37195
+37;Monforte de la Sierra;37196
+37;Monleón;37197
+37;Monleras;37198
+37;Monsagro;37199
+37;Montejo;37200
+37;Montemayor del Río;37201
+37;Monterrubio de Armuña;37202
+37;Monterrubio de la Sierra;37203
+37;Morasverdes;37204
+37;Morille;37205
+37;Moríñigo;37206
+37;Moriscos;37207
+37;Moronta;37208
+37;Mozárbez;37209
+37;Narros de Matalayegua;37211
+37;Nava de Béjar;37213
+37;Nava de Francia;37214
+37;Nava de Sotrobal;37215
+37;Navacarros;37212
+37;Navales;37216
+37;Navalmoral de Béjar;37217
+37;Navamorales;37218
+37;Navarredonda de la Rinconada;37219
+37;Navasfrías;37221
+37;Negrilla de Palencia;37222
+37;Olmedo de Camaces;37223
+37;Orbada, La;37224
+37;Pajares de la Laguna;37225
+37;Palacios del Arzobispo;37226
+37;Palaciosrubios;37228
+37;Palencia de Negrilla;37229
+37;Parada de Arriba;37230
+37;Parada de Rubiales;37231
+37;Paradinas de San Juan;37232
+37;Pastores;37233
+37;Payo, El;37234
+37;Pedraza de Alba;37235
+37;Pedrosillo de Alba;37236
+37;Pedrosillo de los Aires;37237
+37;Pedrosillo el Ralo;37238
+37;Pedroso de la Armuña, El;37239
+37;Pelabravo;37240
+37;Pelarrodríguez;37241
+37;Pelayos;37242
+37;Peña, La;37243
+37;Peñacaballera;37244
+37;Peñaparda;37245
+37;Peñaranda de Bracamonte;37246
+37;Peñarandilla;37247
+37;Peralejos de Abajo;37248
+37;Peralejos de Arriba;37249
+37;Pereña de la Ribera;37250
+37;Peromingo;37251
+37;Pinedas;37252
+37;Pino de Tormes, El;37253
+37;Pitiegua;37254
+37;Pizarral;37255
+37;Poveda de las Cintas;37256
+37;Pozos de Hinojo;37257
+37;Puebla de Azaba;37258
+37;Puebla de San Medel;37259
+37;Puebla de Yeltes;37260
+37;Puente del Congosto;37261
+37;Puertas;37262
+37;Puerto de Béjar;37263
+37;Puerto Seguro;37264
+37;Rágama;37265
+37;Redonda, La;37266
+37;Retortillo;37267
+37;Rinconada de la Sierra, La;37268
+37;Robleda;37269
+37;Robliza de Cojos;37270
+37;Rollán;37271
+37;Saelices el Chico;37272
+37;Sagrada, La;37273
+37;Sahugo, El;37303
+37;Salamanca;37274
+37;Saldeana;37275
+37;Salmoral;37276
+37;Salvatierra de Tormes;37277
+37;San Cristóbal de la Cuesta;37278
+37;San Esteban de la Sierra;37284
+37;San Felices de los Gallegos;37285
+37;San Martín del Castañar;37286
+37;San Miguel de Valero;37287
+37;San Miguel del Robledo;37036
+37;San Morales;37288
+37;San Muñoz;37289
+37;San Pedro de Rozados;37291
+37;San Pedro del Valle;37290
+37;San Pelayo de Guareña;37292
+37;Sanchón de la Ribera;37280
+37;Sanchón de la Sagrada;37281
+37;Sanchotello;37282
+37;Sancti-Spíritus;37279
+37;Sando;37283
+37;Santa María de Sando;37293
+37;Santa Marta de Tormes;37294
+37;Santiago de la Puebla;37296
+37;Santibáñez de Béjar;37297
+37;Santibáñez de la Sierra;37298
+37;Santiz;37299
+37;Santos, Los;37300
+37;Sardón de los Frailes;37301
+37;Saucelle;37302
+37;Sepulcro-Hilario;37304
+37;Sequeros;37305
+37;Serradilla del Arroyo;37306
+37;Serradilla del Llano;37307
+37;Sierpe, La;37309
+37;Sieteiglesias de Tormes;37310
+37;Sobradillo;37311
+37;Sorihuela;37312
+37;Sotoserrano;37313
+37;Tabera de Abajo;37314
+37;Tala, La;37315
+37;Tamames;37316
+37;Tarazona de Guareña;37317
+37;Tardáguila;37318
+37;Tejado, El;37319
+37;Tejeda y Segoyuela;37320
+37;Tenebrón;37321
+37;Terradillos;37322
+37;Topas;37323
+37;Tordillos;37324
+37;Tornadizo, El;37325
+37;Torresmenudas;37327
+37;Trabanca;37328
+37;Tremedal de Tormes;37329
+37;Valdecarros;37330
+37;Valdefuentes de Sangusín;37331
+37;Valdehijaderos;37332
+37;Valdelacasa;37333
+37;Valdelageve;37334
+37;Valdelosa;37335
+37;Valdemierque;37336
+37;Valderrodrigo;37337
+37;Valdunciel;37338
+37;Valero;37339
+37;Vallejera de Riofrío;37343
+37;Valsalabroso;37340
+37;Valverde de Valdelacasa;37341
+37;Valverdón;37342
+37;Vecinos;37344
+37;Vega de Tirados;37345
+37;Veguillas, Las;37346
+37;Vellés, La;37347
+37;Ventosa del Río Almar;37348
+37;Vídola, La;37349
+37;Villaflores;37351
+37;Villagonzalo de Tormes;37352
+37;Villalba de los Llanos;37353
+37;Villamayor;37354
+37;Villanueva del Conde;37355
+37;Villar de Argañán;37356
+37;Villar de Ciervo;37357
+37;Villar de Gallimazo;37358
+37;Villar de la Yegua;37359
+37;Villar de Peralonso;37360
+37;Villar de Samaniego;37361
+37;Villares de la Reina;37362
+37;Villares de Yeltes;37363
+37;Villarino de los Aires;37364
+37;Villarmayor;37365
+37;Villarmuerto;37366
+37;Villasbuenas;37367
+37;Villasdardo;37368
+37;Villaseco de los Gamitos;37369
+37;Villaseco de los Reyes;37370
+37;Villasrubias;37371
+37;Villaverde de Guareña;37372
+37;Villavieja de Yeltes;37373
+37;Villoria;37374
+37;Villoruela;37375
+37;Vilvestre;37350
+37;Vitigudino;37376
+37;Yecla de Yeltes;37377
+37;Zamarra;37378
+37;Zamayón;37379
+37;Zarapicos;37380
+37;Zarza de Pumareda, La;37381
+37;Zorita de la Frontera;37382
+38;Adeje;38001
+38;Agulo;38002
+38;Alajeró;38003
+38;Arafo;38004
+38;Arico;38005
+38;Arona;38006
+38;Barlovento;38007
+38;Breña Alta;38008
+38;Breña Baja;38009
+38;Buenavista del Norte;38010
+38;Candelaria;38011
+38;Fasnia;38012
+38;Frontera;38013
+38;Fuencaliente de la Palma;38014
+38;Garachico;38015
+38;Garafía;38016
+38;Granadilla de Abona;38017
+38;Guancha, La;38018
+38;Guía de Isora;38019
+38;Güímar;38020
+38;Hermigua;38021
+38;Icod de los Vinos;38022
+38;Llanos de Aridane, Los;38024
+38;Matanza de Acentejo, La;38025
+38;Orotava, La;38026
+38;Paso, El;38027
+38;Pinar de El Hierro, El;38901
+38;Puerto de la Cruz;38028
+38;Puntagorda;38029
+38;Puntallana;38030
+38;Realejos, Los;38031
+38;Rosario, El;38032
+38;San Andrés y Sauces;38033
+38;San Cristóbal de La Laguna;38023
+38;San Juan de la Rambla;38034
+38;San Miguel de Abona;38035
+38;San Sebastián de la Gomera;38036
+38;Santa Cruz de la Palma;38037
+38;Santa Cruz de Tenerife;38038
+38;Santa Úrsula;38039
+38;Santiago del Teide;38040
+38;Sauzal, El;38041
+38;Silos, Los;38042
+38;Tacoronte;38043
+38;Tanque, El;38044
+38;Tazacorte;38045
+38;Tegueste;38046
+38;Tijarafe;38047
+38;Valle Gran Rey;38049
+38;Vallehermoso;38050
+38;Valverde;38048
+38;Victoria de Acentejo, La;38051
+38;Vilaflor de Chasna;38052
+38;Villa de Mazo;38053
+39;Alfoz de Lloredo;39001
+39;Ampuero;39002
+39;Anievas;39003
+39;Arenas de Iguña;39004
+39;Argoños;39005
+39;Arnuero;39006
+39;Arredondo;39007
+39;Astillero, El;39008
+39;Bárcena de Cicero;39009
+39;Bárcena de Pie de Concha;39010
+39;Bareyo;39011
+39;Cabezón de la Sal;39012
+39;Cabezón de Liébana;39013
+39;Cabuérniga;39014
+39;Camaleño;39015
+39;Camargo;39016
+39;Campoo de Enmedio;39027
+39;Campoo de Yuso;39017
+39;Cartes;39018
+39;Castañeda;39019
+39;Castro-Urdiales;39020
+39;Cieza;39021
+39;Cillorigo de Liébana;39022
+39;Colindres;39023
+39;Comillas;39024
+39;Corrales de Buelna, Los;39025
+39;Corvera de Toranzo;39026
+39;Entrambasaguas;39028
+39;Escalante;39029
+39;Guriezo;39030
+39;Hazas de Cesto;39031
+39;Hermandad de Campoo de Suso;39032
+39;Herrerías;39033
+39;Lamasón;39034
+39;Laredo;39035
+39;Liendo;39036
+39;Liérganes;39037
+39;Limpias;39038
+39;Luena;39039
+39;Marina de Cudeyo;39040
+39;Mazcuerras;39041
+39;Medio Cudeyo;39042
+39;Meruelo;39043
+39;Miengo;39044
+39;Miera;39045
+39;Molledo;39046
+39;Noja;39047
+39;Penagos;39048
+39;Peñarrubia;39049
+39;Pesaguero;39050
+39;Pesquera;39051
+39;Piélagos;39052
+39;Polaciones;39053
+39;Polanco;39054
+39;Potes;39055
+39;Puente Viesgo;39056
+39;Ramales de la Victoria;39057
+39;Rasines;39058
+39;Reinosa;39059
+39;Reocín;39060
+39;Ribamontán al Mar;39061
+39;Ribamontán al Monte;39062
+39;Rionansa;39063
+39;Riotuerto;39064
+39;Rozas de Valdearroyo, Las;39065
+39;Ruente;39066
+39;Ruesga;39067
+39;Ruiloba;39068
+39;San Felices de Buelna;39069
+39;San Miguel de Aguayo;39070
+39;San Pedro del Romeral;39071
+39;San Roque de Riomiera;39072
+39;San Vicente de la Barquera;39080
+39;Santa Cruz de Bezana;39073
+39;Santa María de Cayón;39074
+39;Santander;39075
+39;Santillana del Mar;39076
+39;Santiurde de Reinosa;39077
+39;Santiurde de Toranzo;39078
+39;Santoña;39079
+39;Saro;39081
+39;Selaya;39082
+39;Soba;39083
+39;Solórzano;39084
+39;Suances;39085
+39;Tojos, Los;39086
+39;Torrelavega;39087
+39;Tresviso;39088
+39;Tudanca;39089
+39;Udías;39090
+39;Val de San Vicente;39095
+39;Valdáliga;39091
+39;Valdeolea;39092
+39;Valdeprado del Río;39093
+39;Valderredible;39094
+39;Valle de Villaverde;39101
+39;Vega de Liébana;39096
+39;Vega de Pas;39097
+39;Villacarriedo;39098
+39;Villaescusa;39099
+39;Villafufre;39100
+39;Voto;39102
+40;Abades;40001
+40;Adrada de Pirón;40002
+40;Adrados;40003
+40;Aguilafuente;40004
+40;Alconada de Maderuelo;40005
+40;Aldea Real;40012
+40;Aldealcorvo;40006
+40;Aldealengua de Pedraza;40007
+40;Aldealengua de Santa María;40008
+40;Aldeanueva de la Serrezuela;40009
+40;Aldeanueva del Codonal;40010
+40;Aldeasoña;40013
+40;Aldehorno;40014
+40;Aldehuela del Codonal;40015
+40;Aldeonte;40016
+40;Anaya;40017
+40;Añe;40018
+40;Arahuetes;40019
+40;Arcones;40020
+40;Arevalillo de Cega;40021
+40;Armuña;40022
+40;Ayllón;40024
+40;Barbolla;40025
+40;Basardilla;40026
+40;Bercial;40028
+40;Bercimuel;40029
+40;Bernardos;40030
+40;Bernuy de Porreros;40031
+40;Boceguillas;40032
+40;Brieva;40033
+40;Caballar;40034
+40;Cabañas de Polendos;40035
+40;Cabezuela;40036
+40;Calabazas de Fuentidueña;40037
+40;Campo de San Pedro;40039
+40;Cantalejo;40040
+40;Cantimpalos;40041
+40;Carabias;40161
+40;Carbonero el Mayor;40043
+40;Carrascal del Río;40044
+40;Casla;40045
+40;Castillejo de Mesleón;40046
+40;Castro de Fuentidueña;40047
+40;Castrojimeno;40048
+40;Castroserna de Abajo;40049
+40;Castroserracín;40051
+40;Cedillo de la Torre;40052
+40;Cerezo de Abajo;40053
+40;Cerezo de Arriba;40054
+40;Chañe;40065
+40;Cilleruelo de San Mamés;40055
+40;Cobos de Fuentidueña;40056
+40;Coca;40057
+40;Codorniz;40058
+40;Collado Hermoso;40059
+40;Condado de Castilnovo;40060
+40;Corral de Ayllón;40061
+40;Cozuelos de Fuentidueña;40902
+40;Cubillo;40062
+40;Cuéllar;40063
+40;Cuevas de Provanco;40905
+40;Domingo García;40068
+40;Donhierro;40069
+40;Duruelo;40070
+40;Encinas;40071
+40;Encinillas;40072
+40;Escalona del Prado;40073
+40;Escarabajosa de Cabezas;40074
+40;Escobar de Polendos;40075
+40;Espinar, El;40076
+40;Espirdo;40077
+40;Fresneda de Cuéllar;40078
+40;Fresno de Cantespino;40079
+40;Fresno de la Fuente;40080
+40;Frumales;40081
+40;Fuente de Santa Cruz;40082
+40;Fuente el Olmo de Fuentidueña;40083
+40;Fuente el Olmo de Íscar;40084
+40;Fuentepelayo;40086
+40;Fuentepiñel;40087
+40;Fuenterrebollo;40088
+40;Fuentesaúco de Fuentidueña;40089
+40;Fuentesoto;40091
+40;Fuentidueña;40092
+40;Gallegos;40093
+40;Garcillán;40094
+40;Gomezserracín;40095
+40;Grajera;40097
+40;Honrubia de la Cuesta;40099
+40;Hontalbilla;40100
+40;Hontanares de Eresma;40101
+40;Huertos, Los;40103
+40;Ituero y Lama;40104
+40;Juarros de Riomoros;40105
+40;Juarros de Voltoya;40106
+40;Labajos;40107
+40;Laguna de Contreras;40108
+40;Languilla;40109
+40;Lastras de Cuéllar;40110
+40;Lastras del Pozo;40111
+40;Lastrilla, La;40112
+40;Losa, La;40113
+40;Maderuelo;40115
+40;Marazoleja;40903
+40;Marazuela;40118
+40;Martín Miguel;40119
+40;Martín Muñoz de la Dehesa;40120
+40;Martín Muñoz de las Posadas;40121
+40;Marugán;40122
+40;Mata de Cuéllar;40124
+40;Matabuena;40123
+40;Matilla, La;40125
+40;Melque de Cercos;40126
+40;Membibre de la Hoz;40127
+40;Migueláñez;40128
+40;Montejo de Arévalo;40129
+40;Montejo de la Vega de la Serrezuela;40130
+40;Monterrubio;40131
+40;Moral de Hornuez;40132
+40;Mozoncillo;40134
+40;Muñopedro;40135
+40;Muñoveros;40136
+40;Nava de la Asunción;40138
+40;Navafría;40139
+40;Navalilla;40140
+40;Navalmanzano;40141
+40;Navares de Ayuso;40142
+40;Navares de Enmedio;40143
+40;Navares de las Cuevas;40144
+40;Navas de Oro;40145
+40;Navas de Riofrío;40904
+40;Navas de San Antonio;40146
+40;Nieva;40148
+40;Olombrada;40149
+40;Orejana;40150
+40;Ortigosa de Pestaño;40151
+40;Ortigosa del Monte;40901
+40;Otero de Herreros;40152
+40;Pajarejos;40154
+40;Palazuelos de Eresma;40155
+40;Pedraza;40156
+40;Pelayos del Arroyo;40157
+40;Perosillo;40158
+40;Pinarejos;40159
+40;Pinarnegrillo;40160
+40;Prádena;40162
+40;Puebla de Pedraza;40163
+40;Rapariegos;40164
+40;Real Sitio de San Ildefonso;40181
+40;Rebollo;40165
+40;Remondo;40166
+40;Riaguas de San Bartolomé;40168
+40;Riaza;40170
+40;Ribota;40171
+40;Riofrío de Riaza;40172
+40;Roda de Eresma;40173
+40;Sacramenia;40174
+40;Samboal;40176
+40;San Cristóbal de Cuéllar;40177
+40;San Cristóbal de la Vega;40178
+40;San Cristóbal de Segovia;40906
+40;San Martín y Mudrián;40182
+40;San Miguel de Bernuy;40183
+40;San Pedro de Gaíllos;40184
+40;Sanchonuño;40179
+40;Sangarcía;40180
+40;Santa María la Real de Nieva;40185
+40;Santa Marta del Cerro;40186
+40;Santiuste de Pedraza;40188
+40;Santiuste de San Juan Bautista;40189
+40;Santo Domingo de Pirón;40190
+40;Santo Tomé del Puerto;40191
+40;Sauquillo de Cabezas;40192
+40;Sebúlcor;40193
+40;Segovia;40194
+40;Sepúlveda;40195
+40;Sequera de Fresno;40196
+40;Sotillo;40198
+40;Sotosalbos;40199
+40;Tabanera la Luenga;40200
+40;Tolocirio;40201
+40;Torre Val de San Pedro;40206
+40;Torreadrada;40202
+40;Torrecaballeros;40203
+40;Torrecilla del Pinar;40204
+40;Torreiglesias;40205
+40;Trescasas;40207
+40;Turégano;40208
+40;Urueñas;40210
+40;Valdeprados;40211
+40;Valdevacas de Montejo;40212
+40;Valdevacas y Guijar;40213
+40;Valle de Tabladillo;40218
+40;Vallelado;40219
+40;Valleruela de Pedraza;40220
+40;Valleruela de Sepúlveda;40221
+40;Valseca;40214
+40;Valtiendas;40215
+40;Valverde del Majano;40216
+40;Veganzones;40222
+40;Vegas de Matute;40223
+40;Ventosilla y Tejadilla;40224
+40;Villacastín;40225
+40;Villaverde de Íscar;40228
+40;Villaverde de Montejo;40229
+40;Villeguillo;40230
+40;Yanguas de Eresma;40231
+40;Zarzuela del Monte;40233
+40;Zarzuela del Pinar;40234
+41;Aguadulce;41001
+41;Alanís;41002
+41;Albaida del Aljarafe;41003
+41;Alcalá de Guadaíra;41004
+41;Alcalá del Río;41005
+41;Alcolea del Río;41006
+41;Algaba, La;41007
+41;Algámitas;41008
+41;Almadén de la Plata;41009
+41;Almensilla;41010
+41;Arahal;41011
+41;Aznalcázar;41012
+41;Aznalcóllar;41013
+41;Badolatosa;41014
+41;Benacazón;41015
+41;Bollullos de la Mitación;41016
+41;Bormujos;41017
+41;Brenes;41018
+41;Burguillos;41019
+41;Cabezas de San Juan, Las;41020
+41;Camas;41021
+41;Campana, La;41022
+41;Cantillana;41023
+41;Cañada Rosal;41901
+41;Carmona;41024
+41;Carrión de los Céspedes;41025
+41;Casariche;41026
+41;Castilblanco de los Arroyos;41027
+41;Castilleja de Guzmán;41028
+41;Castilleja de la Cuesta;41029
+41;Castilleja del Campo;41030
+41;Castillo de las Guardas, El;41031
+41;Cazalla de la Sierra;41032
+41;Constantina;41033
+41;Coria del Río;41034
+41;Coripe;41035
+41;Coronil, El;41036
+41;Corrales, Los;41037
+41;Cuervo de Sevilla, El;41903
+41;Dos Hermanas;41038
+41;Écija;41039
+41;Espartinas;41040
+41;Estepa;41041
+41;Fuentes de Andalucía;41042
+41;Garrobo, El;41043
+41;Gelves;41044
+41;Gerena;41045
+41;Gilena;41046
+41;Gines;41047
+41;Guadalcanal;41048
+41;Guillena;41049
+41;Herrera;41050
+41;Huévar del Aljarafe;41051
+41;Isla Mayor;41902
+41;Lantejuela;41052
+41;Lebrija;41053
+41;Lora de Estepa;41054
+41;Lora del Río;41055
+41;Luisiana, La;41056
+41;Madroño, El;41057
+41;Mairena del Alcor;41058
+41;Mairena del Aljarafe;41059
+41;Marchena;41060
+41;Marinaleda;41061
+41;Martín de la Jara;41062
+41;Molares, Los;41063
+41;Montellano;41064
+41;Morón de la Frontera;41065
+41;Navas de la Concepción, Las;41066
+41;Olivares;41067
+41;Osuna;41068
+41;Palacios y Villafranca, Los;41069
+41;Palmar de Troya, El;41904
+41;Palomares del Río;41070
+41;Paradas;41071
+41;Pedrera;41072
+41;Pedroso, El;41073
+41;Peñaflor;41074
+41;Pilas;41075
+41;Pruna;41076
+41;Puebla de Cazalla, La;41077
+41;Puebla de los Infantes, La;41078
+41;Puebla del Río, La;41079
+41;Real de la Jara, El;41080
+41;Rinconada, La;41081
+41;Roda de Andalucía, La;41082
+41;Ronquillo, El;41083
+41;Rubio, El;41084
+41;Salteras;41085
+41;San Juan de Aznalfarache;41086
+41;San Nicolás del Puerto;41088
+41;Sanlúcar la Mayor;41087
+41;Santiponce;41089
+41;Saucejo, El;41090
+41;Sevilla;41091
+41;Tocina;41092
+41;Tomares;41093
+41;Umbrete;41094
+41;Utrera;41095
+41;Valencina de la Concepción;41096
+41;Villamanrique de la Condesa;41097
+41;Villanueva de San Juan;41100
+41;Villanueva del Ariscal;41098
+41;Villanueva del Río y Minas;41099
+41;Villaverde del Río;41101
+41;Viso del Alcor, El;41102
+42;Abejar;42001
+42;Adradas;42003
+42;Ágreda;42004
+42;Alconaba;42006
+42;Alcubilla de Avellaneda;42007
+42;Alcubilla de las Peñas;42008
+42;Aldealafuente;42009
+42;Aldealices;42010
+42;Aldealpozo;42011
+42;Aldealseñor;42012
+42;Aldehuela de Periáñez;42013
+42;Aldehuelas, Las;42014
+42;Alentisque;42015
+42;Aliud;42016
+42;Almajano;42017
+42;Almaluez;42018
+42;Almarza;42019
+42;Almazán;42020
+42;Almazul;42021
+42;Almenar de Soria;42022
+42;Alpanseque;42023
+42;Arancón;42024
+42;Arcos de Jalón;42025
+42;Arenillas;42026
+42;Arévalo de la Sierra;42027
+42;Ausejo de la Sierra;42028
+42;Baraona;42029
+42;Barca;42030
+42;Barcones;42031
+42;Bayubas de Abajo;42032
+42;Bayubas de Arriba;42033
+42;Beratón;42034
+42;Berlanga de Duero;42035
+42;Blacos;42036
+42;Bliecos;42037
+42;Borjabad;42038
+42;Borobia;42039
+42;Buberos;42041
+42;Buitrago;42042
+42;Burgo de Osma-Ciudad de Osma;42043
+42;Cabrejas del Campo;42044
+42;Cabrejas del Pinar;42045
+42;Calatañazor;42046
+42;Caltojar;42048
+42;Candilichera;42049
+42;Cañamaque;42050
+42;Carabantes;42051
+42;Caracena;42052
+42;Carrascosa de Abajo;42053
+42;Carrascosa de la Sierra;42054
+42;Casarejos;42055
+42;Castilfrío de la Sierra;42056
+42;Castillejo de Robledo;42058
+42;Castilruiz;42057
+42;Centenera de Andaluz;42059
+42;Cerbón;42060
+42;Cidones;42061
+42;Cigudosa;42062
+42;Cihuela;42063
+42;Ciria;42064
+42;Cirujales del Río;42065
+42;Coscurita;42068
+42;Covaleda;42069
+42;Cubilla;42070
+42;Cubo de la Solana;42071
+42;Cueva de Ágreda;42073
+42;Dévanos;42075
+42;Deza;42076
+42;Duruelo de la Sierra;42078
+42;Escobosa de Almazán;42079
+42;Espeja de San Marcelino;42080
+42;Espejón;42081
+42;Estepa de San Juan;42082
+42;Frechilla de Almazán;42083
+42;Fresno de Caracena;42084
+42;Fuentearmegil;42085
+42;Fuentecambrón;42086
+42;Fuentecantos;42087
+42;Fuentelmonge;42088
+42;Fuentelsaz de Soria;42089
+42;Fuentepinilla;42090
+42;Fuentes de Magaña;42092
+42;Fuentestrún;42093
+42;Garray;42094
+42;Golmayo;42095
+42;Gómara;42096
+42;Gormaz;42097
+42;Herrera de Soria;42098
+42;Hinojosa del Campo;42100
+42;Langa de Duero;42103
+42;Liceras;42105
+42;Losilla, La;42106
+42;Magaña;42107
+42;Maján;42108
+42;Matalebreras;42110
+42;Matamala de Almazán;42111
+42;Medinaceli;42113
+42;Miño de Medinaceli;42115
+42;Miño de San Esteban;42116
+42;Molinos de Duero;42117
+42;Momblona;42118
+42;Monteagudo de las Vicarías;42119
+42;Montejo de Tiermes;42120
+42;Montenegro de Cameros;42121
+42;Morón de Almazán;42123
+42;Muriel de la Fuente;42124
+42;Muriel Viejo;42125
+42;Nafría de Ucero;42127
+42;Narros;42128
+42;Navaleno;42129
+42;Nepas;42130
+42;Nolay;42131
+42;Noviercas;42132
+42;Ólvega;42134
+42;Oncala;42135
+42;Pinilla del Campo;42139
+42;Portillo de Soria;42140
+42;Póveda de Soria, La;42141
+42;Pozalmuro;42142
+42;Quintana Redonda;42144
+42;Quintanas de Gormaz;42145
+42;Quiñonería;42148
+42;Rábanos, Los;42149
+42;Rebollar;42151
+42;Recuerda;42152
+42;Rello;42153
+42;Renieblas;42154
+42;Retortillo de Soria;42155
+42;Reznos;42156
+42;Riba de Escalote, La;42157
+42;Rioseco de Soria;42158
+42;Rollamienta;42159
+42;Royo, El;42160
+42;Salduero;42161
+42;San Esteban de Gormaz;42162
+42;San Felices;42163
+42;San Leonardo de Yagüe;42164
+42;San Pedro Manrique;42165
+42;Santa Cruz de Yanguas;42166
+42;Santa María de Huerta;42167
+42;Santa María de las Hoyas;42168
+42;Serón de Nágima;42171
+42;Soliedra;42172
+42;Soria;42173
+42;Sotillo del Rincón;42174
+42;Suellacabras;42175
+42;Tajahuerce;42176
+42;Tajueco;42177
+42;Talveila;42178
+42;Tardelcuende;42181
+42;Taroda;42182
+42;Tejado;42183
+42;Torlengua;42184
+42;Torreblacos;42185
+42;Torrubia de Soria;42187
+42;Trévago;42188
+42;Ucero;42189
+42;Vadillo;42190
+42;Valdeavellano de Tera;42191
+42;Valdegeña;42192
+42;Valdelagua del Cerro;42193
+42;Valdemaluque;42194
+42;Valdenebro;42195
+42;Valdeprado;42196
+42;Valderrodilla;42197
+42;Valtajeros;42198
+42;Velamazán;42200
+42;Velilla de la Sierra;42201
+42;Velilla de los Ajos;42202
+42;Viana de Duero;42204
+42;Villaciervos;42205
+42;Villanueva de Gormaz;42206
+42;Villar del Ala;42207
+42;Villar del Campo;42208
+42;Villar del Río;42209
+42;Villares de Soria, Los;42211
+42;Villasayas;42212
+42;Villaseca de Arciel;42213
+42;Vinuesa;42215
+42;Vizmanos;42216
+42;Vozmediano;42217
+42;Yanguas;42218
+42;Yelo;42219
+43;Aiguamúrcia;43001
+43;Albinyana;43002
+43;Albiol, L';43003
+43;Alcanar;43004
+43;Alcover;43005
+43;Aldea, L';43904
+43;Aldover;43006
+43;Aleixar, L';43007
+43;Alfara de Carles;43008
+43;Alforja;43009
+43;Alió;43010
+43;Almoster;43011
+43;Altafulla;43012
+43;Ametlla de Mar, L';43013
+43;Ampolla, L';43906
+43;Amposta;43014
+43;Arboç, L';43016
+43;Arbolí;43015
+43;Argentera, L';43017
+43;Arnes;43018
+43;Ascó;43019
+43;Banyeres del Penedès;43020
+43;Barberà de la Conca;43021
+43;Batea;43022
+43;Bellmunt del Priorat;43023
+43;Bellvei;43024
+43;Benifallet;43025
+43;Benissanet;43026
+43;Bisbal de Montsant, La;43027
+43;Bisbal del Penedès, La;43028
+43;Blancafort;43029
+43;Bonastre;43030
+43;Borges del Camp, Les;43031
+43;Bot;43032
+43;Botarell;43033
+43;Bràfim;43034
+43;Cabacés;43035
+43;Cabra del Camp;43036
+43;Calafell;43037
+43;Camarles;43903
+43;Cambrils;43038
+43;Canonja, La;43907
+43;Capafonts;43039
+43;Capçanes;43040
+43;Caseres;43041
+43;Castellvell del Camp;43042
+43;Catllar, El;43043
+43;Colldejou;43045
+43;Conesa;43046
+43;Constantí;43047
+43;Corbera d'Ebre;43048
+43;Cornudella de Montsant;43049
+43;Creixell;43050
+43;Cunit;43051
+43;Deltebre;43901
+43;Duesaigües;43053
+43;Espluga de Francolí, L';43054
+43;Falset;43055
+43;Fatarella, La;43056
+43;Febró, La;43057
+43;Figuera, La;43058
+43;Figuerola del Camp;43059
+43;Flix;43060
+43;Forès;43061
+43;Freginals;43062
+43;Galera, La;43063
+43;Gandesa;43064
+43;Garcia;43065
+43;Garidells, Els;43066
+43;Ginestar;43067
+43;Godall;43068
+43;Gratallops;43069
+43;Guiamets, Els;43070
+43;Horta de Sant Joan;43071
+43;Lloar, El;43072
+43;Llorac;43073
+43;Llorenç del Penedès;43074
+43;Marçà;43076
+43;Margalef;43075
+43;Mas de Barberans;43077
+43;Masdenverge;43078
+43;Masllorenç;43079
+43;Masó, La;43080
+43;Maspujols;43081
+43;Masroig, El;43082
+43;Milà, El;43083
+43;Miravet;43084
+43;Molar, El;43085
+43;Montblanc;43086
+43;Montbrió del Camp;43088
+43;Montferri;43089
+43;Montmell, El;43090
+43;Mont-ral;43091
+43;Mont-roig del Camp;43092
+43;Móra d'Ebre;43093
+43;Móra la Nova;43094
+43;Morell, El;43095
+43;Morera de Montsant, La;43096
+43;Nou de Gaià, La;43097
+43;Nulles;43098
+43;Pallaresos, Els;43100
+43;Palma d'Ebre, La;43099
+43;Passanant i Belltall;43101
+43;Paüls;43102
+43;Perafort;43103
+43;Perelló, El;43104
+43;Piles, Les;43105
+43;Pinell de Brai, El;43106
+43;Pira;43107
+43;Pla de Santa Maria, El;43108
+43;Pobla de Mafumet, La;43109
+43;Pobla de Massaluca, La;43110
+43;Pobla de Montornès, La;43111
+43;Poboleda;43112
+43;Pont d'Armentera, El;43113
+43;Pontils;43141
+43;Porrera;43114
+43;Pradell de la Teixeta;43115
+43;Prades;43116
+43;Prat de Comte;43117
+43;Pratdip;43118
+43;Puigpelat;43119
+43;Querol;43120
+43;Ràpita, La;43136
+43;Rasquera;43121
+43;Renau;43122
+43;Reus;43123
+43;Riba, La;43124
+43;Riba-roja d'Ebre;43125
+43;Riera de Gaià, La;43126
+43;Riudecanyes;43127
+43;Riudecols;43128
+43;Riudoms;43129
+43;Rocafort de Queralt;43130
+43;Roda de Berà;43131
+43;Rodonyà;43132
+43;Roquetes;43133
+43;Rourell, El;43134
+43;Salomó;43135
+43;Salou;43905
+43;Sant Jaume dels Domenys;43137
+43;Sant Jaume d'Enveja;43902
+43;Santa Bàrbara;43138
+43;Santa Coloma de Queralt;43139
+43;Santa Oliva;43140
+43;Sarral;43142
+43;Savallà del Comtat;43143
+43;Secuita, La;43144
+43;Selva del Camp, La;43145
+43;Senan;43146
+43;Sénia, La;43044
+43;Solivella;43147
+43;Tarragona;43148
+43;Tivenys;43149
+43;Tivissa;43150
+43;Torre de Fontaubella, La;43151
+43;Torre de l'Espanyol, La;43152
+43;Torredembarra;43153
+43;Torroja del Priorat;43154
+43;Tortosa;43155
+43;Ulldecona;43156
+43;Ulldemolins;43157
+43;Vallclara;43158
+43;Vallfogona de Riucorb;43159
+43;Vallmoll;43160
+43;Valls;43161
+43;Vandellòs i l'Hospitalet de l'Infant;43162
+43;Vendrell, El;43163
+43;Vespella de Gaià;43164
+43;Vilabella;43165
+43;Vilalba dels Arcs;43175
+43;Vilallonga del Camp;43166
+43;Vilanova de Prades;43168
+43;Vilanova d'Escornalbou;43167
+43;Vilaplana;43169
+43;Vila-rodona;43170
+43;Vila-seca;43171
+43;Vilaverd;43172
+43;Vilella Alta, La;43173
+43;Vilella Baixa, La;43174
+43;Vimbodí i Poblet;43176
+43;Vinebre;43177
+43;Vinyols i els Arcs;43178
+43;Xerta;43052
+44;Ababuj;44001
+44;Abejuela;44002
+44;Aguatón;44003
+44;Aguaviva;44004
+44;Aguilar del Alfambra;44005
+44;Alacón;44006
+44;Alba;44007
+44;Albalate del Arzobispo;44008
+44;Albarracín;44009
+44;Albentosa;44010
+44;Alcaine;44011
+44;Alcalá de la Selva;44012
+44;Alcañiz;44013
+44;Alcorisa;44014
+44;Alfambra;44016
+44;Aliaga;44017
+44;Allepuz;44021
+44;Alloza;44022
+44;Allueva;44023
+44;Almohaja;44018
+44;Alobras;44019
+44;Alpeñés;44020
+44;Anadón;44024
+44;Andorra;44025
+44;Arcos de las Salinas;44026
+44;Arens de Lledó;44027
+44;Argente;44028
+44;Ariño;44029
+44;Azaila;44031
+44;Bádenas;44032
+44;Báguena;44033
+44;Bañón;44034
+44;Barrachina;44035
+44;Bea;44036
+44;Beceite;44037
+44;Bello;44039
+44;Belmonte de San José;44038
+44;Berge;44040
+44;Bezas;44041
+44;Blancas;44042
+44;Blesa;44043
+44;Bordón;44044
+44;Bronchales;44045
+44;Bueña;44046
+44;Burbáguena;44047
+44;Cabra de Mora;44048
+44;Calaceite;44049
+44;Calamocha;44050
+44;Calanda;44051
+44;Calomarde;44052
+44;Camañas;44053
+44;Camarena de la Sierra;44054
+44;Camarillas;44055
+44;Caminreal;44056
+44;Cantavieja;44059
+44;Cañada de Benatanduz;44060
+44;Cañada de Verich, La;44061
+44;Cañada Vellida;44062
+44;Cañizar del Olivar;44063
+44;Cascante del Río;44064
+44;Castejón de Tornos;44065
+44;Castel de Cabra;44066
+44;Castellar, El;44070
+44;Castellote;44071
+44;Castelnou;44067
+44;Castelserás;44068
+44;Cedrillas;44074
+44;Celadas;44075
+44;Cella;44076
+44;Cerollera, La;44077
+44;Codoñera, La;44080
+44;Corbalán;44082
+44;Cortes de Aragón;44084
+44;Cosa;44085
+44;Cretas;44086
+44;Crivillén;44087
+44;Cuba, La;44088
+44;Cubla;44089
+44;Cucalón;44090
+44;Cuervo, El;44092
+44;Cuevas de Almudén;44093
+44;Cuevas Labradas;44094
+44;Ejulve;44096
+44;Escorihuela;44097
+44;Escucha;44099
+44;Estercuel;44100
+44;Ferreruela de Huerva;44101
+44;Fonfría;44102
+44;Formiche Alto;44103
+44;Fórnoles;44105
+44;Fortanete;44106
+44;Foz-Calanda;44107
+44;Fresneda, La;44108
+44;Frías de Albarracín;44109
+44;Fuenferrada;44110
+44;Fuentes Calientes;44111
+44;Fuentes Claras;44112
+44;Fuentes de Rubielos;44113
+44;Fuentespalda;44114
+44;Galve;44115
+44;Gargallo;44116
+44;Gea de Albarracín;44117
+44;Ginebrosa, La;44118
+44;Griegos;44119
+44;Guadalaviar;44120
+44;Gúdar;44121
+44;Híjar;44122
+44;Hinojosa de Jarque;44123
+44;Hoz de la Vieja, La;44124
+44;Huesa del Común;44125
+44;Iglesuela del Cid, La;44126
+44;Jabaloyas;44127
+44;Jarque de la Val;44128
+44;Jatiel;44129
+44;Jorcas;44130
+44;Josa;44131
+44;Lagueruela;44132
+44;Lanzuela;44133
+44;Libros;44135
+44;Lidón;44136
+44;Linares de Mora;44137
+44;Lledó;44141
+44;Loscos;44138
+44;Maicas;44142
+44;Manzanera;44143
+44;Martín del Río;44144
+44;Mas de las Matas;44145
+44;Mata de los Olmos, La;44146
+44;Mazaleón;44147
+44;Mezquita de Jarque;44148
+44;Mirambel;44149
+44;Miravete de la Sierra;44150
+44;Molinos;44151
+44;Monforte de Moyuela;44152
+44;Monreal del Campo;44153
+44;Monroyo;44154
+44;Montalbán;44155
+44;Monteagudo del Castillo;44156
+44;Monterde de Albarracín;44157
+44;Mora de Rubielos;44158
+44;Moscardón;44159
+44;Mosqueruela;44160
+44;Muniesa;44161
+44;Noguera de Albarracín;44163
+44;Nogueras;44164
+44;Nogueruelas;44165
+44;Obón;44167
+44;Odón;44168
+44;Ojos Negros;44169
+44;Olba;44171
+44;Oliete;44172
+44;Olmos, Los;44173
+44;Orihuela del Tremedal;44174
+44;Orrios;44175
+44;Palomar de Arroyos;44176
+44;Pancrudo;44177
+44;Parras de Castellote, Las;44178
+44;Peñarroya de Tastavins;44179
+44;Peracense;44180
+44;Peralejos;44181
+44;Perales del Alfambra;44182
+44;Pitarque;44183
+44;Plou;44184
+44;Pobo, El;44185
+44;Portellada, La;44187
+44;Pozondón;44189
+44;Pozuel del Campo;44190
+44;Puebla de Híjar, La;44191
+44;Puebla de Valverde, La;44192
+44;Puertomingalvo;44193
+44;Ráfales;44194
+44;Rillo;44195
+44;Riodeva;44196
+44;Ródenas;44197
+44;Royuela;44198
+44;Rubiales;44199
+44;Rubielos de la Cérida;44200
+44;Rubielos de Mora;44201
+44;Salcedillo;44203
+44;Saldón;44204
+44;Samper de Calanda;44205
+44;San Agustín;44206
+44;San Martín del Río;44207
+44;Santa Cruz de Nogueras;44208
+44;Santa Eulalia;44209
+44;Sarrión;44210
+44;Segura de los Baños;44211
+44;Seno;44212
+44;Singra;44213
+44;Terriente;44215
+44;Teruel;44216
+44;Toril y Masegoso;44217
+44;Tormón;44218
+44;Tornos;44219
+44;Torralba de los Sisones;44220
+44;Torre de Arcas;44223
+44;Torre de las Arcas;44224
+44;Torre del Compte;44225
+44;Torre los Negros;44227
+44;Torrecilla de Alcañiz;44221
+44;Torrecilla del Rebollar;44222
+44;Torrelacárcel;44226
+44;Torremocha de Jiloca;44228
+44;Torres de Albarracín;44229
+44;Torrevelilla;44230
+44;Torrijas;44231
+44;Torrijo del Campo;44232
+44;Tramacastiel;44234
+44;Tramacastilla;44235
+44;Tronchón;44236
+44;Urrea de Gaén;44237
+44;Utrillas;44238
+44;Valacloche;44239
+44;Valbona;44240
+44;Valdealgorfa;44241
+44;Valdecuenca;44243
+44;Valdelinares;44244
+44;Valdeltormo;44245
+44;Valderrobres;44246
+44;Valjunquera;44247
+44;Vallecillo, El;44249
+44;Veguillas de la Sierra;44250
+44;Villafranca del Campo;44251
+44;Villahermosa del Campo;44252
+44;Villanueva del Rebollar de la Sierra;44256
+44;Villar del Cobo;44257
+44;Villar del Salz;44258
+44;Villarluengo;44260
+44;Villarquemado;44261
+44;Villarroya de los Pinares;44262
+44;Villastar;44263
+44;Villel;44264
+44;Vinaceite;44265
+44;Visiedo;44266
+44;Vivel del Río Martín;44267
+44;Zoma, La;44268
+45;Ajofrín;45001
+45;Alameda de la Sagra;45002
+45;Albarreal de Tajo;45003
+45;Alcabón;45004
+45;Alcañizo;45005
+45;Alcaudete de la Jara;45006
+45;Alcolea de Tajo;45007
+45;Aldea en Cabo;45008
+45;Aldeanueva de Barbarroya;45009
+45;Aldeanueva de San Bartolomé;45010
+45;Almendral de la Cañada;45011
+45;Almonacid de Toledo;45012
+45;Almorox;45013
+45;Añover de Tajo;45014
+45;Arcicóllar;45015
+45;Argés;45016
+45;Azután;45017
+45;Barcience;45018
+45;Bargas;45019
+45;Belvís de la Jara;45020
+45;Borox;45021
+45;Buenaventura;45022
+45;Burguillos de Toledo;45023
+45;Burujón;45024
+45;Cabañas de la Sagra;45025
+45;Cabañas de Yepes;45026
+45;Cabezamesada;45027
+45;Calera y Chozas;45028
+45;Caleruela;45029
+45;Calzada de Oropesa;45030
+45;Camarena;45031
+45;Camarenilla;45032
+45;Campillo de la Jara, El;45033
+45;Camuñas;45034
+45;Cardiel de los Montes;45035
+45;Carmena;45036
+45;Carpio de Tajo, El;45037
+45;Carranque;45038
+45;Carriches;45039
+45;Casar de Escalona, El;45040
+45;Casarrubios del Monte;45041
+45;Casasbuenas;45042
+45;Castillo de Bayuela;45043
+45;Cazalegas;45045
+45;Cebolla;45046
+45;Cedillo del Condado;45047
+45;Cerralbos, Los;45048
+45;Cervera de los Montes;45049
+45;Chozas de Canales;45056
+45;Chueca;45057
+45;Ciruelos;45050
+45;Cobeja;45051
+45;Cobisa;45052
+45;Consuegra;45053
+45;Corral de Almaguer;45054
+45;Cuerva;45055
+45;Domingo Pérez;45058
+45;Dosbarrios;45059
+45;Erustes;45060
+45;Escalona;45061
+45;Escalonilla;45062
+45;Espinoso del Rey;45063
+45;Esquivias;45064
+45;Estrella, La;45065
+45;Fuensalida;45066
+45;Gálvez;45067
+45;Garciotum;45068
+45;Gerindote;45069
+45;Guadamur;45070
+45;Guardia, La;45071
+45;Herencias, Las;45072
+45;Herreruela de Oropesa;45073
+45;Hinojosa de San Vicente;45074
+45;Hontanar;45075
+45;Hormigos;45076
+45;Huecas;45077
+45;Huerta de Valdecarábanos;45078
+45;Iglesuela del Tiétar, La;45079
+45;Illán de Vacas;45080
+45;Illescas;45081
+45;Lagartera;45082
+45;Layos;45083
+45;Lillo;45084
+45;Lominchar;45085
+45;Lucillos;45086
+45;Madridejos;45087
+45;Magán;45088
+45;Malpica de Tajo;45089
+45;Manzaneque;45090
+45;Maqueda;45091
+45;Marjaliza;45092
+45;Marrupe;45093
+45;Mascaraque;45094
+45;Mata, La;45095
+45;Mazarambroz;45096
+45;Mejorada;45097
+45;Menasalbas;45098
+45;Méntrida;45099
+45;Mesegar de Tajo;45100
+45;Miguel Esteban;45101
+45;Mocejón;45102
+45;Mohedas de la Jara;45103
+45;Montearagón;45104
+45;Montesclaros;45105
+45;Mora;45106
+45;Nambroca;45107
+45;Nava de Ricomalillo, La;45108
+45;Navahermosa;45109
+45;Navalcán;45110
+45;Navalmoralejo;45111
+45;Navalmorales, Los;45112
+45;Navalucillos, Los;45113
+45;Navamorcuende;45114
+45;Noblejas;45115
+45;Noez;45116
+45;Nombela;45117
+45;Novés;45118
+45;Numancia de la Sagra;45119
+45;Nuño Gómez;45120
+45;Ocaña;45121
+45;Olías del Rey;45122
+45;Ontígola;45123
+45;Orgaz;45124
+45;Oropesa;45125
+45;Otero;45126
+45;Palomeque;45127
+45;Pantoja;45128
+45;Paredes de Escalona;45129
+45;Parrillas;45130
+45;Pelahustán;45131
+45;Pepino;45132
+45;Polán;45133
+45;Portillo de Toledo;45134
+45;Puebla de Almoradiel, La;45135
+45;Puebla de Montalbán, La;45136
+45;Pueblanueva, La;45137
+45;Puente del Arzobispo, El;45138
+45;Puerto de San Vicente;45139
+45;Pulgar;45140
+45;Quero;45141
+45;Quintanar de la Orden;45142
+45;Quismondo;45143
+45;Real de San Vicente, El;45144
+45;Recas;45145
+45;Retamoso de la Jara;45146
+45;Rielves;45147
+45;Robledo del Mazo;45148
+45;Romeral, El;45149
+45;San Bartolomé de las Abiertas;45150
+45;San Martín de Montalbán;45151
+45;San Martín de Pusa;45152
+45;San Pablo de los Montes;45153
+45;San Román de los Montes;45154
+45;Santa Ana de Pusa;45155
+45;Santa Cruz de la Zarza;45156
+45;Santa Cruz del Retamar;45157
+45;Santa Olalla;45158
+45;Santo Domingo-Caudilla;45901
+45;Sartajada;45159
+45;Segurilla;45160
+45;Seseña;45161
+45;Sevilleja de la Jara;45162
+45;Sonseca;45163
+45;Sotillo de las Palomas;45164
+45;Talavera de la Reina;45165
+45;Tembleque;45166
+45;Toboso, El;45167
+45;Toledo;45168
+45;Torralba de Oropesa;45169
+45;Torre de Esteban Hambrán, La;45171
+45;Torrecilla de la Jara;45170
+45;Torrico;45172
+45;Torrijos;45173
+45;Totanés;45174
+45;Turleque;45175
+45;Ugena;45176
+45;Urda;45177
+45;Valdeverdeja;45179
+45;Valmojado;45180
+45;Velada;45181
+45;Ventas con Peña Aguilera, Las;45182
+45;Ventas de Retamosa, Las;45183
+45;Ventas de San Julián, Las;45184
+45;Villa de Don Fadrique, La;45186
+45;Villacañas;45185
+45;Villafranca de los Caballeros;45187
+45;Villaluenga de la Sagra;45188
+45;Villamiel de Toledo;45189
+45;Villaminaya;45190
+45;Villamuelas;45191
+45;Villanueva de Alcardete;45192
+45;Villanueva de Bogas;45193
+45;Villarejo de Montalbán;45194
+45;Villarrubia de Santiago;45195
+45;Villaseca de la Sagra;45196
+45;Villasequilla;45197
+45;Villatobas;45198
+45;Viso de San Juan, El;45199
+45;Yébenes, Los;45200
+45;Yeles;45201
+45;Yepes;45202
+45;Yuncler;45203
+45;Yunclillos;45204
+45;Yuncos;45205
+46;Ademuz;46001
+46;Ador;46002
+46;Agullent;46004
+46;Aielo de Malferit;46042
+46;Aielo de Rugat;46043
+46;Alaquàs;46005
+46;Albaida;46006
+46;Albal;46007
+46;Albalat de la Ribera;46008
+46;Albalat dels Sorells;46009
+46;Albalat dels Tarongers;46010
+46;Alberic;46011
+46;Alborache;46012
+46;Alboraia/Alboraya;46013
+46;Albuixech;46014
+46;Alcàntera de Xúquer;46016
+46;Alcàsser;46015
+46;Alcublas;46018
+46;Alcúdia de Crespins, l';46020
+46;Alcúdia, l';46019
+46;Aldaia;46021
+46;Alfafar;46022
+46;Alfara de la Baronia;46024
+46;Alfara del Patriarca;46025
+46;Alfarb;46026
+46;Alfarrasí;46027
+46;Alfauir;46023
+46;Algar de Palància;46028
+46;Algemesí;46029
+46;Algímia d'Alfara;46030
+46;Alginet;46031
+46;Almàssera;46032
+46;Almiserà;46033
+46;Almoines;46034
+46;Almussafes;46035
+46;Alpuente;46036
+46;Alqueria de la Comtessa, l';46037
+46;Alzira;46017
+46;Andilla;46038
+46;Anna;46039
+46;Antella;46040
+46;Aras de los Olmos;46041
+46;Atzeneta d'Albaida;46003
+46;Ayora;46044
+46;Barx;46046
+46;Barxeta;46045
+46;Bèlgida;46047
+46;Bellreguard;46048
+46;Bellús;46049
+46;Benagéber;46050
+46;Benaguasil;46051
+46;Benavites;46052
+46;Beneixida;46053
+46;Benetússer;46054
+46;Beniarjó;46055
+46;Beniatjar;46056
+46;Benicolet;46057
+46;Benicull de Xúquer;46904
+46;Benifaió;46060
+46;Benifairó de la Valldigna;46059
+46;Benifairó de les Valls;46058
+46;Beniflá;46061
+46;Benigànim;46062
+46;Benimodo;46063
+46;Benimuslem;46064
+46;Beniparrell;46065
+46;Benirredrà;46066
+46;Benissanó;46067
+46;Benissoda;46068
+46;Benissuera;46069
+46;Bétera;46070
+46;Bicorp;46071
+46;Bocairent;46072
+46;Bolbaite;46073
+46;Bonrepòs i Mirambell;46074
+46;Bufali;46075
+46;Bugarra;46076
+46;Buñol;46077
+46;Burjassot;46078
+46;Calles;46079
+46;Camporrobles;46080
+46;Canals;46081
+46;Canet d'En Berenguer;46082
+46;Carcaixent;46083
+46;Càrcer;46084
+46;Carlet;46085
+46;Carrícola;46086
+46;Casas Altas;46087
+46;Casas Bajas;46088
+46;Casinos;46089
+46;Castelló;46257
+46;Castelló de Rugat;46090
+46;Castellonet de la Conquesta;46091
+46;Castielfabib;46092
+46;Catadau;46093
+46;Catarroja;46094
+46;Caudete de las Fuentes;46095
+46;Cerdà;46096
+46;Chella;46107
+46;Chelva;46106
+46;Chera;46108
+46;Cheste;46109
+46;Chiva;46111
+46;Chulilla;46112
+46;Cofrentes;46097
+46;Corbera;46098
+46;Cortes de Pallás;46099
+46;Cotes;46100
+46;Cullera;46105
+46;Daimús;46113
+46;Domeño;46114
+46;Dos Aguas;46115
+46;Eliana, l';46116
+46;Emperador;46117
+46;Enguera;46118
+46;Énova, l';46119
+46;Estivella;46120
+46;Estubeny;46121
+46;Faura;46122
+46;Favara;46123
+46;Foios;46126
+46;Font de la Figuera, la;46128
+46;Font d'en Carròs, la;46127
+46;Fontanars dels Alforins;46124
+46;Fortaleny;46125
+46;Fuenterrobles;46129
+46;Gandia;46131
+46;Gátova;46902
+46;Gavarda;46130
+46;Genovés, el;46132
+46;Gestalgar;46133
+46;Gilet;46134
+46;Godella;46135
+46;Godelleta;46136
+46;Granja de la Costera, la;46137
+46;Guadasséquies;46138
+46;Guadassuar;46139
+46;Guardamar de la Safor;46140
+46;Higueruelas;46141
+46;Jalance;46142
+46;Jarafuel;46144
+46;Llanera de Ranes;46154
+46;Llaurí;46155
+46;Llíria;46147
+46;Llocnou de la Corona;46152
+46;Llocnou de Sant Jeroni;46153
+46;Llocnou d'En Fenollet;46151
+46;Llombai;46156
+46;Llosa de Ranes, la;46157
+46;Llutxent;46150
+46;Loriguilla;46148
+46;Losa del Obispo;46149
+46;Macastre;46158
+46;Manises;46159
+46;Manuel;46160
+46;Marines;46161
+46;Massalavés;46162
+46;Massalfassar;46163
+46;Massamagrell;46164
+46;Massanassa;46165
+46;Meliana;46166
+46;Millares;46167
+46;Miramar;46168
+46;Mislata;46169
+46;Moixent/Mogente;46170
+46;Montaverner;46173
+46;Montcada/Moncada;46171
+46;Montesa;46174
+46;Montitxelvo/Montichelvo;46175
+46;Montroi/Montroy;46176
+46;Montserrat;46172
+46;Museros;46177
+46;Nàquera/Náquera;46178
+46;Navarrés;46179
+46;Novetlè;46180
+46;Oliva;46181
+46;Olleria, l';46183
+46;Olocau;46182
+46;Ontinyent;46184
+46;Otos;46185
+46;Paiporta;46186
+46;Palma de Gandía;46187
+46;Palmera;46188
+46;Palomar, el;46189
+46;Paterna;46190
+46;Pedralba;46191
+46;Petrés;46192
+46;Picanya;46193
+46;Picassent;46194
+46;Piles;46195
+46;Pinet;46196
+46;Pobla de Farnals, la;46199
+46;Pobla de Vallbona, la;46202
+46;Pobla del Duc, la;46200
+46;Pobla Llarga, la;46203
+46;Polinyà de Xúquer;46197
+46;Potries;46198
+46;Puçol;46205
+46;Puebla de San Miguel;46201
+46;Puig de Santa Maria, el;46204
+46;Quart de les Valls;46101
+46;Quart de Poblet;46102
+46;Quartell;46103
+46;Quatretonda;46104
+46;Quesa;46206
+46;Rafelbunyol;46207
+46;Rafelcofer;46208
+46;Rafelguaraf;46209
+46;Ráfol de Salem;46210
+46;Real;46212
+46;Real de Gandia, el;46211
+46;Requena;46213
+46;Riba-roja de Túria;46214
+46;Riola;46215
+46;Rocafort;46216
+46;Rotglà i Corberà;46217
+46;Ròtova;46218
+46;Rugat;46219
+46;Sagunt/Sagunto;46220
+46;Salem;46221
+46;San Antonio de Benagéber;46903
+46;Sant Joanet;46222
+46;Sedaví;46223
+46;Segart;46224
+46;Sellent;46225
+46;Sempere;46226
+46;Senyera;46227
+46;Serra;46228
+46;Siete Aguas;46229
+46;Silla;46230
+46;Simat de la Valldigna;46231
+46;Sinarcas;46232
+46;Sollana;46233
+46;Sot de Chera;46234
+46;Sueca;46235
+46;Sumacàrcer;46236
+46;Tavernes Blanques;46237
+46;Tavernes de la Valldigna;46238
+46;Teresa de Cofrentes;46239
+46;Terrateig;46240
+46;Titaguas;46241
+46;Torrebaja;46242
+46;Torrella;46243
+46;Torrent;46244
+46;Torres Torres;46245
+46;Tous;46246
+46;Tuéjar;46247
+46;Turís;46248
+46;Utiel;46249
+46;València;46250
+46;Vallada;46251
+46;Vallanca;46252
+46;Vallés;46253
+46;Venta del Moro;46254
+46;Vilallonga/Villalonga;46255
+46;Vilamarxant;46256
+46;Villar del Arzobispo;46258
+46;Villargordo del Cabriel;46259
+46;Vinalesa;46260
+46;Xàtiva;46145
+46;Xeraco;46143
+46;Xeresa;46146
+46;Xirivella;46110
+46;Yátova;46261
+46;Yesa, La;46262
+46;Zarra;46263
+47;Adalia;47001
+47;Aguasal;47002
+47;Aguilar de Campos;47003
+47;Alaejos;47004
+47;Alcazarén;47005
+47;Aldea de San Miguel;47006
+47;Aldeamayor de San Martín;47007
+47;Almenara de Adaja;47008
+47;Amusquillo;47009
+47;Arroyo de la Encomienda;47010
+47;Ataquines;47011
+47;Bahabón;47012
+47;Barcial de la Loma;47013
+47;Barruelo del Valle;47014
+47;Becilla de Valderaduey;47015
+47;Benafarces;47016
+47;Bercero;47017
+47;Berceruelo;47018
+47;Berrueces;47019
+47;Bobadilla del Campo;47020
+47;Bocigas;47021
+47;Bocos de Duero;47022
+47;Boecillo;47023
+47;Bolaños de Campos;47024
+47;Brahojos de Medina;47025
+47;Bustillo de Chaves;47026
+47;Cabezón de Pisuerga;47027
+47;Cabezón de Valderaduey;47028
+47;Cabreros del Monte;47029
+47;Campaspero;47030
+47;Campillo, El;47031
+47;Camporredondo;47032
+47;Canalejas de Peñafiel;47033
+47;Canillas de Esgueva;47034
+47;Carpio;47035
+47;Casasola de Arión;47036
+47;Castrejón de Trabancos;47037
+47;Castrillo de Duero;47038
+47;Castrillo-Tejeriego;47039
+47;Castrobol;47040
+47;Castrodeza;47041
+47;Castromembibre;47042
+47;Castromonte;47043
+47;Castronuevo de Esgueva;47044
+47;Castronuño;47045
+47;Castroponce;47046
+47;Castroverde de Cerrato;47047
+47;Ceinos de Campos;47048
+47;Cervillego de la Cruz;47049
+47;Cigales;47050
+47;Ciguñuela;47051
+47;Cistérniga;47052
+47;Cogeces de Íscar;47053
+47;Cogeces del Monte;47054
+47;Corcos;47055
+47;Corrales de Duero;47056
+47;Cubillas de Santa Marta;47057
+47;Cuenca de Campos;47058
+47;Curiel de Duero;47059
+47;Encinas de Esgueva;47060
+47;Esguevillas de Esgueva;47061
+47;Fombellida;47062
+47;Fompedraza;47063
+47;Fontihoyuelo;47064
+47;Fresno el Viejo;47065
+47;Fuensaldaña;47066
+47;Fuente el Sol;47067
+47;Fuente-Olmedo;47068
+47;Gallegos de Hornija;47069
+47;Gatón de Campos;47070
+47;Geria;47071
+47;Herrín de Campos;47073
+47;Hornillos de Eresma;47074
+47;Íscar;47075
+47;Laguna de Duero;47076
+47;Langayo;47077
+47;Llano de Olmedo;47079
+47;Lomoviejo;47078
+47;Manzanillo;47080
+47;Marzales;47081
+47;Matapozuelos;47082
+47;Matilla de los Caños;47083
+47;Mayorga;47084
+47;Medina de Rioseco;47086
+47;Medina del Campo;47085
+47;Megeces;47087
+47;Melgar de Abajo;47088
+47;Melgar de Arriba;47089
+47;Mojados;47090
+47;Monasterio de Vega;47091
+47;Montealegre de Campos;47092
+47;Montemayor de Pililla;47093
+47;Moral de la Reina;47094
+47;Moraleja de las Panaderas;47095
+47;Morales de Campos;47096
+47;Mota del Marqués;47097
+47;Mucientes;47098
+47;Mudarra, La;47099
+47;Muriel;47100
+47;Nava del Rey;47101
+47;Nueva Villa de las Torres;47102
+47;Olivares de Duero;47103
+47;Olmedo;47104
+47;Olmos de Esgueva;47105
+47;Olmos de Peñafiel;47106
+47;Palazuelo de Vedija;47109
+47;Parrilla, La;47110
+47;Pedraja de Portillo, La;47111
+47;Pedrajas de San Esteban;47112
+47;Pedrosa del Rey;47113
+47;Peñafiel;47114
+47;Peñaflor de Hornija;47115
+47;Pesquera de Duero;47116
+47;Piña de Esgueva;47117
+47;Piñel de Abajo;47118
+47;Piñel de Arriba;47119
+47;Pollos;47121
+47;Portillo;47122
+47;Pozal de Gallinas;47123
+47;Pozaldez;47124
+47;Pozuelo de la Orden;47125
+47;Puras;47126
+47;Quintanilla de Arriba;47127
+47;Quintanilla de Onésimo;47129
+47;Quintanilla de Trigueros;47130
+47;Quintanilla del Molar;47128
+47;Rábano;47131
+47;Ramiro;47132
+47;Renedo de Esgueva;47133
+47;Roales de Campos;47134
+47;Robladillo;47135
+47;Roturas;47137
+47;Rubí de Bracamonte;47138
+47;Rueda;47139
+47;Saelices de Mayorga;47140
+47;Salvador de Zapardiel;47141
+47;San Cebrián de Mazote;47142
+47;San Llorente;47143
+47;San Martín de Valvení;47144
+47;San Miguel del Arroyo;47145
+47;San Miguel del Pino;47146
+47;San Pablo de la Moraleja;47147
+47;San Pedro de Latarce;47148
+47;San Pelayo;47149
+47;San Román de Hornija;47150
+47;San Salvador;47151
+47;San Vicente del Palacio;47156
+47;Santa Eufemia del Arroyo;47152
+47;Santervás de Campos;47153
+47;Santibáñez de Valcorba;47154
+47;Santovenia de Pisuerga;47155
+47;Sardón de Duero;47157
+47;Seca, La;47158
+47;Serrada;47159
+47;Siete Iglesias de Trabancos;47160
+47;Simancas;47161
+47;Tamariz de Campos;47162
+47;Tiedra;47163
+47;Tordehumos;47164
+47;Tordesillas;47165
+47;Torre de Esgueva;47169
+47;Torre de Peñafiel;47170
+47;Torrecilla de la Abadesa;47166
+47;Torrecilla de la Orden;47167
+47;Torrecilla de la Torre;47168
+47;Torrelobatón;47171
+47;Torrescárcela;47172
+47;Traspinedo;47173
+47;Trigueros del Valle;47174
+47;Tudela de Duero;47175
+47;Unión de Campos, La;47176
+47;Urones de Castroponce;47177
+47;Urueña;47178
+47;Valbuena de Duero;47179
+47;Valdearcos de la Vega;47180
+47;Valdenebro de los Valles;47181
+47;Valdestillas;47182
+47;Valdunquillo;47183
+47;Valladolid;47186
+47;Valoria la Buena;47184
+47;Valverde de Campos;47185
+47;Vega de Ruiponce;47187
+47;Vega de Valdetronco;47188
+47;Velascálvaro;47189
+47;Velilla;47190
+47;Velliza;47191
+47;Ventosa de la Cuesta;47192
+47;Viana de Cega;47193
+47;Villabáñez;47195
+47;Villabaruz de Campos;47196
+47;Villabrágima;47197
+47;Villacarralón;47198
+47;Villacid de Campos;47199
+47;Villaco;47200
+47;Villafrades de Campos;47203
+47;Villafranca de Duero;47204
+47;Villafrechós;47205
+47;Villafuerte;47206
+47;Villagarcía de Campos;47207
+47;Villagómez la Nueva;47208
+47;Villalán de Campos;47209
+47;Villalar de los Comuneros;47210
+47;Villalba de la Loma;47211
+47;Villalba de los Alcores;47212
+47;Villalbarba;47213
+47;Villalón de Campos;47214
+47;Villamuriel de Campos;47215
+47;Villán de Tordesillas;47216
+47;Villanubla;47217
+47;Villanueva de Duero;47218
+47;Villanueva de la Condesa;47219
+47;Villanueva de los Caballeros;47220
+47;Villanueva de los Infantes;47221
+47;Villanueva de San Mancio;47222
+47;Villardefrades;47223
+47;Villarmentero de Esgueva;47224
+47;Villasexmir;47225
+47;Villavaquerín;47226
+47;Villavellid;47227
+47;Villaverde de Medina;47228
+47;Villavicencio de los Caballeros;47229
+47;Viloria;47194
+47;Wamba;47230
+47;Zaratán;47231
+47;Zarza, La;47232
+48;Abadiño;48001
+48;Abanto y Ciérvana-Abanto Zierbena;48002
+48;Ajangiz;48911
+48;Alonsotegi;48912
+48;Amorebieta-Etxano;48003
+48;Amoroto;48004
+48;Arakaldo;48005
+48;Arantzazu;48006
+48;Areatza;48093
+48;Arrankudiaga-Zollo;48009
+48;Arratzu;48914
+48;Arrieta;48010
+48;Arrigorriaga;48011
+48;Artea;48023
+48;Artzentales;48008
+48;Atxondo;48091
+48;Aulesti;48070
+48;Bakio;48012
+48;Balmaseda;48090
+48;Barakaldo;48013
+48;Barrika;48014
+48;Basauri;48015
+48;Bedia;48092
+48;Berango;48016
+48;Bermeo;48017
+48;Berriatua;48018
+48;Berriz;48019
+48;Bilbao;48020
+48;Busturia;48021
+48;Derio;48901
+48;Dima;48026
+48;Durango;48027
+48;Ea;48028
+48;Elantxobe;48031
+48;Elorrio;48032
+48;Erandio;48902
+48;Ereño;48033
+48;Ermua;48034
+48;Errigoiti;48079
+48;Etxebarri;48029
+48;Etxebarria;48030
+48;Forua;48906
+48;Fruiz;48035
+48;Galdakao;48036
+48;Galdames;48037
+48;Gamiz-Fika;48038
+48;Garai;48039
+48;Gatika;48040
+48;Gautegiz Arteaga;48041
+48;Gernika-Lumo;48046
+48;Getxo;48044
+48;Gizaburuaga;48047
+48;Gordexola;48042
+48;Gorliz;48043
+48;Güeñes;48045
+48;Ibarrangelu;48048
+48;Igorre;48094
+48;Ispaster;48049
+48;Iurreta;48910
+48;Izurtza;48050
+48;Karrantza Harana/Valle de Carranza;48022
+48;Kortezubi;48907
+48;Lanestosa;48051
+48;Larrabetzu;48052
+48;Laukiz;48053
+48;Leioa;48054
+48;Lekeitio;48057
+48;Lemoa;48055
+48;Lemoiz;48056
+48;Lezama;48081
+48;Loiu;48903
+48;Mallabia;48058
+48;Mañaria;48059
+48;Markina-Xemein;48060
+48;Maruri-Jatabe;48061
+48;Mendata;48062
+48;Mendexa;48063
+48;Meñaka;48064
+48;Morga;48066
+48;Mundaka;48068
+48;Mungia;48069
+48;Munitibar-Arbatzegi Gerrikaitz;48007
+48;Murueta;48908
+48;Muskiz;48071
+48;Muxika;48067
+48;Nabarniz;48909
+48;Ondarroa;48073
+48;Orozko;48075
+48;Ortuella;48083
+48;Otxandio;48072
+48;Plentzia;48077
+48;Portugalete;48078
+48;Santurtzi;48082
+48;Sestao;48084
+48;Sondika;48904
+48;Sopela;48085
+48;Sopuerta;48086
+48;Sukarrieta;48076
+48;Trucios-Turtzioz;48087
+48;Ubide;48088
+48;Ugao-Miraballes;48065
+48;Urduliz;48089
+48;Urduña/Orduña;48074
+48;Usansolo;48916
+48;Valle de Trápaga-Trapagaran;48080
+48;Zaldibar;48095
+48;Zalla;48096
+48;Zamudio;48905
+48;Zaratamo;48097
+48;Zeanuri;48024
+48;Zeberio;48025
+48;Zierbena;48913
+48;Ziortza-Bolibar;48915
+49;Abezames;49002
+49;Alcañices;49003
+49;Alcubilla de Nogales;49004
+49;Alfaraz de Sayago;49005
+49;Algodre;49006
+49;Almaraz de Duero;49007
+49;Almeida de Sayago;49008
+49;Andavías;49009
+49;Arcenillas;49010
+49;Arcos de la Polvorosa;49011
+49;Argañín;49012
+49;Argujillo;49013
+49;Arquillinos;49014
+49;Arrabalde;49015
+49;Aspariegos;49016
+49;Asturianos;49017
+49;Ayoó de Vidriales;49018
+49;Barcial del Barco;49019
+49;Belver de los Montes;49020
+49;Benavente;49021
+49;Benegiles;49022
+49;Bermillo de Sayago;49023
+49;Bóveda de Toro, La;49024
+49;Bretó;49025
+49;Bretocino;49026
+49;Brime de Sog;49027
+49;Brime de Urz;49028
+49;Burganes de Valverde;49029
+49;Bustillo del Oro;49030
+49;Cabañas de Sayago;49031
+49;Calzadilla de Tera;49032
+49;Camarzana de Tera;49033
+49;Cañizal;49034
+49;Cañizo;49035
+49;Carbajales de Alba;49036
+49;Carbellino;49037
+49;Casaseca de Campeán;49038
+49;Casaseca de las Chanas;49039
+49;Castrillo de la Guareña;49040
+49;Castrogonzalo;49041
+49;Castronuevo;49042
+49;Castroverde de Campos;49043
+49;Cazurra;49044
+49;Cerecinos de Campos;49046
+49;Cerecinos del Carrizal;49047
+49;Cernadilla;49048
+49;Cobreros;49050
+49;Coomonte;49052
+49;Coreses;49053
+49;Corrales del Vino;49054
+49;Cotanes del Monte;49055
+49;Cubillos;49056
+49;Cubo de Benavente;49057
+49;Cubo de Tierra del Vino, El;49058
+49;Cuelgamures;49059
+49;Entrala;49061
+49;Espadañedo;49062
+49;Faramontanos de Tábara;49063
+49;Fariza;49064
+49;Fermoselle;49065
+49;Ferreras de Abajo;49066
+49;Ferreras de Arriba;49067
+49;Ferreruela;49068
+49;Figueruela de Arriba;49069
+49;Fonfría;49071
+49;Fresno de la Polvorosa;49075
+49;Fresno de la Ribera;49076
+49;Fresno de Sayago;49077
+49;Friera de Valverde;49078
+49;Fuente Encalada;49079
+49;Fuentelapeña;49080
+49;Fuentes de Ropel;49082
+49;Fuentesaúco;49081
+49;Fuentesecas;49083
+49;Fuentespreadas;49084
+49;Galende;49085
+49;Gallegos del Pan;49086
+49;Gallegos del Río;49087
+49;Gamones;49088
+49;Gema;49090
+49;Granja de Moreruela;49091
+49;Granucillo;49092
+49;Guarrate;49093
+49;Hermisende;49094
+49;Hiniesta, La;49095
+49;Jambrina;49096
+49;Justel;49097
+49;Losacino;49098
+49;Losacio;49099
+49;Lubián;49100
+49;Luelmo;49101
+49;Maderal, El;49102
+49;Madridanos;49103
+49;Mahide;49104
+49;Maire de Castroponce;49105
+49;Malva;49107
+49;Manganeses de la Lampreana;49108
+49;Manganeses de la Polvorosa;49109
+49;Manzanal de Arriba;49110
+49;Manzanal de los Infantes;49112
+49;Manzanal del Barco;49111
+49;Matilla de Arzón;49113
+49;Matilla la Seca;49114
+49;Mayalde;49115
+49;Melgar de Tera;49116
+49;Micereces de Tera;49117
+49;Milles de la Polvorosa;49118
+49;Molacillos;49119
+49;Molezuelas de la Carballeda;49120
+49;Mombuey;49121
+49;Monfarracinos;49122
+49;Montamarta;49123
+49;Moral de Sayago;49124
+49;Moraleja de Sayago;49126
+49;Moraleja del Vino;49125
+49;Morales de Rey;49128
+49;Morales de Toro;49129
+49;Morales de Valverde;49130
+49;Morales del Vino;49127
+49;Moralina;49131
+49;Moreruela de los Infanzones;49132
+49;Moreruela de Tábara;49133
+49;Muelas de los Caballeros;49134
+49;Muelas del Pan;49135
+49;Muga de Sayago;49136
+49;Navianos de Valverde;49137
+49;Olmillos de Castro;49138
+49;Otero de Bodas;49139
+49;Pajares de la Lampreana;49141
+49;Palacios de Sanabria;49143
+49;Palacios del Pan;49142
+49;Pedralba de la Pradería;49145
+49;Pego, El;49146
+49;Peleagonzalo;49147
+49;Peleas de Abajo;49148
+49;Peñausende;49149
+49;Peque;49150
+49;Perdigón, El;49151
+49;Pereruela;49152
+49;Perilla de Castro;49153
+49;Pías;49154
+49;Piedrahita de Castro;49155
+49;Pinilla de Toro;49156
+49;Pino del Oro;49157
+49;Piñero, El;49158
+49;Pobladura de Valderaduey;49160
+49;Pobladura del Valle;49159
+49;Porto;49162
+49;Pozoantiguo;49163
+49;Pozuelo de Tábara;49164
+49;Prado;49165
+49;Puebla de Sanabria;49166
+49;Pueblica de Valverde;49167
+49;Quintanilla de Urz;49170
+49;Quintanilla del Monte;49168
+49;Quintanilla del Olmo;49169
+49;Quiruelas de Vidriales;49171
+49;Rabanales;49172
+49;Rábano de Aliste;49173
+49;Requejo;49174
+49;Revellinos;49175
+49;Riofrío de Aliste;49176
+49;Rionegro del Puente;49177
+49;Roales;49178
+49;Robleda-Cervantes;49179
+49;Roelos de Sayago;49180
+49;Rosinos de la Requejada;49181
+49;Salce;49183
+49;Samir de los Caños;49184
+49;San Agustín del Pozo;49185
+49;San Cebrián de Castro;49186
+49;San Cristóbal de Entreviñas;49187
+49;San Esteban del Molar;49188
+49;San Justo;49189
+49;San Martín de Valderaduey;49190
+49;San Miguel de la Ribera;49191
+49;San Miguel del Valle;49192
+49;San Pedro de Ceque;49193
+49;San Pedro de la Nave-Almendra;49194
+49;San Vicente de la Cabeza;49208
+49;San Vitero;49209
+49;Santa Clara de Avedillo;49197
+49;Santa Colomba de las Monjas;49199
+49;Santa Cristina de la Polvorosa;49200
+49;Santa Croya de Tera;49201
+49;Santa Eufemia del Barco;49202
+49;Santa María de la Vega;49203
+49;Santa María de Valverde;49204
+49;Santibáñez de Tera;49205
+49;Santibáñez de Vidriales;49206
+49;Santovenia;49207
+49;Sanzoles;49210
+49;Tábara;49214
+49;Tapioles;49216
+49;Toro;49219
+49;Torre del Valle, La;49220
+49;Torregamones;49221
+49;Torres del Carrizal;49222
+49;Trabazos;49223
+49;Trefacio;49224
+49;Uña de Quintana;49225
+49;Vadillo de la Guareña;49226
+49;Valcabado;49227
+49;Valdefinjas;49228
+49;Valdescorriel;49229
+49;Vallesa de la Guareña;49230
+49;Vega de Tera;49231
+49;Vega de Villalobos;49232
+49;Vegalatrave;49233
+49;Venialbo;49234
+49;Vezdemarbán;49235
+49;Vidayanes;49236
+49;Videmala;49237
+49;Villabrázaro;49238
+49;Villabuena del Puente;49239
+49;Villadepera;49240
+49;Villaescusa;49241
+49;Villafáfila;49242
+49;Villaferrueña;49243
+49;Villageriz;49244
+49;Villalazán;49245
+49;Villalba de la Lampreana;49246
+49;Villalcampo;49247
+49;Villalobos;49248
+49;Villalonso;49249
+49;Villalpando;49250
+49;Villalube;49251
+49;Villamayor de Campos;49252
+49;Villamor de los Escuderos;49255
+49;Villanázar;49256
+49;Villanueva de Azoague;49257
+49;Villanueva de Campeán;49258
+49;Villanueva de las Peras;49259
+49;Villanueva del Campo;49260
+49;Villar de Fallaves;49263
+49;Villar del Buey;49264
+49;Villaralbo;49261
+49;Villardeciervos;49262
+49;Villardiegua de la Ribera;49265
+49;Villárdiga;49266
+49;Villardondiego;49267
+49;Villarrín de Campos;49268
+49;Villaseco del Pan;49269
+49;Villavendimio;49270
+49;Villaveza de Valverde;49272
+49;Villaveza del Agua;49271
+49;Viñas;49273
+49;Zamora;49275
+50;Abanto;50001
+50;Acered;50002
+50;Agón;50003
+50;Aguarón;50004
+50;Aguilón;50005
+50;Ainzón;50006
+50;Aladrén;50007
+50;Alagón;50008
+50;Alarba;50009
+50;Alberite de San Juan;50010
+50;Albeta;50011
+50;Alborge;50012
+50;Alcalá de Ebro;50013
+50;Alcalá de Moncayo;50014
+50;Alconchel de Ariza;50015
+50;Aldehuela de Liestos;50016
+50;Alfajarín;50017
+50;Alfamén;50018
+50;Alforque;50019
+50;Alhama de Aragón;50020
+50;Almochuel;50021
+50;Almolda, La;50022
+50;Almonacid de la Cuba;50023
+50;Almonacid de la Sierra;50024
+50;Almunia de Doña Godina, La;50025
+50;Alpartir;50026
+50;Ambel;50027
+50;Anento;50028
+50;Aniñón;50029
+50;Añón de Moncayo;50030
+50;Aranda de Moncayo;50031
+50;Arándiga;50032
+50;Ardisa;50033
+50;Ariza;50034
+50;Artieda;50035
+50;Asín;50036
+50;Atea;50037
+50;Ateca;50038
+50;Azuara;50039
+50;Badules;50040
+50;Bagüés;50041
+50;Balconchán;50042
+50;Bárboles;50043
+50;Bardallur;50044
+50;Belchite;50045
+50;Belmonte de Gracián;50046
+50;Berdejo;50047
+50;Berrueco;50048
+50;Biel;50901
+50;Bijuesca;50050
+50;Biota;50051
+50;Bisimbre;50052
+50;Boquiñeni;50053
+50;Bordalba;50054
+50;Borja;50055
+50;Botorrita;50056
+50;Brea de Aragón;50057
+50;Bubierca;50058
+50;Bujaraloz;50059
+50;Bulbuente;50060
+50;Bureta;50061
+50;Burgo de Ebro, El;50062
+50;Buste, El;50063
+50;Cabañas de Ebro;50064
+50;Cabolafuente;50065
+50;Cadrete;50066
+50;Calatayud;50067
+50;Calatorao;50068
+50;Calcena;50069
+50;Calmarza;50070
+50;Campillo de Aragón;50071
+50;Carenas;50072
+50;Cariñena;50073
+50;Caspe;50074
+50;Castejón de Alarba;50075
+50;Castejón de las Armas;50076
+50;Castejón de Valdejasa;50077
+50;Castiliscar;50078
+50;Cervera de la Cañada;50079
+50;Cerveruela;50080
+50;Cetina;50081
+50;Chiprana;50092
+50;Chodes;50093
+50;Cimballa;50082
+50;Cinco Olivas;50083
+50;Clarés de Ribota;50084
+50;Codo;50085
+50;Codos;50086
+50;Contamina;50087
+50;Cosuenda;50088
+50;Cuarte de Huerva;50089
+50;Cubel;50090
+50;Cuerlas, Las;50091
+50;Daroca;50094
+50;Ejea de los Caballeros;50095
+50;Embid de Ariza;50096
+50;Encinacorba;50098
+50;Épila;50099
+50;Erla;50100
+50;Escatrón;50101
+50;Fabara;50102
+50;Farlete;50104
+50;Fayón;50105
+50;Fayos, Los;50106
+50;Figueruelas;50107
+50;Fombuena;50108
+50;Frago, El;50109
+50;Frasno, El;50110
+50;Fréscano;50111
+50;Fuendejalón;50113
+50;Fuendetodos;50114
+50;Fuentes de Ebro;50115
+50;Fuentes de Jiloca;50116
+50;Gallocanta;50117
+50;Gallur;50118
+50;Gelsa;50119
+50;Godojos;50120
+50;Gotor;50121
+50;Grisel;50122
+50;Grisén;50123
+50;Herrera de los Navarros;50124
+50;Ibdes;50125
+50;Illueca;50126
+50;Isuerre;50128
+50;Jaraba;50129
+50;Jarque de Moncayo;50130
+50;Jaulín;50131
+50;Joyosa, La;50132
+50;Lagata;50133
+50;Langa del Castillo;50134
+50;Layana;50135
+50;Lécera;50136
+50;Lechón;50138
+50;Leciñena;50137
+50;Letux;50139
+50;Litago;50140
+50;Lituénigo;50141
+50;Lobera de Onsella;50142
+50;Longares;50143
+50;Longás;50144
+50;Lucena de Jalón;50146
+50;Luceni;50147
+50;Luesia;50148
+50;Luesma;50149
+50;Lumpiaque;50150
+50;Luna;50151
+50;Maella;50152
+50;Magallón;50153
+50;Mainar;50154
+50;Malanquilla;50155
+50;Maleján;50156
+50;Mallén;50160
+50;Malón;50157
+50;Maluenda;50159
+50;Manchones;50161
+50;Mara;50162
+50;María de Huerva;50163
+50;Marracos;50902
+50;Mediana de Aragón;50164
+50;Mequinenza;50165
+50;Mesones de Isuela;50166
+50;Mezalocha;50167
+50;Mianos;50168
+50;Miedes de Aragón;50169
+50;Monegrillo;50170
+50;Moneva;50171
+50;Monreal de Ariza;50172
+50;Monterde;50173
+50;Montón;50174
+50;Morata de Jalón;50175
+50;Morata de Jiloca;50176
+50;Morés;50177
+50;Moros;50178
+50;Moyuela;50179
+50;Mozota;50180
+50;Muel;50181
+50;Muela, La;50182
+50;Munébrega;50183
+50;Murero;50184
+50;Murillo de Gállego;50185
+50;Navardún;50186
+50;Nigüella;50187
+50;Nombrevilla;50188
+50;Nonaspe;50189
+50;Novallas;50190
+50;Novillas;50191
+50;Nuévalos;50192
+50;Nuez de Ebro;50193
+50;Olvés;50194
+50;Orcajo;50195
+50;Orera;50196
+50;Orés;50197
+50;Oseja;50198
+50;Osera de Ebro;50199
+50;Paniza;50200
+50;Paracuellos de Jiloca;50201
+50;Paracuellos de la Ribera;50202
+50;Pastriz;50203
+50;Pedrola;50204
+50;Pedrosas, Las;50205
+50;Perdiguera;50206
+50;Piedratajada;50207
+50;Pina de Ebro;50208
+50;Pinseque;50209
+50;Pintanos, Los;50210
+50;Plasencia de Jalón;50211
+50;Pleitas;50212
+50;Plenas;50213
+50;Pomer;50214
+50;Pozuel de Ariza;50215
+50;Pozuelo de Aragón;50216
+50;Pradilla de Ebro;50217
+50;Puebla de Albortón;50218
+50;Puebla de Alfindén, La;50219
+50;Puendeluna;50220
+50;Purujosa;50221
+50;Quinto;50222
+50;Remolinos;50223
+50;Retascón;50224
+50;Ricla;50225
+50;Romanos;50227
+50;Rueda de Jalón;50228
+50;Ruesca;50229
+50;Sabiñán;50241
+50;Sádaba;50230
+50;Salillas de Jalón;50231
+50;Salvatierra de Esca;50232
+50;Samper del Salz;50233
+50;San Martín de la Virgen de Moncayo;50234
+50;San Mateo de Gállego;50235
+50;Santa Cruz de Grío;50236
+50;Santa Cruz de Moncayo;50237
+50;Santa Eulalia de Gállego;50238
+50;Santed;50239
+50;Sástago;50240
+50;Sediles;50242
+50;Sestrica;50243
+50;Sierra de Luna;50244
+50;Sigüés;50245
+50;Sisamón;50246
+50;Sobradiel;50247
+50;Sos del Rey Católico;50248
+50;Tabuenca;50249
+50;Talamantes;50250
+50;Tarazona;50251
+50;Tauste;50252
+50;Terrer;50253
+50;Tierga;50254
+50;Tobed;50255
+50;Torralba de los Frailes;50256
+50;Torralba de Ribota;50257
+50;Torralbilla;50258
+50;Torrehermosa;50259
+50;Torrelapaja;50260
+50;Torrellas;50261
+50;Torres de Berrellén;50262
+50;Torrijo de la Cañada;50263
+50;Tosos;50264
+50;Trasmoz;50265
+50;Trasobares;50266
+50;Uncastillo;50267
+50;Undués de Lerda;50268
+50;Urrea de Jalón;50269
+50;Urriés;50270
+50;Used;50271
+50;Utebo;50272
+50;Val de San Martín;50274
+50;Valdehorna;50273
+50;Valmadrid;50275
+50;Valpalmas;50276
+50;Valtorres;50277
+50;Velilla de Ebro;50278
+50;Velilla de Jiloca;50279
+50;Vera de Moncayo;50280
+50;Vierlas;50281
+50;Villadoz;50283
+50;Villafeliche;50284
+50;Villafranca de Ebro;50285
+50;Villalba de Perejil;50286
+50;Villalengua;50287
+50;Villamayor de Gállego;50903
+50;Villanueva de Gállego;50288
+50;Villanueva de Huerva;50290
+50;Villanueva de Jiloca;50289
+50;Villar de los Navarros;50291
+50;Villarreal de Huerva;50292
+50;Villarroya de la Sierra;50293
+50;Villarroya del Campo;50294
+50;Vilueña, La;50282
+50;Vistabella;50295
+50;Zaida, La;50296
+50;Zaragoza;50297
+50;Zuera;50298
+51;Ceuta;51001
+52;Melilla;52001
