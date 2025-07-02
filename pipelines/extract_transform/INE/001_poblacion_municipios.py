@@ -7,7 +7,6 @@ Target tables:
 
 import logging
 from pathlib import Path
-from typing import Optional
 
 import pandas as pd
 
@@ -15,63 +14,54 @@ from utils.logging import setup_logging
 from utils.normalization import (
     apply_and_check,  # type: ignore
     apply_and_check_dict,  # type: ignore
-    normalize_month,
     normalize_positive_integer,
-    normalize_provincia,
     normalize_year,
 )
 
-RAW_CSV_PATH = Path("data") / "raw" / "DGVG" / "DGVG004-040Servicio016.csv"
-CLEAN_CSV_PATH = Path("data") / "clean" / "servicio_016.csv"
+RAW_CSV_DIR = Path("data") / "raw" / "INE" / "INE001-PoblaciónMunicipios"
+CLEAN_CSV_PATH = Path("data") / "clean" / "poblacion_municipios.csv"
 
 
 def main():
     try:
-        # Read file
-        df = pd.read_csv(RAW_CSV_PATH)  # type: ignore
-        df.columns = df.columns.str.strip()
+        # Read all csv files in the directory into a single DataFrame
+        csv_files = list(RAW_CSV_DIR.glob("*.csv"))
+        if not csv_files:
+            raise FileNotFoundError(f"No CSV files found in {RAW_CSV_DIR}")
+        df = pd.concat((pd.read_csv(file, sep="\t") for file in csv_files), ignore_index=True)  # type: ignore
 
         # Rename columns
-        df = df.rename(
+        df.rename(
             columns={
-                "Año": "año",
-                "Mes": "mes",
-                "Provincia": "provincia_id",
-                "Persona que consulta": "persona_consulta",
-                "Tipo violencia": "tipo_violencia",
-                "Total consultas pertinentes": "total_consultas",
-                "Llamadas pertinentes": "num_llamadas",
-                "WhatsApp pertinentes": "num_whatsapps",
-                "Correos electrónicos pertinentes": "num_emails",
-                "Chats pertinentes": "num_chats",
-            }
+                "Municipios": "municipio_id",
+                "Periodo": "año",
+                "Sexo": "sexo",
+                "Total": "total_poblacion",
+            },
+            inplace=True,
         )
 
-        persona_consulta_mapping: dict[str, Optional[str]] = {
-            "Usuaria": "Usuaria",
-            "Familiares/Personas allegadas": "Familiares/Allegados",
-            "Otras personas": "Otras personas",
-        }
+        # Extract municipio_id and drop if it's province_id (less 5 digits)
+        df["municipio_id"] = df["municipio_id"].astype(str).str.split(" ").str[0]
+        df = df[df["municipio_id"].str.match(r"^\d{5}$")]  # type: ignore
 
-        tipo_violencia_mapping = {
-            "V. pareja o expareja": "Pareja/Expareja",
-            "Violencia no desagregada": "No desagregada",
-            "V. familiar": "Familiar",
-            "V. sexual (LOGILS)": "Sexual",
-            "Otras violencias": "Otras violencias",
-        }
+        # Drop rows with missing values in total_poblacion
+        num_rows_before = len(df)
+        df.dropna(subset=["total_poblacion"], inplace=True)  # type: ignore
+        logging.warning(f"Dropped {num_rows_before - len(df)} rows with missing 'total_poblacion' values.")
 
-        # Normalize and validate all columns
+        # Normalize and validate all columns (municipio_id is already validated)
         df["año"] = apply_and_check(df["año"], normalize_year)
-        df["mes"] = apply_and_check(df["mes"], normalize_month)
-        df["provincia_id"] = apply_and_check(df["provincia_id"], normalize_provincia)
-        df["persona_consulta"] = apply_and_check_dict(df["persona_consulta"], persona_consulta_mapping)
-        df["tipo_violencia"] = apply_and_check_dict(df["tipo_violencia"], tipo_violencia_mapping)
-        df["total_consultas"] = apply_and_check(df["total_consultas"], normalize_positive_integer)
-        df["num_llamadas"] = apply_and_check(df["num_llamadas"], normalize_positive_integer)
-        df["num_whatsapps"] = apply_and_check(df["num_whatsapps"], normalize_positive_integer)
-        df["num_emails"] = apply_and_check(df["num_emails"], normalize_positive_integer)
-        df["num_chats"] = apply_and_check(df["num_chats"], normalize_positive_integer)
+        df["sexo"] = apply_and_check_dict(
+            df["sexo"],
+            {
+                "Hombres": "Hombre",
+                "Mujeres": "Mujer",
+                "Total": "Total",
+            },
+        )
+        df["total_poblacion"] = df["total_poblacion"].astype(str).str.replace(".", "", regex=False)
+        df["total_poblacion"] = apply_and_check(df["total_poblacion"], normalize_positive_integer)
 
         # Save cleaned CSV
         CLEAN_CSV_PATH.parent.mkdir(parents=True, exist_ok=True)

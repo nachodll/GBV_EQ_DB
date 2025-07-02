@@ -23,6 +23,7 @@ SCRIPTS = [
     ET_SCRIPTS_DIR / "012_et_renta_activa_insercion.py",
     ET_SCRIPTS_DIR / "013_et_contratos_bonificados_sustitucion.py",
     ET_SCRIPTS_DIR / "014_et_ayudas_cambio_residencia.py",
+    ET_SCRIPTS_DIR / "INE" / "001_poblacion_municipios.py",
 ]
 
 

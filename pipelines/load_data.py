@@ -47,6 +47,7 @@ TABLES_TO_LOAD: List[Dict[str, Any]] = [
         "path": Path("data") / "clean" / "contratos_bonificados_sustitucion.csv",
     },
     {"name": "ayudas_cambio_residencia", "path": Path("data") / "clean" / "ayudas_cambio_residencia.csv"},
+    {"name": "poblacion_municipios", "path": Path("data") / "clean" / "poblacion_municipios.csv"},
 ]
 
 

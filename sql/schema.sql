@@ -23,6 +23,8 @@ CREATE TYPE "nivel_riesgo_viogen_enum" AS ENUM (
   'Extremo'
 );
 
+CREATE TYPE "sexo_enum" AS ENUM ('Hombre', 'Mujer', 'Total');
+
 CREATE TYPE "origen_denuncia_enum" AS ENUM (
   'Presentada directamente por víctima',
   'Presentada directamente por familiares',
@@ -81,6 +83,21 @@ CREATE TABLE
     "municipio_id" int PRIMARY KEY,
     "nombre" varchar NOT NULL,
     "provincia_id" int NOT NULL
+  );
+
+CREATE TABLE
+  "poblacion_municipios" (
+    "poblacion_municipios_id" serial PRIMARY KEY,
+    "municipio_id" int NOT NULL,
+    "año" int NOT NULL CHECK (
+      año BETWEEN 1900 AND EXTRACT(
+        YEAR
+        FROM
+          CURRENT_DATE
+      )
+    ),
+    "sexo" sexo_enum NOT NULL,
+    "total_poblacion" int NOT NULL CHECK (total_poblacion >= 0)
   );
 
 CREATE TABLE
