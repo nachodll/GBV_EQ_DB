@@ -8,11 +8,66 @@ from utils.normalization import (
     normalize_age_group,
     normalize_comunidad_autonoma,
     normalize_month,
+    # normalize_municipio,
     normalize_positive_integer,
     normalize_provincia,
     normalize_quarter,
     normalize_year,
 )
+
+# ---------------------- municipio normalization ----------------------
+# def test_normalize_municipio_basic():
+#     result = normalize_municipio("Asparrena")
+#     assert result.value == 1009
+#     assert result.status is NormalizationStatus.VALID
+
+
+# def test_normalize_municipio_accent_and_case():
+#     result = normalize_municipio("aRmiñon")
+#     assert result.value == 1006
+#     assert result.status is NormalizationStatus.VALID
+
+
+# def test_normalize_municipio_spaces_case():
+#     result = normalize_municipio("  ChinchiLLa   de Monte-Aragón")
+#     assert result.value == 2029
+#     assert result.status is NormalizationStatus.VALID
+
+
+# def test_normalize_municipio_commma():
+#     r1 = normalize_municipio("Gineta, La")
+#     r2 = normalize_municipio("Gineta")
+#     r3 = normalize_municipio("Gineta (La)")
+#     assert r1.value == 2035 and r2.value == 2035 and r3.value == 2035
+#     assert (
+#         r1.status is NormalizationStatus.VALID
+#         and r2.status is NormalizationStatus.VALID
+#         and r3.status is NormalizationStatus.VALID
+#     )
+
+
+# def test_normalize_municipio_slash():
+#     r1 = normalize_municipio("Elx/Elche")
+#     r2 = normalize_municipio("Elx")
+#     r3 = normalize_municipio("Elche")
+#     assert r1.value == 3065 and r2.value == 3065 and r3.value == 3065
+#     assert (
+#         r1.status is NormalizationStatus.VALID
+#         and r2.status is NormalizationStatus.VALID
+#         and r3.status is NormalizationStatus.VALID
+#     )
+
+
+# def test_normalize_municipio_unknown():
+#     result = normalize_municipio("Desconocida")
+#     assert result.value is None
+#     assert result.status is NormalizationStatus.UNKNOWN
+
+
+# def test_normalize_municipio_invalid():
+#     result = normalize_municipio("Andromeda")
+#     assert result.value is None
+#     assert result.status is NormalizationStatus.INVALID
 
 
 # ---------------------- provincia normalization ----------------------
@@ -32,6 +87,30 @@ def test_normalize_provincia_spaces_case():
     result = normalize_provincia(" LAS PALMAS ")
     assert result.value == 35
     assert result.status is NormalizationStatus.VALID
+
+
+def test_normalize_provincia_commma():
+    r1 = normalize_provincia("Balears, Illes")
+    r2 = normalize_provincia("Balears")
+    r3 = normalize_provincia("Balears (Illes)")
+    assert r1.value == 7 and r2.value == 7 and r3.value == 7
+    assert (
+        r1.status is NormalizationStatus.VALID
+        and r2.status is NormalizationStatus.VALID
+        and r3.status is NormalizationStatus.VALID
+    )
+
+
+def test_normalize_provincia_slash():
+    r1 = normalize_provincia("Araba/Álava")
+    r2 = normalize_provincia("Álava")
+    r3 = normalize_provincia("Araba")
+    assert r1.value == 1 and r2.value == 1 and r3.value == 1
+    assert (
+        r1.status is NormalizationStatus.VALID
+        and r2.status is NormalizationStatus.VALID
+        and r3.status is NormalizationStatus.VALID
+    )
 
 
 def test_normalize_provincia_unknown():
@@ -63,6 +142,18 @@ def test_normalize_comunidad_autonoma_spaces_case():
     result = normalize_comunidad_autonoma(" PRINCIPADO DE  ASTURIAS ")
     assert result.value == 3
     assert result.status is NormalizationStatus.VALID
+
+
+def test_normalize_comunidad_autonoma_commma():
+    r1 = normalize_comunidad_autonoma("Navarra, Comunidad Foral de")
+    r2 = normalize_comunidad_autonoma("Navarra")
+    r3 = normalize_comunidad_autonoma("Navarra (Comunidad Foral de)")
+    assert r1.value == 15 and r2.value == 15 and r3.value == 15
+    assert (
+        r1.status is NormalizationStatus.VALID
+        and r2.status is NormalizationStatus.VALID
+        and r3.status is NormalizationStatus.VALID
+    )
 
 
 def test_normalize_comunidad_autonoma_unknown():

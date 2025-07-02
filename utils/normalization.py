@@ -7,6 +7,14 @@ from typing import Any, Callable, Optional, Union
 
 import pandas as pd
 
+from utils.normalization_dicts import (
+    DICT_COMUNIDADES_AUTOMAS,
+    DICT_MONTHS,
+    DICT_PROVINCIAS,
+    DICT_QUARTER,
+    DICT_UNKNOWN_STRINGS,
+)
+
 """Utility functions for normalizing various types of data.
 
 Each normalizer returns a :class:`NormalizationResult` describing the normalized
@@ -30,13 +38,10 @@ class NormalizationResult:
     raw: str
 
 
-UNKNOWN_STRINGS = {"", "unknown", "n/c", "no consta", "noconsta", "desconocida"}
-
-
 def _is_unknown(value: str) -> bool:
     """Return True if the cleaned value represents an explicit unknown."""
 
-    return value.strip().lower() in UNKNOWN_STRINGS
+    return value.strip().lower() in DICT_UNKNOWN_STRINGS
 
 
 def _strip_accents(text: str) -> str:
@@ -77,82 +82,6 @@ def _normalize_region_name(name: str, normalization_dict: dict[str, int]) -> int
     return None
 
 
-DICT_PROVINCIAS = {
-    "Araba/Álava": 1,
-    "Araba-Álava": 1,
-    "Álava": 1,
-    "Araba": 1,
-    "Albacete": 2,
-    "Alicante/Alacant": 3,
-    "Alicante": 3,
-    "Alacant": 3,
-    "Almería": 4,
-    "Ávila": 5,
-    "Badajoz": 6,
-    "Balears (Illes)": 7,
-    "Illes Balears": 7,
-    "Baleares": 7,
-    "Barcelona": 8,
-    "Burgos": 9,
-    "Cáceres": 10,
-    "Cádiz": 11,
-    "Castellón/Castelló": 12,
-    "Castellón de la Plana": 12,
-    "Castelló": 12,
-    "Castellón": 12,
-    "Ciudad Real": 13,
-    "Córdoba": 14,
-    "A Coruña": 15,
-    "Coruña (A)": 15,
-    "Cuenca": 16,
-    "Girona": 17,
-    "Gerona": 17,
-    "Granada": 18,
-    "Guadalajara": 19,
-    "Gipuzkoa": 20,
-    "Huelva": 21,
-    "Huesca": 22,
-    "Jaén": 23,
-    "León": 24,
-    "Lleida": 25,
-    "Lérida": 25,
-    "Rioja (La)": 26,
-    "La Rioja": 26,
-    "Lugo": 27,
-    "Madrid": 28,
-    "Málaga": 29,
-    "Murcia": 30,
-    "Navarra": 31,
-    "Ourense": 32,
-    "Asturias": 33,
-    "Asturias/Asturies": 33,
-    "Asturies": 33,
-    "Palencia": 34,
-    "Palmas (Las)": 35,
-    "Las Palmas": 35,
-    "Pontevedra": 36,
-    "Salamanca": 37,
-    "Santa Cruz de Tenerife": 38,
-    "Tenerife": 38,
-    "Cantabria": 39,
-    "Segovia": 40,
-    "Sevilla": 41,
-    "Soria": 42,
-    "Tarragona": 43,
-    "Teruel": 44,
-    "Toledo": 45,
-    "Valencia/València": 46,
-    "Valencia": 46,
-    "València": 46,
-    "Valladolid": 47,
-    "Bizkaia": 48,
-    "Zamora": 49,
-    "Zaragoza": 50,
-    "Ceuta": 51,
-    "Melilla": 52,
-}
-
-
 def normalize_provincia(name: str) -> NormalizationResult:
     """Normalize a province name using the dict_provincia dictionary."""
 
@@ -162,57 +91,6 @@ def normalize_provincia(name: str) -> NormalizationResult:
     if normalized is None:
         return NormalizationResult(None, NormalizationStatus.INVALID, name)
     return NormalizationResult(normalized, NormalizationStatus.VALID, name)
-
-
-DICT_COMUNIDADES_AUTOMAS = {
-    "Andalucía": 1,
-    "Aragón": 2,
-    "Asturias": 3,
-    "Principado de Asturias": 3,
-    "Asturias, Principado de": 3,
-    "Asturias (Principado de)": 3,
-    "Islas Baleares": 4,
-    "Illes Balears": 4,
-    "Canarias": 5,
-    "Cantabria": 6,
-    "Castilla y León": 7,
-    "Castilla-La Mancha": 8,
-    "Cataluña": 9,
-    "Comunitat Valenciana": 10,
-    "Comunidad Valenciana": 10,
-    "Extremadura": 11,
-    "Galicia": 12,
-    "Comunidad de Madrid": 13,
-    "Madrid": 13,
-    "Madrid (Comunidad de)": 13,
-    "Madrid, Comunidad de": 13,
-    "Región de Murcia": 14,
-    "Murcia, Región de": 14,
-    "Murcia (Región de)": 14,
-    "Murcia": 14,
-    "Comunidad Foral de Navarra": 15,
-    "Navarra": 15,
-    "Navarra (Comunidad Foral de)": 15,
-    "Navarra, Comunidad Foral de": 15,
-    "País Vasco": 16,
-    "Euskadi": 16,
-    "País Vasco/Euskadi": 16,
-    "Euskadi/País Vasco": 16,
-    "País Vasco (Euskadi)": 16,
-    "Euskadi (País Vasco)": 16,
-    "La Rioja": 17,
-    "Rioja (La)": 17,
-    "Rioja, La": 17,
-    "Rioja": 17,
-    "Ceuta": 18,
-    "Melilla": 19,
-    # "España": 0,
-    # "España (Total)": 0,
-    # "Total España": 0,
-    # "Total": 0,
-    # "Total Nacional": 0,
-    # "Nacional": 0,
-}
 
 
 def normalize_comunidad_autonoma(name: str) -> NormalizationResult:
@@ -225,22 +103,6 @@ def normalize_comunidad_autonoma(name: str) -> NormalizationResult:
     if normalized is None:
         return NormalizationResult(None, NormalizationStatus.INVALID, name)
     return NormalizationResult(normalized, NormalizationStatus.VALID, name)
-
-
-DICT_MONTHS = {
-    "Enero": 1,
-    "Febrero": 2,
-    "Marzo": 3,
-    "Abril": 4,
-    "Mayo": 5,
-    "Junio": 6,
-    "Julio": 7,
-    "Agosto": 8,
-    "Septiembre": 9,
-    "Octubre": 10,
-    "Noviembre": 11,
-    "Diciembre": 12,
-}
 
 
 def normalize_month(month: str) -> NormalizationResult:
@@ -280,14 +142,6 @@ def normalize_year(year: Union[str, int, float]) -> NormalizationResult:
 
     except (ValueError, TypeError):
         return NormalizationResult(None, NormalizationStatus.INVALID, raw_str)
-
-
-DICT_QUARTER = {
-    "primero": 1,
-    "segundo": 2,
-    "tercero": 3,
-    "cuarto": 4,
-}
 
 
 def normalize_quarter(quarter: Union[str, int]) -> NormalizationResult:
