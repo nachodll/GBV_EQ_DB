@@ -153,20 +153,20 @@ def test_normalize_year_with_text():
     assert r1.status is r2.status is r3.status is NormalizationStatus.VALID
 
 
-def normalize_year_unknown():
+def test_normalize_year_unknown():
     result = normalize_year("No consta")
     assert result.value is None
     assert result.status is NormalizationStatus.UNKNOWN
 
 
-def normalize_year_out_of_bound():
+def test_normalize_year_out_of_bound():
     r1 = normalize_year(1800)
     r2 = normalize_year(2200)
     assert r1.value is None and r2.value is None
     assert r1.status is r2.status is NormalizationStatus.INVALID
 
 
-def normalize_year_invalid():
+def test_normalize_year_invalid():
     result = normalize_year("202a3")
     assert result.value is None
     assert result.status is NormalizationStatus.INVALID
