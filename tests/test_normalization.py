@@ -313,6 +313,12 @@ def test_normalize_age_group_less_than_greater_than():
     assert r1.status is r2.status is NormalizationStatus.VALID
 
 
+def test_normalize_greater_than_special_cases():
+    r1 = normalize_age_group("100 años y más")
+    assert r1.value == ">100"
+    assert r1.status is NormalizationStatus.VALID
+
+
 def test_normalize_age_group_unknown():
     r1 = normalize_age_group("No consta")
     r2 = normalize_age_group(" no CONSTA ")

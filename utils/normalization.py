@@ -227,6 +227,12 @@ def normalize_age_group(raw: str) -> NormalizationResult:
         normalized = f">{int(match_greater.group(1))}"
         return NormalizationResult(normalized, NormalizationStatus.VALID, raw)
 
+    # Handle formats like '65añosymás' or '65años y más'
+    match_and_more = re.match(r"(\d+)años?y?más", raw.strip().replace(" ", "").lower())
+    if match_and_more:
+        normalized = f">{int(match_and_more.group(1))}"
+        return NormalizationResult(normalized, NormalizationStatus.VALID, raw)
+
     return NormalizationResult(None, NormalizationStatus.INVALID, raw)
 
 
