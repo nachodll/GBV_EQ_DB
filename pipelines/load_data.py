@@ -5,7 +5,7 @@ the database tables with matching names.
 import logging
 import os
 from pathlib import Path
-from typing import Any, Dict, List
+from typing import Dict, List
 
 import pandas as pd
 from sqlalchemy import create_engine, text
@@ -13,53 +13,39 @@ from sqlalchemy.engine import Connection
 
 from utils.logging import setup_logging
 
-# Path to clean CSV data
-# Name of the CSV files should match the table names
-# Name of the CSV columns should match the table columns
-# Ordered list of CSV files to load (without .csv extension)
-TABLES_TO_LOAD: List[Dict[str, Any]] = [
-    {"name": "comunidades_autonomas", "path": Path("data") / "static" / "comunidadesAutónomas.csv"},
-    {"name": "provincias", "path": Path("data") / "static" / "provincias.csv"},
-    {"name": "municipios", "path": Path("data") / "static" / "municipios.csv"},
-    {"name": "feminicidios_pareja_expareja", "path": Path("data") / "clean" / "feminicidios_pareja_expareja.csv"},
-    {
-        "name": "feminicidios_fuera_pareja_expareja",
-        "path": Path("data") / "clean" / "feminicidios_fuera_pareja_expareja.csv",
-    },
-    {"name": "menores_victimas_mortales", "path": Path("data") / "clean" / "menores_victimas_mortales.csv"},
-    {"name": "servicio_016", "path": Path("data") / "clean" / "servicio_016.csv"},
-    {"name": "usuarias_atenpro", "path": Path("data") / "clean" / "usuarias_atenpro.csv"},
-    {
-        "name": "dispositivos_electronicos_seguimiento",
-        "path": Path("data") / "clean" / "dispositivos_electronicos_seguimiento.csv",
-    },
-    {"name": "ayudas_articulo_27", "path": Path("data") / "clean" / "ayudas_articulo_27.csv"},
-    {"name": "viogen", "path": Path("data") / "clean" / "viogen.csv"},
-    {
-        "name": "autorizaciones_residencia_trabajo_vvg",
-        "path": Path("data") / "clean" / "autorizaciones_residencia_trabajo_vvg.csv",
-    },
-    {"name": "denuncias_vg_pareja", "path": Path("data") / "clean" / "denuncias_vg_pareja.csv"},
-    {"name": "ordenes_proteccion", "path": Path("data") / "clean" / "ordenes_proteccion.csv"},
-    {"name": "renta_activa_insercion", "path": Path("data") / "clean" / "renta_activa_insercion.csv"},
-    {
-        "name": "contratos_bonificados_sustitucion",
-        "path": Path("data") / "clean" / "contratos_bonificados_sustitucion.csv",
-    },
-    {"name": "ayudas_cambio_residencia", "path": Path("data") / "clean" / "ayudas_cambio_residencia.csv"},
-    {"name": "poblacion_municipios", "path": Path("data") / "clean" / "poblacion_municipios.csv"},
+# Path to clean CSV data (CSV filenames should match SQL table names and columns)
+TABLES_TO_LOAD: List[Path] = [
+    Path("data") / "static" / "comunidades_autonomas.csv",
+    Path("data") / "static" / "provincias.csv",
+    Path("data") / "static" / "municipios.csv",
+    Path("data") / "clean" / "feminicidios_pareja_expareja.csv",
+    Path("data") / "clean" / "feminicidios_fuera_pareja_expareja.csv",
+    Path("data") / "clean" / "menores_victimas_mortales.csv",
+    Path("data") / "clean" / "servicio_016.csv",
+    Path("data") / "clean" / "usuarias_atenpro.csv",
+    Path("data") / "clean" / "dispositivos_electronicos_seguimiento.csv",
+    Path("data") / "clean" / "ayudas_articulo_27.csv",
+    Path("data") / "clean" / "viogen.csv",
+    Path("data") / "clean" / "autorizaciones_residencia_trabajo_vvg.csv",
+    Path("data") / "clean" / "denuncias_vg_pareja.csv",
+    Path("data") / "clean" / "ordenes_proteccion.csv",
+    Path("data") / "clean" / "renta_activa_insercion.csv",
+    Path("data") / "clean" / "contratos_bonificados_sustitucion.csv",
+    Path("data") / "clean" / "ayudas_cambio_residencia.csv",
+    Path("data") / "clean" / "poblacion_municipios.csv",
 ]
 
 
-def load_csv_files(tables: List[Dict[str, Any]]) -> Dict[str, pd.DataFrame]:
+def load_csv_files(paths: List[Path]) -> Dict[str, pd.DataFrame]:
     """Load CSV files as DataFrames"""
     dataframes: Dict[str, pd.DataFrame] = {}
-    for entry in tables:
+    for path in paths:
         try:
-            df = pd.read_csv(entry["path"], sep=";")  # type: ignore
-            dataframes[entry["name"]] = df
+            df = pd.read_csv(path, sep=";")  # type: ignore
+            table_name = path.stem.lower()
+            dataframes[table_name] = df
         except Exception as e:
-            logging.error(f"Failed to read '{entry['path']}': {e}")
+            logging.error(f"Failed to read '{path}': {e}")
     return dataframes
 
 
@@ -90,8 +76,7 @@ def main():
     with engine.begin() as conn:
         truncate_tables(conn, list(dataframes.keys()))
 
-        for table_entry in TABLES_TO_LOAD:
-            table_name = table_entry["name"]
+        for table_name, df in dataframes.items():
             df = dataframes.get(table_name)
             if df is not None:
                 try:

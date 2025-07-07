@@ -1,10 +1,11 @@
 import csv
 from pathlib import Path
 
+MUNICIPIOS_PATH = Path("data") / "static" / "municipios.csv"
+
 
 def _load_municipios_dict() -> dict[int, dict[str, int]]:
     """Load municipios data keyed by provincia id"""
-    MUNICIPIOS_PATH = Path("data") / "static" / "Municipios.csv"
     municipios_dict: dict[int, dict[str, int]] = {}
     with open(MUNICIPIOS_PATH, "r", encoding="utf-8") as f:
         reader = csv.DictReader(f, delimiter=";")  # type: ignore
