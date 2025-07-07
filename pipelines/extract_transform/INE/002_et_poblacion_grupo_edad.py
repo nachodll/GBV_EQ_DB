@@ -1,8 +1,8 @@
 """Extract and transform data
 Sources:
-    INE001
+    INE002
 Target tables:
-    poblacion_municipios
+    poblacion_grupo_edad
 """
 
 import logging
@@ -14,62 +14,59 @@ from utils.logging import setup_logging
 from utils.normalization import (
     apply_and_check,  # type: ignore
     apply_and_check_dict,  # type: ignore
+    normalize_age_group,
     normalize_positive_integer,
     normalize_year,
 )
 
-RAW_CSV_DIR = Path("data") / "raw" / "INE" / "INE001-PoblaciónMunicipios"
-CLEAN_CSV_PATH = Path("data") / "clean" / "poblacion_municipios.csv"
+RAW_CSV_PATH = Path("data") / "raw" / "INE" / "INE002-PoblaciónEdadSexo.csv"
+CLEAN_CSV_PATH = Path("data") / "clean" / "poblacion_grupo_edad.csv"
 
 
 def main():
     try:
-        # Read all csv files in the directory into a single DataFrame
-        csv_files = list(RAW_CSV_DIR.glob("*.csv"))
-        if not csv_files:
-            raise FileNotFoundError(f"No CSV files found in {RAW_CSV_DIR}")
-        df = pd.concat((pd.read_csv(file, sep="\t") for file in csv_files), ignore_index=True)  # type: ignore
+        # Read csv file into a DataFrame
+        df = pd.read_csv(RAW_CSV_PATH, sep="\t")  # type: ignore
 
         # Rename columns
         df.rename(
             columns={
-                "Municipios": "municipio_id",
-                "Periodo": "anio",
+                "Edad (grupos quinquenales)": "grupo_edad",
+                "Españoles/Extranjeros": "nacionalidad",
                 "Sexo": "sexo",
+                "Año": "anio",
                 "Total": "total_poblacion",
             },
             inplace=True,
         )
 
-        # Extract municipio_id and drop if it's province_id (less 5 digits)
-        df["municipio_id"] = df["municipio_id"].astype(str).str.split(" ").str[0]
-        df = df[df["municipio_id"].str.match(r"^\d{5}$")]  # type: ignore
-
-        # Drop rows with missing values in total_poblacion
-        num_rows_before = len(df)
-        df.dropna(subset=["total_poblacion"], inplace=True)  # type: ignore
-        logging.warning(f"Dropped {num_rows_before - len(df)} rows with missing 'total_poblacion' values.")
-
         # Drop all rows with aggregated data (e.g., "TOTAL")
         num_rows_before = len(df)
-        df = df[df["sexo"] != "Total"]
+        df = df[df["grupo_edad"] != "TOTAL EDADES"]
+        logging.warning(f"Dropped {num_rows_before - len(df)} rows with aggregated data for 'grupo_edad'.")
+        num_rows_before = len(df)
+        df = df[df["nacionalidad"] != "TOTAL"]
+        logging.warning(f"Dropped {num_rows_before - len(df)} rows with aggregated data for 'nacionalidad'.")
+        num_rows_before = len(df)
+        df = df[df["sexo"] != "Ambos sexos"]
         logging.warning(f"Dropped {num_rows_before - len(df)} rows with aggregated data for 'sexo'.")
 
         # Remove thousands separator dots from total_poblacion
         df["total_poblacion"] = df["total_poblacion"].astype(str).str.replace(".", "", regex=False)
 
-        # Normalize and validate all columns (municipio_id is already validated)
-        df["anio"] = apply_and_check(df["anio"], normalize_year)
-        df["sexo"] = apply_and_check_dict(
-            df["sexo"],
-            {"Hombres": "Hombre", "Mujeres": "Mujer"},
+        # Normalize and validate columns
+        df["grupo_edad"] = apply_and_check(df["grupo_edad"], normalize_age_group)
+        df["nacionalidad"] = apply_and_check_dict(
+            df["nacionalidad"], {"Españoles": "Española", "Extranjeros": "Extranjera"}
         )
+        df["sexo"] = apply_and_check_dict(df["sexo"], {"Hombres": "Hombre", "Mujeres": "Mujer"})
+        df["anio"] = apply_and_check(df["anio"], normalize_year)
         df["total_poblacion"] = apply_and_check(df["total_poblacion"], normalize_positive_integer)
 
-        # Save cleaned CSV
+        # Save to CSV
         CLEAN_CSV_PATH.parent.mkdir(parents=True, exist_ok=True)
         df.to_csv(CLEAN_CSV_PATH, index=False, sep=";")
-        logging.info(f"Data cleaned and saved to {CLEAN_CSV_PATH}")
+        logging.info(f"Cleaned data saved to {CLEAN_CSV_PATH}")
 
     except FileNotFoundError as e:
         logging.error(f"File not found: {e}")

@@ -25,6 +25,7 @@ SCRIPTS: List[Path] = [
     ET_SCRIPTS_DIR / "DGVG" / "013_et_contratos_bonificados_sustitucion.py",
     ET_SCRIPTS_DIR / "DGVG" / "014_et_ayudas_cambio_residencia.py",
     ET_SCRIPTS_DIR / "INE" / "001_poblacion_municipios.py",
+    ET_SCRIPTS_DIR / "INE" / "002_et_poblacion_grupo_edad.py",
 ]
 
 

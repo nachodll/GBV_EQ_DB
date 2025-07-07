@@ -33,6 +33,7 @@ TABLES_TO_LOAD: List[Path] = [
     Path("data") / "clean" / "contratos_bonificados_sustitucion.csv",
     Path("data") / "clean" / "ayudas_cambio_residencia.csv",
     Path("data") / "clean" / "poblacion_municipios.csv",
+    Path("data") / "clean" / "poblacion_grupo_edad.csv",
 ]
 
 

@@ -1,13 +1,13 @@
-CREATE TYPE "tipo_feminicidio_enum" AS ENUM ('Familiar', 'Sexual', 'Social', 'Vicario');
+CREATE TYPE "tipo_feminicidio_enum" AS ENUM('Familiar', 'Sexual', 'Social', 'Vicario');
 
-CREATE TYPE "persona_consulta_enum" AS ENUM (
+CREATE TYPE "persona_consulta_enum" AS ENUM(
   'Usuaria',
   'Familiares/Allegados',
   'Otras personas',
   'No consta'
 );
 
-CREATE TYPE "tipo_violencia_enum" AS ENUM (
+CREATE TYPE "tipo_violencia_enum" AS ENUM(
   'Pareja/Expareja',
   'No desagregada',
   'Familiar',
@@ -15,7 +15,7 @@ CREATE TYPE "tipo_violencia_enum" AS ENUM (
   'Otras violencias'
 );
 
-CREATE TYPE "nivel_riesgo_viogen_enum" AS ENUM (
+CREATE TYPE "nivel_riesgo_viogen_enum" AS ENUM(
   'No apreciado',
   'Bajo',
   'Medio',
@@ -23,9 +23,11 @@ CREATE TYPE "nivel_riesgo_viogen_enum" AS ENUM (
   'Extremo'
 );
 
-CREATE TYPE "sexo_enum" AS ENUM ('Hombre', 'Mujer', 'Total');
+CREATE TYPE "sexo_enum" AS ENUM('Hombre', 'Mujer');
 
-CREATE TYPE "origen_denuncia_enum" AS ENUM (
+CREATE TYPE "nacionalidad_enum" AS ENUM('Española', 'Extranjera');
+
+CREATE TYPE "origen_denuncia_enum" AS ENUM(
   'Presentada directamente por víctima',
   'Presentada directamente por familiares',
   'Atestados policiales - con denuncia víctima',
@@ -35,7 +37,7 @@ CREATE TYPE "origen_denuncia_enum" AS ENUM (
   'Servicios asistencia - Terceros en general'
 );
 
-CREATE TYPE "estado_orden_proteccion_enum" AS ENUM (
+CREATE TYPE "estado_orden_proteccion_enum" AS ENUM(
   'Incoadas',
   'Adoptadas',
   'Denegadas',
@@ -43,7 +45,7 @@ CREATE TYPE "estado_orden_proteccion_enum" AS ENUM (
   'Pendientes'
 );
 
-CREATE TYPE "instancia_orden_proteccion_enum" AS ENUM (
+CREATE TYPE "instancia_orden_proteccion_enum" AS ENUM(
   'A instancia de la víctima',
   'A instancia de otras personas',
   'A instancia del Minist. Fiscal',
@@ -51,7 +53,7 @@ CREATE TYPE "instancia_orden_proteccion_enum" AS ENUM (
   'A instancia de la Administración'
 );
 
-CREATE TYPE "colectivo_contratos_bonificados_sustitucion_enum" AS ENUM (
+CREATE TYPE "colectivo_contratos_bonificados_sustitucion_enum" AS ENUM(
   'Contratos de sustitución por vg',
   'Transformación en indefinidos de contratos de vvg',
   'Trata y mujeres en contexto de prostitución',
@@ -63,7 +65,7 @@ CREATE TYPE "colectivo_contratos_bonificados_sustitucion_enum" AS ENUM (
   'Cargas familiares de vdomestica'
 );
 
-CREATE TYPE "tipo_contrato_enum" AS ENUM ('Indefinido', 'Temporal');
+CREATE TYPE "tipo_contrato_enum" AS ENUM('Indefinido', 'Temporal');
 
 CREATE TABLE
   "comunidades_autonomas" (
@@ -101,6 +103,26 @@ CREATE TABLE
   );
 
 CREATE TABLE
+  "poblacion_grupo_edad" (
+    "poblacion_grupo_edad_id" serial PRIMARY KEY,
+    "nacionalidad" nacionalidad_enum NOT NULL,
+    "sexo" sexo_enum NOT NULL,
+    "grupo_edad" varchar NOT NULL CHECK (
+      grupo_edad ~ '^\d+-\d+$'
+      OR grupo_edad ~ '^<\d+$'
+      OR grupo_edad ~ '^>\d+$'
+    ),
+    "anio" int NOT NULL CHECK (
+      anio BETWEEN 1900 AND EXTRACT(
+        YEAR
+        FROM
+          CURRENT_DATE
+      )
+    ),
+    "total_poblacion" int NOT NULL CHECK (total_poblacion >= 0)
+  );
+
+CREATE TABLE
   "feminicidios_pareja_expareja" (
     "feminicidios_pareja_expareja_id" serial PRIMARY KEY,
     "num_feminicidios" int NOT NULL CHECK (num_feminicidios >= 0),
@@ -114,8 +136,16 @@ CREATE TABLE
       )
     ),
     "mes" int NOT NULL CHECK (mes BETWEEN 1 AND 12),
-    "victima_grupo_edad" varchar,
-    "agresor_grupo_edad" varchar
+    "victima_grupo_edad" varchar CHECK (
+      victima_grupo_edad ~ '^\d+-\d+$'
+      OR victima_grupo_edad ~ '^<\d+$'
+      OR victima_grupo_edad ~ '^>\d+$'
+    ),
+    "agresor_grupo_edad" varchar CHECK (
+      agresor_grupo_edad ~ '^\d+-\d+$'
+      OR agresor_grupo_edad ~ '^<\d+$'
+      OR agresor_grupo_edad ~ '^>\d+$'
+    )
   );
 
 CREATE TABLE
@@ -330,32 +360,47 @@ CREATE TABLE
     "num_ayudas_cambio_residencia" int NOT NULL CHECK (num_ayudas_cambio_residencia >= 0)
   );
 
-ALTER TABLE "provincias" ADD FOREIGN KEY ("comunidad_autonoma_id") REFERENCES "comunidades_autonomas" ("comunidad_autonoma_id");
+ALTER TABLE "provincias"
+ADD FOREIGN KEY ("comunidad_autonoma_id") REFERENCES "comunidades_autonomas" ("comunidad_autonoma_id");
 
-ALTER TABLE "feminicidios_pareja_expareja" ADD FOREIGN KEY ("provincia_id") REFERENCES "provincias" ("provincia_id");
+ALTER TABLE "feminicidios_pareja_expareja"
+ADD FOREIGN KEY ("provincia_id") REFERENCES "provincias" ("provincia_id");
 
-ALTER TABLE "feminicidios_fuera_pareja_expareja" ADD FOREIGN KEY ("comunidad_autonoma_id") REFERENCES "comunidades_autonomas" ("comunidad_autonoma_id");
+ALTER TABLE "feminicidios_fuera_pareja_expareja"
+ADD FOREIGN KEY ("comunidad_autonoma_id") REFERENCES "comunidades_autonomas" ("comunidad_autonoma_id");
 
-ALTER TABLE "menores_victimas_mortales" ADD FOREIGN KEY ("provincia_id") REFERENCES "provincias" ("provincia_id");
+ALTER TABLE "menores_victimas_mortales"
+ADD FOREIGN KEY ("provincia_id") REFERENCES "provincias" ("provincia_id");
 
-ALTER TABLE "servicio_016" ADD FOREIGN KEY ("provincia_id") REFERENCES "provincias" ("provincia_id");
+ALTER TABLE "servicio_016"
+ADD FOREIGN KEY ("provincia_id") REFERENCES "provincias" ("provincia_id");
 
-ALTER TABLE "usuarias_atenpro" ADD FOREIGN KEY ("provincia_id") REFERENCES "provincias" ("provincia_id");
+ALTER TABLE "usuarias_atenpro"
+ADD FOREIGN KEY ("provincia_id") REFERENCES "provincias" ("provincia_id");
 
-ALTER TABLE "dispositivos_electronicos_seguimiento" ADD FOREIGN KEY ("provincia_id") REFERENCES "provincias" ("provincia_id");
+ALTER TABLE "dispositivos_electronicos_seguimiento"
+ADD FOREIGN KEY ("provincia_id") REFERENCES "provincias" ("provincia_id");
 
-ALTER TABLE "ayudas_articulo_27" ADD FOREIGN KEY ("comunidad_autonoma_id") REFERENCES "comunidades_autonomas" ("comunidad_autonoma_id");
+ALTER TABLE "ayudas_articulo_27"
+ADD FOREIGN KEY ("comunidad_autonoma_id") REFERENCES "comunidades_autonomas" ("comunidad_autonoma_id");
 
-ALTER TABLE "viogen" ADD FOREIGN KEY ("provincia_id") REFERENCES "provincias" ("provincia_id");
+ALTER TABLE "viogen"
+ADD FOREIGN KEY ("provincia_id") REFERENCES "provincias" ("provincia_id");
 
-ALTER TABLE "autorizaciones_residencia_trabajo_vvg" ADD FOREIGN KEY ("provincia_id") REFERENCES "provincias" ("provincia_id");
+ALTER TABLE "autorizaciones_residencia_trabajo_vvg"
+ADD FOREIGN KEY ("provincia_id") REFERENCES "provincias" ("provincia_id");
 
-ALTER TABLE "denuncias_vg_pareja" ADD FOREIGN KEY ("provincia_id") REFERENCES "provincias" ("provincia_id");
+ALTER TABLE "denuncias_vg_pareja"
+ADD FOREIGN KEY ("provincia_id") REFERENCES "provincias" ("provincia_id");
 
-ALTER TABLE "ordenes_proteccion" ADD FOREIGN KEY ("provincia_id") REFERENCES "provincias" ("provincia_id");
+ALTER TABLE "ordenes_proteccion"
+ADD FOREIGN KEY ("provincia_id") REFERENCES "provincias" ("provincia_id");
 
-ALTER TABLE "renta_activa_insercion" ADD FOREIGN KEY ("provincia_id") REFERENCES "provincias" ("provincia_id");
+ALTER TABLE "renta_activa_insercion"
+ADD FOREIGN KEY ("provincia_id") REFERENCES "provincias" ("provincia_id");
 
-ALTER TABLE "contratos_bonificados_sustitucion" ADD FOREIGN KEY ("provincia_id") REFERENCES "provincias" ("provincia_id");
+ALTER TABLE "contratos_bonificados_sustitucion"
+ADD FOREIGN KEY ("provincia_id") REFERENCES "provincias" ("provincia_id");
 
-ALTER TABLE "ayudas_cambio_residencia" ADD FOREIGN KEY ("provincia_id") REFERENCES "provincias" ("provincia_id");
+ALTER TABLE "ayudas_cambio_residencia"
+ADD FOREIGN KEY ("provincia_id") REFERENCES "provincias" ("provincia_id");
