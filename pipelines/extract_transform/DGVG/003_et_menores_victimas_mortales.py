@@ -38,7 +38,7 @@ def main():
                 "Mes": "mes",
                 "VM Vicaria -1-": "es_victima_vicaria",
                 "AG-VM Relación": "es_hijo_agresor",
-                "Menores víctimas mortales vdg": "num_menores_victimas_mortales",
+                "Menores víctimas mortales vdg": "menores_victimas_mortales",
             }
         )
 
@@ -57,9 +57,7 @@ def main():
         df["mes"] = apply_and_check(df["mes"], normalize_month)
         df["es_victima_vicaria"] = apply_and_check_dict(df["es_victima_vicaria"], es_victima_vicaria_mapping)
         df["es_hijo_agresor"] = apply_and_check_dict(df["es_hijo_agresor"], es_hijo_agresor_mapping)
-        df["num_menores_victimas_mortales"] = apply_and_check(
-            df["num_menores_victimas_mortales"], normalize_positive_integer
-        )
+        df["menores_victimas_mortales"] = apply_and_check(df["menores_victimas_mortales"], normalize_positive_integer)
 
         # Save cleaned CSV
         CLEAN_CSV_PATH.parent.mkdir(parents=True, exist_ok=True)

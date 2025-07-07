@@ -36,7 +36,7 @@ def main():
                 "Municipios": "municipio_id",
                 "Periodo": "anio",
                 "Sexo": "sexo",
-                "Total": "total_poblacion",
+                "Total": "poblacion",
             },
             inplace=True,
         )
@@ -45,18 +45,18 @@ def main():
         df["municipio_id"] = df["municipio_id"].astype(str).str.split(" ").str[0]
         df = df[df["municipio_id"].str.match(r"^\d{5}$")]  # type: ignore
 
-        # Drop rows with missing values in total_poblacion
+        # Drop rows with missing values in poblacion
         num_rows_before = len(df)
-        df.dropna(subset=["total_poblacion"], inplace=True)  # type: ignore
-        logging.warning(f"Dropped {num_rows_before - len(df)} rows with missing 'total_poblacion' values.")
+        df.dropna(subset=["poblacion"], inplace=True)  # type: ignore
+        logging.warning(f"Dropped {num_rows_before - len(df)} rows with missing 'poblacion' values.")
 
         # Drop all rows with aggregated data (e.g., "TOTAL")
         num_rows_before = len(df)
         df = df[df["sexo"] != "Total"]
         logging.warning(f"Dropped {num_rows_before - len(df)} rows with aggregated data for 'sexo'.")
 
-        # Remove thousands separator dots from total_poblacion
-        df["total_poblacion"] = df["total_poblacion"].astype(str).str.replace(".", "", regex=False)
+        # Remove thousands separator dots from poblacion
+        df["poblacion"] = df["poblacion"].astype(str).str.replace(".", "", regex=False)
 
         # Normalize and validate all columns (municipio_id is already validated)
         df["anio"] = apply_and_check(df["anio"], normalize_year)
@@ -64,7 +64,7 @@ def main():
             df["sexo"],
             {"Hombres": "Hombre", "Mujeres": "Mujer"},
         )
-        df["total_poblacion"] = apply_and_check(df["total_poblacion"], normalize_positive_integer)
+        df["poblacion"] = apply_and_check(df["poblacion"], normalize_positive_integer)
 
         # Save cleaned CSV
         CLEAN_CSV_PATH.parent.mkdir(parents=True, exist_ok=True)

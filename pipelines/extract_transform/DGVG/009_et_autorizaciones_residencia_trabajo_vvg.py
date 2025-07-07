@@ -35,7 +35,7 @@ def main():
                 "Año": "anio",
                 "Mes": "mes",
                 "Provincia": "provincia_id",
-                "Número de autorizaciones concedidas": "num_autorizaciones_concedidas",
+                "Número de autorizaciones concedidas": "autorizaciones_concedidas",
             }
         )
         df = df.drop(columns=["Comunidad autónoma"])
@@ -44,9 +44,7 @@ def main():
         df["anio"] = apply_and_check(df["anio"], normalize_year)
         df["mes"] = apply_and_check(df["mes"], normalize_month)
         df["provincia_id"] = apply_and_check(df["provincia_id"], normalize_provincia)
-        df["num_autorizaciones_concedidas"] = apply_and_check(
-            df["num_autorizaciones_concedidas"], normalize_positive_integer
-        )
+        df["autorizaciones_concedidas"] = apply_and_check(df["autorizaciones_concedidas"], normalize_positive_integer)
 
         # Save clean CSV
         CLEAN_CSV_PATH.parent.mkdir(parents=True, exist_ok=True)

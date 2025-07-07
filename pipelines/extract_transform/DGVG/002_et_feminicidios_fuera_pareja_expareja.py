@@ -36,7 +36,7 @@ def main():
                 "Comunidad autónoma (As)": "comunidad_autonoma_id",
                 "Año": "anio",
                 "Tipo de feminicidio": "tipo_feminicidio",
-                "Feminicidos fuera pareja o expareja": "num_feminicidios",
+                "Feminicidos fuera pareja o expareja": "feminicidios",
             }
         )
 
@@ -50,7 +50,7 @@ def main():
         # Normalize and validate all columns
         df["comunidad_autonoma_id"] = apply_and_check(df["comunidad_autonoma_id"], normalize_comunidad_autonoma)
         df["anio"] = apply_and_check(df["anio"], normalize_year)
-        df["num_feminicidios"] = apply_and_check(df["num_feminicidios"], normalize_positive_integer)
+        df["feminicidios"] = apply_and_check(df["feminicidios"], normalize_positive_integer)
         df["tipo_feminicidio"] = apply_and_check_dict(df["tipo_feminicidio"], tipo_feminicidio_mapping)
 
         # Save cleaned CSV

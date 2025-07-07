@@ -37,8 +37,8 @@ def main():
                 "Mes": "mes",
                 "Provincia": "provincia_id",
                 "Nivel de riesgo": "nivel_riesgo",
-                "Número de casos": "num_casos",
-                "Número de casos con protección policial": "num_casos_proteccion_policial",
+                "Número de casos": "casos",
+                "Número de casos con protección policial": "casos_proteccion_policial",
             }
         )
         df = df.drop(columns=["Comunidad autónoma"])
@@ -57,10 +57,8 @@ def main():
                 "Extremo": "Extremo",
             },
         )
-        df["num_casos"] = apply_and_check(df["num_casos"], normalize_positive_integer)
-        df["num_casos_proteccion_policial"] = apply_and_check(
-            df["num_casos_proteccion_policial"], normalize_positive_integer
-        )
+        df["casos"] = apply_and_check(df["casos"], normalize_positive_integer)
+        df["casos_proteccion_policial"] = apply_and_check(df["casos_proteccion_policial"], normalize_positive_integer)
 
         # Save clean CSV
         CLEAN_CSV_PATH.parent.mkdir(parents=True, exist_ok=True)

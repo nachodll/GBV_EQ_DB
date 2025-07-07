@@ -35,9 +35,9 @@ def main():
                 "Año": "anio",
                 "Mes": "mes",
                 "Provincia": "provincia_id",
-                "Instalaciones acumuladas": "num_instalaciones_acumuladas",
-                "Desinstalaciones acumuladas": "num_desinstalaciones_acumuladas",
-                "Dispositivos activos": "num_dispositivos_activos",
+                "Instalaciones acumuladas": "instalaciones_acumuladas",
+                "Desinstalaciones acumuladas": "desinstalaciones_acumuladas",
+                "Dispositivos activos": "dispositivos_activos",
             }
         )
         df = df.drop(columns=["Comunidad autónoma"])
@@ -46,13 +46,11 @@ def main():
         df["anio"] = apply_and_check(df["anio"], normalize_year)
         df["mes"] = apply_and_check(df["mes"], normalize_month)
         df["provincia_id"] = apply_and_check(df["provincia_id"], normalize_provincia)
-        df["num_instalaciones_acumuladas"] = apply_and_check(
-            df["num_instalaciones_acumuladas"], normalize_positive_integer
+        df["instalaciones_acumuladas"] = apply_and_check(df["instalaciones_acumuladas"], normalize_positive_integer)
+        df["desinstalaciones_acumuladas"] = apply_and_check(
+            df["desinstalaciones_acumuladas"], normalize_positive_integer
         )
-        df["num_desinstalaciones_acumuladas"] = apply_and_check(
-            df["num_desinstalaciones_acumuladas"], normalize_positive_integer
-        )
-        df["num_dispositivos_activos"] = apply_and_check(df["num_dispositivos_activos"], normalize_positive_integer)
+        df["dispositivos_activos"] = apply_and_check(df["dispositivos_activos"], normalize_positive_integer)
 
         # Save clean CSV
         CLEAN_CSV_PATH.parent.mkdir(parents=True, exist_ok=True)

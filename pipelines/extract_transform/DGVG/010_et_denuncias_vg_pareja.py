@@ -37,7 +37,7 @@ def main():
                 "Trimestre": "trimestre",
                 "Provincia": "provincia_id",
                 "Origen de la denuncia": "origen_denuncia",
-                "Número de denuncias por violencia de género": "num_denuncias",
+                "Número de denuncias por violencia de género": "denuncias",
             }
         )
 
@@ -55,7 +55,7 @@ def main():
         df["anio"] = apply_and_check(df["anio"], normalize_year)
         df["trimestre"] = apply_and_check(df["trimestre"], normalize_quarter)
         df["provincia_id"] = apply_and_check(df["provincia_id"], normalize_provincia)
-        df["num_denuncias"] = apply_and_check(df["num_denuncias"], normalize_positive_integer)
+        df["denuncias"] = apply_and_check(df["denuncias"], normalize_positive_integer)
         df["origen_denuncia"] = apply_and_check_dict(df["origen_denuncia"], origen_denuncia_mapping)
 
         # Save clean CSV

@@ -35,26 +35,26 @@ def main():
                 "Año": "anio",
                 "Mes": "mes",
                 "Provincia": "provincia_id",
-                "Altas": "num_altas",
-                "Bajas": "num_bajas",
-                "Usuarias activas": "num_usuarias_activas",
+                "Altas": "altas",
+                "Bajas": "bajas",
+                "Usuarias activas": "usuarias_activas",
             }
         )
         df = df.drop(columns=["Comunidad autónoma"])
 
-        # Dropping rows with negative values in 'num_altas' or 'num_bajas'
+        # Dropping rows with negative values in 'altas' or 'bajas'
         rows_before = len(df)
-        df = df[df["num_altas"] >= 0]
-        df = df[df["num_bajas"] >= 0]
-        logging.warning(f"Dropped {rows_before - len(df)} rows with negative values in 'num_altas' or 'num_bajas'.")
+        df = df[df["altas"] >= 0]
+        df = df[df["bajas"] >= 0]
+        logging.warning(f"Dropped {rows_before - len(df)} rows with negative values in 'altas' or 'bajas'.")
 
         # Normalize and validate all columns
         df["anio"] = apply_and_check(df["anio"], normalize_year)
         df["mes"] = apply_and_check(df["mes"], normalize_month)
         df["provincia_id"] = apply_and_check(df["provincia_id"], normalize_provincia)
-        df["num_usuarias_activas"] = apply_and_check(df["num_usuarias_activas"], normalize_positive_integer)
-        df["num_altas"] = apply_and_check(df["num_altas"], normalize_positive_integer)
-        df["num_bajas"] = apply_and_check(df["num_bajas"], normalize_positive_integer)
+        df["usuarias_activas"] = apply_and_check(df["usuarias_activas"], normalize_positive_integer)
+        df["altas"] = apply_and_check(df["altas"], normalize_positive_integer)
+        df["bajas"] = apply_and_check(df["bajas"], normalize_positive_integer)
 
         # Save clean CSV
         CLEAN_CSV_PATH.parent.mkdir(parents=True, exist_ok=True)

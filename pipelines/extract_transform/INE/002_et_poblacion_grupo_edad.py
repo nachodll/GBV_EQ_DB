@@ -35,7 +35,7 @@ def main():
                 "Españoles/Extranjeros": "nacionalidad",
                 "Sexo": "sexo",
                 "Año": "anio",
-                "Total": "total_poblacion",
+                "Total": "poblacion",
             },
             inplace=True,
         )
@@ -51,8 +51,8 @@ def main():
         df = df[df["sexo"] != "Ambos sexos"]
         logging.warning(f"Dropped {num_rows_before - len(df)} rows with aggregated data for 'sexo'.")
 
-        # Remove thousands separator dots from total_poblacion
-        df["total_poblacion"] = df["total_poblacion"].astype(str).str.replace(".", "", regex=False)
+        # Remove thousands separator dots from poblacion
+        df["poblacion"] = df["poblacion"].astype(str).str.replace(".", "", regex=False)
 
         # Normalize and validate columns
         df["grupo_edad"] = apply_and_check(df["grupo_edad"], normalize_age_group)
@@ -61,7 +61,7 @@ def main():
         )
         df["sexo"] = apply_and_check_dict(df["sexo"], {"Hombres": "Hombre", "Mujeres": "Mujer"})
         df["anio"] = apply_and_check(df["anio"], normalize_year)
-        df["total_poblacion"] = apply_and_check(df["total_poblacion"], normalize_positive_integer)
+        df["poblacion"] = apply_and_check(df["poblacion"], normalize_positive_integer)
 
         # Save to CSV
         CLEAN_CSV_PATH.parent.mkdir(parents=True, exist_ok=True)

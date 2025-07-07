@@ -39,13 +39,13 @@ def main():
                 "Provincia": "provincia_id",
                 "Persona que consulta": "persona_consulta",
                 "Tipo violencia": "tipo_violencia",
-                "Total consultas pertinentes": "total_consultas",
-                "Llamadas pertinentes": "num_llamadas",
-                "WhatsApp pertinentes": "num_whatsapps",
-                "Correos electrónicos pertinentes": "num_emails",
-                "Chats pertinentes": "num_chats",
+                "Llamadas pertinentes": "llamadas",
+                "WhatsApp pertinentes": "whatsapps",
+                "Correos electrónicos pertinentes": "emails",
+                "Chats pertinentes": "chats",
             }
         )
+        df = df.drop(columns=["Total consultas pertinentes"])
 
         persona_consulta_mapping: dict[str, Optional[str]] = {
             "Usuaria": "Usuaria",
@@ -53,9 +53,9 @@ def main():
             "Otras personas": "Otras personas",
         }
 
-        tipo_violencia_mapping = {
+        tipo_violencia_mapping: dict[str, Optional[str]] = {
             "V. pareja o expareja": "Pareja/Expareja",
-            "Violencia no desagregada": "No desagregada",
+            "Violencia no desagregada": None,
             "V. familiar": "Familiar",
             "V. sexual (LOGILS)": "Sexual",
             "Otras violencias": "Otras violencias",
@@ -67,11 +67,10 @@ def main():
         df["provincia_id"] = apply_and_check(df["provincia_id"], normalize_provincia)
         df["persona_consulta"] = apply_and_check_dict(df["persona_consulta"], persona_consulta_mapping)
         df["tipo_violencia"] = apply_and_check_dict(df["tipo_violencia"], tipo_violencia_mapping)
-        df["total_consultas"] = apply_and_check(df["total_consultas"], normalize_positive_integer)
-        df["num_llamadas"] = apply_and_check(df["num_llamadas"], normalize_positive_integer)
-        df["num_whatsapps"] = apply_and_check(df["num_whatsapps"], normalize_positive_integer)
-        df["num_emails"] = apply_and_check(df["num_emails"], normalize_positive_integer)
-        df["num_chats"] = apply_and_check(df["num_chats"], normalize_positive_integer)
+        df["llamadas"] = apply_and_check(df["llamadas"], normalize_positive_integer)
+        df["whatsapps"] = apply_and_check(df["whatsapps"], normalize_positive_integer)
+        df["emails"] = apply_and_check(df["emails"], normalize_positive_integer)
+        df["chats"] = apply_and_check(df["chats"], normalize_positive_integer)
 
         # Save cleaned CSV
         CLEAN_CSV_PATH.parent.mkdir(parents=True, exist_ok=True)

@@ -33,14 +33,14 @@ def main():
             columns={
                 "Año": "anio",
                 "Comunidad autónoma": "comunidad_autonoma_id",
-                "Número de ayudas concedidas Art 27": "num_ayudas_concedidas",
+                "Número de ayudas concedidas Art 27": "ayudas_concedidas",
             }
         )
 
         # Normalize and validate all columns
         df["anio"] = apply_and_check(df["anio"], normalize_year)
         df["comunidad_autonoma_id"] = apply_and_check(df["comunidad_autonoma_id"], normalize_comunidad_autonoma)
-        df["num_ayudas_concedidas"] = apply_and_check(df["num_ayudas_concedidas"], normalize_positive_integer)
+        df["ayudas_concedidas"] = apply_and_check(df["ayudas_concedidas"], normalize_positive_integer)
 
         # Save clean data
         df.to_csv(CLEAN_CSV_PATH, index=False, sep=";")

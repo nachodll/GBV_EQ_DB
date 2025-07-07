@@ -38,8 +38,8 @@ def main():
                 "Mes": "mes",
                 "VM Grupo de edad": "victima_grupo_edad",
                 "AG Grupo de edad": "agresor_grupo_edad",
-                "Feminicidios pareja o expareja": "num_feminicidios",
-                "Huérfanas y huérfanos menores de edad -1-": "num_huerfanos_menores",
+                "Feminicidios pareja o expareja": "feminicidios",
+                "Huérfanas y huérfanos menores de edad -1-": "huerfanos_menores",
             }
         )
 
@@ -49,8 +49,8 @@ def main():
         df["provincia_id"] = apply_and_check(df["provincia_id"], normalize_provincia)
         df["victima_grupo_edad"] = apply_and_check(df["victima_grupo_edad"], normalize_age_group)
         df["agresor_grupo_edad"] = apply_and_check(df["agresor_grupo_edad"], normalize_age_group)
-        df["num_feminicidios"] = apply_and_check(df["num_feminicidios"], normalize_positive_integer)
-        df["num_huerfanos_menores"] = apply_and_check(df["num_huerfanos_menores"], normalize_positive_integer)
+        df["feminicidios"] = apply_and_check(df["feminicidios"], normalize_positive_integer)
+        df["huerfanos_menores"] = apply_and_check(df["huerfanos_menores"], normalize_positive_integer)
 
         # Save cleaned CSV
         CLEAN_CSV_PATH.parent.mkdir(parents=True, exist_ok=True)

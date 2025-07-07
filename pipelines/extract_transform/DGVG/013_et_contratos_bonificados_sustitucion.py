@@ -38,8 +38,8 @@ def main():
                 "Provincia": "provincia_id",
                 "Colectivo": "colectivo",
                 "Tipo de contrato": "tipo_contrato",
-                "Número de contratos bonificados": "num_contratos_bonificados",
-                "Número de contratos de sustitución": "num_contratos_sustitucion",
+                "Número de contratos bonificados": "contratos_bonificados",
+                "Número de contratos de sustitución": "contratos_sustitucion",
             }
         )
 
@@ -65,8 +65,8 @@ def main():
         df["provincia_id"] = apply_and_check(df["provincia_id"], normalize_provincia)
         df["colectivo"] = apply_and_check_dict(df["colectivo"], colectivo_mapping)
         df["tipo_contrato"] = apply_and_check_dict(df["tipo_contrato"], tipo_contrato_mapping)
-        df["num_contratos_bonificados"] = apply_and_check(df["num_contratos_bonificados"], normalize_positive_integer)
-        df["num_contratos_sustitucion"] = apply_and_check(df["num_contratos_sustitucion"], normalize_positive_integer)
+        df["contratos_bonificados"] = apply_and_check(df["contratos_bonificados"], normalize_positive_integer)
+        df["contratos_sustitucion"] = apply_and_check(df["contratos_sustitucion"], normalize_positive_integer)
 
         # Save to CSV
         CLEAN_CSV_PATH.parent.mkdir(parents=True, exist_ok=True)

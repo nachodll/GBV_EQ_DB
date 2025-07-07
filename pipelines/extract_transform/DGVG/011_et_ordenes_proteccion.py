@@ -38,7 +38,7 @@ def main():
                 "Provincia": "provincia_id",
                 "Incoadas-Resueltas": "estado_proceso",
                 "Instancia": "instancia",
-                "Número de órdenes de protección": "num_ordenes_proteccion",
+                "Número de órdenes de protección": "ordenes_proteccion",
             }
         )
         estado_orden_proteccion_mapping = {
@@ -60,7 +60,7 @@ def main():
         df["anio"] = apply_and_check(df["anio"], normalize_year)
         df["trimestre"] = apply_and_check(df["trimestre"], normalize_quarter)
         df["provincia_id"] = apply_and_check(df["provincia_id"], normalize_provincia)
-        df["num_ordenes_proteccion"] = apply_and_check(df["num_ordenes_proteccion"], normalize_positive_integer)
+        df["ordenes_proteccion"] = apply_and_check(df["ordenes_proteccion"], normalize_positive_integer)
         df["estado_proceso"] = apply_and_check_dict(df["estado_proceso"], estado_orden_proteccion_mapping)
         df["instancia"] = apply_and_check_dict(df["instancia"], instancia_mapping)
 
