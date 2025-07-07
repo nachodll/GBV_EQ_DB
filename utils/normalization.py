@@ -106,8 +106,10 @@ def normalize_comunidad_autonoma(name: str) -> NormalizationResult:
     return NormalizationResult(normalized, NormalizationStatus.VALID, name)
 
 
-def normalize_municipio(name: str, provincia: Union[str, int]) -> NormalizationResult:
+def normalize_municipio(args: tuple[str, Union[str, int]]) -> NormalizationResult:
     """Normalize a municipio name within a given province."""
+
+    name, provincia = args
 
     if _is_unknown(name.strip()):
         return NormalizationResult(None, NormalizationStatus.UNKNOWN, name)
@@ -245,13 +247,9 @@ def normalize_positive_integer(value: Union[str, int, float]) -> NormalizationRe
         return NormalizationResult(None, NormalizationStatus.INVALID, raw_str)
 
 
-def apply_and_check(series: pd.Series, func: Callable[[Any], NormalizationResult], series2: Optional[pd.Series] = None):  # type: ignore
-    """Apply a normalization function and fail on invalid results.
-    If series2 is provided, func should take two arguments."""
-    if series2 is not None:
-        results = pd.DataFrame({"a": series, "b": series2}).apply(lambda row: func(row["a"], row["b"]), axis=1)  # type: ignore
-    else:
-        results = series.apply(func)  # type: ignore
+def apply_and_check(series: pd.Series, func: Callable[[Any], NormalizationResult]):  # type: ignore
+    """Apply a normalization function and fail on invalid results."""
+    results = series.apply(func)  # type: ignore
 
     invalid = [r.raw for r in results if r.status is NormalizationStatus.INVALID]  # type: ignore
     if invalid:
