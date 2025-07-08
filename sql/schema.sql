@@ -23,8 +23,6 @@ CREATE TYPE "nivel_riesgo_viogen_enum" AS ENUM(
 
 CREATE TYPE "sexo_enum" AS ENUM('Hombre', 'Mujer');
 
-CREATE TYPE "nacionalidad_enum" AS ENUM('Española', 'Extranjera');
-
 CREATE TYPE "origen_denuncia_enum" AS ENUM(
   'Presentada directamente por víctima',
   'Presentada directamente por familiares',
@@ -105,9 +103,16 @@ CREATE TABLE
   );
 
 CREATE TABLE
+  "nacionalidades" (
+    "nacionalidad_id" serial PRIMARY KEY,
+    "nacionalidad" varchar UNIQUE NOT NULL
+  );
+
+CREATE TABLE
   "autorizaciones_residencia" (
     "autorizaciones_residencia_id" serial PRIMARY KEY,
-    "provincia_id" int NOT NULL REFERENCES "provincias" ("provincia_id")
+    "provincia_id" int NOT NULL REFERENCES "provincias" ("provincia_id"),
+    "nacionalidad_id" int REFERENCES "nacionalidades" ("nacionalidad_id")
   );
 
 CREATE TABLE
@@ -128,7 +133,7 @@ CREATE TABLE
 CREATE TABLE
   "poblacion_grupo_edad" (
     "poblacion_grupo_edad_id" serial PRIMARY KEY,
-    "nacionalidad" nacionalidad_enum NOT NULL,
+    "nacionalidad_id" int REFERENCES "nacionalidades" ("nacionalidad_id"),
     "sexo" sexo_enum NOT NULL,
     "grupo_edad" varchar NOT NULL CHECK (
       grupo_edad ~ '^\d+-\d+$'

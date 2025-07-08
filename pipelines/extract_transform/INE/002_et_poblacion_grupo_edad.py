@@ -15,6 +15,7 @@ from utils.normalization import (
     apply_and_check,  # type: ignore
     apply_and_check_dict,  # type: ignore
     normalize_age_group,
+    normalize_nationality,
     normalize_positive_integer,
     normalize_year,
 )
@@ -56,9 +57,7 @@ def main():
 
         # Normalize and validate columns
         df["grupo_edad"] = apply_and_check(df["grupo_edad"], normalize_age_group)
-        df["nacionalidad"] = apply_and_check_dict(
-            df["nacionalidad"], {"Españoles": "Española", "Extranjeros": "Extranjera"}
-        )
+        df["nacionalidad"] = apply_and_check(df["nacionalidad"], normalize_nationality)
         df["sexo"] = apply_and_check_dict(df["sexo"], {"Hombres": "Hombre", "Mujeres": "Mujer"})
         df["anio"] = apply_and_check(df["anio"], normalize_year)
         df["poblacion"] = apply_and_check(df["poblacion"], normalize_positive_integer)

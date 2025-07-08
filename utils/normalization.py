@@ -11,6 +11,7 @@ from utils.normalization_dicts import (
     DICT_COMUNIDADES_AUTOMAS,
     DICT_MONTHS,
     DICT_MUNICIPIOS,
+    DICT_NATIONALITIES,
     DICT_PROVINCIAS,
     DICT_QUARTER,
     DICT_UNKNOWN_STRINGS,
@@ -150,6 +151,38 @@ def normalize_municipio(args: tuple[str, Union[str, int]]) -> NormalizationResul
     if normalized is None:
         return NormalizationResult(None, NormalizationStatus.INVALID, name)
     return NormalizationResult(normalized, NormalizationStatus.VALID, name)
+
+
+def normalize_nationality(name: str) -> NormalizationResult:
+    """Normalize a given nationality to the corresponding country name."""
+
+    if _is_unknown(name.strip()):
+        return NormalizationResult(None, NormalizationStatus.UNKNOWN, name)
+
+    cleaned = name.strip()
+    # Direct match
+    if cleaned in DICT_NATIONALITIES:
+        return NormalizationResult(DICT_NATIONALITIES[cleaned], NormalizationStatus.VALID, name)
+    # Case-insensitive match
+    for key in DICT_NATIONALITIES:
+        if cleaned.lower() == key.lower():
+            return NormalizationResult(DICT_NATIONALITIES[key], NormalizationStatus.VALID, name)
+    # Accent-insensitive, case-insensitive match
+    cleaned_no_accents = _strip_accents(cleaned).lower()
+    for key in DICT_NATIONALITIES:
+        if _strip_accents(key).lower() == cleaned_no_accents:
+            return NormalizationResult(DICT_NATIONALITIES[key], NormalizationStatus.VALID, name)
+    # Match with plural forms (+s or +es)
+    if cleaned_no_accents.endswith("es"):
+        singular = cleaned_no_accents[:-2]
+    elif cleaned_no_accents.endswith("s"):
+        singular = cleaned_no_accents[:-1]
+    else:
+        singular = cleaned_no_accents
+    for key in DICT_NATIONALITIES:
+        if _strip_accents(key).lower() == singular:
+            return NormalizationResult(DICT_NATIONALITIES[key], NormalizationStatus.VALID, name)
+    return NormalizationResult(None, NormalizationStatus.INVALID, name)
 
 
 def normalize_month(month: str) -> NormalizationResult:

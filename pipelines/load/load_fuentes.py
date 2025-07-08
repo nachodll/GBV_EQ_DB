@@ -1,21 +1,12 @@
-import logging
-from pathlib import Path
 from typing import Dict
 
 import pandas as pd
 from sqlalchemy import text
 from sqlalchemy.engine import Connection
 
-FUENTES_PATH = Path("data") / "static" / "fuentes.csv"
 
-
-def load_fuentes(conn: Connection) -> None:
+def load_fuentes(conn: Connection, df: pd.DataFrame) -> None:
     """Load fuentes and fuentes_tablas tables from a single CSV."""
-    try:
-        df = pd.read_csv(FUENTES_PATH, sep=";")  # type: ignore
-    except Exception as e:
-        logging.error(f"Failed to read '{FUENTES_PATH}': {e}")
-        return
 
     # Check tabla_nombre existence in db
     table_names = set(df["tabla_nombre"].unique())  # type: ignore

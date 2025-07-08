@@ -10,6 +10,7 @@ from utils.normalization import (
     normalize_month,
     normalize_municipio,
     normalize_municipio_id,
+    normalize_nationality,
     normalize_positive_integer,
     normalize_provincia,
     normalize_quarter,
@@ -207,6 +208,50 @@ def test_normalize_comunidad_autonoma_invalid():
     result = normalize_comunidad_autonoma("Gibraltar")
     assert result.value is None
     assert result.status is NormalizationStatus.INVALID
+
+
+# ---------------------- nationality normalization ----------------------
+def test_normalize_nationality_basic():
+    r1 = normalize_nationality("Alemania")
+    r2 = normalize_nationality("Aleman")
+    r3 = normalize_nationality("Alemana")
+    assert r1.value == "Alemania" and r2.value == "Alemania" and r3.value == "Alemania"
+    assert r1.status is r2.status is r3.status is NormalizationStatus.VALID
+
+
+def tesst_normalize_nationality_spaces_case():
+    r1 = normalize_nationality("  aRgentina  ")
+    r2 = normalize_nationality("  braSileña  ")
+    assert r1.value == "Argentina" and r2.value == "Brasil"
+    assert r1.status is r2.status is NormalizationStatus.VALID
+
+
+def test_normalize_nationality_accent():
+    r1 = normalize_nationality("México")
+    r2 = normalize_nationality("méxicana")
+    assert r1.value == "México" and r2.value == "México"
+    assert r1.status is r2.status is NormalizationStatus.VALID
+
+
+def test_normalize_nationality_plural():
+    r1 = normalize_nationality("irlandeses")
+    r2 = normalize_nationality("extranjeros")
+    r3 = normalize_nationality("españoles")
+    assert r1.value == "Irlanda" and r2.value == "Extranjero" and r3.value == "España"
+    assert r1.status is r2.status is r3.status is NormalizationStatus.VALID
+
+
+def test_normalize_nationality_unknown():
+    result = normalize_nationality("No consta")
+    assert result.value is None
+    assert result.status is NormalizationStatus.UNKNOWN
+
+
+def test_normalize_nationality_invalid():
+    r1 = normalize_nationality("Gibraltar")
+    r2 = normalize_nationality("Foo")
+    assert r1.value is None and r2.value is None
+    assert r1.status is r2.status is NormalizationStatus.INVALID
 
 
 # ---------------------- month normalization ----------------------
