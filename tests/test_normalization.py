@@ -9,6 +9,7 @@ from utils.normalization import (
     normalize_comunidad_autonoma,
     normalize_month,
     normalize_municipio,
+    normalize_municipio_id,
     normalize_positive_integer,
     normalize_provincia,
     normalize_quarter,
@@ -93,6 +94,21 @@ def test_normalize_municipio_invalid():
     r2 = normalize_municipio(("Famorca", "Venus"))
     assert r1.value is r2.value is None
     assert r1.status is r2.status is NormalizationStatus.INVALID
+
+
+def test_normalize_municipio_id_basic():
+    r1 = normalize_municipio_id("41009")
+    r2 = normalize_municipio_id(10150)
+    assert r1.value == 41009 and r2.value == 10150
+    assert r1.status is r2.status is NormalizationStatus.VALID
+
+
+def test_normalize_municipio_id_invalid():
+    r1 = normalize_municipio_id("100")
+    r2 = normalize_municipio_id(123456)
+    r3 = normalize_municipio_id(36080)  # This is a valid id but is does not exist
+    assert r1.value is None and r2.value is None and r3.value is None
+    assert r1.status is r2.status is r3.status is NormalizationStatus.INVALID
 
 
 # ---------------------- provincia normalization ----------------------

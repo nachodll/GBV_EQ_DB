@@ -106,6 +106,25 @@ def normalize_comunidad_autonoma(name: str) -> NormalizationResult:
     return NormalizationResult(normalized, NormalizationStatus.VALID, name)
 
 
+def normalize_municipio_id(municipio_id: Union[str, int]) -> NormalizationResult:
+    """Normalize a municipio ID, ensuring it is a 5-digit integer present in the municipios dictionary."""
+
+    raw_str = str(municipio_id)
+    if isinstance(municipio_id, str) and _is_unknown(municipio_id):
+        return NormalizationResult(None, NormalizationStatus.UNKNOWN, raw_str)
+
+    try:
+        normalized_id = int(municipio_id)
+        if 1001 <= normalized_id <= 99999:
+            # Check if the ID exists in the municipios dictionary
+            found = any(normalized_id in prov_dict.values() for prov_dict in DICT_MUNICIPIOS.values())
+            if found:
+                return NormalizationResult(normalized_id, NormalizationStatus.VALID, raw_str)
+        return NormalizationResult(None, NormalizationStatus.INVALID, raw_str)
+    except (ValueError, TypeError):
+        return NormalizationResult(None, NormalizationStatus.INVALID, raw_str)
+
+
 def normalize_municipio(args: tuple[str, Union[str, int]]) -> NormalizationResult:
     """Normalize a municipio name within a given province."""
 

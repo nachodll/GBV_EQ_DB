@@ -14,6 +14,7 @@ from utils.logging import setup_logging
 from utils.normalization import (
     apply_and_check,  # type: ignore
     apply_and_check_dict,  # type: ignore
+    normalize_municipio_id,  # type: ignore
     normalize_positive_integer,
     normalize_year,
 )
@@ -42,8 +43,10 @@ def main():
         )
 
         # Extract municipio_id and drop if it's province_id (less 5 digits)
+        num_rows_before = len(df)
         df["municipio_id"] = df["municipio_id"].astype(str).str.split(" ").str[0]
         df = df[df["municipio_id"].str.match(r"^\d{5}$")]  # type: ignore
+        logging.warning(f"Dropped {num_rows_before - len(df)} rows with aggregated data for 'municipio_id'.")
 
         # Drop rows with missing values in poblacion
         num_rows_before = len(df)
@@ -65,6 +68,7 @@ def main():
             {"Hombres": "Hombre", "Mujeres": "Mujer"},
         )
         df["poblacion"] = apply_and_check(df["poblacion"], normalize_positive_integer)
+        df["municipio_id"] = apply_and_check(df["municipio_id"], normalize_municipio_id)
 
         # Save cleaned CSV
         CLEAN_CSV_PATH.parent.mkdir(parents=True, exist_ok=True)
