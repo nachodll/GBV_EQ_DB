@@ -63,6 +63,12 @@ CREATE TYPE "colectivo_contratos_bonificados_sustitucion_enum" AS ENUM(
 
 CREATE TYPE "tipo_contrato_enum" AS ENUM('Indefinido', 'Temporal');
 
+CREATE TYPE "tipo_documentacino_enum" AS ENUM(
+  'Certificado de registro',
+  'Autorización',
+  'TIE-Acuerdo de Retirada'
+);
+
 CREATE TABLE
   "fuentes" (
     "fuente_id" serial PRIMARY KEY,
@@ -103,16 +109,29 @@ CREATE TABLE
   );
 
 CREATE TABLE
-  "nacionalidades" (
-    "nacionalidad_id" serial PRIMARY KEY,
-    "nacionalidad" varchar UNIQUE NOT NULL
+  "paises" (
+    "pais_id" serial PRIMARY KEY,
+    "pais" varchar UNIQUE NOT NULL
   );
 
 CREATE TABLE
-  "autorizaciones_residencia" (
-    "autorizaciones_residencia_id" serial PRIMARY KEY,
-    "provincia_id" int NOT NULL REFERENCES "provincias" ("provincia_id"),
-    "nacionalidad_id" int REFERENCES "nacionalidades" ("nacionalidad_id")
+  "personas_autorizaciones_residencia" (
+    "personas_autorizaciones_residencia_id" serial PRIMARY KEY,
+    "provincia_id" int REFERENCES "provincias" ("provincia_id"),
+    "nacionalidad" int REFERENCES "paises" ("pais_id"),
+    "sexo" sexo_enum NOT NULL,
+    "es_nacido_espania" boolean NOT NULL,
+    "grupo_edad" varchar NOT NULL CHECK (
+      grupo_edad ~ '^\d+-\d+$'
+      OR grupo_edad ~ '^<\d+$'
+      OR grupo_edad ~ '^>\d+$'
+    ),
+    "fecha" date NOT NULL CHECK (
+      fecha >= DATE '1900-01-01'
+      AND fecha <= CURRENT_DATE
+    ),
+    "personas_autorizacion_residencia" int NOT NULL CHECK (personas_autorizacion_residencia >= 0),
+    "tipo_documentacion" tipo_documentacino_enum NOT NULL
   );
 
 CREATE TABLE
@@ -133,7 +152,7 @@ CREATE TABLE
 CREATE TABLE
   "poblacion_grupo_edad" (
     "poblacion_grupo_edad_id" serial PRIMARY KEY,
-    "nacionalidad_id" int REFERENCES "nacionalidades" ("nacionalidad_id"),
+    "nacionalidad" int REFERENCES "paises" ("pais_id"),
     "sexo" sexo_enum NOT NULL,
     "grupo_edad" varchar NOT NULL CHECK (
       grupo_edad ~ '^\d+-\d+$'
