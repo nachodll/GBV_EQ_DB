@@ -224,6 +224,27 @@ def normalize_year(year: Union[str, int, float]) -> NormalizationResult:
         return NormalizationResult(None, NormalizationStatus.INVALID, raw_str)
 
 
+def normalize_date(date_str: str) -> NormalizationResult:
+    """Normalize a date string to a datetime object."""
+
+    raw_str = date_str.strip()
+    if _is_unknown(raw_str):
+        return NormalizationResult(None, NormalizationStatus.UNKNOWN, raw_str)
+
+    try:
+        # Try parsing the date in various formats
+        for fmt in ("%Y-%m-%d", "%d/%m/%Y", "%d-%m-%Y", "%Y/%m/%d"):
+            try:
+                date_obj = datetime.strptime(raw_str, fmt)
+                return NormalizationResult(date_obj, NormalizationStatus.VALID, raw_str)
+            except ValueError:
+                continue
+        return NormalizationResult(None, NormalizationStatus.INVALID, raw_str)
+
+    except Exception:
+        return NormalizationResult(None, NormalizationStatus.INVALID, raw_str)
+
+
 def normalize_quarter(quarter: Union[str, int]) -> NormalizationResult:
     """Normalize a quarter string or int to an integer between 1 and 4."""
 
@@ -311,7 +332,7 @@ def apply_and_check(series: pd.Series, func: Callable[[Any], NormalizationResult
 
     invalid = [r.raw for r in results if r.status is NormalizationStatus.INVALID]  # type: ignore
     if invalid:
-        raise ValueError(f"Invalid values in column '{series.name}: {invalid}'")
+        raise ValueError(f"Invalid values ({len(invalid)}) in column '{series.name}: {set(invalid)}")  # type: ignore
     return results.map(lambda r: r.value)  # type: ignore
 
 

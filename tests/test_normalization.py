@@ -7,6 +7,7 @@ from utils.normalization import (
     apply_and_check_dict,  # type: ignore
     normalize_age_group,
     normalize_comunidad_autonoma,
+    normalize_date,
     normalize_month,
     normalize_municipio,
     normalize_municipio_id,
@@ -237,7 +238,7 @@ def test_normalize_nationality_plural():
     r1 = normalize_nationality("irlandeses")
     r2 = normalize_nationality("extranjeros")
     r3 = normalize_nationality("españoles")
-    assert r1.value == "Irlanda" and r2.value == "Extranjero" and r3.value == "España"
+    assert r1.value == "Irlanda" and r2.value == "Otros" and r3.value == "España"
     assert r1.status is r2.status is r3.status is NormalizationStatus.VALID
 
 
@@ -252,6 +253,33 @@ def test_normalize_nationality_invalid():
     r2 = normalize_nationality("Foo")
     assert r1.value is None and r2.value is None
     assert r1.status is r2.status is NormalizationStatus.INVALID
+
+
+# ---------------------- date normalization ----------------------
+def test_normalize_date_basic():
+    r1 = normalize_date("01/01/2020")
+    r2 = normalize_date("2020-01-01")
+    r3 = normalize_date("01-01-2020")
+    assert (
+        r1.value == pd.Timestamp("2020-01-01")
+        and r2.value == pd.Timestamp("2020-01-01")
+        and r3.value == pd.Timestamp("2020-01-01")
+    )
+    assert r1.status is r2.status is r3.status is NormalizationStatus.VALID
+
+
+def normalize_date_unknown():
+    result = normalize_date("No consta")
+    assert result.value is None
+    assert result.status is NormalizationStatus.UNKNOWN
+
+
+def test_normalize_date_invalid():
+    r1 = normalize_date("01/01/20a0")
+    r2 = normalize_date("2020-13-01")
+    r3 = normalize_date("2020-01-32")
+    assert r1.value is None and r2.value is None and r3.value is None
+    assert r1.status is r2.status is r3.status is NormalizationStatus.INVALID
 
 
 # ---------------------- month normalization ----------------------
