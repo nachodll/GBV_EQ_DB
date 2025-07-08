@@ -74,7 +74,7 @@ CREATE TABLE
 CREATE TABLE
   "fuentes_tablas" (
     "fuentes_tablas_id" serial PRIMARY KEY,
-    "fuente_id" int NOT NULL,
+    "fuente_id" int NOT NULL REFERENCES "fuentes" ("fuente_id"),
     "nombre" varchar NOT NULL,
     "fecha_actualizacion" date NOT NULL CHECK (
       fecha_actualizacion >= DATE '1900-01-01'
@@ -94,20 +94,26 @@ CREATE TABLE
   "provincias" (
     "provincia_id" int PRIMARY KEY,
     "nombre" varchar UNIQUE NOT NULL,
-    "comunidad_autonoma_id" int NOT NULL
+    "comunidad_autonoma_id" int NOT NULL REFERENCES "comunidades_autonomas" ("comunidad_autonoma_id")
   );
 
 CREATE TABLE
   "municipios" (
     "municipio_id" int PRIMARY KEY,
     "nombre" varchar NOT NULL,
-    "provincia_id" int NOT NULL
+    "provincia_id" int NOT NULL REFERENCES "provincias" ("provincia_id")
+  );
+
+CREATE TABLE
+  "autorizaciones_residencia" (
+    "autorizaciones_residencia_id" serial PRIMARY KEY,
+    "provincia_id" int NOT NULL REFERENCES "provincias" ("provincia_id")
   );
 
 CREATE TABLE
   "poblacion_municipios" (
     "poblacion_municipios_id" serial PRIMARY KEY,
-    "municipio_id" int NOT NULL,
+    "municipio_id" int NOT NULL REFERENCES "municipios" ("municipio_id"),
     "anio" int NOT NULL CHECK (
       anio BETWEEN 1900 AND EXTRACT(
         YEAR
@@ -144,7 +150,7 @@ CREATE TABLE
     "feminicidios_pareja_expareja_id" serial PRIMARY KEY,
     "feminicidios" int NOT NULL CHECK (feminicidios >= 0),
     "huerfanos_menores" int NOT NULL CHECK (huerfanos_menores >= 0),
-    "provincia_id" int NOT NULL,
+    "provincia_id" int NOT NULL REFERENCES "provincias" ("provincia_id"),
     "anio" int NOT NULL CHECK (
       anio BETWEEN 1900 AND EXTRACT(
         YEAR
@@ -170,7 +176,7 @@ CREATE TABLE
     "feminicidios_fuera_pareja_expareja_id" serial PRIMARY KEY,
     "feminicidios" int NOT NULL CHECK (feminicidios >= 0),
     "tipo_feminicidio" tipo_feminicidio_enum NOT NULL,
-    "comunidad_autonoma_id" int NOT NULL,
+    "comunidad_autonoma_id" int NOT NULL REFERENCES "comunidades_autonomas" ("comunidad_autonoma_id"),
     "anio" int NOT NULL CHECK (
       anio BETWEEN 1900 AND EXTRACT(
         YEAR
@@ -186,7 +192,7 @@ CREATE TABLE
     "es_hijo_agresor" boolean NOT NULL,
     "es_victima_vicaria" boolean NOT NULL,
     "menores_victimas_mortales" int NOT NULL CHECK (menores_victimas_mortales >= 0),
-    "provincia_id" int NOT NULL,
+    "provincia_id" int NOT NULL REFERENCES "provincias" ("provincia_id"),
     "anio" int NOT NULL CHECK (
       anio BETWEEN 1900 AND EXTRACT(
         YEAR
@@ -200,7 +206,7 @@ CREATE TABLE
 CREATE TABLE
   "servicio_016" (
     "servicio_016_id" serial PRIMARY KEY,
-    "provincia_id" int,
+    "provincia_id" int REFERENCES "provincias" ("provincia_id"),
     "anio" int NOT NULL CHECK (
       anio BETWEEN 1900 AND EXTRACT(
         YEAR
@@ -220,7 +226,7 @@ CREATE TABLE
 CREATE TABLE
   "usuarias_atenpro" (
     "usuarias_atenpro_id" serial PRIMARY KEY,
-    "provincia_id" int NOT NULL,
+    "provincia_id" int NOT NULL REFERENCES "provincias" ("provincia_id"),
     "anio" int NOT NULL CHECK (
       anio BETWEEN 1900 AND EXTRACT(
         YEAR
@@ -237,7 +243,7 @@ CREATE TABLE
 CREATE TABLE
   "dispositivos_electronicos_seguimiento" (
     "dispositivos_electronicos_seguimiento_id" serial PRIMARY KEY,
-    "provincia_id" int NOT NULL,
+    "provincia_id" int NOT NULL REFERENCES "provincias" ("provincia_id"),
     "anio" int NOT NULL CHECK (
       anio BETWEEN 1900 AND EXTRACT(
         YEAR
@@ -254,7 +260,7 @@ CREATE TABLE
 CREATE TABLE
   "ayudas_articulo_27" (
     "ayudas_articulo_27_id" serial PRIMARY KEY,
-    "comunidad_autonoma_id" int,
+    "comunidad_autonoma_id" int REFERENCES "comunidades_autonomas" ("comunidad_autonoma_id"),
     "anio" int NOT NULL CHECK (
       anio BETWEEN 1900 AND EXTRACT(
         YEAR
@@ -268,7 +274,7 @@ CREATE TABLE
 CREATE TABLE
   "viogen" (
     "viogen_id" serial PRIMARY KEY,
-    "provincia_id" int NOT NULL,
+    "provincia_id" int NOT NULL REFERENCES "provincias" ("provincia_id"),
     "anio" int NOT NULL CHECK (
       anio BETWEEN 1900 AND EXTRACT(
         YEAR
@@ -285,7 +291,7 @@ CREATE TABLE
 CREATE TABLE
   "autorizaciones_residencia_trabajo_vvg" (
     "autorizaciones_residencia_trabajo_vvg_id" serial PRIMARY KEY,
-    "provincia_id" int,
+    "provincia_id" int REFERENCES "provincias" ("provincia_id"),
     "anio" int NOT NULL CHECK (
       anio BETWEEN 1900 AND EXTRACT(
         YEAR
@@ -309,7 +315,7 @@ CREATE TABLE
       )
     ),
     "trimestre" int NOT NULL CHECK (trimestre BETWEEN 1 AND 4),
-    "provincia_id" int NOT NULL,
+    "provincia_id" int NOT NULL REFERENCES "provincias" ("provincia_id"),
     "denuncias" int NOT NULL CHECK (denuncias >= 0)
   );
 
@@ -326,14 +332,14 @@ CREATE TABLE
       )
     ),
     "trimestre" int NOT NULL CHECK (trimestre BETWEEN 1 AND 4),
-    "provincia_id" int NOT NULL,
+    "provincia_id" int NOT NULL REFERENCES "provincias" ("provincia_id"),
     "ordenes_proteccion" int NOT NULL CHECK (ordenes_proteccion >= 0)
   );
 
 CREATE TABLE
   "renta_activa_insercion" (
     "renta_activa_insercion_id" serial PRIMARY KEY,
-    "provincia_id" int NOT NULL,
+    "provincia_id" int NOT NULL REFERENCES "provincias" ("provincia_id"),
     "anio" int NOT NULL CHECK (
       anio BETWEEN 1900 AND EXTRACT(
         YEAR
@@ -357,7 +363,7 @@ CREATE TABLE
       )
     ),
     "mes" int NOT NULL CHECK (mes BETWEEN 1 AND 12),
-    "provincia_id" int,
+    "provincia_id" int REFERENCES "provincias" ("provincia_id"),
     "colectivo" colectivo_contratos_bonificados_sustitucion_enum NOT NULL,
     "tipo_contrato" tipo_contrato_enum NOT NULL
   );
@@ -365,7 +371,7 @@ CREATE TABLE
 CREATE TABLE
   "ayudas_cambio_residencia" (
     "ayudas_cambio_residencia_id" serial PRIMARY KEY,
-    "provincia_id" int NOT NULL,
+    "provincia_id" int NOT NULL REFERENCES "provincias" ("provincia_id"),
     "anio" int NOT NULL CHECK (
       anio BETWEEN 1900 AND EXTRACT(
         YEAR
@@ -375,51 +381,3 @@ CREATE TABLE
     ),
     "ayudas_cambio_residencia" int NOT NULL CHECK (ayudas_cambio_residencia >= 0)
   );
-
-ALTER TABLE "provincias"
-ADD FOREIGN KEY ("comunidad_autonoma_id") REFERENCES "comunidades_autonomas" ("comunidad_autonoma_id");
-
-ALTER TABLE "feminicidios_pareja_expareja"
-ADD FOREIGN KEY ("provincia_id") REFERENCES "provincias" ("provincia_id");
-
-ALTER TABLE "feminicidios_fuera_pareja_expareja"
-ADD FOREIGN KEY ("comunidad_autonoma_id") REFERENCES "comunidades_autonomas" ("comunidad_autonoma_id");
-
-ALTER TABLE "menores_victimas_mortales"
-ADD FOREIGN KEY ("provincia_id") REFERENCES "provincias" ("provincia_id");
-
-ALTER TABLE "servicio_016"
-ADD FOREIGN KEY ("provincia_id") REFERENCES "provincias" ("provincia_id");
-
-ALTER TABLE "usuarias_atenpro"
-ADD FOREIGN KEY ("provincia_id") REFERENCES "provincias" ("provincia_id");
-
-ALTER TABLE "dispositivos_electronicos_seguimiento"
-ADD FOREIGN KEY ("provincia_id") REFERENCES "provincias" ("provincia_id");
-
-ALTER TABLE "ayudas_articulo_27"
-ADD FOREIGN KEY ("comunidad_autonoma_id") REFERENCES "comunidades_autonomas" ("comunidad_autonoma_id");
-
-ALTER TABLE "viogen"
-ADD FOREIGN KEY ("provincia_id") REFERENCES "provincias" ("provincia_id");
-
-ALTER TABLE "autorizaciones_residencia_trabajo_vvg"
-ADD FOREIGN KEY ("provincia_id") REFERENCES "provincias" ("provincia_id");
-
-ALTER TABLE "denuncias_vg_pareja"
-ADD FOREIGN KEY ("provincia_id") REFERENCES "provincias" ("provincia_id");
-
-ALTER TABLE "ordenes_proteccion"
-ADD FOREIGN KEY ("provincia_id") REFERENCES "provincias" ("provincia_id");
-
-ALTER TABLE "renta_activa_insercion"
-ADD FOREIGN KEY ("provincia_id") REFERENCES "provincias" ("provincia_id");
-
-ALTER TABLE "contratos_bonificados_sustitucion"
-ADD FOREIGN KEY ("provincia_id") REFERENCES "provincias" ("provincia_id");
-
-ALTER TABLE "ayudas_cambio_residencia"
-ADD FOREIGN KEY ("provincia_id") REFERENCES "provincias" ("provincia_id");
-
-ALTER TABLE "fuentes_tablas"
-ADD FOREIGN KEY ("fuente_id") REFERENCES "fuentes" ("fuente_id");
