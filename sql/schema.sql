@@ -66,6 +66,25 @@ CREATE TYPE "colectivo_contratos_bonificados_sustitucion_enum" AS ENUM(
 CREATE TYPE "tipo_contrato_enum" AS ENUM('Indefinido', 'Temporal');
 
 CREATE TABLE
+  "fuentes" (
+    "fuente_id" serial PRIMARY KEY,
+    "nombre" varchar UNIQUE NOT NULL
+  );
+
+CREATE TABLE
+  "fuentes_tablas" (
+    "fuentes_tablas_id" serial PRIMARY KEY,
+    "fuente_id" int NOT NULL,
+    "nombre" varchar NOT NULL,
+    "fecha_actualizacion" date NOT NULL CHECK (
+      fecha_actualizacion >= DATE '1900-01-01'
+      AND fecha_actualizacion <= CURRENT_DATE
+    ),
+    "descripcion" text,
+    "url" varchar NOT NULL
+  );
+
+CREATE TABLE
   "comunidades_autonomas" (
     "comunidad_autonoma_id" int PRIMARY KEY,
     "nombre" varchar UNIQUE NOT NULL
@@ -401,3 +420,6 @@ ADD FOREIGN KEY ("provincia_id") REFERENCES "provincias" ("provincia_id");
 
 ALTER TABLE "ayudas_cambio_residencia"
 ADD FOREIGN KEY ("provincia_id") REFERENCES "provincias" ("provincia_id");
+
+ALTER TABLE "fuentes_tablas"
+ADD FOREIGN KEY ("fuente_id") REFERENCES "fuentes" ("fuente_id");

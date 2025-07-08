@@ -11,6 +11,7 @@ import pandas as pd
 from sqlalchemy import create_engine, text
 from sqlalchemy.engine import Connection
 
+from pipelines.load.load_fuentes import load_fuentes
 from utils.logging import setup_logging
 
 # Path to clean CSV data (CSV filenames should match SQL table names and columns)
@@ -90,6 +91,16 @@ def main():
             else:
                 logging.error(f"No data for table: {table_name}")
                 raise RuntimeError(f"No data found for table '{table_name}'")
+
+        # Load fuentes
+        # Special case to let PostgreSQL handle the foreign key constraints
+        # It has to be done after all other tables are loaded, since it checks for their existence
+        try:
+            load_fuentes(conn)
+        except Exception as e:
+            logging.error(f"Failed to load fuentes: {e}")
+            raise RuntimeError(f"Failed to load fuentes: {e}")
+        logging.info("Loaded fuentes successfully")
 
 
 if __name__ == "__main__":
