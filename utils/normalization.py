@@ -282,10 +282,27 @@ def normalize_age_group(raw: str) -> NormalizationResult:
     if _is_unknown(clean) or clean == "noconsta":
         return NormalizationResult(None, NormalizationStatus.UNKNOWN, raw)
 
+    # Special cases: "De 0 a 15 años", "De 16 a 64 años"
+    match_de_range = re.match(r"de(\d+)a(\d+)", clean)
+    if match_de_range:
+        min_age = int(match_de_range.group(1))
+        max_age = int(match_de_range.group(2))
+        if min_age == 0:
+            normalized = f"<{max_age}"
+        else:
+            if min_age >= max_age:
+                return NormalizationResult(None, NormalizationStatus.INVALID, raw)
+            normalized = f"{min_age}-{max_age}"
+        return NormalizationResult(normalized, NormalizationStatus.VALID, raw)
+
     # Handle formats like 18-24
     match_range = re.match(r"(\d+)-(\d+)", clean)
     if match_range:
-        normalized = f"{match_range.group(1)}-{match_range.group(2)}"
+        min_age = int(match_range.group(1))
+        max_age = int(match_range.group(2))
+        if min_age >= max_age:
+            return NormalizationResult(None, NormalizationStatus.INVALID, raw)
+        normalized = f"{min_age}-{max_age}"
         return NormalizationResult(normalized, NormalizationStatus.VALID, raw)
 
     # Handle formats like <16 or +16
@@ -300,8 +317,8 @@ def normalize_age_group(raw: str) -> NormalizationResult:
         normalized = f">{int(match_greater.group(1))}"
         return NormalizationResult(normalized, NormalizationStatus.VALID, raw)
 
-    # Handle formats like '65añosymás' or '65años y más'
-    match_and_more = re.match(r"(\d+)años?y?más", raw.strip().replace(" ", "").lower())
+    # Handle formats like '65añosymás' or '65años y más' or 'de 65 años y más años'
+    match_and_more = re.match(r"(?:de)?(\d+)(?:años)?y?más(?:años)?", raw.strip().replace(" ", "").lower())
     if match_and_more:
         normalized = f">{int(match_and_more.group(1))}"
         return NormalizationResult(normalized, NormalizationStatus.VALID, raw)

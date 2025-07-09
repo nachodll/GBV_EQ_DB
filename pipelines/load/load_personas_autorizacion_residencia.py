@@ -4,8 +4,8 @@ from sqlalchemy import text
 from sqlalchemy.engine import Connection
 
 
-def load_personas_autorizaciones_residencia(conn: Connection, df: pd.DataFrame) -> None:
-    """Load personas_autorizaciones_residencia table from a DataFrame."""
+def load_personas_autorizacion_residencia(conn: Connection, df: pd.DataFrame) -> None:
+    """Load personas_autorizacion_residencia table from a DataFrame."""
 
     # Get mapping from pais nombre to id (nan are mapped to None and saved as NULL in the database)
     result = conn.execute(text("SELECT pais, pais_id FROM paises"))

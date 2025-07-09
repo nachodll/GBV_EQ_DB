@@ -402,6 +402,14 @@ def test_normalize_age_group_less_than_greater_than():
     assert r1.status is r2.status is NormalizationStatus.VALID
 
 
+def test_normalize_age_group_special_cases():
+    r1 = normalize_age_group("De 0 a 15 años")
+    r2 = normalize_age_group("De 16 a 64 años")
+    r3 = normalize_age_group("De 65 y más años")
+    assert r1.value == "<15" and r2.value == "16-64" and r3.value == ">65"
+    assert r1.status is r2.status is r3.status is NormalizationStatus.VALID
+
+
 def test_normalize_greater_than_special_cases():
     r1 = normalize_age_group("100 años y más")
     assert r1.value == ">100"
@@ -413,6 +421,13 @@ def test_normalize_age_group_unknown():
     r2 = normalize_age_group(" no CONSTA ")
     assert r1.value is None and r2.value is None
     assert r1.status is r2.status is NormalizationStatus.UNKNOWN
+
+
+def test_normalize_age_group_invalid_range():
+    r1 = normalize_age_group("30-21 años")
+    r2 = normalize_age_group("De 16 a 15 años")
+    assert r1.value is None and r2.value is None
+    assert r1.status is r2.status is NormalizationStatus.INVALID
 
 
 def test_normalize_age_group_invalid():

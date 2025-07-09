@@ -3,7 +3,7 @@ Sources:
     OPI001,
     OPI002
 Target tables:
-    personas_autorizaciones_residencia
+    personas_autorizacion_residencia
 """
 
 import logging
@@ -15,6 +15,7 @@ from utils.logging import setup_logging
 from utils.normalization import (
     apply_and_check,  # type: ignore
     apply_and_check_dict,  # type: ignore
+    normalize_age_group,
     normalize_date,
     normalize_nationality,
     normalize_positive_integer,
@@ -23,7 +24,7 @@ from utils.normalization import (
 
 RAW_CSV_PATH_1 = Path("data") / "raw" / "OPI" / "OPI001-PersonasAutorizaciónResidencia.csv"
 RAW_CSV_PATH_2 = Path("data") / "raw" / "OPI" / "OPI002-PersonasCertificadoRegistroOAcuerdoRetirada.csv"
-CLEAN_CSV_PATH = Path("data") / "clean" / "personas_autorizaciones_residencia.csv"
+CLEAN_CSV_PATH = Path("data") / "clean" / "personas_autorizacion_residencia.csv"
 
 
 def main():
@@ -31,7 +32,9 @@ def main():
         # Read both csvs files and concat into a DataFrame
         df1 = pd.read_csv(RAW_CSV_PATH_1, sep="\t")  # type: ignore
         df1["Tipo de documentación"] = "Autorización"
+        df1["regimen"] = "Régimen General"
         df2 = pd.read_csv(RAW_CSV_PATH_2, sep="\t")  # type: ignore
+        df2["regimen"] = "Régimen de libre circulación UE"
         df = pd.concat([df1, df2], ignore_index=True)
 
         # Rename columns
@@ -86,9 +89,14 @@ def main():
             df["es_nacido_espania"],
             {"España": True, "Extranjero": False},
         )
+        df["grupo_edad"] = apply_and_check(df["grupo_edad"], normalize_age_group)
         df["fecha"] = apply_and_check(df["fecha"], normalize_date)
         df["personas_autorizacion_residencia"] = apply_and_check(
             df["personas_autorizacion_residencia"], normalize_positive_integer
+        )
+        df["regimen"] = apply_and_check_dict(
+            df["regimen"],
+            {v: v for v in ["Régimen General", "Régimen de libre circulación UE"]},
         )
 
         # Save to CSV

@@ -14,7 +14,7 @@ from sqlalchemy import create_engine, text
 from sqlalchemy.engine import Connection
 
 from pipelines.load.load_fuentes import load_fuentes
-from pipelines.load.load_personas_autorizaciones_residencia import load_personas_autorizaciones_residencia
+from pipelines.load.load_personas_autorizacion_residencia import load_personas_autorizacion_residencia
 from pipelines.load.load_poblacion_grupo_edad import load_poblacion_grupo_edad
 from utils.logging import setup_logging
 
@@ -43,7 +43,7 @@ TABLES_TO_LOAD: Dict[Path, Optional[Callable[[Connection, pd.DataFrame], None]]]
     Path("data") / "clean" / "ayudas_cambio_residencia.csv": None,
     Path("data") / "clean" / "poblacion_municipios.csv": None,
     Path("data") / "clean" / "poblacion_grupo_edad.csv": load_poblacion_grupo_edad,
-    Path("data") / "clean" / "personas_autorizaciones_residencia.csv": load_personas_autorizaciones_residencia,
+    Path("data") / "clean" / "personas_autorizacion_residencia.csv": load_personas_autorizacion_residencia,
 }
 
 

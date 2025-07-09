@@ -69,6 +69,11 @@ CREATE TYPE "tipo_documentacino_enum" AS ENUM(
   'TIE-Acuerdo de Retirada'
 );
 
+CREATE TYPE "tipo_regimen_enum" AS ENUM(
+  'Régimen General',
+  'Régimen de libre circulación UE'
+);
+
 CREATE TABLE
   "fuentes" (
     "fuente_id" serial PRIMARY KEY,
@@ -115,8 +120,8 @@ CREATE TABLE
   );
 
 CREATE TABLE
-  "personas_autorizaciones_residencia" (
-    "personas_autorizaciones_residencia_id" serial PRIMARY KEY,
+  "personas_autorizacion_residencia" (
+    "personas_autorizacion_residencia_id" serial PRIMARY KEY,
     "provincia_id" int REFERENCES "provincias" ("provincia_id"),
     "nacionalidad" int REFERENCES "paises" ("pais_id"),
     "sexo" sexo_enum NOT NULL,
@@ -131,7 +136,8 @@ CREATE TABLE
       AND fecha <= CURRENT_DATE
     ),
     "personas_autorizacion_residencia" int NOT NULL CHECK (personas_autorizacion_residencia >= 0),
-    "tipo_documentacion" tipo_documentacino_enum NOT NULL
+    "tipo_documentacion" tipo_documentacino_enum NOT NULL,
+    "regimen" tipo_regimen_enum NOT NULL
   );
 
 CREATE TABLE
