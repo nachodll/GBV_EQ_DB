@@ -32,7 +32,7 @@ CLEAN_CSV_PATH = Path("data") / "clean" / "personas_autorizacion_residencia.csv"
 
 
 def excel_directory_to_df(dir: Path) -> pd.DataFrame:
-    """Read all excel files from 2012 and return a DataFrame with table 4 of each one"""
+    """Read all excel files from a directory and return a DataFrame with table 4 of each one"""
 
     all_records = []
     for file in dir.glob("*.xls"):
@@ -93,20 +93,6 @@ def excel_directory_to_df(dir: Path) -> pd.DataFrame:
                 df_sex = pd.concat([df_sex, pd.DataFrame([new_row])], ignore_index=True)
                 dfs_per_sex[key] = df_sex
 
-            # Merge Taiwan and China rows
-            for key, df_sex in dfs_per_sex.items():
-                categories_to_unify = ["China", "Taiwán"]
-
-                # Calculate the sum of the rows that match the categories to unify
-                rows_to_unify = df_sex[df_sex[0].isin(categories_to_unify)].copy()  # type: ignore
-                summed = rows_to_unify.iloc[:, 1:].sum()  # type: ignore
-                new_row = pd.Series(["China"] + summed.tolist(), index=df_sex.columns)
-
-                # Remove the rows that match the categories to unify and add the new row
-                df_sex = df_sex[~df_sex[0].isin(categories_to_unify)].copy()  # type: ignore
-                df_sex = pd.concat([df_sex, pd.DataFrame([new_row])], ignore_index=True)
-                dfs_per_sex[key] = df_sex
-
             # Iterate over each cell in the dataframes and create a record for each one
             for key, df in dfs_per_sex.items():
                 sex = key
@@ -133,6 +119,20 @@ def excel_directory_to_df(dir: Path) -> pd.DataFrame:
     return pd.DataFrame(all_records)
 
 
+def excel_directory_historic_evolution_to_df(dir: Path) -> pd.DataFrame:
+    """Read all excel files from a directroy and return a DataFrame with table 1 of each one"""
+
+    all_records = []
+    for file in dir.glob("*.xls"):
+        if file.name == "Extranjeros_con_certificado_RD_PROV_07_Baleares_2010.xls":
+            try:
+                excel_df = pd.read_excel(file, sheet_name="4", header=None)  # type: ignore
+            except Exception as e:
+                logging.error(f"Error reading {file}: {e}")
+
+    return pd.DataFrame(all_records)
+
+
 def main():
     try:
         # Read csvs files and concat into a DataFrame
@@ -151,10 +151,6 @@ def main():
         df_2010["Tipo de documentación"] = None
         df_2010["Lugar de nacimiento"] = None
         df = pd.concat([df_post_2013_1, df_post_2013_2, df_2012, df_2011, df_2010], ignore_index=True)
-
-        # Log relevant data transformations
-        logging.warning("Taiwan data merged with China data.")
-        logging.warning("'Otros África', 'Otros Asia', etc unified under a single 'Otros'.")
 
         # Rename columns
         df.rename(
