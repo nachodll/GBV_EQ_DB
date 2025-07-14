@@ -46,17 +46,21 @@ def strip_metadata(line: str) -> tuple[str, int]:
     return clean_line, depth
 
 
-def setup_logging() -> Path:
+def setup_logging() -> None:
     """Configure root logger with colored output and file logging."""
-    log_dir = Path("logs") / "orchestrator"
-    log_dir.mkdir(exist_ok=True)
-    log_path = log_dir / f"{datetime.now().isoformat()}.log"
+    LOG_DIR = Path("logs") / "main"
 
     stream_handler = logging.StreamHandler()
     stream_handler.setFormatter(ColorFormatter("%(asctime)s %(levelname)s [%(name)s] %(message)s"))
 
-    file_handler = logging.FileHandler(log_path)
-    file_handler.setFormatter(logging.Formatter("%(asctime)s %(levelname)s [%(name)s] %(message)s"))
+    # Save to file only if the file name is main.py
+    if Path(__file__).name == "main.py":
+        LOG_DIR.mkdir(exist_ok=True)
+        log_path = LOG_DIR / f"{datetime.now().isoformat()}.log"
+        file_handler = logging.FileHandler(log_path)
+        file_handler.setFormatter(logging.Formatter("%(asctime)s %(levelname)s [%(name)s] %(message)s"))
+        logging.basicConfig(level=logging.INFO, handlers=[stream_handler, file_handler])
+    else:
+        logging.basicConfig(level=logging.INFO, handlers=[stream_handler])
 
-    logging.basicConfig(level=logging.INFO, handlers=[stream_handler, file_handler])
-    return log_path
+    return
