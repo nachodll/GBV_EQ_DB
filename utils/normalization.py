@@ -275,12 +275,15 @@ def normalize_quarter(quarter: Union[str, int]) -> NormalizationResult:
         return NormalizationResult(None, NormalizationStatus.INVALID, raw_str)
 
 
-def normalize_age_group(raw: str) -> NormalizationResult:
+def normalize_age_group(raw: Optional[str]) -> NormalizationResult:
     """Normalizes a raw age group string to the format '<min>-<max>'."""
+
+    if raw is None:
+        return NormalizationResult(None, NormalizationStatus.UNKNOWN, "")
 
     clean = raw.strip().lower().replace("años", "").replace(" ", "")
 
-    if _is_unknown(clean) or clean == "noconsta":
+    if _is_unknown(clean):
         return NormalizationResult(None, NormalizationStatus.UNKNOWN, raw)
 
     # Special cases: "De 0 a 15 años", "De 16 a 64 años"

@@ -126,7 +126,7 @@ CREATE TABLE
     "nacionalidad" int REFERENCES "paises" ("pais_id"),
     "sexo" sexo_enum NOT NULL,
     "es_nacido_espania" boolean,
-    "grupo_edad" varchar NOT NULL CHECK (
+    "grupo_edad" varchar CHECK (
       grupo_edad ~ '^\d+-\d+$'
       OR grupo_edad ~ '^<\d+$'
       OR grupo_edad ~ '^>\d+$'

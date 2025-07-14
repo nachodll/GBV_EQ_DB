@@ -2,7 +2,7 @@
 Sources:
     OPI001, (2013-present, autorización de residencia)
     OPI002, (2013-present, certificado de registro or acuerdo de retirada)
-    OPI003, OPI004, OPI005, (2012, 2011, 2010)
+    OPI003, OPI004, OPI005, (2012, 2011, 2010 and 2002-2009 historic evolution)
 Target tables:
     personas_autorizacion_residencia
 """
@@ -124,12 +124,95 @@ def excel_directory_historic_evolution_to_df(dir: Path) -> pd.DataFrame:
 
     all_records = []
     for file in dir.glob("*.xls"):
-        if file.name == "Extranjeros_con_certificado_RD_PROV_07_Baleares_2010.xls":
-            try:
-                excel_df = pd.read_excel(file, sheet_name="4", header=None)  # type: ignore
-            except Exception as e:
-                logging.error(f"Error reading {file}: {e}")
+        try:
+            excel_df = pd.read_excel(file, sheet_name="1", header=None)  # type: ignore
 
+            # Remove '\xa0' characters from the dataframe
+            excel_df[excel_df.columns[0]] = (
+                excel_df[excel_df.columns[0]].astype(str).str.replace("\xa0", "", regex=False).str.lstrip()
+            )
+
+            # Special case for a file with a different format, make it match the other files format
+            if file.name == "Extranjeros_con_certificado_RD_PROV_18_Granada_2010.xls":
+                excel_df.replace("AELC-EFTA (*)", "AELC1", inplace=True)  # type: ignore
+                excel_df.replace("Apátridas y No consta", "No consta", inplace=True)  # type: ignore
+                excel_df.replace(  # type: ignore
+                    r".*Régimen Comunitario.*", "Régimen de libre circulación UE", regex=True, inplace=True
+                )
+                excel_df.iloc[3], excel_df.iloc[4] = excel_df.iloc[4], excel_df.iloc[3]  # type: ignore
+                excel_df = pd.concat([excel_df, pd.DataFrame([[""] * len(excel_df.columns)])], ignore_index=True)
+
+            # Drop last 48 columns (they are not needed)
+            excel_df.drop(columns=excel_df.columns[-48:], inplace=True)
+
+            # Extract provincia and headers
+            provincia = excel_df.iloc[1].iloc[0]  # type: ignore
+            regimen_headers = excel_df.iloc[3].ffill().copy()  # type: ignore
+            regimen_headers = regimen_headers.str.strip()  # type: ignore
+            anio_headers = excel_df.iloc[5].ffill().copy()  # type: ignore
+            excel_df.to_csv("data/debug/granada_raw.csv", index=False, sep=";")  # type: ignore
+
+            # Replace all cels with '-' with 0
+            for col in excel_df.columns:
+                excel_df[col] = excel_df[col].map(lambda x: 0 if x == "-" else x)  # type: ignore
+
+            # Split the dataframe in 3 parts, 1 per sex
+            ambos_sexos_index = excel_df[0].eq("Ambos sexos").idxmax()  # type: ignore
+            hombres_index = excel_df[0].eq("Hombres").idxmax()  # type: ignore
+            mujeres_index = excel_df[0].eq("Mujeres").idxmax()  # type: ignore
+            dfs_per_sex = {
+                "Ambos sexos": excel_df.iloc[ambos_sexos_index + 1 : hombres_index],  # type: ignore
+                "Hombres": excel_df.iloc[hombres_index + 1 : mujeres_index],  # type: ignore
+                "Mujeres": excel_df.iloc[mujeres_index + 1 : -11],  # type: ignore
+            }
+            for key, df in dfs_per_sex.items():
+                df.to_csv(f"data/debug/{key}.csv", index=False, sep=";")  # type: ignore
+
+            # Unify all "other nationalities" under a single category
+            for key, df_sex in dfs_per_sex.items():
+                categories_to_unify = [
+                    "Otros Oceanía",
+                    "Otros Resto de Europa",
+                    "Otros África",
+                    "Otros Asia",
+                    "Otros América Central y del Sur",
+                ]
+
+                # Calculate the sum of the rows that match the categories to unify
+                rows_to_unify = df_sex[df_sex[0].isin(categories_to_unify)].copy()  # type: ignore
+                summed = rows_to_unify.iloc[:, 1:].sum()  # type: ignore
+                new_row = pd.Series(["Otros"] + summed.tolist(), index=df_sex.columns)
+
+                # Remove the rows that match the categories to unify and add the new row
+                df_sex = df_sex[~df_sex[0].isin(categories_to_unify)].copy()  # type: ignore
+                df_sex = pd.concat([df_sex, pd.DataFrame([new_row])], ignore_index=True)
+                dfs_per_sex[key] = df_sex
+
+            # Iterate over each cell in the dataframes and create a record for each one
+            for key, df in dfs_per_sex.items():
+                sex = key
+                for col in df.columns[1:]:
+                    regimen = regimen_headers[col]  # type: ignore
+                    for _, row in df.iterrows():  # type: ignore
+                        nacionalidad = row[0]  # type: ignore
+                        total = row[col]  # type: ignore
+                        anio = anio_headers[col]  # type: ignore
+                        if isinstance(anio, str):
+                            anio = anio.split(" ")[0]
+                        if anio != 2010:
+                            all_records.append(  # type: ignore
+                                {
+                                    "Provincia": provincia,
+                                    "Sexo": sex,
+                                    "Principales nacionalidades": nacionalidad,
+                                    "Régimen": regimen,
+                                    "Fecha": f"{int(anio)}-12-31",  # type: ignore
+                                    "Total": total,
+                                }
+                            )
+        except Exception as e:
+            logging.error(f"Error reading {file}: {e}")
+    pd.DataFrame(all_records).to_csv("data/debug/opi_cleaned.csv", index=False, sep=";")
     return pd.DataFrame(all_records)
 
 
@@ -150,7 +233,8 @@ def main():
         df_2010 = excel_directory_to_df(RAW_CSV_DIR_2010)
         df_2010["Tipo de documentación"] = None
         df_2010["Lugar de nacimiento"] = None
-        df = pd.concat([df_post_2013_1, df_post_2013_2, df_2012, df_2011, df_2010], ignore_index=True)
+        df_2002_2009 = excel_directory_historic_evolution_to_df(RAW_CSV_DIR_2010)
+        df = pd.concat([df_post_2013_1, df_post_2013_2, df_2012, df_2011, df_2010, df_2002_2009], ignore_index=True)
 
         # Rename columns
         df.rename(
@@ -175,6 +259,10 @@ def main():
 
         num_rows_before = len(df)
         groups_to_drop = [
+            "Europa",
+            "UE-15",
+            "UE-25",
+            "UE-27",
             "Unión Europea",
             "AELC1",
             "Resto de Europa",
