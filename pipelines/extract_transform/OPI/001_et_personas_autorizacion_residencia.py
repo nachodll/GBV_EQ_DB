@@ -1,7 +1,8 @@
 """Extract and transform data
 Sources:
-    OPI001,
-    OPI002
+    OPI001, (2013-present, autorización de residencia)
+    OPI002, (2013-present, certificado de registro or acuerdo de retirada)
+    OPI003, OPI004, OPI005, (2012, 2011, 2010)
 Target tables:
     personas_autorizacion_residencia
 """
@@ -22,20 +23,138 @@ from utils.normalization import (
     normalize_provincia,
 )
 
-RAW_CSV_PATH_1 = Path("data") / "raw" / "OPI" / "OPI001-PersonasAutorizaciónResidencia.csv"
-RAW_CSV_PATH_2 = Path("data") / "raw" / "OPI" / "OPI002-PersonasCertificadoRegistroOAcuerdoRetirada.csv"
+RAW_CSV_PATH_POST_2013_1 = Path("data") / "raw" / "OPI" / "OPI001-PersonasAutorizaciónResidencia.csv"
+RAW_CSV_PATH_POST_2013_2 = Path("data") / "raw" / "OPI" / "OPI002-PersonasCertificadoRegistroOAcuerdoRetirada.csv"
+RAW_CSV_DIR_2012 = Path("data") / "raw" / "OPI" / "OPI003-2012"
+RAW_CSV_DIR_2011 = Path("data") / "raw" / "OPI" / "OPI004-2011"
+RAW_CSV_DIR_2010 = Path("data") / "raw" / "OPI" / "OPI005-2010"
 CLEAN_CSV_PATH = Path("data") / "clean" / "personas_autorizacion_residencia.csv"
+
+
+def excel_directory_to_df(dir: Path) -> pd.DataFrame:
+    """Read all excel files from 2012 and return a DataFrame with table 4 of each one"""
+
+    all_records = []
+    for file in dir.glob("*.xls"):
+        try:
+            excel_df = pd.read_excel(file, sheet_name="4", header=None)  # type: ignore
+
+            # Special case for a file with a different format, make it match the other files format
+            if file.name == "Extranjeros_con_certificado_RD_PROV_18_Granada_2010.xls":
+                excel_df.drop(columns=excel_df.columns[-24:], inplace=True)
+                excel_df = excel_df.drop(index=3).reset_index(drop=True)  # type: ignore
+                excel_df.replace("AELC-EFTA (1)", "AELC1", inplace=True)  # type: ignore
+                excel_df.replace("Apátridas y No consta", "No consta", inplace=True)  # type: ignore
+                excel_df.replace("Régimen Comunitario", "Régimen de libre circulación UE", inplace=True)  # type: ignore
+                excel_df = pd.concat([excel_df, pd.DataFrame([[""] * len(excel_df.columns)])], ignore_index=True)
+
+            # Extract constant variables
+            date = excel_df.iloc[0].iloc[0].split(" ")[-1]  # type: ignore
+            provincia = excel_df.iloc[1].iloc[0]  # type: ignore
+
+            # Extract regimen and grupo_edad headers and fill forward excel unmerged cells
+            regimen_headers = excel_df.iloc[3].ffill().copy()  # type: ignore
+            grupo_edad_headers = excel_df.iloc[4].ffill().copy()  # type: ignore
+
+            # Drop average age columns (even columns but 0)
+            cols_to_drop = [col for col in excel_df.columns if col != 0 and col % 2 == 0]  # type: ignore
+            excel_df.drop(columns=cols_to_drop, inplace=True)
+
+            # Replace all cels with '-' with 0
+            excel_df.replace("-", 0, inplace=True)  # type: ignore
+
+            # Split the dataframe in 3 parts, 1 per sex
+            ambos_sexos_index = excel_df[0].eq("Ambos sexos").idxmax()  # type: ignore
+            hombres_index = excel_df[0].eq("Hombres").idxmax()  # type: ignore
+            mujeres_index = excel_df[0].eq("Mujeres").idxmax()  # type: ignore
+            dfs_per_sex = {
+                "Ambos sexos": excel_df.iloc[ambos_sexos_index + 1 : hombres_index],  # type: ignore
+                "Hombres": excel_df.iloc[hombres_index + 1 : mujeres_index],  # type: ignore
+                "Mujeres": excel_df.iloc[mujeres_index + 1 : -8],  # type: ignore
+            }
+
+            # Unify all "other nationalities" under a single category
+            for key, df_sex in dfs_per_sex.items():
+                categories_to_unify = [
+                    "Otros Oceanía",
+                    "Otros Resto de Europa",
+                    "Otros África",
+                    "Otros Asia",
+                    "Otros América Central y del Sur",
+                ]
+
+                # Calculate the sum of the rows that match the categories to unify
+                rows_to_unify = df_sex[df_sex[0].isin(categories_to_unify)].copy()  # type: ignore
+                summed = rows_to_unify.iloc[:, 1:].sum()  # type: ignore
+                new_row = pd.Series(["Otros"] + summed.tolist(), index=df_sex.columns)
+
+                # Remove the rows that match the categories to unify and add the new row
+                df_sex = df_sex[~df_sex[0].isin(categories_to_unify)].copy()  # type: ignore
+                df_sex = pd.concat([df_sex, pd.DataFrame([new_row])], ignore_index=True)
+                dfs_per_sex[key] = df_sex
+
+            # Merge Taiwan and China rows
+            for key, df_sex in dfs_per_sex.items():
+                categories_to_unify = ["China", "Taiwán"]
+
+                # Calculate the sum of the rows that match the categories to unify
+                rows_to_unify = df_sex[df_sex[0].isin(categories_to_unify)].copy()  # type: ignore
+                summed = rows_to_unify.iloc[:, 1:].sum()  # type: ignore
+                new_row = pd.Series(["China"] + summed.tolist(), index=df_sex.columns)
+
+                # Remove the rows that match the categories to unify and add the new row
+                df_sex = df_sex[~df_sex[0].isin(categories_to_unify)].copy()  # type: ignore
+                df_sex = pd.concat([df_sex, pd.DataFrame([new_row])], ignore_index=True)
+                dfs_per_sex[key] = df_sex
+
+            # Iterate over each cell in the dataframes and create a record for each one
+            for key, df in dfs_per_sex.items():
+                sex = key
+                for col in df.columns[1:]:
+                    regimen = regimen_headers[col]  # type: ignore
+                    grupo_edad = grupo_edad_headers[col]  # type: ignore
+                    for _, row in df.iterrows():  # type: ignore
+                        nacionalidad = row[0]  # type: ignore
+                        total = row[col]  # type: ignore
+                        all_records.append(  # type: ignore
+                            {
+                                "Provincia": provincia,
+                                "Sexo": sex,
+                                "Principales nacionalidades": nacionalidad,
+                                "Régimen": regimen,
+                                "Grupo de edad": grupo_edad,
+                                "Fecha": date,
+                                "Total": total,
+                            }
+                        )
+        except Exception as e:
+            logging.error(f"Error reading {file}: {e}")
+
+    return pd.DataFrame(all_records)
 
 
 def main():
     try:
-        # Read both csvs files and concat into a DataFrame
-        df1 = pd.read_csv(RAW_CSV_PATH_1, sep="\t")  # type: ignore
-        df1["Tipo de documentación"] = "Autorización"
-        df1["regimen"] = "Régimen General"
-        df2 = pd.read_csv(RAW_CSV_PATH_2, sep="\t")  # type: ignore
-        df2["regimen"] = "Régimen de libre circulación UE"
-        df = pd.concat([df1, df2], ignore_index=True)
+        # Read csvs files and concat into a DataFrame
+        df_post_2013_1 = pd.read_csv(RAW_CSV_PATH_POST_2013_1, sep="\t")  # type: ignore
+        df_post_2013_1["Tipo de documentación"] = "Autorización"
+        df_post_2013_1["Régimen"] = "Régimen General"
+        df_post_2013_2 = pd.read_csv(RAW_CSV_PATH_POST_2013_2, sep="\t")  # type: ignore
+        df_post_2013_2["Régimen"] = "Régimen de libre circulación UE"
+        df_2012 = excel_directory_to_df(RAW_CSV_DIR_2012)
+        df_2012["Tipo de documentación"] = None
+        df_2012["Lugar de nacimiento"] = None
+        df_2011 = excel_directory_to_df(RAW_CSV_DIR_2011)
+        df_2011["Tipo de documentación"] = None
+        df_2011["Lugar de nacimiento"] = None
+        df_2010 = excel_directory_to_df(RAW_CSV_DIR_2010)
+        df_2010["Tipo de documentación"] = None
+        df_2010["Lugar de nacimiento"] = None
+        df = pd.concat([df_post_2013_1, df_post_2013_2, df_2012, df_2011, df_2010], ignore_index=True)
+
+        # Log relevant data transformations
+        logging.warning("Taiwan data merged with China data.")
+        logging.warning("'Otros África', 'Otros Asia', etc unified under a single 'Otros'.")
 
         # Rename columns
         df.rename(
@@ -48,6 +167,7 @@ def main():
                 "Grupo de edad": "grupo_edad",
                 "Fecha": "fecha",
                 "Total": "personas_autorizacion_residencia",
+                "Régimen": "regimen",
             },
             inplace=True,
         )
@@ -56,26 +176,50 @@ def main():
         num_rows_before = len(df)
         df = df[df["provincia_id"] != "Total nacional"]
         logging.warning(f"Dropped {num_rows_before - len(df)} rows with aggregated data for 'provincia_id'.")
+
         num_rows_before = len(df)
-        df = df[df["nacionalidad"] != "Todas las nacionalidades"]
+        groups_to_drop = [
+            "Unión Europea",
+            "AELC1",
+            "Resto de Europa",
+            "África",
+            "América del Norte",
+            "América Central y del Sur",
+            "Asia",
+            "Oceanía",
+            "Todas las nacionalidades",
+            "Total",
+        ]
+        df = df[~df["nacionalidad"].isin(groups_to_drop)]  # type: ignore
         logging.warning(f"Dropped {num_rows_before - len(df)} rows with aggregated data for 'nacionalidad'.")
+
         num_rows_before = len(df)
         df = df[df["tipo_documentacion"] != "Total"]
         logging.warning(f"Dropped {num_rows_before - len(df)} rows with aggregated data for 'tipo_documentacion'.")
+
         num_rows_before = len(df)
         df = df[df["sexo"] != "Ambos sexos"]
         logging.warning(f"Dropped {num_rows_before - len(df)} rows with aggregated data for 'sexo'.")
+
         num_rows_before = len(df)
         df = df[df["es_nacido_espania"] != "Total"]
         logging.warning(f"Dropped {num_rows_before - len(df)} rows with aggregated data for 'es_nacido_espania'.")
+
         num_rows_before = len(df)
         df = df[df["grupo_edad"] != "Total"]
         logging.warning(f"Dropped {num_rows_before - len(df)} rows with aggregated data for 'grupo_edad'.")
+
+        num_rows_before = len(df)
+        df = df[df["regimen"] != "Total"]
+        logging.warning(f"Dropped {num_rows_before - len(df)} rows with aggregated data for 'regimen'.")
 
         # Remove thousands separator dots from personas_autorizacion_residencia
         df["personas_autorizacion_residencia"] = (
             df["personas_autorizacion_residencia"].astype(str).str.replace(".", "", regex=False)
         )
+
+        # Convert nan to None
+        df = df.where(pd.notnull(df), None)  # type: ignore
 
         # Normalize and validate columns
         df["provincia_id"] = apply_and_check(df["provincia_id"], normalize_provincia)

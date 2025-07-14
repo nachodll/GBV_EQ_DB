@@ -40,9 +40,10 @@ class NormalizationResult:
     raw: str
 
 
-def _is_unknown(value: str) -> bool:
+def _is_unknown(value: Optional[str]) -> bool:
     """Return True if the cleaned value represents an explicit unknown."""
-
+    if value is None:
+        return True
     return value.strip().lower() in DICT_UNKNOWN_STRINGS
 
 

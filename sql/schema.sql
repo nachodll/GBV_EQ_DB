@@ -125,7 +125,7 @@ CREATE TABLE
     "provincia_id" int REFERENCES "provincias" ("provincia_id"),
     "nacionalidad" int REFERENCES "paises" ("pais_id"),
     "sexo" sexo_enum NOT NULL,
-    "es_nacido_espania" boolean NOT NULL,
+    "es_nacido_espania" boolean,
     "grupo_edad" varchar NOT NULL CHECK (
       grupo_edad ~ '^\d+-\d+$'
       OR grupo_edad ~ '^<\d+$'
@@ -136,7 +136,7 @@ CREATE TABLE
       AND fecha <= CURRENT_DATE
     ),
     "personas_autorizacion_residencia" int NOT NULL CHECK (personas_autorizacion_residencia >= 0),
-    "tipo_documentacion" tipo_documentacino_enum NOT NULL,
+    "tipo_documentacion" tipo_documentacino_enum,
     "regimen" tipo_regimen_enum NOT NULL
   );
 
