@@ -1,8 +1,8 @@
 """Extract and transform data
 Sources:
-    DGVG002
+    DGVG014
 Target tables:
-    feminicios_no_pareja
+    ayudas_cambio_residencia
 """
 
 import logging
@@ -13,15 +13,13 @@ import pandas as pd
 from utils.logging import setup_logging
 from utils.normalization import (
     apply_and_check,  # type: ignore
-    apply_and_check_dict,  # type: ignore
-    normalize_comunidad_autonoma,
     normalize_positive_integer,
+    normalize_provincia,
     normalize_year,
 )
 
-# Paths
-RAW_CSV_PATH = Path("data") / "raw" / "DGVG" / "DGVG002-020FeminicidiosFueraParejaExpareja.csv"
-CLEAN_CSV_PATH = Path("data") / "clean" / "feminicidios_fuera_pareja_expareja.csv"
+RAW_CSV_PATH = Path("data") / "raw" / "DGVG" / "DGVG014-150AyudasCambioResidencia.csv"
+CLEAN_CSV_PATH = Path("data") / "clean" / "violencia_genero" / "ayudas_cambio_residencia.csv"
 
 
 def main():
@@ -33,30 +31,22 @@ def main():
         # Rename columns
         df = df.rename(
             columns={
-                "Comunidad autónoma (As)": "comunidad_autonoma_id",
                 "Año": "anio",
-                "Tipo de feminicidio": "tipo_feminicidio",
-                "Feminicidos fuera pareja o expareja": "feminicidios",
+                "Provincia": "provincia_id",
+                "Número de ayudas para cambio de residencia": "ayudas_cambio_residencia",
             }
         )
-
-        tipo_feminicidio_mapping = {
-            "F. vicario -1-": "Vicario",
-            "F. familiar": "Familiar",
-            "F. sexual": "Sexual",
-            "F. social": "Social",
-        }
+        df = df.drop(columns=["Comunidad autónoma"])
 
         # Normalize and validate all columns
-        df["comunidad_autonoma_id"] = apply_and_check(df["comunidad_autonoma_id"], normalize_comunidad_autonoma)
         df["anio"] = apply_and_check(df["anio"], normalize_year)
-        df["feminicidios"] = apply_and_check(df["feminicidios"], normalize_positive_integer)
-        df["tipo_feminicidio"] = apply_and_check_dict(df["tipo_feminicidio"], tipo_feminicidio_mapping)
+        df["provincia_id"] = apply_and_check(df["provincia_id"], normalize_provincia)
+        df["ayudas_cambio_residencia"] = apply_and_check(df["ayudas_cambio_residencia"], normalize_positive_integer)
 
-        # Save cleaned CSV
+        # Save to CSV
         CLEAN_CSV_PATH.parent.mkdir(parents=True, exist_ok=True)
         df.to_csv(CLEAN_CSV_PATH, index=False, sep=";")
-        logging.info(f"Data cleaned and saved to {CLEAN_CSV_PATH}")
+        logging.info(f"Cleaned data saved to {CLEAN_CSV_PATH}")
 
     except FileNotFoundError as e:
         logging.error(f"File not found: {e}")

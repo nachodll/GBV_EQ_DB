@@ -7,7 +7,7 @@ def load_poblacion_grupo_edad(conn: Connection, df: pd.DataFrame) -> None:
     """Load poblacion_grupo_edad table from a DataFrame."""
 
     # Get mapping from pais nombre to id
-    result = conn.execute(text("SELECT pais, pais_id FROM paises"))
+    result = conn.execute(text("SELECT nombre, pais_id FROM geo.paises"))
     rows = result.fetchall()
     nacionalidad_map = {row[0]: row[1] for row in rows}
 
@@ -22,4 +22,4 @@ def load_poblacion_grupo_edad(conn: Connection, df: pd.DataFrame) -> None:
         raise ValueError(f"Unmapped nacionalidad values: {unmapped_original}")
 
     # Insert into table
-    df.to_sql("poblacion_grupo_edad", con=conn, if_exists="append", index=False)
+    df.to_sql("poblacion_grupo_edad", con=conn, schema="demografia", if_exists="append", index=False)

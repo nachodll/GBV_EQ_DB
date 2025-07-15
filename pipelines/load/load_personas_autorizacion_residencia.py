@@ -8,7 +8,7 @@ def load_personas_autorizacion_residencia(conn: Connection, df: pd.DataFrame) ->
     """Load personas_autorizacion_residencia table from a DataFrame."""
 
     # Get mapping from pais nombre to id (nan are mapped to None and saved as NULL in the database)
-    result = conn.execute(text("SELECT pais, pais_id FROM paises"))
+    result = conn.execute(text("SELECT nombre, pais_id FROM geo.paises"))
     rows = result.fetchall()
     nacionalidad_map = {row[0]: row[1] for row in rows}
     nacionalidad_map[np.nan] = None  # type: ignore
@@ -23,4 +23,4 @@ def load_personas_autorizacion_residencia(conn: Connection, df: pd.DataFrame) ->
     df["nacionalidad"] = df["nacionalidad"].map(nacionalidad_map)  # type: ignore
 
     # Insert into table
-    df.to_sql("personas_autorizacion_residencia", con=conn, if_exists="append", index=False)
+    df.to_sql("personas_autorizacion_residencia", schema="migracion", con=conn, if_exists="append", index=False)

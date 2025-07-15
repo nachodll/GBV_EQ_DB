@@ -11,14 +11,26 @@ DROP_TABLES_PATH = Path("pipelines") / "001b_drop_all_tables.py"
 
 
 def main():
-    logging.info("Resetting the public schema...")
+    logging.info("Resetting database schemas..")
 
     # SQL to drop and recreate the public schema
-    sql_script = "DROP SCHEMA public CASCADE; CREATE SCHEMA public;"
+    sql_script = """
+        DO $$
+        DECLARE
+            r RECORD;
+        BEGIN
+            FOR r IN (SELECT schema_name FROM information_schema.schemata
+                    WHERE schema_name NOT IN ('pg_catalog', 'information_schema', 'public')) LOOP
+                EXECUTE 'DROP SCHEMA IF EXISTS ' || quote_ident(r.schema_name) || ' CASCADE;';
+            END LOOP;
+        END $$;
+        DROP SCHEMA public CASCADE;
+        CREATE SCHEMA public;
+        """
 
     run_sql_script(sql_script)
 
-    logging.info("Public schema reset completed")
+    logging.info("All schemas dropped")
     return
 
 

@@ -20,7 +20,7 @@ from utils.normalization import (
 )
 
 RAW_CSV_DIR = Path("data") / "raw" / "INE" / "INE001-PoblaciónMunicipios"
-CLEAN_CSV_PATH = Path("data") / "clean" / "poblacion_municipios.csv"
+CLEAN_CSV_PATH = Path("data") / "clean" / "demografia" / "poblacion_municipios.csv"
 
 
 def main():

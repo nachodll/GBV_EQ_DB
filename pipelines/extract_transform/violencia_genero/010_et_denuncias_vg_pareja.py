@@ -1,8 +1,8 @@
 """Extract and transform data
 Sources:
-    DGVG011
+    DGVG010
 Target tables:
-    ordenes_proteccion
+    denuncias_vg_pareja
 """
 
 import logging
@@ -20,8 +20,8 @@ from utils.normalization import (
     normalize_year,
 )
 
-RAW_CSV_PATH = Path("data") / "raw" / "DGVG" / "DGVG011-120ÓrdenesProtección.csv"
-CLEAN_CSV_PATH = Path("data") / "clean" / "ordenes_proteccion.csv"
+RAW_CSV_PATH = Path("data") / "raw" / "DGVG" / "DGVG010-110DenunciasVDGPareja.csv"
+CLEAN_CSV_PATH = Path("data") / "clean" / "violencia_genero" / "denuncias_vg_pareja.csv"
 
 
 def main():
@@ -36,35 +36,29 @@ def main():
                 "Año": "anio",
                 "Trimestre": "trimestre",
                 "Provincia": "provincia_id",
-                "Incoadas-Resueltas": "estado_proceso",
-                "Instancia": "instancia",
-                "Número de órdenes de protección": "ordenes_proteccion",
+                "Origen de la denuncia": "origen_denuncia",
+                "Número de denuncias por violencia de género": "denuncias",
             }
         )
-        estado_orden_proteccion_mapping = {
-            "Incoadas": "Incoadas",
-            "Resueltas. Adoptadas": "Adoptadas",
-            "Resueltas. Denegadas": "Denegadas",
-            "Pendientes final trimestre": "Pendientes",
-            "Resueltas. Inadmitidas": "Inadmitidas",
-        }
-        instancia_mapping = {
-            "A instancia de la víctima": "A instancia de la víctima",
-            "A instancia de otras personas": "A instancia de otras personas",
-            "A instancia del Minist. Fiscal": "A instancia del Minist. Fiscal",
-            "De oficio": "De oficio",
-            "A instancia de la Administración": "A instancia de la Administración",
+
+        origen_denuncia_mapping = {
+            "Presentada directamente por victima": "Presentada directamente por víctima",
+            "Presentada directamente por familiares": "Presentada directamente por familiares",
+            "Atestados policiales - con denuncia victima": "Atestados policiales - con denuncia víctima",
+            "Atestados policiales - con denuncia familiar": "Atestados policiales - con denuncia familiar",
+            "Atestados policiales - por intervención directa policial": "Atestados policiales - por intervención directa policial",  # noqa: E501
+            "Parte de lesiones": "Parte de lesiones",
+            "Servicios asistencia-Terceros  en general": "Servicios asistencia - Terceros en general",
         }
 
         # Normalize and validate all columns
         df["anio"] = apply_and_check(df["anio"], normalize_year)
         df["trimestre"] = apply_and_check(df["trimestre"], normalize_quarter)
         df["provincia_id"] = apply_and_check(df["provincia_id"], normalize_provincia)
-        df["ordenes_proteccion"] = apply_and_check(df["ordenes_proteccion"], normalize_positive_integer)
-        df["estado_proceso"] = apply_and_check_dict(df["estado_proceso"], estado_orden_proteccion_mapping)
-        df["instancia"] = apply_and_check_dict(df["instancia"], instancia_mapping)
+        df["denuncias"] = apply_and_check(df["denuncias"], normalize_positive_integer)
+        df["origen_denuncia"] = apply_and_check_dict(df["origen_denuncia"], origen_denuncia_mapping)
 
-        # Save to CSV
+        # Save clean CSV
         CLEAN_CSV_PATH.parent.mkdir(parents=True, exist_ok=True)
         df.to_csv(CLEAN_CSV_PATH, index=False, sep=";")
         logging.info(f"Cleaned data saved to {CLEAN_CSV_PATH}")

@@ -28,7 +28,7 @@ RAW_CSV_PATH_POST_2013_2 = Path("data") / "raw" / "OPI" / "OPI002-PersonasCertif
 RAW_CSV_DIR_2012 = Path("data") / "raw" / "OPI" / "OPI003-2012"
 RAW_CSV_DIR_2011 = Path("data") / "raw" / "OPI" / "OPI004-2011"
 RAW_CSV_DIR_2010 = Path("data") / "raw" / "OPI" / "OPI005-2010"
-CLEAN_CSV_PATH = Path("data") / "clean" / "personas_autorizacion_residencia.csv"
+CLEAN_CSV_PATH = Path("data") / "clean" / "migracion" / "personas_autorizacion_residencia.csv"
 
 
 def excel_directory_to_df(dir: Path) -> pd.DataFrame:

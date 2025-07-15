@@ -1,7 +1,7 @@
 import csv
 from pathlib import Path
 
-MUNICIPIOS_PATH = Path("data") / "static" / "municipios.csv"
+MUNICIPIOS_PATH = Path("data") / "clean" / "geo" / "municipios.csv"
 
 
 def _load_municipios_dict() -> dict[int, dict[str, int]]:

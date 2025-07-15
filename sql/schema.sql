@@ -1,19 +1,34 @@
-CREATE TYPE "tipo_feminicidio_enum" AS ENUM('Familiar', 'Sexual', 'Social', 'Vicario');
+CREATE SCHEMA metadata;
 
-CREATE TYPE "persona_consulta_enum" AS ENUM(
+CREATE SCHEMA geo;
+
+CREATE SCHEMA demografia;
+
+CREATE SCHEMA migracion;
+
+CREATE SCHEMA violencia_genero;
+
+CREATE SCHEMA enums;
+
+------------------------------------------------------------------------------------
+-- enums
+------------------------------------------------------------------------------------
+CREATE TYPE enums."tipo_feminicidio_enum" AS ENUM('Familiar', 'Sexual', 'Social', 'Vicario');
+
+CREATE TYPE enums."persona_consulta_enum" AS ENUM(
   'Usuaria',
   'Familiares/Allegados',
   'Otras personas'
 );
 
-CREATE TYPE "tipo_violencia_enum" AS ENUM(
+CREATE TYPE enums."tipo_violencia_enum" AS ENUM(
   'Pareja/Expareja',
   'Familiar',
   'Sexual',
   'Otras violencias'
 );
 
-CREATE TYPE "nivel_riesgo_viogen_enum" AS ENUM(
+CREATE TYPE enums."nivel_riesgo_viogen_enum" AS ENUM(
   'No apreciado',
   'Bajo',
   'Medio',
@@ -21,9 +36,9 @@ CREATE TYPE "nivel_riesgo_viogen_enum" AS ENUM(
   'Extremo'
 );
 
-CREATE TYPE "sexo_enum" AS ENUM('Hombre', 'Mujer');
+CREATE TYPE enums."sexo_enum" AS ENUM('Hombre', 'Mujer');
 
-CREATE TYPE "origen_denuncia_enum" AS ENUM(
+CREATE TYPE enums."origen_denuncia_enum" AS ENUM(
   'Presentada directamente por víctima',
   'Presentada directamente por familiares',
   'Atestados policiales - con denuncia víctima',
@@ -33,7 +48,7 @@ CREATE TYPE "origen_denuncia_enum" AS ENUM(
   'Servicios asistencia - Terceros en general'
 );
 
-CREATE TYPE "estado_orden_proteccion_enum" AS ENUM(
+CREATE TYPE enums."estado_orden_proteccion_enum" AS ENUM(
   'Incoadas',
   'Adoptadas',
   'Denegadas',
@@ -41,7 +56,7 @@ CREATE TYPE "estado_orden_proteccion_enum" AS ENUM(
   'Pendientes'
 );
 
-CREATE TYPE "instancia_orden_proteccion_enum" AS ENUM(
+CREATE TYPE enums."instancia_orden_proteccion_enum" AS ENUM(
   'A instancia de la víctima',
   'A instancia de otras personas',
   'A instancia del Minist. Fiscal',
@@ -49,7 +64,7 @@ CREATE TYPE "instancia_orden_proteccion_enum" AS ENUM(
   'A instancia de la Administración'
 );
 
-CREATE TYPE "colectivo_contratos_bonificados_sustitucion_enum" AS ENUM(
+CREATE TYPE enums."colectivo_contratos_bonificados_sustitucion_enum" AS ENUM(
   'Contratos de sustitución por vg',
   'Transformación en indefinidos de contratos de vvg',
   'Trata y mujeres en contexto de prostitución',
@@ -61,29 +76,32 @@ CREATE TYPE "colectivo_contratos_bonificados_sustitucion_enum" AS ENUM(
   'Cargas familiares de vdomestica'
 );
 
-CREATE TYPE "tipo_contrato_enum" AS ENUM('Indefinido', 'Temporal');
+CREATE TYPE enums."tipo_contrato_enum" AS ENUM('Indefinido', 'Temporal');
 
-CREATE TYPE "tipo_documentacino_enum" AS ENUM(
+CREATE TYPE enums."tipo_documentacino_enum" AS ENUM(
   'Certificado de registro',
   'Autorización',
   'TIE-Acuerdo de Retirada'
 );
 
-CREATE TYPE "tipo_regimen_enum" AS ENUM(
+CREATE TYPE enums."tipo_regimen_enum" AS ENUM(
   'Régimen General',
   'Régimen de libre circulación UE'
 );
 
+------------------------------------------------------------------------------------
+-- metadata
+------------------------------------------------------------------------------------
 CREATE TABLE
-  "fuentes" (
+  metadata."fuentes" (
     "fuente_id" serial PRIMARY KEY,
     "nombre" varchar UNIQUE NOT NULL
   );
 
 CREATE TABLE
-  "fuentes_tablas" (
+  metadata."fuentes_tablas" (
     "fuentes_tablas_id" serial PRIMARY KEY,
-    "fuente_id" int NOT NULL REFERENCES "fuentes" ("fuente_id"),
+    "fuente_id" int NOT NULL REFERENCES metadata."fuentes" ("fuente_id"),
     "nombre" varchar NOT NULL,
     "fecha_actualizacion" date NOT NULL CHECK (
       fecha_actualizacion >= DATE '1900-01-01'
@@ -93,38 +111,44 @@ CREATE TABLE
     "url" varchar NOT NULL
   );
 
+------------------------------------------------------------------------------------
+-- geo
+------------------------------------------------------------------------------------
 CREATE TABLE
-  "comunidades_autonomas" (
+  geo."comunidades_autonomas" (
     "comunidad_autonoma_id" int PRIMARY KEY,
     "nombre" varchar UNIQUE NOT NULL
   );
 
 CREATE TABLE
-  "provincias" (
+  geo."provincias" (
     "provincia_id" int PRIMARY KEY,
     "nombre" varchar UNIQUE NOT NULL,
-    "comunidad_autonoma_id" int NOT NULL REFERENCES "comunidades_autonomas" ("comunidad_autonoma_id")
+    "comunidad_autonoma_id" int NOT NULL REFERENCES geo."comunidades_autonomas" ("comunidad_autonoma_id")
   );
 
 CREATE TABLE
-  "municipios" (
+  geo."municipios" (
     "municipio_id" int PRIMARY KEY,
     "nombre" varchar NOT NULL,
-    "provincia_id" int NOT NULL REFERENCES "provincias" ("provincia_id")
+    "provincia_id" int NOT NULL REFERENCES geo."provincias" ("provincia_id")
   );
 
 CREATE TABLE
-  "paises" (
+  geo."paises" (
     "pais_id" serial PRIMARY KEY,
-    "pais" varchar UNIQUE NOT NULL
+    "nombre" varchar UNIQUE NOT NULL
   );
 
+------------------------------------------------------------------------------------
+-- migracion
+------------------------------------------------------------------------------------
 CREATE TABLE
-  "personas_autorizacion_residencia" (
+  migracion."personas_autorizacion_residencia" (
     "personas_autorizacion_residencia_id" serial PRIMARY KEY,
-    "provincia_id" int REFERENCES "provincias" ("provincia_id"),
-    "nacionalidad" int REFERENCES "paises" ("pais_id"),
-    "sexo" sexo_enum NOT NULL,
+    "provincia_id" int REFERENCES geo."provincias" ("provincia_id"),
+    "nacionalidad" int REFERENCES geo."paises" ("pais_id"),
+    "sexo" enums.sexo_enum NOT NULL,
     "es_nacido_espania" boolean,
     "grupo_edad" varchar CHECK (
       grupo_edad ~ '^\d+-\d+$'
@@ -136,14 +160,17 @@ CREATE TABLE
       AND fecha <= CURRENT_DATE
     ),
     "personas_autorizacion_residencia" int NOT NULL CHECK (personas_autorizacion_residencia >= 0),
-    "tipo_documentacion" tipo_documentacino_enum,
-    "regimen" tipo_regimen_enum NOT NULL
+    "tipo_documentacion" enums.tipo_documentacino_enum,
+    "regimen" enums.tipo_regimen_enum NOT NULL
   );
 
+------------------------------------------------------------------------------------
+-- demografia
+------------------------------------------------------------------------------------
 CREATE TABLE
-  "poblacion_municipios" (
+  demografia."poblacion_municipios" (
     "poblacion_municipios_id" serial PRIMARY KEY,
-    "municipio_id" int NOT NULL REFERENCES "municipios" ("municipio_id"),
+    "municipio_id" int NOT NULL REFERENCES geo."municipios" ("municipio_id"),
     "anio" int NOT NULL CHECK (
       anio BETWEEN 1900 AND EXTRACT(
         YEAR
@@ -151,15 +178,15 @@ CREATE TABLE
           CURRENT_DATE
       )
     ),
-    "sexo" sexo_enum NOT NULL,
+    "sexo" enums.sexo_enum NOT NULL,
     "poblacion" int NOT NULL CHECK (poblacion >= 0)
   );
 
 CREATE TABLE
-  "poblacion_grupo_edad" (
+  demografia."poblacion_grupo_edad" (
     "poblacion_grupo_edad_id" serial PRIMARY KEY,
-    "nacionalidad" int REFERENCES "paises" ("pais_id"),
-    "sexo" sexo_enum NOT NULL,
+    "nacionalidad" int REFERENCES geo."paises" ("pais_id"),
+    "sexo" enums.sexo_enum NOT NULL,
     "grupo_edad" varchar NOT NULL CHECK (
       grupo_edad ~ '^\d+-\d+$'
       OR grupo_edad ~ '^<\d+$'
@@ -175,12 +202,15 @@ CREATE TABLE
     "poblacion" int NOT NULL CHECK (poblacion >= 0)
   );
 
+------------------------------------------------------------------------------------
+-- violencia_genero
+------------------------------------------------------------------------------------
 CREATE TABLE
-  "feminicidios_pareja_expareja" (
+  violencia_genero."feminicidios_pareja_expareja" (
     "feminicidios_pareja_expareja_id" serial PRIMARY KEY,
     "feminicidios" int NOT NULL CHECK (feminicidios >= 0),
     "huerfanos_menores" int NOT NULL CHECK (huerfanos_menores >= 0),
-    "provincia_id" int NOT NULL REFERENCES "provincias" ("provincia_id"),
+    "provincia_id" int NOT NULL REFERENCES geo."provincias" ("provincia_id"),
     "anio" int NOT NULL CHECK (
       anio BETWEEN 1900 AND EXTRACT(
         YEAR
@@ -202,11 +232,11 @@ CREATE TABLE
   );
 
 CREATE TABLE
-  "feminicidios_fuera_pareja_expareja" (
+  violencia_genero."feminicidios_fuera_pareja_expareja" (
     "feminicidios_fuera_pareja_expareja_id" serial PRIMARY KEY,
     "feminicidios" int NOT NULL CHECK (feminicidios >= 0),
-    "tipo_feminicidio" tipo_feminicidio_enum NOT NULL,
-    "comunidad_autonoma_id" int NOT NULL REFERENCES "comunidades_autonomas" ("comunidad_autonoma_id"),
+    "tipo_feminicidio" enums.tipo_feminicidio_enum NOT NULL,
+    "comunidad_autonoma_id" int NOT NULL REFERENCES geo."comunidades_autonomas" ("comunidad_autonoma_id"),
     "anio" int NOT NULL CHECK (
       anio BETWEEN 1900 AND EXTRACT(
         YEAR
@@ -217,12 +247,12 @@ CREATE TABLE
   );
 
 CREATE TABLE
-  "menores_victimas_mortales" (
+  violencia_genero."menores_victimas_mortales" (
     "menores_victimas_mortales_id" serial PRIMARY KEY,
     "es_hijo_agresor" boolean NOT NULL,
     "es_victima_vicaria" boolean NOT NULL,
     "menores_victimas_mortales" int NOT NULL CHECK (menores_victimas_mortales >= 0),
-    "provincia_id" int NOT NULL REFERENCES "provincias" ("provincia_id"),
+    "provincia_id" int NOT NULL REFERENCES geo."provincias" ("provincia_id"),
     "anio" int NOT NULL CHECK (
       anio BETWEEN 1900 AND EXTRACT(
         YEAR
@@ -234,9 +264,9 @@ CREATE TABLE
   );
 
 CREATE TABLE
-  "servicio_016" (
+  violencia_genero."servicio_016" (
     "servicio_016_id" serial PRIMARY KEY,
-    "provincia_id" int REFERENCES "provincias" ("provincia_id"),
+    "provincia_id" int REFERENCES geo."provincias" ("provincia_id"),
     "anio" int NOT NULL CHECK (
       anio BETWEEN 1900 AND EXTRACT(
         YEAR
@@ -245,8 +275,8 @@ CREATE TABLE
       )
     ),
     "mes" int NOT NULL CHECK (mes BETWEEN 1 AND 12),
-    "persona_consulta" persona_consulta_enum,
-    "tipo_violencia" tipo_violencia_enum,
+    "persona_consulta" enums.persona_consulta_enum,
+    "tipo_violencia" enums.tipo_violencia_enum,
     "llamadas" int NOT NULL CHECK (llamadas >= 0),
     "whatsapps" int NOT NULL CHECK (whatsapps >= 0),
     "emails" int NOT NULL CHECK (emails >= 0),
@@ -254,9 +284,9 @@ CREATE TABLE
   );
 
 CREATE TABLE
-  "usuarias_atenpro" (
+  violencia_genero."usuarias_atenpro" (
     "usuarias_atenpro_id" serial PRIMARY KEY,
-    "provincia_id" int NOT NULL REFERENCES "provincias" ("provincia_id"),
+    "provincia_id" int NOT NULL REFERENCES geo."provincias" ("provincia_id"),
     "anio" int NOT NULL CHECK (
       anio BETWEEN 1900 AND EXTRACT(
         YEAR
@@ -271,9 +301,9 @@ CREATE TABLE
   );
 
 CREATE TABLE
-  "dispositivos_electronicos_seguimiento" (
+  violencia_genero."dispositivos_electronicos_seguimiento" (
     "dispositivos_electronicos_seguimiento_id" serial PRIMARY KEY,
-    "provincia_id" int NOT NULL REFERENCES "provincias" ("provincia_id"),
+    "provincia_id" int NOT NULL REFERENCES geo."provincias" ("provincia_id"),
     "anio" int NOT NULL CHECK (
       anio BETWEEN 1900 AND EXTRACT(
         YEAR
@@ -288,9 +318,9 @@ CREATE TABLE
   );
 
 CREATE TABLE
-  "ayudas_articulo_27" (
+  violencia_genero."ayudas_articulo_27" (
     "ayudas_articulo_27_id" serial PRIMARY KEY,
-    "comunidad_autonoma_id" int REFERENCES "comunidades_autonomas" ("comunidad_autonoma_id"),
+    "comunidad_autonoma_id" int REFERENCES geo."comunidades_autonomas" ("comunidad_autonoma_id"),
     "anio" int NOT NULL CHECK (
       anio BETWEEN 1900 AND EXTRACT(
         YEAR
@@ -302,9 +332,9 @@ CREATE TABLE
   );
 
 CREATE TABLE
-  "viogen" (
+  violencia_genero."viogen" (
     "viogen_id" serial PRIMARY KEY,
-    "provincia_id" int NOT NULL REFERENCES "provincias" ("provincia_id"),
+    "provincia_id" int NOT NULL REFERENCES geo."provincias" ("provincia_id"),
     "anio" int NOT NULL CHECK (
       anio BETWEEN 1900 AND EXTRACT(
         YEAR
@@ -313,15 +343,15 @@ CREATE TABLE
       )
     ),
     "mes" int NOT NULL CHECK (mes BETWEEN 1 AND 12),
-    "nivel_riesgo" nivel_riesgo_viogen_enum NOT NULL,
+    "nivel_riesgo" enums.nivel_riesgo_viogen_enum NOT NULL,
     "casos" int NOT NULL CHECK (casos >= 0),
     "casos_proteccion_policial" int NOT NULL CHECK (casos_proteccion_policial >= 0)
   );
 
 CREATE TABLE
-  "autorizaciones_residencia_trabajo_vvg" (
+  violencia_genero."autorizaciones_residencia_trabajo_vvg" (
     "autorizaciones_residencia_trabajo_vvg_id" serial PRIMARY KEY,
-    "provincia_id" int REFERENCES "provincias" ("provincia_id"),
+    "provincia_id" int REFERENCES geo."provincias" ("provincia_id"),
     "anio" int NOT NULL CHECK (
       anio BETWEEN 1900 AND EXTRACT(
         YEAR
@@ -334,9 +364,9 @@ CREATE TABLE
   );
 
 CREATE TABLE
-  "denuncias_vg_pareja" (
+  violencia_genero."denuncias_vg_pareja" (
     "denuncias_vg_pareja_id" serial PRIMARY KEY,
-    "origen_denuncia" origen_denuncia_enum NOT NULL,
+    "origen_denuncia" enums.origen_denuncia_enum NOT NULL,
     "anio" int NOT NULL CHECK (
       anio BETWEEN 1900 AND EXTRACT(
         YEAR
@@ -345,15 +375,15 @@ CREATE TABLE
       )
     ),
     "trimestre" int NOT NULL CHECK (trimestre BETWEEN 1 AND 4),
-    "provincia_id" int NOT NULL REFERENCES "provincias" ("provincia_id"),
+    "provincia_id" int NOT NULL REFERENCES geo."provincias" ("provincia_id"),
     "denuncias" int NOT NULL CHECK (denuncias >= 0)
   );
 
 CREATE TABLE
-  "ordenes_proteccion" (
+  violencia_genero."ordenes_proteccion" (
     "ordenes_proteccion_id" serial PRIMARY KEY,
-    "estado_proceso" estado_orden_proteccion_enum NOT NULL,
-    "instancia" instancia_orden_proteccion_enum NOT NULL,
+    "estado_proceso" enums.estado_orden_proteccion_enum NOT NULL,
+    "instancia" enums.instancia_orden_proteccion_enum NOT NULL,
     "anio" int NOT NULL CHECK (
       anio BETWEEN 1900 AND EXTRACT(
         YEAR
@@ -362,14 +392,14 @@ CREATE TABLE
       )
     ),
     "trimestre" int NOT NULL CHECK (trimestre BETWEEN 1 AND 4),
-    "provincia_id" int NOT NULL REFERENCES "provincias" ("provincia_id"),
+    "provincia_id" int NOT NULL REFERENCES geo."provincias" ("provincia_id"),
     "ordenes_proteccion" int NOT NULL CHECK (ordenes_proteccion >= 0)
   );
 
 CREATE TABLE
-  "renta_activa_insercion" (
+  violencia_genero."renta_activa_insercion" (
     "renta_activa_insercion_id" serial PRIMARY KEY,
-    "provincia_id" int NOT NULL REFERENCES "provincias" ("provincia_id"),
+    "provincia_id" int NOT NULL REFERENCES geo."provincias" ("provincia_id"),
     "anio" int NOT NULL CHECK (
       anio BETWEEN 1900 AND EXTRACT(
         YEAR
@@ -381,7 +411,7 @@ CREATE TABLE
   );
 
 CREATE TABLE
-  "contratos_bonificados_sustitucion" (
+  violencia_genero."contratos_bonificados_sustitucion" (
     "contratos_bonificados_sustitucion_id" serial PRIMARY KEY NOT NULL,
     "contratos_bonificados" int NOT NULL CHECK (contratos_bonificados >= 0),
     "contratos_sustitucion" int NOT NULL CHECK (contratos_sustitucion >= 0),
@@ -393,15 +423,15 @@ CREATE TABLE
       )
     ),
     "mes" int NOT NULL CHECK (mes BETWEEN 1 AND 12),
-    "provincia_id" int REFERENCES "provincias" ("provincia_id"),
-    "colectivo" colectivo_contratos_bonificados_sustitucion_enum NOT NULL,
-    "tipo_contrato" tipo_contrato_enum NOT NULL
+    "provincia_id" int REFERENCES geo."provincias" ("provincia_id"),
+    "colectivo" enums.colectivo_contratos_bonificados_sustitucion_enum NOT NULL,
+    "tipo_contrato" enums.tipo_contrato_enum NOT NULL
   );
 
 CREATE TABLE
-  "ayudas_cambio_residencia" (
+  violencia_genero."ayudas_cambio_residencia" (
     "ayudas_cambio_residencia_id" serial PRIMARY KEY,
-    "provincia_id" int NOT NULL REFERENCES "provincias" ("provincia_id"),
+    "provincia_id" int NOT NULL REFERENCES geo."provincias" ("provincia_id"),
     "anio" int NOT NULL CHECK (
       anio BETWEEN 1900 AND EXTRACT(
         YEAR

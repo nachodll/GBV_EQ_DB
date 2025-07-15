@@ -1,8 +1,9 @@
 """Extract and transform data
-Sourceses:
-    DGVG003
+Sources:
+    DGVG008
 Target tables:
-    menores_victimas_mortales"""
+    viogen
+"""
 
 import logging
 from pathlib import Path
@@ -19,50 +20,50 @@ from utils.normalization import (
     normalize_year,
 )
 
-# Paths
-RAW_CSV_PATH = Path("data") / "raw" / "DGVG" / "DGVG003-030MenoresVictimasMortales.csv"
-CLEAN_CSV_PATH = Path("data") / "clean" / "menores_victimas_mortales.csv"
+RAW_CSV_PATH = Path("data") / "raw" / "DGVG" / "DGVG008-090VioGenSistemaSeguimientoIntegral.csv"
+CLEAN_CSV_PATH = Path("data") / "clean" / "violencia_genero" / "viogen.csv"
 
 
 def main():
     try:
         # Read file
-        df = pd.read_csv(str(RAW_CSV_PATH))  # type: ignore
+        df = pd.read_csv(RAW_CSV_PATH)  # type: ignore
         df.columns = df.columns.str.strip()
 
         # Rename columns
         df = df.rename(
             columns={
-                "Provincia (As)": "provincia_id",
                 "Año": "anio",
                 "Mes": "mes",
-                "VM Vicaria -1-": "es_victima_vicaria",
-                "AG-VM Relación": "es_hijo_agresor",
-                "Menores víctimas mortales vdg": "menores_victimas_mortales",
+                "Provincia": "provincia_id",
+                "Nivel de riesgo": "nivel_riesgo",
+                "Número de casos": "casos",
+                "Número de casos con protección policial": "casos_proteccion_policial",
             }
         )
-
-        es_victima_vicaria_mapping = {
-            "Sí vicaria": True,
-            "No vicaria": False,
-        }
-        es_hijo_agresor_mapping = {
-            "Padre biológico/adoptivo": True,
-            "No padre biológico/adoptivo": False,
-        }
+        df = df.drop(columns=["Comunidad autónoma"])
 
         # Normalize and validate all columns
-        df["provincia_id"] = apply_and_check(df["provincia_id"], normalize_provincia)
         df["anio"] = apply_and_check(df["anio"], normalize_year)
         df["mes"] = apply_and_check(df["mes"], normalize_month)
-        df["es_victima_vicaria"] = apply_and_check_dict(df["es_victima_vicaria"], es_victima_vicaria_mapping)
-        df["es_hijo_agresor"] = apply_and_check_dict(df["es_hijo_agresor"], es_hijo_agresor_mapping)
-        df["menores_victimas_mortales"] = apply_and_check(df["menores_victimas_mortales"], normalize_positive_integer)
+        df["provincia_id"] = apply_and_check(df["provincia_id"], normalize_provincia)
+        df["nivel_riesgo"] = apply_and_check_dict(
+            df["nivel_riesgo"],
+            {
+                "No apreciado": "No apreciado",
+                "Bajo": "Bajo",
+                "Medio": "Medio",
+                "Alto": "Alto",
+                "Extremo": "Extremo",
+            },
+        )
+        df["casos"] = apply_and_check(df["casos"], normalize_positive_integer)
+        df["casos_proteccion_policial"] = apply_and_check(df["casos_proteccion_policial"], normalize_positive_integer)
 
-        # Save cleaned CSV
+        # Save clean CSV
         CLEAN_CSV_PATH.parent.mkdir(parents=True, exist_ok=True)
         df.to_csv(CLEAN_CSV_PATH, index=False, sep=";")
-        logging.info(f"Data cleaned and saved to {CLEAN_CSV_PATH}")
+        logging.info(f"Cleaned data saved to {CLEAN_CSV_PATH}")
 
     except FileNotFoundError as e:
         logging.error(f"File not found: {e}")

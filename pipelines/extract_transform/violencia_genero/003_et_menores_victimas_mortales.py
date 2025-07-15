@@ -1,8 +1,8 @@
 """Extract and transform data
-Sources:
-    DGVG001
+Sourceses:
+    DGVG003
 Target tables:
-    feminicios_pareja"""
+    menores_victimas_mortales"""
 
 import logging
 from pathlib import Path
@@ -12,7 +12,7 @@ import pandas as pd
 from utils.logging import setup_logging
 from utils.normalization import (
     apply_and_check,  # type: ignore
-    normalize_age_group,
+    apply_and_check_dict,  # type: ignore
     normalize_month,
     normalize_positive_integer,
     normalize_provincia,
@@ -20,8 +20,8 @@ from utils.normalization import (
 )
 
 # Paths
-RAW_CSV_PATH = Path("data") / "raw" / "DGVG" / "DGVG001-010FeminicidiosPareja.csv"
-CLEAN_CSV_PATH = Path("data") / "clean" / "feminicidios_pareja_expareja.csv"
+RAW_CSV_PATH = Path("data") / "raw" / "DGVG" / "DGVG003-030MenoresVictimasMortales.csv"
+CLEAN_CSV_PATH = Path("data") / "clean" / "violencia_genero" / "menores_victimas_mortales.csv"
 
 
 def main():
@@ -36,21 +36,28 @@ def main():
                 "Provincia (As)": "provincia_id",
                 "Año": "anio",
                 "Mes": "mes",
-                "VM Grupo de edad": "victima_grupo_edad",
-                "AG Grupo de edad": "agresor_grupo_edad",
-                "Feminicidios pareja o expareja": "feminicidios",
-                "Huérfanas y huérfanos menores de edad -1-": "huerfanos_menores",
+                "VM Vicaria -1-": "es_victima_vicaria",
+                "AG-VM Relación": "es_hijo_agresor",
+                "Menores víctimas mortales vdg": "menores_victimas_mortales",
             }
         )
 
+        es_victima_vicaria_mapping = {
+            "Sí vicaria": True,
+            "No vicaria": False,
+        }
+        es_hijo_agresor_mapping = {
+            "Padre biológico/adoptivo": True,
+            "No padre biológico/adoptivo": False,
+        }
+
         # Normalize and validate all columns
+        df["provincia_id"] = apply_and_check(df["provincia_id"], normalize_provincia)
         df["anio"] = apply_and_check(df["anio"], normalize_year)
         df["mes"] = apply_and_check(df["mes"], normalize_month)
-        df["provincia_id"] = apply_and_check(df["provincia_id"], normalize_provincia)
-        df["victima_grupo_edad"] = apply_and_check(df["victima_grupo_edad"], normalize_age_group)
-        df["agresor_grupo_edad"] = apply_and_check(df["agresor_grupo_edad"], normalize_age_group)
-        df["feminicidios"] = apply_and_check(df["feminicidios"], normalize_positive_integer)
-        df["huerfanos_menores"] = apply_and_check(df["huerfanos_menores"], normalize_positive_integer)
+        df["es_victima_vicaria"] = apply_and_check_dict(df["es_victima_vicaria"], es_victima_vicaria_mapping)
+        df["es_hijo_agresor"] = apply_and_check_dict(df["es_hijo_agresor"], es_hijo_agresor_mapping)
+        df["menores_victimas_mortales"] = apply_and_check(df["menores_victimas_mortales"], normalize_positive_integer)
 
         # Save cleaned CSV
         CLEAN_CSV_PATH.parent.mkdir(parents=True, exist_ok=True)

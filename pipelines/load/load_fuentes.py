@@ -10,17 +10,22 @@ def load_fuentes(conn: Connection, df: pd.DataFrame) -> None:
 
     # Check tabla_nombre existence in db
     table_names = set(df["tabla_nombre"].unique())  # type: ignore
-    placeholders = ", ".join([f":t{i}" for i in range(len(table_names))])
+    schema_table_pairs = [tuple(name.split(".", 1)) if "." in name else ("public", name) for name in table_names]
+    placeholders = ", ".join([f"(:s{i}, :t{i})" for i in range(len(schema_table_pairs))])
     query = (
-        f"SELECT table_name FROM information_schema.tables "
-        f"WHERE table_schema = 'public' AND table_name IN ({placeholders})"
+        f"SELECT table_schema, table_name FROM information_schema.tables "
+        f"WHERE table_schema NOT IN ('pg_catalog', 'information_schema') "
+        f"AND (table_schema, table_name) IN ({placeholders})"
     )
-    params = {f"t{i}": name for i, name in enumerate(table_names)}
-    result = conn.execute(text(query), params)
-    existing_tables = {row[0] for row in result.fetchall()}
-    missing_tables = table_names - existing_tables
-    if missing_tables:
-        raise RuntimeError(f"The following tables are not in the database: {missing_tables}")
+    params = {}
+    for i, (schema, table) in enumerate(schema_table_pairs):
+        params[f"s{i}"] = schema
+        params[f"t{i}"] = table
+    result = conn.execute(text(query), params)  # type: ignore
+    existing_pairs = {(row[0], row[1]) for row in result.fetchall()}
+    missing_pairs = set(schema_table_pairs) - existing_pairs
+    if missing_pairs:
+        raise RuntimeError(f"The following tables are not in the database: {missing_pairs}")
 
     fuentes_df = (
         df[["fuente_nombre", "descripcion", "url"]]
@@ -32,7 +37,7 @@ def load_fuentes(conn: Connection, df: pd.DataFrame) -> None:
     fuente_ids: Dict[str, int] = {}
     for _, row in fuentes_df.iterrows():  # type: ignore
         result = conn.execute(
-            text(("INSERT INTO fuentes (nombre) VALUES (:nombre) RETURNING fuente_id")),
+            text(("INSERT INTO metadata.fuentes (nombre) VALUES (:nombre) RETURNING fuente_id")),
             {"nombre": row["nombre"]},
         )
         fuente_ids[row["nombre"]] = result.scalar_one()
@@ -41,7 +46,7 @@ def load_fuentes(conn: Connection, df: pd.DataFrame) -> None:
     for _, row in df.iterrows():  # type: ignore
         conn.execute(
             text(
-                "INSERT INTO fuentes_tablas (fuente_id, nombre, fecha_actualizacion, descripcion, url) "
+                "INSERT INTO metadata.fuentes_tablas (fuente_id, nombre, fecha_actualizacion, descripcion, url) "
                 "VALUES (:fuente_id, :nombre, :fecha_actualizacion, :descripcion, :url)"
             ),
             {

@@ -18,32 +18,35 @@ from pipelines.load.load_personas_autorizacion_residencia import load_personas_a
 from pipelines.load.load_poblacion_grupo_edad import load_poblacion_grupo_edad
 from utils.logging import setup_logging
 
+CLEAN_DATA_DIR = Path("data") / "clean"
+
 # Every table name should match the CSV filename (without extension)
 # and the columns should match the SQL table schema.
 # In any other case, a custom loader function should be provided.
+# Parent folder should match the schema name.
 TABLES_TO_LOAD: Dict[Path, Optional[Callable[[Connection, pd.DataFrame], None]]] = {
-    Path("data") / "static" / "comunidades_autonomas.csv": None,
-    Path("data") / "static" / "provincias.csv": None,
-    Path("data") / "static" / "municipios.csv": None,
-    Path("data") / "static" / "paises.csv": None,
-    Path("data") / "static" / "fuentes.csv": load_fuentes,
-    Path("data") / "clean" / "feminicidios_pareja_expareja.csv": None,
-    Path("data") / "clean" / "feminicidios_fuera_pareja_expareja.csv": None,
-    Path("data") / "clean" / "menores_victimas_mortales.csv": None,
-    Path("data") / "clean" / "servicio_016.csv": None,
-    Path("data") / "clean" / "usuarias_atenpro.csv": None,
-    Path("data") / "clean" / "dispositivos_electronicos_seguimiento.csv": None,
-    Path("data") / "clean" / "ayudas_articulo_27.csv": None,
-    Path("data") / "clean" / "viogen.csv": None,
-    Path("data") / "clean" / "autorizaciones_residencia_trabajo_vvg.csv": None,
-    Path("data") / "clean" / "denuncias_vg_pareja.csv": None,
-    Path("data") / "clean" / "ordenes_proteccion.csv": None,
-    Path("data") / "clean" / "renta_activa_insercion.csv": None,
-    Path("data") / "clean" / "contratos_bonificados_sustitucion.csv": None,
-    Path("data") / "clean" / "ayudas_cambio_residencia.csv": None,
-    Path("data") / "clean" / "poblacion_municipios.csv": None,
-    Path("data") / "clean" / "poblacion_grupo_edad.csv": load_poblacion_grupo_edad,
-    Path("data") / "clean" / "personas_autorizacion_residencia.csv": load_personas_autorizacion_residencia,
+    CLEAN_DATA_DIR / "geo" / "comunidades_autonomas.csv": None,
+    CLEAN_DATA_DIR / "geo" / "provincias.csv": None,
+    CLEAN_DATA_DIR / "geo" / "municipios.csv": None,
+    CLEAN_DATA_DIR / "geo" / "paises.csv": None,
+    CLEAN_DATA_DIR / "metadata" / "fuentes.csv": load_fuentes,
+    CLEAN_DATA_DIR / "violencia_genero" / "feminicidios_pareja_expareja.csv": None,
+    CLEAN_DATA_DIR / "violencia_genero" / "feminicidios_fuera_pareja_expareja.csv": None,
+    CLEAN_DATA_DIR / "violencia_genero" / "menores_victimas_mortales.csv": None,
+    CLEAN_DATA_DIR / "violencia_genero" / "servicio_016.csv": None,
+    CLEAN_DATA_DIR / "violencia_genero" / "usuarias_atenpro.csv": None,
+    CLEAN_DATA_DIR / "violencia_genero" / "dispositivos_electronicos_seguimiento.csv": None,
+    CLEAN_DATA_DIR / "violencia_genero" / "ayudas_articulo_27.csv": None,
+    CLEAN_DATA_DIR / "violencia_genero" / "viogen.csv": None,
+    CLEAN_DATA_DIR / "violencia_genero" / "autorizaciones_residencia_trabajo_vvg.csv": None,
+    CLEAN_DATA_DIR / "violencia_genero" / "denuncias_vg_pareja.csv": None,
+    CLEAN_DATA_DIR / "violencia_genero" / "ordenes_proteccion.csv": None,
+    CLEAN_DATA_DIR / "violencia_genero" / "renta_activa_insercion.csv": None,
+    CLEAN_DATA_DIR / "violencia_genero" / "contratos_bonificados_sustitucion.csv": None,
+    CLEAN_DATA_DIR / "violencia_genero" / "ayudas_cambio_residencia.csv": None,
+    CLEAN_DATA_DIR / "demografia" / "poblacion_municipios.csv": None,
+    CLEAN_DATA_DIR / "demografia" / "poblacion_grupo_edad.csv": load_poblacion_grupo_edad,
+    CLEAN_DATA_DIR / "migracion" / "personas_autorizacion_residencia.csv": load_personas_autorizacion_residencia,
 }
 
 
@@ -53,8 +56,10 @@ def load_csv_files(paths: List[Path]) -> Dict[str, pd.DataFrame]:
     for path in paths:
         try:
             df = pd.read_csv(path, sep=";")  # type: ignore
+            schema = path.parent.name.lower()
             table_name = path.stem.lower()
-            dataframes[table_name] = df
+            full_table_name = f"{schema}.{table_name}"
+            dataframes[full_table_name] = df
         except Exception as e:
             logging.error(f"Failed to read '{path}': {e}")
     return dataframes
@@ -88,15 +93,17 @@ def main():
         truncate_tables(conn, list(dataframes.keys()))
 
         for path, loader in TABLES_TO_LOAD.items():
+            schema = path.parent.name.lower()
             table_name = path.stem.lower()
-            df = dataframes.get(table_name)
+            full_table_name = f"{schema}.{table_name}"
+            df = dataframes.get(full_table_name)
             if df is not None:
                 try:
                     if loader is not None:
                         loader(conn, df)
                         logging.info(f"Loaded table with custom loader: {table_name}")
                     else:
-                        df.to_sql(table_name, con=conn, if_exists="append", index=False)
+                        df.to_sql(table_name, schema=schema, con=conn, if_exists="append", index=False)
                         logging.info(f"Loaded table: {table_name}")
                 except Exception as e:
                     logging.error(f"Failed to load '{table_name}': {e}")

@@ -1,9 +1,8 @@
 """Extract and transform data
 Sources:
-    DGVG008
+    DGVG001
 Target tables:
-    viogen
-"""
+    feminicios_pareja"""
 
 import logging
 from pathlib import Path
@@ -13,57 +12,50 @@ import pandas as pd
 from utils.logging import setup_logging
 from utils.normalization import (
     apply_and_check,  # type: ignore
-    apply_and_check_dict,  # type: ignore
+    normalize_age_group,
     normalize_month,
     normalize_positive_integer,
     normalize_provincia,
     normalize_year,
 )
 
-RAW_CSV_PATH = Path("data") / "raw" / "DGVG" / "DGVG008-090VioGenSistemaSeguimientoIntegral.csv"
-CLEAN_CSV_PATH = Path("data") / "clean" / "viogen.csv"
+# Paths
+RAW_CSV_PATH = Path("data") / "raw" / "DGVG" / "DGVG001-010FeminicidiosPareja.csv"
+CLEAN_CSV_PATH = Path("data") / "clean" / "violencia_genero" / "feminicidios_pareja_expareja.csv"
 
 
 def main():
     try:
         # Read file
-        df = pd.read_csv(RAW_CSV_PATH)  # type: ignore
+        df = pd.read_csv(str(RAW_CSV_PATH))  # type: ignore
         df.columns = df.columns.str.strip()
 
         # Rename columns
         df = df.rename(
             columns={
+                "Provincia (As)": "provincia_id",
                 "Año": "anio",
                 "Mes": "mes",
-                "Provincia": "provincia_id",
-                "Nivel de riesgo": "nivel_riesgo",
-                "Número de casos": "casos",
-                "Número de casos con protección policial": "casos_proteccion_policial",
+                "VM Grupo de edad": "victima_grupo_edad",
+                "AG Grupo de edad": "agresor_grupo_edad",
+                "Feminicidios pareja o expareja": "feminicidios",
+                "Huérfanas y huérfanos menores de edad -1-": "huerfanos_menores",
             }
         )
-        df = df.drop(columns=["Comunidad autónoma"])
 
         # Normalize and validate all columns
         df["anio"] = apply_and_check(df["anio"], normalize_year)
         df["mes"] = apply_and_check(df["mes"], normalize_month)
         df["provincia_id"] = apply_and_check(df["provincia_id"], normalize_provincia)
-        df["nivel_riesgo"] = apply_and_check_dict(
-            df["nivel_riesgo"],
-            {
-                "No apreciado": "No apreciado",
-                "Bajo": "Bajo",
-                "Medio": "Medio",
-                "Alto": "Alto",
-                "Extremo": "Extremo",
-            },
-        )
-        df["casos"] = apply_and_check(df["casos"], normalize_positive_integer)
-        df["casos_proteccion_policial"] = apply_and_check(df["casos_proteccion_policial"], normalize_positive_integer)
+        df["victima_grupo_edad"] = apply_and_check(df["victima_grupo_edad"], normalize_age_group)
+        df["agresor_grupo_edad"] = apply_and_check(df["agresor_grupo_edad"], normalize_age_group)
+        df["feminicidios"] = apply_and_check(df["feminicidios"], normalize_positive_integer)
+        df["huerfanos_menores"] = apply_and_check(df["huerfanos_menores"], normalize_positive_integer)
 
-        # Save clean CSV
+        # Save cleaned CSV
         CLEAN_CSV_PATH.parent.mkdir(parents=True, exist_ok=True)
         df.to_csv(CLEAN_CSV_PATH, index=False, sep=";")
-        logging.info(f"Cleaned data saved to {CLEAN_CSV_PATH}")
+        logging.info(f"Data cleaned and saved to {CLEAN_CSV_PATH}")
 
     except FileNotFoundError as e:
         logging.error(f"File not found: {e}")

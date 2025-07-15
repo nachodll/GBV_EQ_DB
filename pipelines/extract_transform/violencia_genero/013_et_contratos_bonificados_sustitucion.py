@@ -21,7 +21,7 @@ from utils.normalization import (
 )
 
 RAW_CSV_PATH = Path("data") / "raw" / "DGVG" / "DGVG013-140ContratosBonificadosSustitución.csv"
-CLEAN_CSV_PATH = Path("data") / "clean" / "contratos_bonificados_sustitucion.csv"
+CLEAN_CSV_PATH = Path("data") / "clean" / "violencia_genero" / "contratos_bonificados_sustitucion.csv"
 
 
 def main():

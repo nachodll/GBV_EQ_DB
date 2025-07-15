@@ -1,8 +1,8 @@
 """Extract and transform data
 Sources:
-    DGVG012
+    DGVG006
 Target tables:
-    renta_activa_insercion
+    dispositivos_electronicos_seguimiento
 """
 
 import logging
@@ -13,13 +13,14 @@ import pandas as pd
 from utils.logging import setup_logging
 from utils.normalization import (
     apply_and_check,  # type: ignore
+    normalize_month,
     normalize_positive_integer,
     normalize_provincia,
     normalize_year,
 )
 
-RAW_CSV_PATH = Path("data") / "raw" / "DGVG" / "DGVG012-130RentaActivaInsercion.csv"
-CLEAN_CSV_PATH = Path("data") / "clean" / "renta_activa_insercion.csv"
+RAW_CSV_PATH = Path("data") / "raw" / "DGVG" / "DGVG006-060DispositivosElectrónicoSeguimiento.csv"
+CLEAN_CSV_PATH = Path("data") / "clean" / "violencia_genero" / "dispositivos_electronicos_seguimiento.csv"
 
 
 def main():
@@ -32,18 +33,26 @@ def main():
         df = df.rename(
             columns={
                 "Año": "anio",
+                "Mes": "mes",
                 "Provincia": "provincia_id",
-                "Número de perceptoras": "perceptoras",
+                "Instalaciones acumuladas": "instalaciones_acumuladas",
+                "Desinstalaciones acumuladas": "desinstalaciones_acumuladas",
+                "Dispositivos activos": "dispositivos_activos",
             }
         )
         df = df.drop(columns=["Comunidad autónoma"])
 
         # Normalize and validate all columns
         df["anio"] = apply_and_check(df["anio"], normalize_year)
+        df["mes"] = apply_and_check(df["mes"], normalize_month)
         df["provincia_id"] = apply_and_check(df["provincia_id"], normalize_provincia)
-        df["perceptoras"] = apply_and_check(df["perceptoras"], normalize_positive_integer)
+        df["instalaciones_acumuladas"] = apply_and_check(df["instalaciones_acumuladas"], normalize_positive_integer)
+        df["desinstalaciones_acumuladas"] = apply_and_check(
+            df["desinstalaciones_acumuladas"], normalize_positive_integer
+        )
+        df["dispositivos_activos"] = apply_and_check(df["dispositivos_activos"], normalize_positive_integer)
 
-        # Save to CSV
+        # Save clean CSV
         CLEAN_CSV_PATH.parent.mkdir(parents=True, exist_ok=True)
         df.to_csv(CLEAN_CSV_PATH, index=False, sep=";")
         logging.info(f"Cleaned data saved to {CLEAN_CSV_PATH}")
