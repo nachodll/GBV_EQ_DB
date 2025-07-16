@@ -447,7 +447,7 @@ CREATE TABLE
 ------------------------------------------------------------------------------------
 -- igualdad_formal
 ------------------------------------------------------------------------------------
-CREATE TYPE enums."eige_dominio_subdominio_enum" AS ENUM(
+CREATE TYPE enums.eige_dominio_subdominio_enum AS ENUM(
   'Access to health structures (Subdomain score)',
   'Attainment and participation (Subdomain score)',
   'Care activities (Subdomain score)',
@@ -500,4 +500,46 @@ CREATE TABLE
     indicador text NOT NULL,
     valor int NOT NULL CHECK (valor >= 0),
     sexo enums.sexo_enum NOT NULL
+  );
+
+CREATE TYPE enums."eige_interseccionalidades_enum" AS ENUM(
+  'Couple with children',
+  'Couple without children',
+  'With disability',
+  'High educated',
+  'Low educated',
+  'Medium educated',
+  'EU-born',
+  'Foreign born',
+  'Lone parent',
+  'Native born',
+  'Non-EU-born',
+  'Without disability',
+  'Single',
+  '15/16/18-24',
+  '25-34',
+  '25-49',
+  '35-44',
+  '45-64',
+  '50-64',
+  '65-74',
+  '65+',
+  '75+'
+);
+
+CREATE TABLE
+  igualdad_formal."eige_interseccionalidades" (
+    eige_interseccionalidad_id serial PRIMARY KEY,
+    anio int NOT NULL CHECK (
+      anio BETWEEN 1900 AND EXTRACT(
+        YEAR
+        FROM
+          CURRENT_DATE
+      )
+    ),
+    pais_id int NOT NULL REFERENCES geo."paises" ("pais_id"),
+    indicador text NOT NULL,
+    valor int CHECK (valor >= 0),
+    sexo enums.sexo_enum NOT NULL,
+    interseccionalidad enums."eige_interseccionalidades_enum" NOT NULL
   );
