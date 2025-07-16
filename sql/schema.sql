@@ -484,4 +484,20 @@ CREATE TABLE
     pais_id int NOT NULL REFERENCES geo."paises" ("pais_id"),
     dominio_subdominio enums."eige_dominio_subdominio_enum" NOT NULL,
     valor numeric NOT NULL CHECK (valor >= 0)
-  )
+  );
+
+CREATE TABLE
+  igualdad_formal."eige_indicadores" (
+    eige_indicador_id serial PRIMARY KEY,
+    anio int NOT NULL CHECK (
+      anio BETWEEN 1900 AND EXTRACT(
+        YEAR
+        FROM
+          CURRENT_DATE
+      )
+    ),
+    pais_id int NOT NULL REFERENCES geo."paises" ("pais_id"),
+    indicador text NOT NULL,
+    valor int NOT NULL CHECK (valor >= 0),
+    sexo enums.sexo_enum NOT NULL
+  );

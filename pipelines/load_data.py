@@ -15,6 +15,7 @@ from sqlalchemy import create_engine, text
 from sqlalchemy.engine import Connection
 
 from pipelines.load.load_eige_dominios import load_eige_dominios
+from pipelines.load.load_eige_indicadores import load_eige_indicadores
 from pipelines.load.load_fuentes import load_fuentes
 from pipelines.load.load_personas_autorizacion_residencia import load_personas_autorizacion_residencia
 from pipelines.load.load_poblacion_grupo_edad import load_poblacion_grupo_edad
@@ -50,6 +51,7 @@ TABLES_TO_LOAD: Dict[Path, Optional[Callable[[Connection, pd.DataFrame], None]]]
     CLEAN_DATA_DIR / "demografia" / "poblacion_grupo_edad.csv": load_poblacion_grupo_edad,
     CLEAN_DATA_DIR / "migracion" / "personas_autorizacion_residencia.csv": load_personas_autorizacion_residencia,
     CLEAN_DATA_DIR / "igualdad_formal" / "eige_dominios.csv": load_eige_dominios,
+    CLEAN_DATA_DIR / "igualdad_formal" / "eige_indicadores.csv": load_eige_indicadores,
 }
 
 
