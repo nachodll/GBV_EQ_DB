@@ -364,6 +364,20 @@ def normalize_positive_float(value: Union[str, int, float]) -> NormalizationResu
         return NormalizationResult(None, NormalizationStatus.INVALID, raw_str)
 
 
+def normalize_plain_text(text: str) -> NormalizationResult:
+    """Normalize a plain text string by stripping whitespaces"""
+    clean_str = text.strip()
+    if _is_unknown(clean_str):
+        return NormalizationResult(None, NormalizationStatus.UNKNOWN, clean_str)
+
+    # Check for forbidden characters: null bytes, control characters
+    forbidden_pattern = r"[\x00-\x1F\x7F]"
+    if re.search(forbidden_pattern, clean_str):
+        return NormalizationResult(None, NormalizationStatus.INVALID, clean_str)
+
+    return NormalizationResult(clean_str, NormalizationStatus.VALID, clean_str)
+
+
 def apply_and_check(series: pd.Series, func: Callable[[Any], NormalizationResult]):  # type: ignore
     """Apply a normalization function and fail on invalid results."""
     results = series.apply(func)  # type: ignore

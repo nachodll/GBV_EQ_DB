@@ -12,6 +12,7 @@ from utils.normalization import (
     normalize_municipio,
     normalize_municipio_id,
     normalize_nationality,
+    normalize_plain_text,
     normalize_positive_float,
     normalize_positive_integer,
     normalize_provincia,
@@ -485,6 +486,25 @@ def test_normalize_positive_float_invalid():
     assert r1.status is NormalizationStatus.INVALID
     assert r2.status is NormalizationStatus.INVALID
     assert r3.status is NormalizationStatus.INVALID
+
+
+# ---------------------- normalize plain text ----------------------
+def test_normalize_plain_text_basic():
+    result = normalize_plain_text("  Hello World!  ")
+    assert result.value == "Hello World!"
+    assert result.status is NormalizationStatus.VALID
+
+
+def test_normalize_plain_unknown():
+    result = normalize_plain_text("No consta")
+    assert result.value is None
+    assert result.status is NormalizationStatus.UNKNOWN
+
+
+def test_normalize_plain_text_invalid():
+    result = normalize_plain_text("adf\x00")
+    assert result.value is None
+    assert result.status is NormalizationStatus.INVALID
 
 
 # ---------------------- apply_and_check helpers ----------------------
