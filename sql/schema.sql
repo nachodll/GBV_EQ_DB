@@ -8,6 +8,8 @@ CREATE SCHEMA migracion;
 
 CREATE SCHEMA violencia_genero;
 
+CREATE SCHEMA igualdad_formal;
+
 CREATE SCHEMA enums;
 
 ------------------------------------------------------------------------------------
@@ -441,3 +443,45 @@ CREATE TABLE
     ),
     "ayudas_cambio_residencia" int NOT NULL CHECK (ayudas_cambio_residencia >= 0)
   );
+
+------------------------------------------------------------------------------------
+-- igualdad_formal
+------------------------------------------------------------------------------------
+CREATE TYPE enums."eige_dominio_subdominio_enum" AS ENUM(
+  'Access to health structures (Subdomain score)',
+  'Attainment and participation (Subdomain score)',
+  'Care activities (Subdomain score)',
+  'Economic power (Subdomain score)',
+  'Economic situation (Subdomain score)',
+  'Financial resources (Subdomain score)',
+  'Health (Domain score)',
+  'Health status (Subdomain score)',
+  'Healthy behaviour (Subdomain score)',
+  'Knowledge (Domain score)',
+  'Money (Domain score)',
+  'Overall Gender Equality Index',
+  'Participation in work (Subdomain score)',
+  'Political power (Subdomain score)',
+  'Power (Domain score)',
+  'Segregation (Subdomain score)',
+  'Segregation and quality of work (Subdomain score)',
+  'Social activities (Subdomain score)',
+  'Social power (Subdomain score)',
+  'Time (Domain score)',
+  'Work (Domain score)'
+);
+
+CREATE TABLE
+  igualdad_formal."eige_dominios" (
+    eige_dominio_id serial PRIMARY KEY,
+    anio int NOT NULL CHECK (
+      anio BETWEEN 1900 AND EXTRACT(
+        YEAR
+        FROM
+          CURRENT_DATE
+      )
+    ),
+    pais_id int NOT NULL REFERENCES geo."paises" ("pais_id"),
+    dominio_subdominio enums."eige_dominio_subdominio_enum" NOT NULL,
+    valor numeric NOT NULL CHECK (valor >= 0)
+  )

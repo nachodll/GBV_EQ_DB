@@ -1,93 +1,120 @@
--- Get all denuncias
+-- 1. Get all denuncias
 SELECT
   *
 FROM
-  denuncias_vg_pareja;
+  violencia_genero.denuncias_vg_pareja;
 
--- Join denuncias_vg_pareja with provincias to get province names 
+-- 2. Join denuncias_vg_pareja with provincias to get province names 
 SELECT
-  d.num_denuncias,
+  d.denuncias,
   p.nombre AS provincia,
-  d.año
+  d.anio
 FROM
-  denuncias_vg_pareja d
-  JOIN provincias p ON d.provincia_id = p.provincia_id;
+  violencia_genero.denuncias_vg_pareja d
+  JOIN geo.provincias p ON d.provincia_id = p.provincia_id;
 
--- Total ordenes de proteccion incoadas and total consultas 016 by province and year
+-- 3. Total ordenes de proteccion incoadas and total consultas 016 by province and year
 SELECT
   p.nombre AS provincia,
-  o.año,
-  SUM(o.num_ordenes_proteccion) AS total_ordenes_proteccion,
-  SUM(s.total_consultas) AS total_consultas
+  o.anio,
+  SUM(o.ordenes_proteccion) AS total_ordenes_proteccion,
+  SUM(s.llamadas) AS llamadas
 FROM
-  ordenes_proteccion o
-  JOIN servicio_016 s ON o.provincia_id = s.provincia_id
-  AND o.año = s.año
-  JOIN provincias p ON o.provincia_id = p.provincia_id
+  violencia_genero.ordenes_proteccion o
+  JOIN violencia_genero.servicio_016 s ON o.provincia_id = s.provincia_id
+  AND o.anio = s.anio
+  JOIN geo.provincias p ON o.provincia_id = p.provincia_id
 GROUP BY
   p.nombre,
-  o.año
+  o.anio
 ORDER BY
   p.nombre DESC,
-  o.año DESC;
+  o.anio DESC;
 
--- Top 5 months with the highest number of feminicides by province
+-- 4. Top 5 months with the highest number of feminicides by province
 SELECT
   p.nombre AS provincia,
-  f.año,
-  SUM(f.num_feminicidios) AS total_feminicidios
+  f.anio,
+  SUM(f.feminicidios) AS total_feminicidios
 FROM
-  feminicidios_pareja_expareja f
-  JOIN provincias p ON f.provincia_id = p.provincia_id
+  violencia_genero.feminicidios_pareja_expareja f
+  JOIN geo.provincias p ON f.provincia_id = p.provincia_id
 GROUP BY
   p.nombre,
-  f.año
+  f.anio
 ORDER BY
   total_feminicidios DESC,
-  f.año DESC
+  f.anio DESC
 LIMIT
   5;
 
--- Monthly trend of active users in the ATENPRO service for Madrid
+-- 5. Monthly trend of active users in the ATENPRO service for Madrid
 SELECT
   p.nombre AS provincia,
-  a.año,
+  a.anio,
   a.mes,
-  a.num_usuarias_activas
+  a.usuarias_activas
 FROM
-  usuarias_atenpro a
-  JOIN provincias p ON a.provincia_id = p.provincia_id
+  violencia_genero.usuarias_atenpro a
+  JOIN geo.provincias p ON a.provincia_id = p.provincia_id
 WHERE
   p.nombre = 'Madrid'
 ORDER BY
-  a.año DESC,
+  a.anio DESC,
   a.mes DESC;
 
--- Total ayudas granted per autonomous community by year
+-- 6. Total ayudas granted per autonomous community by year
 SELECT
   c.nombre AS comunidad_autonoma,
-  a.año,
-  SUM(a.num_ayudas_concedidas) AS total_ayudas
+  a.anio,
+  SUM(a.ayudas_concedidas) AS total_ayudas
 FROM
-  ayudas_articulo_27 a
-  JOIN comunidades_autonomas c ON a.comunidad_autonoma_id = c.comunidad_autonoma_id
+  violencia_genero.ayudas_articulo_27 a
+  JOIN geo.comunidades_autonomas c ON a.comunidad_autonoma_id = c.comunidad_autonoma_id
 GROUP BY
   c.nombre,
-  a.año
+  a.anio
 ORDER BY
-  a.año DESC,
+  a.anio DESC,
   total_ayudas DESC;
 
--- Trend of electronic monitoring devices installed, by province
+-- 7. Trend of electronic monitoring devices installed, by province
 SELECT
   p.nombre AS provincia,
-  d.año,
+  d.anio,
   d.mes,
-  d.num_instalaciones_acumuladas
+  d.instalaciones_acumuladas
 FROM
-  dispositivos_electronicos_seguimiento d
-  JOIN provincias p ON d.provincia_id = p.provincia_id
+  violencia_genero.dispositivos_electronicos_seguimiento d
+  JOIN geo.provincias p ON d.provincia_id = p.provincia_id
 ORDER BY
-  d.año DESC,
+  d.anio DESC,
   d.mes DESC,
   provincia;
+
+-- Get all tables and all schemas in the database
+SELECT
+  table_schema,
+  table_name
+FROM
+  information_schema.tables
+WHERE
+  table_schema NOT IN ('information_schema', 'pg_catalog')
+ORDER BY
+  table_schema,
+  table_name;
+
+SELECT
+  serv.anio,
+  prov.nombre,
+  SUM(
+    serv.llamadas + serv.whatsapps + serv.emails + serv.chats
+  ) AS total_consultas
+FROM
+  violencia_genero.servicio_016 serv
+  JOIN geo.provincias prov ON serv.provincia_id = prov.provincia_id
+GROUP BY
+  serv.anio,
+  prov.nombre
+ORDER BY
+  serv.anio DESC;

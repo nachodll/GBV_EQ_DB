@@ -368,6 +368,7 @@ DICT_NATIONALITIES = {
     "esloveno": "Eslovenia",
     "eslovena": "Eslovenia",
     "España": "España",
+    "Spain": "España",
     "español": "España",
     "española": "España",
     "Estados Unidos de América": "Estados Unidos",
