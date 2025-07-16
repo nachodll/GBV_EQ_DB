@@ -4,7 +4,7 @@ import logging
 from pathlib import Path
 
 from utils.logging import setup_logging
-from utils.run import run_sql_script
+from utils.run_script import run_sql_script
 
 TEMPLATE_PATH = Path("sql") / "reset_db_template.sql"
 DROP_TABLES_PATH = Path("pipelines") / "001b_drop_all_tables.py"

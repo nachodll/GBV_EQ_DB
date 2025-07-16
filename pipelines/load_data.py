@@ -4,6 +4,7 @@ the database tables with matching names.
 
 import logging
 import os
+import sys
 from pathlib import Path
 
 # Path to clean CSV data (CSV filenames should match SQL table names and columns)
@@ -72,13 +73,26 @@ def truncate_tables(conn: Connection, table_names: List[str]):
     for table in table_names:
         try:
             conn.execute(text(f"TRUNCATE {table} RESTART IDENTITY CASCADE"))
-            logging.info(f"Truncated table: {table}")
         except Exception as e:
             logging.error(f"Could not truncate table '{table}': {e}")
+    logging.info("Truncated all target tables")
 
 
-def main():
-    dataframes = load_csv_files(list(TABLES_TO_LOAD.keys()))
+def main(schema_to_load: Optional[str] = None):
+    """Main function to load data into the database. If schema_to_load is provided,
+    only tables from that schema will be loaded (geo and metadata are always loaded)."""
+
+    # Genereate the list of tables to load per schema
+    always_schemas = {"geo", "metadata"}
+    schemas_to_load = set(always_schemas)
+    if schema_to_load:
+        schemas_to_load.add(schema_to_load.lower())
+    filtered_tables = {
+        path: loader for path, loader in TABLES_TO_LOAD.items() if path.parent.name.lower() in schemas_to_load
+    }
+
+    # Read CSV files into DataFrames
+    dataframes = load_csv_files(list(filtered_tables.keys()))
 
     # Create database engine
     engine = create_engine(
@@ -94,7 +108,7 @@ def main():
     with engine.begin() as conn:
         truncate_tables(conn, list(dataframes.keys()))
 
-        for path, loader in TABLES_TO_LOAD.items():
+        for path, loader in filtered_tables.items():
             schema = path.parent.name.lower()
             table_name = path.stem.lower()
             full_table_name = f"{schema}.{table_name}"
@@ -118,4 +132,5 @@ def main():
 
 if __name__ == "__main__":
     setup_logging()
-    main()
+    schema_arg = sys.argv[1] if len(sys.argv) > 1 else None
+    main(schema_arg)

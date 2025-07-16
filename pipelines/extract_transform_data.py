@@ -1,11 +1,12 @@
 """Run extract-transform steps for the raw datasets."""
 
 import logging
+import sys
 from pathlib import Path
-from typing import List
+from typing import List, Optional
 
 from utils.logging import setup_logging
-from utils.run import run_python_script
+from utils.run_script import run_python_script
 
 # Define extract transform scripts to run
 ET_SCRIPTS_DIR = Path("pipelines") / "extract_transform"
@@ -31,10 +32,16 @@ SCRIPTS: List[Path] = [
 ]
 
 
-def main():
+def main(schema_to_et: Optional[str] = None):
     logging.info("Starting extract-transform scripts...")
 
-    for script in SCRIPTS:
+    if schema_to_et:
+        schema_to_et = schema_to_et.lower()
+        filtered_scripts = [script for script in SCRIPTS if script.parent.name.lower() == schema_to_et]
+    else:
+        filtered_scripts = SCRIPTS
+
+    for script in filtered_scripts:
         logging.info(f"Running script: {script.name}")
         run_python_script(script)
 
@@ -43,4 +50,5 @@ def main():
 
 if __name__ == "__main__":
     setup_logging()
-    main()
+    schema_arg = sys.argv[1] if len(sys.argv) > 1 else None
+    main(schema_arg)

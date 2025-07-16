@@ -6,15 +6,18 @@ from pathlib import Path
 from utils.logging import strip_metadata
 
 
-def run_python_script(script: Path):
+def run_python_script(script: Path, *args: str):
     """Run a standalone python script and capture its output."""
 
     if not script.exists():
         logging.error(f"Script path does not exist: {script}")
         raise FileNotFoundError(f"Script path does not exist: {script}")
 
+    # Build command with additional arguments
+    cmd = ["python", str(script)] + [str(arg) for arg in args]
+
     result = subprocess.run(
-        ["python", script],
+        cmd,
         text=True,
         capture_output=True,
     )

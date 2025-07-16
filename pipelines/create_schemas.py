@@ -4,7 +4,7 @@ import logging
 from pathlib import Path
 
 from utils.logging import setup_logging
-from utils.run import run_sql_script
+from utils.run_script import run_sql_script
 
 SCHEMA_PATH = Path("sql") / "schema.sql"
 
