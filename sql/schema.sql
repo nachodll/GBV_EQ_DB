@@ -163,7 +163,7 @@ CREATE TABLE
     ),
     personas_autorizacion_residencia int NOT NULL CHECK (personas_autorizacion_residencia >= 0),
     tipo_documentacion enums.tipo_documentacino_enum,
-    regimen enums.tipo_regimen_enum NOT NULL
+    regimen enums.tipo_regimen_enum
   );
 
 ------------------------------------------------------------------------------------
