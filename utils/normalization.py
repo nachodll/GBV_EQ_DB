@@ -88,7 +88,7 @@ def _normalize_region_name(name: str, normalization_dict: dict[str, int]) -> int
 def normalize_provincia(name: str) -> NormalizationResult:
     """Normalize a province name using the dict_provincia dictionary."""
 
-    if _is_unknown(name.strip()):
+    if _is_unknown(name):
         return NormalizationResult(None, NormalizationStatus.UNKNOWN, name)
     normalized = _normalize_region_name(name, DICT_PROVINCIAS)
     if normalized is None:
@@ -99,7 +99,7 @@ def normalize_provincia(name: str) -> NormalizationResult:
 def normalize_comunidad_autonoma(name: str) -> NormalizationResult:
     """Normalize a comunidad autónoma name using the dict_comunidad_autonoma dictionary."""
 
-    if _is_unknown(name.strip()):
+    if _is_unknown(name):
         return NormalizationResult(None, NormalizationStatus.UNKNOWN, name)
 
     normalized = _normalize_region_name(name, DICT_COMUNIDADES_AUTOMAS)
@@ -132,7 +132,7 @@ def normalize_municipio(args: tuple[str, Union[str, int]]) -> NormalizationResul
 
     name, provincia = args
 
-    if _is_unknown(name.strip()):
+    if _is_unknown(name):
         return NormalizationResult(None, NormalizationStatus.UNKNOWN, name)
 
     # Normalize provincia
@@ -157,7 +157,7 @@ def normalize_municipio(args: tuple[str, Union[str, int]]) -> NormalizationResul
 def normalize_nationality(name: str) -> NormalizationResult:
     """Normalize a given nationality to the corresponding country name."""
 
-    if _is_unknown(name.strip()):
+    if _is_unknown(name):
         return NormalizationResult(None, NormalizationStatus.UNKNOWN, name)
 
     cleaned = name.strip()

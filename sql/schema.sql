@@ -150,7 +150,7 @@ CREATE TABLE
     personas_autorizacion_residencia_id serial PRIMARY KEY,
     provincia_id int REFERENCES geo.provincias (provincia_id),
     nacionalidad int REFERENCES geo.paises (pais_id),
-    sexo enums.sexo_enum NOT NULL,
+    sexo enums.sexo_enum,
     es_nacido_espania boolean,
     grupo_edad varchar CHECK (
       grupo_edad ~ '^\d+-\d+$'

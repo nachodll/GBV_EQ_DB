@@ -3,6 +3,7 @@ Sources:
     OPI001, (2013-present, autorización de residencia)
     OPI002, (2013-present, certificado de registro or acuerdo de retirada)
     OPI003, OPI004, OPI005, (2012, 2011, 2010 and 2002-2009 historic evolution)
+    OPI006, OPI
 Target tables:
     personas_autorizacion_residencia
 """
@@ -25,14 +26,78 @@ from utils.normalization import (
 
 RAW_CSV_PATH_POST_2013_1 = Path("data") / "raw" / "OPI" / "OPI001-PersonasAutorizaciónResidencia.csv"
 RAW_CSV_PATH_POST_2013_2 = Path("data") / "raw" / "OPI" / "OPI002-PersonasCertificadoRegistroOAcuerdoRetirada.csv"
-RAW_CSV_DIR_2012 = Path("data") / "raw" / "OPI" / "OPI003-2012"
-RAW_CSV_DIR_2011 = Path("data") / "raw" / "OPI" / "OPI004-2011"
-RAW_CSV_DIR_2010 = Path("data") / "raw" / "OPI" / "OPI005-2010"
+RAW_XLS_DIR_2012 = Path("data") / "raw" / "OPI" / "OPI003-2012"
+RAW_XLS_DIR_2011 = Path("data") / "raw" / "OPI" / "OPI004-2011"
+RAW_XLS_DIR_2010 = Path("data") / "raw" / "OPI" / "OPI005-2010"
+RAW_XLS_PATH_2001 = Path("data") / "raw" / "OPI" / "OPI006-2001.xls"
+
 CLEAN_CSV_PATH = Path("data") / "clean" / "migracion" / "personas_autorizacion_residencia.csv"
 
 
+def excel_2001_to_df(file: Path) -> pd.DataFrame:
+    """Read an excel file and return a DataFrame with table 4. Used for year 2001."""
+
+    all_records = []
+    try:
+        excel_df = pd.read_excel(file, sheet_name="8", header=None)  # type: ignore
+
+        # Remove columns 4 and 8 (percentages are not needed)
+        excel_df.drop(columns=[4, 8], inplace=True)
+
+        # Hardcoded fecha for 2001
+        year = file.name.split("-")[-1].split(".")[0]
+        regimen_headers = excel_df.iloc[6].ffill().copy()  # type: ignore
+        sexo_headers = excel_df.iloc[7].ffill().copy()  # type: ignore
+
+        for col in excel_df.columns[1:]:
+            for row in excel_df.index[8:]:
+                total = excel_df.loc[row, col]  # type: ignore
+                if total != "-":
+                    all_records.append(  # type: ignore
+                        {
+                            "Provincia": excel_df.loc[row, 0],  # type: ignore
+                            "Sexo": sexo_headers[col],
+                            "Régimen": regimen_headers[col],
+                            "Fecha": f"{year}-12-31",
+                            "Total": total,
+                        }
+                    )
+
+        df = pd.DataFrame(all_records)
+
+        # Drop all columns with aggregated data
+        aggregated_to_drop = [
+            "TOTAL",
+            "ANDALUCÍA",
+            "ARAGÓN",
+            "CANARIAS",
+            "CASTILLA Y LEÓN",
+            "CASTILLA - LA MANCHA",
+            "CATALUÑA",
+            "COM. VALENCIANA",
+            "EXTREMADURA",
+            "GALICIA",
+            "PAÍS VASCO",
+        ]
+        df = df[~df["Provincia"].isin(aggregated_to_drop)]  # type: ignore
+
+        # Adapt to the expected format
+        # replace all varones with hombres
+        df["Sexo"] = df["Sexo"].replace("VARONES", "Hombres")  # type: ignore
+        df["Sexo"] = df["Sexo"].replace("MUJERES", "Mujeres")  # type: ignore
+        df["Régimen"] = df["Régimen"].replace("RÉGIMEN COMUNITARIO", "Régimen de libre circulación UE")  # type: ignore
+        df["Régimen"] = df["Régimen"].replace("RÉGIMEN GENERAL", "Régimen General")  # type: ignore
+
+        return df
+
+    except Exception as e:
+        logging.error(f"Error reading {file}: {e}")
+        return pd.DataFrame()
+
+
 def excel_directory_to_df(dir: Path) -> pd.DataFrame:
-    """Read all excel files from a directory and return a DataFrame with table 4 of each one"""
+    """Used for years 2012, 2011 and 2010.
+    Read all excel files from a directory and return a DataFrame with table 4 of each one"""
 
     all_records = []
     for file in dir.glob("*.xls"):
@@ -120,7 +185,8 @@ def excel_directory_to_df(dir: Path) -> pd.DataFrame:
 
 
 def excel_directory_historic_evolution_to_df(dir: Path) -> pd.DataFrame:
-    """Read all excel files from a directroy and return a DataFrame with table 1 of each one"""
+    """Used for years 2002-2009 data present in OPI005.
+    Read all excel files from a directroy and return a DataFrame with table 1 of each one"""
 
     all_records = []
     for file in dir.glob("*.xls"):
@@ -224,17 +290,21 @@ def main():
         df_post_2013_1["Régimen"] = "Régimen General"
         df_post_2013_2 = pd.read_csv(RAW_CSV_PATH_POST_2013_2, sep="\t")  # type: ignore
         df_post_2013_2["Régimen"] = "Régimen de libre circulación UE"
-        df_2012 = excel_directory_to_df(RAW_CSV_DIR_2012)
+        df_2012 = excel_directory_to_df(RAW_XLS_DIR_2012)
         df_2012["Tipo de documentación"] = None
         df_2012["Lugar de nacimiento"] = None
-        df_2011 = excel_directory_to_df(RAW_CSV_DIR_2011)
+        df_2011 = excel_directory_to_df(RAW_XLS_DIR_2011)
         df_2011["Tipo de documentación"] = None
         df_2011["Lugar de nacimiento"] = None
-        df_2010 = excel_directory_to_df(RAW_CSV_DIR_2010)
+        df_2010 = excel_directory_to_df(RAW_XLS_DIR_2010)
         df_2010["Tipo de documentación"] = None
         df_2010["Lugar de nacimiento"] = None
-        df_2002_2009 = excel_directory_historic_evolution_to_df(RAW_CSV_DIR_2010)
-        df = pd.concat([df_post_2013_1, df_post_2013_2, df_2012, df_2011, df_2010, df_2002_2009], ignore_index=True)
+        df_2002_2009 = excel_directory_historic_evolution_to_df(RAW_XLS_DIR_2010)
+        df_2001 = excel_2001_to_df(RAW_XLS_PATH_2001)
+
+        df = pd.concat(
+            [df_post_2013_1, df_post_2013_2, df_2012, df_2011, df_2010, df_2002_2009, df_2001], ignore_index=True
+        )
 
         # Rename columns
         df.rename(
