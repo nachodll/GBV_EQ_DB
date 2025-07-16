@@ -12,6 +12,7 @@ from utils.normalization import (
     normalize_municipio,
     normalize_municipio_id,
     normalize_nationality,
+    normalize_positive_float,
     normalize_positive_integer,
     normalize_provincia,
     normalize_quarter,
@@ -455,6 +456,32 @@ def test_normalize_positive_integer_invalid():
     r1 = normalize_positive_integer(-5)
     r2 = normalize_positive_integer("foo")
     r3 = normalize_positive_integer("12.34")
+    assert r1.value is None and r2.value is None and r3.value is None
+    assert r1.status is NormalizationStatus.INVALID
+    assert r2.status is NormalizationStatus.INVALID
+    assert r3.status is NormalizationStatus.INVALID
+
+
+# ------------------------ positive float normalization ----------------------
+def test_normalize_positive_float_basic():
+    r1 = normalize_positive_float(3.14)
+    r2 = normalize_positive_float(" 2.71 ")
+    assert r1.value == 3.14 and r2.value == 2.71
+    assert r1.status is r2.status is NormalizationStatus.VALID
+
+
+def test_normalize_positive_float_unknown():
+    r1 = normalize_positive_float("n/c")
+    r2 = normalize_positive_float(" no CONSTA ")
+    assert r1.value is None and r2.value is None
+    assert r1.status is r2.status is NormalizationStatus.UNKNOWN
+
+
+def test_normalize_positive_float_invalid():
+    r1 = normalize_positive_float(-1.0)
+    r2 = normalize_positive_float("foo")
+    r3 = normalize_positive_float("12,34")  # Comma instead of dot
+    assert r1.value is None and r2.value is None and r3.value is None
     assert r1.status is NormalizationStatus.INVALID
     assert r2.status is NormalizationStatus.INVALID
     assert r3.status is NormalizationStatus.INVALID

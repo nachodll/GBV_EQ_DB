@@ -347,6 +347,23 @@ def normalize_positive_integer(value: Union[str, int, float]) -> NormalizationRe
         return NormalizationResult(None, NormalizationStatus.INVALID, raw_str)
 
 
+def normalize_positive_float(value: Union[str, int, float]) -> NormalizationResult:
+    """Normalize a string, int or float to a positive float."""
+    raw_str = str(value)
+    if isinstance(value, str) and _is_unknown(value):
+        return NormalizationResult(None, NormalizationStatus.UNKNOWN, raw_str)
+    try:
+        if isinstance(value, str):
+            num = float(value.strip())
+        else:
+            num = float(value)
+        if num >= 0:
+            return NormalizationResult(num, NormalizationStatus.VALID, raw_str)
+        return NormalizationResult(None, NormalizationStatus.INVALID, raw_str)
+    except ValueError:
+        return NormalizationResult(None, NormalizationStatus.INVALID, raw_str)
+
+
 def apply_and_check(series: pd.Series, func: Callable[[Any], NormalizationResult]):  # type: ignore
     """Apply a normalization function and fail on invalid results."""
     results = series.apply(func)  # type: ignore
