@@ -29,7 +29,7 @@ def main():
         csv_files = list(RAW_CSV_DIR.glob("*.csv"))
         if not csv_files:
             raise FileNotFoundError(f"No CSV files found in {RAW_CSV_DIR}")
-        df = pd.concat((pd.read_csv(file, sep="\t") for file in csv_files), ignore_index=True)  # type: ignore
+        df = pd.concat((pd.read_csv(file, sep="\t", thousands=".") for file in csv_files), ignore_index=True)  # type: ignore
 
         # Rename columns
         df.rename(
@@ -57,9 +57,6 @@ def main():
         num_rows_before = len(df)
         df = df[df["sexo"] != "Total"]
         logging.warning(f"Dropped {num_rows_before - len(df)} rows with aggregated data for 'sexo'.")
-
-        # Remove thousands separator dots from poblacion
-        df["poblacion"] = df["poblacion"].astype(str).str.replace(".", "", regex=False)
 
         # Normalize and validate all columns (municipio_id is already validated)
         df["anio"] = apply_and_check(df["anio"], normalize_year)

@@ -442,19 +442,13 @@ def excel_directory_historic_evolution_to_df(dir: Path) -> pd.DataFrame:
 def csv_post_2013(path: Path) -> pd.DataFrame:
     """Read a csv file and return a DataFrame with the post 2013 data."""
 
-    df = pd.read_csv(path, sep="\t")  # type: ignore
+    df = pd.read_csv(path, sep="\t", thousands=".")  # type: ignore
 
     if "Tipo de documentación" not in df.columns:
         df["Tipo de documentación"] = "Autorización"
         df["Régimen"] = "Régimen General"
     else:
         df["Régimen"] = "Régimen de libre circulación UE"
-
-    # Remove thousand separators and convert to int
-    df["Total"] = df["Total"].astype(str)  # type: ignore
-    df["Total"] = df["Total"].str.replace(r"\.0$", "", regex=True)  # type: ignore
-    df["Total"] = df["Total"].str.replace(r"\.", "", regex=True)  # type: ignore
-    df["Total"] = df["Total"].astype(int)  # type: ignore
 
     return df
 

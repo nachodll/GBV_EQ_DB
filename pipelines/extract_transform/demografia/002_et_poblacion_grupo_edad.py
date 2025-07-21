@@ -27,7 +27,7 @@ CLEAN_CSV_PATH = Path("data") / "clean" / "demografia" / "poblacion_grupo_edad.c
 def main():
     try:
         # Read csv file into a DataFrame
-        df = pd.read_csv(RAW_CSV_PATH, sep="\t")  # type: ignore
+        df = pd.read_csv(RAW_CSV_PATH, sep="\t", thousands=".")  # type: ignore
 
         # Rename columns
         df.rename(
@@ -51,9 +51,6 @@ def main():
         num_rows_before = len(df)
         df = df[df["sexo"] != "Ambos sexos"]
         logging.warning(f"Dropped {num_rows_before - len(df)} rows with aggregated data for 'sexo'.")
-
-        # Remove thousands separator dots from poblacion
-        df["poblacion"] = df["poblacion"].astype(str).str.replace(".", "", regex=False)
 
         # Normalize and validate columns
         df["grupo_edad"] = apply_and_check(df["grupo_edad"], normalize_age_group)
