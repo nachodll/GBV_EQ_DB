@@ -34,14 +34,109 @@ RAW_XLS_PATH_2000 = Path("data") / "raw" / "OPI" / "OPI007-2000.xls"
 RAW_XLS_PATH_1999 = Path("data") / "raw" / "OPI" / "OPI008-1999.xls"
 RAW_XLS_PATH_1998 = Path("data") / "raw" / "OPI" / "OPI009-1998.xls"
 RAW_XLS_PATH_1997 = Path("data") / "raw" / "OPI" / "OPI010-1997.xls"
+RAW_XLS_PATH_1996 = Path("data") / "raw" / "OPI" / "OPI011-1996.xls"
 
 CLEAN_CSV_PATH = Path("data") / "clean" / "migracion" / "personas_autorizacion_residencia.csv"
+
+
+def excel_1996_to_df(file: Path) -> pd.DataFrame:
+    """Read an excel file and return a DataFrame with table 1. Used for year 1997."""
+    try:
+        excel_df = pd.read_excel(file, sheet_name="1", header=None)  # type: ignore
+
+        # Extract headers
+        year = file.name.split("-")[-1].split(".")[0]
+        nationality_headers = excel_df.iloc[6].ffill().copy()  # type: ignore
+
+        # Drop first 6 rows
+        excel_df = excel_df.drop(index=excel_df.index[:7]).reset_index(drop=True)  # type: ignore
+
+        # Replace '-' with 0 and convert to int
+        excel_df.loc[:, excel_df.columns[1:]] = (
+            excel_df.loc[:, excel_df.columns[1:]].replace("-", 0).infer_objects(copy=False)  # type: ignore
+        )
+
+        # Unify all "other nationalities" under a single category
+        countries_to_unify = [
+            "OTROS AMÉRICA",
+            "OTROS  ASIA",
+            "OTR. RES. AFR.",
+            "OTROS OCEANÍA",
+            "OTROS\nEUR. ESTE",
+            "     OTROS",
+        ]
+        cols_to_unify = [col for col in excel_df.columns if nationality_headers[col] in countries_to_unify]
+        new_column = excel_df.loc[:, cols_to_unify].sum(axis=1)  # type: ignore
+        otros_idx = nationality_headers[nationality_headers == "     OTROS"].index[0]  # type: ignore
+        excel_df.loc[:, otros_idx] = new_column  # type: ignore
+        # Drop all columns that were unified into "otros" but "otros" itself
+        cols_to_drop = [col for col in cols_to_unify if int(col) != int(otros_idx)]  # type: ignore
+        excel_df.drop(columns=cols_to_drop, inplace=True)  # type: ignore
+        nationality_headers = nationality_headers[~nationality_headers.index.isin(cols_to_drop)]  # type: ignore
+
+        all_records = []
+        for col in excel_df.columns[1:]:
+            for row in excel_df.index:
+                total = excel_df.loc[row, col]  # type: ignore
+                all_records.append(  # type: ignore
+                    {
+                        "Provincia": excel_df.loc[row, 0],  # type: ignore
+                        "Principales nacionalidades": nationality_headers[col],
+                        "Fecha": f"{year}-12-31",
+                        "Total": total,
+                    }
+                )
+        df = pd.DataFrame(all_records)
+
+        # Drop all ccaa aggregated data
+        aggregated_to_drop = [
+            "TOTALES",
+            "ANDALUCÍA",
+            "ARAGÓN",
+            "CANARIAS",
+            "CASTILLA-LEÓN",
+            "CAST-LA MANCHA",
+            "CATALUÑA",
+            "COM.VALENCIANA",
+            "EXTREMADURA",
+            "GALICIA",
+            "PAÍS VASCO",
+        ]
+        df = df[~df["Provincia"].isin(aggregated_to_drop)]  # type: ignore
+
+        # Drop all countries aggregated data
+        countries_to_drop = [
+            "TOT. REST.EUROPA",
+            "        TOTAL U.E.",
+            "TOTAL ÁFRICA",
+            "OTROS AMÉRICA",
+            "TOTAL OCEANÍA",
+            "TOTAL AMÉRICA",
+            "TOT.IBEROAMÉRICA",
+            "      TOTAL EUROPA",
+            "TOT. ÁFRICA NORTE",
+            "TOT. RES. AFR.",
+            "TOTAL\nEUR. ESTE",
+            "TOTAL RES. AMER.",
+            "TOTAL ASIA",
+        ]
+        df = df[~df["Principales nacionalidades"].isin(countries_to_drop)]  # type: ignore
+
+        # Adapt to the expected format
+        df["Principales nacionalidades"] = df["Principales nacionalidades"].replace("APÁTRIDAS, NO CONSTA", "No consta")  # type: ignore
+        df["Total"] = df["Total"].fillna(0)  # type: ignore
+
+        return df
+
+    except FileNotFoundError:
+        raise FileNotFoundError(f"File not found: {file}")
+    except Exception as e:
+        raise ValueError(f"Error reading {file}: {e}")
 
 
 def excel_2000_1997_to_df(file: Path) -> pd.DataFrame:
     """Read an excel file and return a DataFrame with table 10. Used for years 2000-1997."""
 
-    all_records = []
     try:
         excel_df = pd.read_excel(file, sheet_name="10", header=None)  # type: ignore
 
@@ -87,12 +182,12 @@ def excel_2000_1997_to_df(file: Path) -> pd.DataFrame:
         df["Sexo"] = df["Sexo"].replace("VARONES", "Hombres")  # type: ignore
         df["Sexo"] = df["Sexo"].replace("MUJERES", "Mujeres")  # type: ignore
 
-        df.to_csv("data/debug/opi_2000.csv", index=False, sep=";")  # type: ignore
-
         return df
+
+    except FileNotFoundError:
+        raise FileNotFoundError(f"File not found: {file}")
     except Exception as e:
-        logging.error(f"Error reading {file}: {e}")
-        return pd.DataFrame()
+        raise ValueError(f"Error reading {file}: {e}")
 
 
 def excel_2001_to_df(file: Path) -> pd.DataFrame:
@@ -149,10 +244,10 @@ def excel_2001_to_df(file: Path) -> pd.DataFrame:
         df["Régimen"] = df["Régimen"].replace("RÉGIMEN GENERAL", "Régimen General")  # type: ignore
 
         return df
-
+    except FileNotFoundError:
+        raise FileNotFoundError(f"File not found: {file}")
     except Exception as e:
-        logging.error(f"Error reading {file}: {e}")
-        return pd.DataFrame()
+        raise ValueError(f"Error reading {file}: {e}")
 
 
 def excel_directory_to_df(dir: Path) -> pd.DataFrame:
@@ -238,8 +333,11 @@ def excel_directory_to_df(dir: Path) -> pd.DataFrame:
                                 "Total": total,
                             }
                         )
+
+        except FileNotFoundError:
+            raise FileNotFoundError(f"File not found: {file}")
         except Exception as e:
-            logging.error(f"Error reading {file}: {e}")
+            raise ValueError(f"Error reading {file}: {e}")
 
     return pd.DataFrame(all_records)
 
@@ -333,19 +431,39 @@ def excel_directory_historic_evolution_to_df(dir: Path) -> pd.DataFrame:
                                     "Total": total,
                                 }
                             )
+
+        except FileNotFoundError:
+            raise FileNotFoundError(f"File not found: {file}")
         except Exception as e:
-            logging.error(f"Error reading {file}: {e}")
+            raise ValueError(f"Error reading {file}: {e}")
     return pd.DataFrame(all_records)
+
+
+def csv_post_2013(path: Path) -> pd.DataFrame:
+    """Read a csv file and return a DataFrame with the post 2013 data."""
+
+    df = pd.read_csv(path, sep="\t")  # type: ignore
+
+    if "Tipo de documentación" not in df.columns:
+        df["Tipo de documentación"] = "Autorización"
+        df["Régimen"] = "Régimen General"
+    else:
+        df["Régimen"] = "Régimen de libre circulación UE"
+
+    # Remove thousand separators and convert to int
+    df["Total"] = df["Total"].astype(str)  # type: ignore
+    df["Total"] = df["Total"].str.replace(r"\.0$", "", regex=True)  # type: ignore
+    df["Total"] = df["Total"].str.replace(r"\.", "", regex=True)  # type: ignore
+    df["Total"] = df["Total"].astype(int)  # type: ignore
+
+    return df
 
 
 def main():
     try:
         # Read csvs files and concat into a DataFrame
-        df_post_2013_1 = pd.read_csv(RAW_CSV_PATH_POST_2013_1, sep="\t")  # type: ignore
-        df_post_2013_1["Tipo de documentación"] = "Autorización"
-        df_post_2013_1["Régimen"] = "Régimen General"
-        df_post_2013_2 = pd.read_csv(RAW_CSV_PATH_POST_2013_2, sep="\t")  # type: ignore
-        df_post_2013_2["Régimen"] = "Régimen de libre circulación UE"
+        df_post_2013_1 = csv_post_2013(RAW_CSV_PATH_POST_2013_1)
+        df_post_2013_2 = csv_post_2013(RAW_CSV_PATH_POST_2013_2)
         df_2012 = excel_directory_to_df(RAW_XLS_DIR_2012)
         df_2011 = excel_directory_to_df(RAW_XLS_DIR_2011)
         df_2010 = excel_directory_to_df(RAW_XLS_DIR_2010)
@@ -355,6 +473,7 @@ def main():
         df_1999 = excel_2000_1997_to_df(RAW_XLS_PATH_1999)
         df_1998 = excel_2000_1997_to_df(RAW_XLS_PATH_1998)
         df_1997 = excel_2000_1997_to_df(RAW_XLS_PATH_1997)
+        df_1996 = excel_1996_to_df(RAW_XLS_PATH_1996)
 
         df = pd.concat(
             [
@@ -369,6 +488,7 @@ def main():
                 df_1999,
                 df_1998,
                 df_1997,
+                df_1996,
             ],
             ignore_index=True,
         )
@@ -433,11 +553,6 @@ def main():
         num_rows_before = len(df)
         df = df[df["regimen"] != "Total"]
         logging.warning(f"Dropped {num_rows_before - len(df)} rows with aggregated data for 'regimen'.")
-
-        # Remove thousands separator dots from personas_autorizacion_residencia
-        df["personas_autorizacion_residencia"] = (
-            df["personas_autorizacion_residencia"].astype(str).str.replace(".", "", regex=False)
-        )
 
         # Convert nan to None
         df = df.where(pd.notnull(df), None)  # type: ignore
