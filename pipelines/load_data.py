@@ -56,6 +56,7 @@ TABLES_TO_LOAD: Dict[Path, Optional[Callable[[Connection, pd.DataFrame], None]]]
     CLEAN_DATA_DIR / "igualdad_formal" / "eige_indicadores.csv": load_eige_indicadores,
     CLEAN_DATA_DIR / "igualdad_formal" / "eige_interseccionalidades.csv": load_eige_interseccionalidades,
     CLEAN_DATA_DIR / "igualdad_formal" / "eige_violencia.csv": load_eige_violencia,
+    CLEAN_DATA_DIR / "educacion_juventud" / "matriculados_educacion_no_universitaria.csv": None,
 }
 
 

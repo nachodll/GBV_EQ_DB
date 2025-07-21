@@ -10,6 +10,8 @@ CREATE SCHEMA violencia_genero;
 
 CREATE SCHEMA igualdad_formal;
 
+CREATE SCHEMA educacion_juventud;
+
 CREATE SCHEMA enums;
 
 ------------------------------------------------------------------------------------
@@ -557,4 +559,36 @@ CREATE TABLE
     pais_id int NOT NULL REFERENCES geo.paises (pais_id),
     indicador text NOT NULL,
     valor int NOT NULL CHECK (valor >= 0)
+  );
+
+------------------------------------------------------------------------------------
+-- educacion_juventud
+------------------------------------------------------------------------------------
+CREATE TYPE enums.titularidad_centro_ensenanza_enum AS ENUM(
+  'Público',
+  'Privado concertado',
+  'Privado no concertado'
+);
+
+CREATE TABLE
+  educacion_juventud.matriculados_educacion_no_universitaria (
+    matriculados_educacion_no_universitaria_id serial PRIMARY KEY,
+    titularidad enums.titularidad_centro_ensenanza_enum NOT NULL,
+    curso varchar NOT NULL CHECK (
+      curso ~ '^\d{4}-\d{2}$'
+      AND (
+        substring(curso, 1, 4)::int BETWEEN 1900 AND EXTRACT(
+          YEAR
+          FROM
+            CURRENT_DATE
+        )
+      )
+      AND (
+        substring(curso, 6, 2)::int = (substring(curso, 3, 2)::int + 1) % 100
+      )
+    ),
+    sexo enums.sexo_enum NOT NULL,
+    provincia_id int NOT NULL REFERENCES geo.provincias (provincia_id),
+    ensenianza varchar NOT NULL,
+    matriculados int NOT NULL CHECK (matriculados >= 0)
   );
