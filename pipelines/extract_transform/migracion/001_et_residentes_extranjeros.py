@@ -5,7 +5,7 @@ Sources:
     OPI003, OPI004, OPI005, (2012, 2011, 2010 and 2002-2009 historic evolution)
     OPI006, OPI
 Target tables:
-    personas_autorizacion_residencia
+    residentes_extranjeros
 """
 
 import logging
@@ -36,7 +36,7 @@ RAW_XLS_PATH_1998 = Path("data") / "raw" / "OPI" / "OPI009-1998.xls"
 RAW_XLS_PATH_1997 = Path("data") / "raw" / "OPI" / "OPI010-1997.xls"
 RAW_XLS_PATH_1996 = Path("data") / "raw" / "OPI" / "OPI011-1996.xls"
 
-CLEAN_CSV_PATH = Path("data") / "clean" / "migracion" / "personas_autorizacion_residencia.csv"
+CLEAN_CSV_PATH = Path("data") / "clean" / "migracion" / "residentes_extranjeros.csv"
 
 
 def excel_1996_to_df(file: Path) -> pd.DataFrame:
@@ -497,7 +497,7 @@ def main():
                 "Lugar de nacimiento": "es_nacido_espania",
                 "Grupo de edad": "grupo_edad",
                 "Fecha": "fecha",
-                "Total": "personas_autorizacion_residencia",
+                "Total": "residentes_extranjeros",
                 "Régimen": "regimen",
             },
             inplace=True,
@@ -565,9 +565,7 @@ def main():
         )
         df["grupo_edad"] = apply_and_check(df["grupo_edad"], normalize_age_group)
         df["fecha"] = apply_and_check(df["fecha"], normalize_date)
-        df["personas_autorizacion_residencia"] = apply_and_check(
-            df["personas_autorizacion_residencia"], normalize_positive_integer
-        )
+        df["residentes_extranjeros"] = apply_and_check(df["residentes_extranjeros"], normalize_positive_integer)
         df["regimen"] = apply_and_check_dict(
             df["regimen"],
             {v: v for v in ["Régimen General", "Régimen de libre circulación UE"]},

@@ -4,8 +4,8 @@ from sqlalchemy import text
 from sqlalchemy.engine import Connection
 
 
-def load_personas_autorizacion_residencia(conn: Connection, df: pd.DataFrame) -> None:
-    """Load personas_autorizacion_residencia table from a DataFrame."""
+def load_residentes_extranjeros(conn: Connection, df: pd.DataFrame) -> None:
+    """Load residentes_extranjeros table from a DataFrame."""
 
     # Get mapping from pais nombre to id (nan are mapped to None and saved as NULL in the database)
     result = conn.execute(text("SELECT nombre, pais_id FROM geo.paises"))
@@ -23,4 +23,4 @@ def load_personas_autorizacion_residencia(conn: Connection, df: pd.DataFrame) ->
     df["nacionalidad"] = df["nacionalidad"].map(nacionalidad_map)  # type: ignore
 
     # Insert into table
-    df.to_sql("personas_autorizacion_residencia", schema="migracion", con=conn, if_exists="append", index=False)
+    df.to_sql("residentes_extranjeros", schema="migracion", con=conn, if_exists="append", index=False)
