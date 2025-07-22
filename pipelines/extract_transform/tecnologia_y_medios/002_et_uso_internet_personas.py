@@ -1,8 +1,8 @@
 """Extract and transform data
 Sources:
-    INE015
+    INE016
 Target tables
-    acceso_internet_viviendas
+    uso_internet_personas
 """
 
 import logging
@@ -19,8 +19,8 @@ from utils.normalization import (
     normalize_year,
 )
 
-RAW_CSV_PATH = Path("data") / "raw" / "INE" / "INE015-UsoInternetViviendas.csv"
-CLEAN_CSV_PATH = Path("data") / "clean" / "tecnologia_y_medios" / "acceso_internet_viviendas.csv"
+RAW_CSV_PATH = Path("data") / "raw" / "INE" / "INE016-UsoInternetPersonas.csv"
+CLEAN_CSV_PATH = Path("data") / "clean" / "tecnologia_y_medios" / "uso_internet_personas.csv"
 
 
 def main():
@@ -33,7 +33,7 @@ def main():
             columns={
                 "Periodo": "anio",
                 "Comunidades y Ciudades Autónomas": "comunidad_autonoma_id",
-                "Tipo de equipamiento": "tipo_equipamiento",
+                "Tipo de uso de TIC": "tipo_uso",
                 "Total": "porcentaje",
             },
             inplace=True,
@@ -42,7 +42,7 @@ def main():
         # Normalize and validate columns
         df["anio"] = apply_and_check(df["anio"], normalize_year)
         df["comunidad_autonoma_id"] = apply_and_check(df["comunidad_autonoma_id"], normalize_comunidad_autonoma)
-        df["tipo_equipamiento"] = apply_and_check(df["tipo_equipamiento"], normalize_plain_text)
+        df["tipo_uso"] = apply_and_check(df["tipo_uso"], normalize_plain_text)
         df["porcentaje"] = apply_and_check(df["porcentaje"], normalize_positive_float)
 
         # Save to CSV
