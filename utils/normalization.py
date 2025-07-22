@@ -42,7 +42,7 @@ class NormalizationResult:
 
 def _is_unknown(value: Optional[str]) -> bool:
     """Return True if the cleaned value represents an explicit unknown."""
-    if value is None:
+    if value is None or pd.isna(value):  # type: ignore
         return True
     return value.strip().lower() in DICT_UNKNOWN_STRINGS
 

@@ -566,6 +566,7 @@ CREATE TABLE
 ------------------------------------------------------------------------------------
 CREATE TYPE enums.titularidad_centro_ensenanza_enum AS ENUM(
   'Público',
+  'Privado',
   'Privado concertado',
   'Privado no concertado'
 );
@@ -587,7 +588,7 @@ CREATE TABLE
         substring(curso, 6, 2)::int = (substring(curso, 3, 2)::int + 1) % 100
       )
     ),
-    sexo enums.sexo_enum NOT NULL,
+    sexo enums.sexo_enum,
     provincia_id int NOT NULL REFERENCES geo.provincias (provincia_id),
     ensenianza varchar NOT NULL,
     matriculados int NOT NULL CHECK (matriculados >= 0)
