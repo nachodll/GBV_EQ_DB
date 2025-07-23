@@ -40,6 +40,10 @@ SCRIPTS: List[Path] = [
 
 
 def main(schema_to_et: Optional[str] = None):
+    """Main function to run extract-transform scripts. If schema_to_et is provided,
+    only scripts for that schema will be run. If no schema is provided, all scripts will
+    be run."""
+
     logging.info("Starting extract-transform scripts...")
 
     if schema_to_et:

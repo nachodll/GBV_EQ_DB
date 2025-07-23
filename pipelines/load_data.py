@@ -90,16 +90,19 @@ def truncate_tables(conn: Connection, table_names: List[str]):
 
 def main(schema_to_load: Optional[str] = None):
     """Main function to load data into the database. If schema_to_load is provided,
-    only tables from that schema will be loaded (geo and metadata are always loaded)."""
+    only tables from that schema will be loaded (geo and metadata are always loaded).
+    If no schema is provided, all tables will be loaded."""
 
     # Genereate the list of tables to load per schema
-    always_schemas = {"geo", "metadata"}
-    schemas_to_load = set(always_schemas)
     if schema_to_load:
+        always_schemas = {"geo", "metadata"}
+        schemas_to_load = set(always_schemas)
         schemas_to_load.add(schema_to_load.lower())
-    filtered_tables = {
-        path: loader for path, loader in TABLES_TO_LOAD.items() if path.parent.name.lower() in schemas_to_load
-    }
+        filtered_tables = {
+            path: loader for path, loader in TABLES_TO_LOAD.items() if path.parent.name.lower() in schemas_to_load
+        }
+    else:
+        filtered_tables = TABLES_TO_LOAD
 
     # Read CSV files into DataFrames
     dataframes = load_csv_files(list(filtered_tables.keys()))
