@@ -20,14 +20,17 @@ def run_python_script(script: Path, *args: str):
     # Build command with additional arguments
     cmd = ["python", str(script)] + [str(arg) for arg in args]
 
-    result = subprocess.run(
+    process = subprocess.Popen(
         cmd,
         text=True,
-        capture_output=True,
+        stdout=subprocess.PIPE,
+        stderr=subprocess.STDOUT,
     )
 
-    if result.stderr:
-        for line in result.stderr.splitlines():
+    # Stream output line by line
+    if process.stdout:
+        for line in process.stdout:
+            line = line.strip()
             clean, level = strip_metadata(line)
             indent = "\t" * (level)
             if "DEBUG" in line:
@@ -40,7 +43,12 @@ def run_python_script(script: Path, *args: str):
                 logging.critical(indent + clean)
             elif "INFO" in line:
                 logging.info(indent + clean)
-    result.check_returncode()
+            else:
+                print(line, end="")  # fallback for lines without log level
+
+    process.wait()
+    if process.returncode != 0:
+        raise subprocess.CalledProcessError(process.returncode, cmd)
 
 
 def run_sql_script(script: str):
