@@ -1,5 +1,6 @@
 import logging
 import re
+import sys
 from datetime import datetime
 from pathlib import Path
 
@@ -54,7 +55,7 @@ def setup_logging() -> None:
     stream_handler.setFormatter(ColorFormatter("%(asctime)s %(levelname)s [%(name)s] %(message)s"))
 
     # Save to file only if the file name is main.py
-    if Path(__file__).name == "main.py":
+    if Path(sys.argv[0]).name == "main.py":
         LOG_DIR.mkdir(exist_ok=True)
         log_path = LOG_DIR / f"{datetime.now().isoformat()}.log"
         file_handler = logging.FileHandler(log_path)

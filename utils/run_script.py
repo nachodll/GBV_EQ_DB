@@ -3,7 +3,11 @@ import os
 import subprocess
 from pathlib import Path
 
+from dotenv import load_dotenv
+
 from utils.logging import strip_metadata
+
+load_dotenv()
 
 
 def run_python_script(script: Path, *args: str):
@@ -59,7 +63,7 @@ def run_sql_script(script: str):
         raise ValueError("Missing required database connection environment variables.")
 
     result = subprocess.run(
-        ["psql", "-v", "ON_ERROR_STOP=1", "-h", str(host), "-p", str(port), "-U", str(user), "-d", str(db_name)],
+        ["psql", "-h", str(host), "-p", str(port), "-U", str(user), "-d", str(db_name)],
         input=script.encode(),
         env=env,
         capture_output=True,

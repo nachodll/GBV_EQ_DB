@@ -25,8 +25,12 @@ import argparse
 import logging
 from pathlib import Path
 
+from dotenv import load_dotenv
+
 from utils.logging import setup_logging
 from utils.run_script import run_python_script
+
+load_dotenv()
 
 PIPELINES_DIR = Path("pipelines")
 ACTIONS: dict[str, list[Path]] = {
