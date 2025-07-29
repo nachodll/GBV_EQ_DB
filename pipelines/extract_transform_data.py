@@ -36,6 +36,7 @@ SCRIPTS: List[Path] = [
     ET_SCRIPTS_DIR / "tecnologia_y_medios" / "001_et_acceso_internet_viviendas.py",
     ET_SCRIPTS_DIR / "tecnologia_y_medios" / "002_et_uso_internet_personas.py",
     ET_SCRIPTS_DIR / "tecnologia_y_medios" / "003_et_uso_internet_ninios.py",
+    ET_SCRIPTS_DIR / "tecnologia_y_medios" / "004_et_usuarios_redes_sociales.py",
 ]
 
 
