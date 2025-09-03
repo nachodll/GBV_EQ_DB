@@ -561,6 +561,15 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#table-definition" class="md-nav__link">
+    <span class="md-ellipsis">
+      Table definition
+    </span>
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -1195,6 +1204,15 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#table-definition" class="md-nav__link">
+    <span class="md-ellipsis">
+      Table definition
+    </span>
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -1214,14 +1232,71 @@
 <h1 id="violencia_generodenuncias_vg_pareja">violencia_genero.denuncias_vg_pareja</h1>
 <p><strong>Data loading script:</strong> <code>pipelines/extract_transform/violencia_genero/010_et_denuncias_vg_pareja.py</code></p>
 <h2 id="columns">Columns</h2>
-<ul>
-<li><code>denuncias_vg_pareja_id serial PRIMARY KEY</code></li>
-<li><code>origen_denuncia enums.origen_denuncia_enum NOT NULL</code></li>
-<li><code>anio int NOT NULL CHECK ( anio BETWEEN 1900 AND EXTRACT( YEAR FROM CURRENT_DATE ) )</code></li>
-<li><code>trimestre int NOT NULL CHECK (trimestre BETWEEN 1 AND 4)</code></li>
-<li><code>provincia_id int NOT NULL REFERENCES geo.provincias (provincia_id)</code></li>
-<li><code>denuncias int NOT NULL CHECK (denuncias &gt;= 0)</code></li>
-</ul>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Data Type</th>
+<th>Is Nullable</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>denuncias_vg_pareja_id</td>
+<td>serial</td>
+<td>NO</td>
+<td>PRIMARY KEY</td>
+</tr>
+<tr>
+<td>origen_denuncia</td>
+<td>enums.origen_denuncia_enum</td>
+<td>NO</td>
+<td></td>
+</tr>
+<tr>
+<td>anio</td>
+<td>int</td>
+<td>NO</td>
+<td>CHECK ( anio BETWEEN 1900 AND EXTRACT( YEAR FROM CURRENT_DATE ) )</td>
+</tr>
+<tr>
+<td>trimestre</td>
+<td>int</td>
+<td>NO</td>
+<td>CHECK (trimestre BETWEEN 1 AND 4)</td>
+</tr>
+<tr>
+<td>provincia_id</td>
+<td>int</td>
+<td>NO</td>
+<td>REFERENCES geo.provincias (provincia_id)</td>
+</tr>
+<tr>
+<td>denuncias</td>
+<td>int</td>
+<td>NO</td>
+<td>CHECK (denuncias &gt;= 0)</td>
+</tr>
+</tbody>
+</table>
+<h2 id="table-definition">Table definition</h2>
+<pre><code class="language-sql">CREATE TABLE
+  violencia_genero.denuncias_vg_pareja (
+    denuncias_vg_pareja_id serial PRIMARY KEY,
+    origen_denuncia enums.origen_denuncia_enum NOT NULL,
+    anio int NOT NULL CHECK (
+      anio BETWEEN 1900 AND EXTRACT(
+        YEAR
+        FROM
+          CURRENT_DATE
+      )
+    ),
+    trimestre int NOT NULL CHECK (trimestre BETWEEN 1 AND 4),
+    provincia_id int NOT NULL REFERENCES geo.provincias (provincia_id),
+    denuncias int NOT NULL CHECK (denuncias &gt;= 0)
+  );
+</code></pre>
 
 
 

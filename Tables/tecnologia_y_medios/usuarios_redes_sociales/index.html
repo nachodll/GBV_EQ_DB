@@ -1136,6 +1136,15 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#table-definition" class="md-nav__link">
+    <span class="md-ellipsis">
+      Table definition
+    </span>
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -1155,13 +1164,73 @@
 <h1 id="tecnologia_y_mediosusuarios_redes_sociales">tecnologia_y_medios.usuarios_redes_sociales</h1>
 <p><strong>Data loading script:</strong> <code>pipelines/extract_transform/tecnologia_y_medios/004_et_usuarios_redes_sociales.py</code></p>
 <h2 id="columns">Columns</h2>
-<ul>
-<li><code>usuarios_redes_sociales_id serial PRIMARY KEY</code></li>
-<li><code>anio int NOT NULL CHECK ( anio BETWEEN 1900 AND EXTRACT( YEAR FROM CURRENT_DATE ) )</code></li>
-<li><code>ciudad text NOT NULL CHECK (ciudad ~ '^[A-Za-zÀ-ÿ\s]+$')</code></li>
-<li><code>red_social text NOT NULL CHECK ( red_social IN ( 'Facebook', 'Instagram', 'Twitter', 'TikTok', 'LinkedIn', 'YouTube' ) )</code></li>
-<li><code>usuarios int NOT NULL CHECK (usuarios &gt;= 0)</code></li>
-</ul>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Data Type</th>
+<th>Is Nullable</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>usuarios_redes_sociales_id</td>
+<td>serial</td>
+<td>NO</td>
+<td>PRIMARY KEY</td>
+</tr>
+<tr>
+<td>anio</td>
+<td>int</td>
+<td>NO</td>
+<td>CHECK ( anio BETWEEN 1900 AND EXTRACT( YEAR FROM CURRENT_DATE ) )</td>
+</tr>
+<tr>
+<td>ciudad</td>
+<td>text</td>
+<td>NO</td>
+<td>CHECK (ciudad ~ '^[A-Za-zÀ-ÿ\s]+$')</td>
+</tr>
+<tr>
+<td>red_social</td>
+<td>text</td>
+<td>NO</td>
+<td>CHECK ( red_social IN ( 'Facebook', 'Instagram', 'Twitter', 'TikTok', 'LinkedIn', 'YouTube' ) )</td>
+</tr>
+<tr>
+<td>usuarios</td>
+<td>int</td>
+<td>NO</td>
+<td>CHECK (usuarios &gt;= 0)</td>
+</tr>
+</tbody>
+</table>
+<h2 id="table-definition">Table definition</h2>
+<pre><code class="language-sql">CREATE TABLE
+  tecnologia_y_medios.usuarios_redes_sociales (
+    usuarios_redes_sociales_id serial PRIMARY KEY,
+    anio int NOT NULL CHECK (
+      anio BETWEEN 1900 AND EXTRACT(
+        YEAR
+        FROM
+          CURRENT_DATE
+      )
+    ),
+    ciudad text NOT NULL CHECK (ciudad ~ '^[A-Za-zÀ-ÿ\s]+$'),
+    red_social text NOT NULL CHECK (
+      red_social IN (
+        'Facebook',
+        'Instagram',
+        'Twitter',
+        'TikTok',
+        'LinkedIn',
+        'YouTube'
+      )
+    ),
+    usuarios int NOT NULL CHECK (usuarios &gt;= 0)
+  );
+</code></pre>
 
 
 

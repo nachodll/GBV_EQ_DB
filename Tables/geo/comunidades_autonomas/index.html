@@ -1136,6 +1136,15 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#table-definition" class="md-nav__link">
+    <span class="md-ellipsis">
+      Table definition
+    </span>
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -1155,10 +1164,37 @@
 <h1 id="geocomunidades_autonomas">geo.comunidades_autonomas</h1>
 <p><strong>Data loading script:</strong> Not available</p>
 <h2 id="columns">Columns</h2>
-<ul>
-<li><code>comunidad_autonoma_id int PRIMARY KEY</code></li>
-<li><code>nombre varchar UNIQUE NOT NULL</code></li>
-</ul>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Data Type</th>
+<th>Is Nullable</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>comunidad_autonoma_id</td>
+<td>int</td>
+<td>NO</td>
+<td>PRIMARY KEY</td>
+</tr>
+<tr>
+<td>nombre</td>
+<td>varchar</td>
+<td>NO</td>
+<td>UNIQUE</td>
+</tr>
+</tbody>
+</table>
+<h2 id="table-definition">Table definition</h2>
+<pre><code class="language-sql">CREATE TABLE
+  geo.comunidades_autonomas (
+    comunidad_autonoma_id int PRIMARY KEY,
+    nombre varchar UNIQUE NOT NULL
+  );
+</code></pre>
 
 
 

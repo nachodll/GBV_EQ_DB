@@ -883,6 +883,15 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#table-definition" class="md-nav__link">
+    <span class="md-ellipsis">
+      Table definition
+    </span>
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -1195,6 +1204,15 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#table-definition" class="md-nav__link">
+    <span class="md-ellipsis">
+      Table definition
+    </span>
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -1214,13 +1232,64 @@
 <h1 id="igualdad_formaleige_violencia">igualdad_formal.eige_violencia</h1>
 <p><strong>Data loading script:</strong> <code>pipelines/extract_transform/igualdad_formal/004_et_eige_violencia.py</code></p>
 <h2 id="columns">Columns</h2>
-<ul>
-<li><code>eige_violencia_id serial PRIMARY KEY</code></li>
-<li><code>anio int NOT NULL CHECK ( anio BETWEEN 1900 AND EXTRACT( YEAR FROM CURRENT_DATE ) )</code></li>
-<li><code>pais_id int NOT NULL REFERENCES geo.paises (pais_id)</code></li>
-<li><code>indicador text NOT NULL</code></li>
-<li><code>valor int NOT NULL CHECK (valor &gt;= 0)</code></li>
-</ul>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Data Type</th>
+<th>Is Nullable</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>eige_violencia_id</td>
+<td>serial</td>
+<td>NO</td>
+<td>PRIMARY KEY</td>
+</tr>
+<tr>
+<td>anio</td>
+<td>int</td>
+<td>NO</td>
+<td>CHECK ( anio BETWEEN 1900 AND EXTRACT( YEAR FROM CURRENT_DATE ) )</td>
+</tr>
+<tr>
+<td>pais_id</td>
+<td>int</td>
+<td>NO</td>
+<td>REFERENCES geo.paises (pais_id)</td>
+</tr>
+<tr>
+<td>indicador</td>
+<td>text</td>
+<td>NO</td>
+<td></td>
+</tr>
+<tr>
+<td>valor</td>
+<td>int</td>
+<td>NO</td>
+<td>CHECK (valor &gt;= 0)</td>
+</tr>
+</tbody>
+</table>
+<h2 id="table-definition">Table definition</h2>
+<pre><code class="language-sql">CREATE TABLE
+  igualdad_formal.eige_violencia (
+    eige_violencia_id serial PRIMARY KEY,
+    anio int NOT NULL CHECK (
+      anio BETWEEN 1900 AND EXTRACT(
+        YEAR
+        FROM
+          CURRENT_DATE
+      )
+    ),
+    pais_id int NOT NULL REFERENCES geo.paises (pais_id),
+    indicador text NOT NULL,
+    valor int NOT NULL CHECK (valor &gt;= 0)
+  );
+</code></pre>
 
 
 

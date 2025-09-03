@@ -1021,6 +1021,15 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#table-definition" class="md-nav__link">
+    <span class="md-ellipsis">
+      Table definition
+    </span>
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -1195,6 +1204,15 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#table-definition" class="md-nav__link">
+    <span class="md-ellipsis">
+      Table definition
+    </span>
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -1214,18 +1232,100 @@
 <h1 id="migracionresidentes_extranjeros">migracion.residentes_extranjeros</h1>
 <p><strong>Data loading script:</strong> <code>pipelines/extract_transform/migracion/001_et_residentes_extranjeros.py</code></p>
 <h2 id="columns">Columns</h2>
-<ul>
-<li><code>residentes_extranjeros_id serial PRIMARY KEY</code></li>
-<li><code>provincia_id int REFERENCES geo.provincias (provincia_id)</code></li>
-<li><code>nacionalidad int REFERENCES geo.paises (pais_id)</code></li>
-<li><code>sexo enums.sexo_enum</code></li>
-<li><code>es_nacido_espania boolean</code></li>
-<li><code>grupo_edad varchar CHECK ( grupo_edad ~ '^\d+-\d+$' OR grupo_edad ~ '^&lt;\d+$' OR grupo_edad ~ '^&gt;\d+$' )</code></li>
-<li><code>fecha date NOT NULL CHECK ( fecha &gt;= DATE '1900-01-01' AND fecha &lt;= CURRENT_DATE )</code></li>
-<li><code>residentes_extranjeros int NOT NULL CHECK (residentes_extranjeros &gt;= 0)</code></li>
-<li><code>tipo_documentacion enums.tipo_documentacino_enum</code></li>
-<li><code>regimen enums.tipo_regimen_enum</code></li>
-</ul>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Data Type</th>
+<th>Is Nullable</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>residentes_extranjeros_id</td>
+<td>serial</td>
+<td>NO</td>
+<td>PRIMARY KEY</td>
+</tr>
+<tr>
+<td>provincia_id</td>
+<td>int</td>
+<td>YES</td>
+<td>REFERENCES geo.provincias (provincia_id)</td>
+</tr>
+<tr>
+<td>nacionalidad</td>
+<td>int</td>
+<td>YES</td>
+<td>REFERENCES geo.paises (pais_id)</td>
+</tr>
+<tr>
+<td>sexo</td>
+<td>enums.sexo_enum</td>
+<td>YES</td>
+<td></td>
+</tr>
+<tr>
+<td>es_nacido_espania</td>
+<td>boolean</td>
+<td>YES</td>
+<td></td>
+</tr>
+<tr>
+<td>grupo_edad</td>
+<td>varchar</td>
+<td>YES</td>
+<td>CHECK ( grupo_edad ~ '^\d+-\d+$' OR grupo_edad ~ '^&lt;\d+$' OR grupo_edad ~ '^&gt;\d+$' )</td>
+</tr>
+<tr>
+<td>fecha</td>
+<td>date</td>
+<td>NO</td>
+<td>CHECK ( fecha &gt;= DATE '1900-01-01' AND fecha &lt;= CURRENT_DATE )</td>
+</tr>
+<tr>
+<td>residentes_extranjeros</td>
+<td>int</td>
+<td>NO</td>
+<td>CHECK (residentes_extranjeros &gt;= 0)</td>
+</tr>
+<tr>
+<td>tipo_documentacion</td>
+<td>enums.tipo_documentacino_enum</td>
+<td>YES</td>
+<td></td>
+</tr>
+<tr>
+<td>regimen</td>
+<td>enums.tipo_regimen_enum</td>
+<td>YES</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h2 id="table-definition">Table definition</h2>
+<pre><code class="language-sql">CREATE TABLE
+  migracion.residentes_extranjeros (
+    residentes_extranjeros_id serial PRIMARY KEY,
+    provincia_id int REFERENCES geo.provincias (provincia_id),
+    nacionalidad int REFERENCES geo.paises (pais_id),
+    sexo enums.sexo_enum,
+    es_nacido_espania boolean,
+    grupo_edad varchar CHECK (
+      grupo_edad ~ '^\d+-\d+$'
+      OR grupo_edad ~ '^&lt;\d+$'
+      OR grupo_edad ~ '^&gt;\d+$'
+    ),
+    fecha date NOT NULL CHECK (
+      fecha &gt;= DATE '1900-01-01'
+      AND fecha &lt;= CURRENT_DATE
+    ),
+    residentes_extranjeros int NOT NULL CHECK (residentes_extranjeros &gt;= 0),
+    tipo_documentacion enums.tipo_documentacino_enum,
+    regimen enums.tipo_regimen_enum
+  );
+</code></pre>
 
 
 

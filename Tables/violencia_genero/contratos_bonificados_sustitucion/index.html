@@ -630,6 +630,15 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#table-definition" class="md-nav__link">
+    <span class="md-ellipsis">
+      Table definition
+    </span>
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -1195,6 +1204,15 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#table-definition" class="md-nav__link">
+    <span class="md-ellipsis">
+      Table definition
+    </span>
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -1214,16 +1232,85 @@
 <h1 id="violencia_generocontratos_bonificados_sustitucion">violencia_genero.contratos_bonificados_sustitucion</h1>
 <p><strong>Data loading script:</strong> <code>pipelines/extract_transform/violencia_genero/013_et_contratos_bonificados_sustitucion.py</code></p>
 <h2 id="columns">Columns</h2>
-<ul>
-<li><code>contratos_bonificados_sustitucion_id serial PRIMARY KEY NOT NULL</code></li>
-<li><code>contratos_bonificados int NOT NULL CHECK (contratos_bonificados &gt;= 0)</code></li>
-<li><code>contratos_sustitucion int NOT NULL CHECK (contratos_sustitucion &gt;= 0)</code></li>
-<li><code>anio int NOT NULL CHECK ( anio BETWEEN 1900 AND EXTRACT( YEAR FROM CURRENT_DATE ) )</code></li>
-<li><code>mes int NOT NULL CHECK (mes BETWEEN 1 AND 12)</code></li>
-<li><code>provincia_id int REFERENCES geo.provincias (provincia_id)</code></li>
-<li><code>colectivo enums.colectivo_contratos_bonificados_sustitucion_enum NOT NULL</code></li>
-<li><code>tipo_contrato enums.tipo_contrato_enum NOT NULL</code></li>
-</ul>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Data Type</th>
+<th>Is Nullable</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>contratos_bonificados_sustitucion_id</td>
+<td>serial</td>
+<td>NO</td>
+<td>PRIMARY KEY</td>
+</tr>
+<tr>
+<td>contratos_bonificados</td>
+<td>int</td>
+<td>NO</td>
+<td>CHECK (contratos_bonificados &gt;= 0)</td>
+</tr>
+<tr>
+<td>contratos_sustitucion</td>
+<td>int</td>
+<td>NO</td>
+<td>CHECK (contratos_sustitucion &gt;= 0)</td>
+</tr>
+<tr>
+<td>anio</td>
+<td>int</td>
+<td>NO</td>
+<td>CHECK ( anio BETWEEN 1900 AND EXTRACT( YEAR FROM CURRENT_DATE ) )</td>
+</tr>
+<tr>
+<td>mes</td>
+<td>int</td>
+<td>NO</td>
+<td>CHECK (mes BETWEEN 1 AND 12)</td>
+</tr>
+<tr>
+<td>provincia_id</td>
+<td>int</td>
+<td>YES</td>
+<td>REFERENCES geo.provincias (provincia_id)</td>
+</tr>
+<tr>
+<td>colectivo</td>
+<td>enums.colectivo_contratos_bonificados_sustitucion_enum</td>
+<td>NO</td>
+<td></td>
+</tr>
+<tr>
+<td>tipo_contrato</td>
+<td>enums.tipo_contrato_enum</td>
+<td>NO</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h2 id="table-definition">Table definition</h2>
+<pre><code class="language-sql">CREATE TABLE
+  violencia_genero.contratos_bonificados_sustitucion (
+    contratos_bonificados_sustitucion_id serial PRIMARY KEY NOT NULL,
+    contratos_bonificados int NOT NULL CHECK (contratos_bonificados &gt;= 0),
+    contratos_sustitucion int NOT NULL CHECK (contratos_sustitucion &gt;= 0),
+    anio int NOT NULL CHECK (
+      anio BETWEEN 1900 AND EXTRACT(
+        YEAR
+        FROM
+          CURRENT_DATE
+      )
+    ),
+    mes int NOT NULL CHECK (mes BETWEEN 1 AND 12),
+    provincia_id int REFERENCES geo.provincias (provincia_id),
+    colectivo enums.colectivo_contratos_bonificados_sustitucion_enum NOT NULL,
+    tipo_contrato enums.tipo_contrato_enum NOT NULL
+  );
+</code></pre>
 
 
 

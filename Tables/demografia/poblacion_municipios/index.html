@@ -722,6 +722,15 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#table-definition" class="md-nav__link">
+    <span class="md-ellipsis">
+      Table definition
+    </span>
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -1195,6 +1204,15 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#table-definition" class="md-nav__link">
+    <span class="md-ellipsis">
+      Table definition
+    </span>
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -1214,13 +1232,64 @@
 <h1 id="demografiapoblacion_municipios">demografia.poblacion_municipios</h1>
 <p><strong>Data loading script:</strong> <code>pipelines/extract_transform/demografia/001_et_poblacion_municipios.py</code></p>
 <h2 id="columns">Columns</h2>
-<ul>
-<li><code>poblacion_municipios_id serial PRIMARY KEY</code></li>
-<li><code>municipio_id int NOT NULL REFERENCES geo.municipios (municipio_id)</code></li>
-<li><code>anio int NOT NULL CHECK ( anio BETWEEN 1900 AND EXTRACT( YEAR FROM CURRENT_DATE ) )</code></li>
-<li><code>sexo enums.sexo_enum NOT NULL</code></li>
-<li><code>poblacion int NOT NULL CHECK (poblacion &gt;= 0)</code></li>
-</ul>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Data Type</th>
+<th>Is Nullable</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>poblacion_municipios_id</td>
+<td>serial</td>
+<td>NO</td>
+<td>PRIMARY KEY</td>
+</tr>
+<tr>
+<td>municipio_id</td>
+<td>int</td>
+<td>NO</td>
+<td>REFERENCES geo.municipios (municipio_id)</td>
+</tr>
+<tr>
+<td>anio</td>
+<td>int</td>
+<td>NO</td>
+<td>CHECK ( anio BETWEEN 1900 AND EXTRACT( YEAR FROM CURRENT_DATE ) )</td>
+</tr>
+<tr>
+<td>sexo</td>
+<td>enums.sexo_enum</td>
+<td>NO</td>
+<td></td>
+</tr>
+<tr>
+<td>poblacion</td>
+<td>int</td>
+<td>NO</td>
+<td>CHECK (poblacion &gt;= 0)</td>
+</tr>
+</tbody>
+</table>
+<h2 id="table-definition">Table definition</h2>
+<pre><code class="language-sql">CREATE TABLE
+  demografia.poblacion_municipios (
+    poblacion_municipios_id serial PRIMARY KEY,
+    municipio_id int NOT NULL REFERENCES geo.municipios (municipio_id),
+    anio int NOT NULL CHECK (
+      anio BETWEEN 1900 AND EXTRACT(
+        YEAR
+        FROM
+          CURRENT_DATE
+      )
+    ),
+    sexo enums.sexo_enum NOT NULL,
+    poblacion int NOT NULL CHECK (poblacion &gt;= 0)
+  );
+</code></pre>
 
 
 

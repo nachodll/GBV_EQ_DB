@@ -400,6 +400,15 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#table-definition" class="md-nav__link">
+    <span class="md-ellipsis">
+      Table definition
+    </span>
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -1195,6 +1204,15 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#table-definition" class="md-nav__link">
+    <span class="md-ellipsis">
+      Table definition
+    </span>
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -1214,15 +1232,78 @@
 <h1 id="violencia_generomenores_victimas_mortales">violencia_genero.menores_victimas_mortales</h1>
 <p><strong>Data loading script:</strong> <code>pipelines/extract_transform/violencia_genero/003_et_menores_victimas_mortales.py</code></p>
 <h2 id="columns">Columns</h2>
-<ul>
-<li><code>menores_victimas_mortales_id serial PRIMARY KEY</code></li>
-<li><code>es_hijo_agresor boolean NOT NULL</code></li>
-<li><code>es_victima_vicaria boolean NOT NULL</code></li>
-<li><code>menores_victimas_mortales int NOT NULL CHECK (menores_victimas_mortales &gt;= 0)</code></li>
-<li><code>provincia_id int NOT NULL REFERENCES geo.provincias (provincia_id)</code></li>
-<li><code>anio int NOT NULL CHECK ( anio BETWEEN 1900 AND EXTRACT( YEAR FROM CURRENT_DATE ) )</code></li>
-<li><code>mes int NOT NULL CHECK (mes BETWEEN 1 AND 12)</code></li>
-</ul>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Data Type</th>
+<th>Is Nullable</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>menores_victimas_mortales_id</td>
+<td>serial</td>
+<td>NO</td>
+<td>PRIMARY KEY</td>
+</tr>
+<tr>
+<td>es_hijo_agresor</td>
+<td>boolean</td>
+<td>NO</td>
+<td></td>
+</tr>
+<tr>
+<td>es_victima_vicaria</td>
+<td>boolean</td>
+<td>NO</td>
+<td></td>
+</tr>
+<tr>
+<td>menores_victimas_mortales</td>
+<td>int</td>
+<td>NO</td>
+<td>CHECK (menores_victimas_mortales &gt;= 0)</td>
+</tr>
+<tr>
+<td>provincia_id</td>
+<td>int</td>
+<td>NO</td>
+<td>REFERENCES geo.provincias (provincia_id)</td>
+</tr>
+<tr>
+<td>anio</td>
+<td>int</td>
+<td>NO</td>
+<td>CHECK ( anio BETWEEN 1900 AND EXTRACT( YEAR FROM CURRENT_DATE ) )</td>
+</tr>
+<tr>
+<td>mes</td>
+<td>int</td>
+<td>NO</td>
+<td>CHECK (mes BETWEEN 1 AND 12)</td>
+</tr>
+</tbody>
+</table>
+<h2 id="table-definition">Table definition</h2>
+<pre><code class="language-sql">CREATE TABLE
+  violencia_genero.menores_victimas_mortales (
+    menores_victimas_mortales_id serial PRIMARY KEY,
+    es_hijo_agresor boolean NOT NULL,
+    es_victima_vicaria boolean NOT NULL,
+    menores_victimas_mortales int NOT NULL CHECK (menores_victimas_mortales &gt;= 0),
+    provincia_id int NOT NULL REFERENCES geo.provincias (provincia_id),
+    anio int NOT NULL CHECK (
+      anio BETWEEN 1900 AND EXTRACT(
+        YEAR
+        FROM
+          CURRENT_DATE
+      )
+    ),
+    mes int NOT NULL CHECK (mes BETWEEN 1 AND 12)
+  );
+</code></pre>
 
 
 

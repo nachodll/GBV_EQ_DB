@@ -745,6 +745,15 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#table-definition" class="md-nav__link">
+    <span class="md-ellipsis">
+      Table definition
+    </span>
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -1195,6 +1204,15 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#table-definition" class="md-nav__link">
+    <span class="md-ellipsis">
+      Table definition
+    </span>
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -1214,14 +1232,75 @@
 <h1 id="demografiapoblacion_grupo_edad">demografia.poblacion_grupo_edad</h1>
 <p><strong>Data loading script:</strong> <code>pipelines/extract_transform/demografia/002_et_poblacion_grupo_edad.py</code></p>
 <h2 id="columns">Columns</h2>
-<ul>
-<li><code>poblacion_grupo_edad_id serial PRIMARY KEY</code></li>
-<li><code>nacionalidad int REFERENCES geo.paises (pais_id)</code></li>
-<li><code>sexo enums.sexo_enum NOT NULL</code></li>
-<li><code>grupo_edad varchar NOT NULL CHECK ( grupo_edad ~ '^\d+-\d+$' OR grupo_edad ~ '^&lt;\d+$' OR grupo_edad ~ '^&gt;\d+$' )</code></li>
-<li><code>anio int NOT NULL CHECK ( anio BETWEEN 1900 AND EXTRACT( YEAR FROM CURRENT_DATE ) )</code></li>
-<li><code>poblacion int NOT NULL CHECK (poblacion &gt;= 0)</code></li>
-</ul>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Data Type</th>
+<th>Is Nullable</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>poblacion_grupo_edad_id</td>
+<td>serial</td>
+<td>NO</td>
+<td>PRIMARY KEY</td>
+</tr>
+<tr>
+<td>nacionalidad</td>
+<td>int</td>
+<td>YES</td>
+<td>REFERENCES geo.paises (pais_id)</td>
+</tr>
+<tr>
+<td>sexo</td>
+<td>enums.sexo_enum</td>
+<td>NO</td>
+<td></td>
+</tr>
+<tr>
+<td>grupo_edad</td>
+<td>varchar</td>
+<td>NO</td>
+<td>CHECK ( grupo_edad ~ '^\d+-\d+$' OR grupo_edad ~ '^&lt;\d+$' OR grupo_edad ~ '^&gt;\d+$' )</td>
+</tr>
+<tr>
+<td>anio</td>
+<td>int</td>
+<td>NO</td>
+<td>CHECK ( anio BETWEEN 1900 AND EXTRACT( YEAR FROM CURRENT_DATE ) )</td>
+</tr>
+<tr>
+<td>poblacion</td>
+<td>int</td>
+<td>NO</td>
+<td>CHECK (poblacion &gt;= 0)</td>
+</tr>
+</tbody>
+</table>
+<h2 id="table-definition">Table definition</h2>
+<pre><code class="language-sql">CREATE TABLE
+  demografia.poblacion_grupo_edad (
+    poblacion_grupo_edad_id serial PRIMARY KEY,
+    nacionalidad int REFERENCES geo.paises (pais_id),
+    sexo enums.sexo_enum NOT NULL,
+    grupo_edad varchar NOT NULL CHECK (
+      grupo_edad ~ '^\d+-\d+$'
+      OR grupo_edad ~ '^&lt;\d+$'
+      OR grupo_edad ~ '^&gt;\d+$'
+    ),
+    anio int NOT NULL CHECK (
+      anio BETWEEN 1900 AND EXTRACT(
+        YEAR
+        FROM
+          CURRENT_DATE
+      )
+    ),
+    poblacion int NOT NULL CHECK (poblacion &gt;= 0)
+  );
+</code></pre>
 
 
 

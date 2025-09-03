@@ -952,6 +952,15 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#table-definition" class="md-nav__link">
+    <span class="md-ellipsis">
+      Table definition
+    </span>
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -1195,6 +1204,15 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#table-definition" class="md-nav__link">
+    <span class="md-ellipsis">
+      Table definition
+    </span>
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -1214,15 +1232,84 @@
 <h1 id="educacion_juventudmatriculados_educacion_no_universitaria">educacion_juventud.matriculados_educacion_no_universitaria</h1>
 <p><strong>Data loading script:</strong> <code>pipelines/extract_transform/educacion_juventud/001_et_matriculados_educacion_no_universitaria.py</code></p>
 <h2 id="columns">Columns</h2>
-<ul>
-<li><code>matriculados_educacion_no_universitaria_id serial PRIMARY KEY</code></li>
-<li><code>titularidad enums.titularidad_centro_ensenanza_enum NOT NULL</code></li>
-<li><code>curso varchar NOT NULL CHECK ( curso ~ '^\d{4}-\d{2}$' AND ( substring(curso, 1, 4)::int BETWEEN 1900 AND EXTRACT( YEAR FROM CURRENT_DATE ) ) AND ( substring(curso, 6, 2)::int = (substring(curso, 3, 2)::int + 1) % 100 ) )</code></li>
-<li><code>sexo enums.sexo_enum</code></li>
-<li><code>provincia_id int NOT NULL REFERENCES geo.provincias (provincia_id)</code></li>
-<li><code>ensenianza varchar NOT NULL</code></li>
-<li><code>matriculados int NOT NULL CHECK (matriculados &gt;= 0)</code></li>
-</ul>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Data Type</th>
+<th>Is Nullable</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>matriculados_educacion_no_universitaria_id</td>
+<td>serial</td>
+<td>NO</td>
+<td>PRIMARY KEY</td>
+</tr>
+<tr>
+<td>titularidad</td>
+<td>enums.titularidad_centro_ensenanza_enum</td>
+<td>NO</td>
+<td></td>
+</tr>
+<tr>
+<td>curso</td>
+<td>varchar</td>
+<td>NO</td>
+<td>CHECK ( curso ~ '^\d{4}-\d{2}$' AND ( substring(curso, 1, 4)::int BETWEEN 1900 AND EXTRACT( YEAR FROM CURRENT_DATE ) ) AND ( substring(curso, 6, 2)::int = (substring(curso, 3, 2)::int + 1) % 100 ) )</td>
+</tr>
+<tr>
+<td>sexo</td>
+<td>enums.sexo_enum</td>
+<td>YES</td>
+<td></td>
+</tr>
+<tr>
+<td>provincia_id</td>
+<td>int</td>
+<td>NO</td>
+<td>REFERENCES geo.provincias (provincia_id)</td>
+</tr>
+<tr>
+<td>ensenianza</td>
+<td>varchar</td>
+<td>NO</td>
+<td></td>
+</tr>
+<tr>
+<td>matriculados</td>
+<td>int</td>
+<td>NO</td>
+<td>CHECK (matriculados &gt;= 0)</td>
+</tr>
+</tbody>
+</table>
+<h2 id="table-definition">Table definition</h2>
+<pre><code class="language-sql">CREATE TABLE
+  educacion_juventud.matriculados_educacion_no_universitaria (
+    matriculados_educacion_no_universitaria_id serial PRIMARY KEY,
+    titularidad enums.titularidad_centro_ensenanza_enum NOT NULL,
+    curso varchar NOT NULL CHECK (
+      curso ~ '^\d{4}-\d{2}$'
+      AND (
+        substring(curso, 1, 4)::int BETWEEN 1900 AND EXTRACT(
+          YEAR
+          FROM
+            CURRENT_DATE
+        )
+      )
+      AND (
+        substring(curso, 6, 2)::int = (substring(curso, 3, 2)::int + 1) % 100
+      )
+    ),
+    sexo enums.sexo_enum,
+    provincia_id int NOT NULL REFERENCES geo.provincias (provincia_id),
+    ensenianza varchar NOT NULL,
+    matriculados int NOT NULL CHECK (matriculados &gt;= 0)
+  );
+</code></pre>
 
 
 

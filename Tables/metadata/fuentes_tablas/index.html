@@ -1136,6 +1136,15 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#table-definition" class="md-nav__link">
+    <span class="md-ellipsis">
+      Table definition
+    </span>
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -1155,14 +1164,68 @@
 <h1 id="metadatafuentes_tablas">metadata.fuentes_tablas</h1>
 <p><strong>Data loading script:</strong> Not available</p>
 <h2 id="columns">Columns</h2>
-<ul>
-<li><code>fuentes_tablas_id serial PRIMARY KEY</code></li>
-<li><code>fuente_id int NOT NULL REFERENCES metadata.fuentes (fuente_id)</code></li>
-<li><code>nombre varchar NOT NULL</code></li>
-<li><code>fecha_actualizacion date NOT NULL CHECK ( fecha_actualizacion &gt;= DATE '1900-01-01' AND fecha_actualizacion &lt;= CURRENT_DATE )</code></li>
-<li><code>descripcion text</code></li>
-<li><code>url varchar NOT NULL</code></li>
-</ul>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Data Type</th>
+<th>Is Nullable</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>fuentes_tablas_id</td>
+<td>serial</td>
+<td>NO</td>
+<td>PRIMARY KEY</td>
+</tr>
+<tr>
+<td>fuente_id</td>
+<td>int</td>
+<td>NO</td>
+<td>REFERENCES metadata.fuentes (fuente_id)</td>
+</tr>
+<tr>
+<td>nombre</td>
+<td>varchar</td>
+<td>NO</td>
+<td></td>
+</tr>
+<tr>
+<td>fecha_actualizacion</td>
+<td>date</td>
+<td>NO</td>
+<td>CHECK ( fecha_actualizacion &gt;= DATE '1900-01-01' AND fecha_actualizacion &lt;= CURRENT_DATE )</td>
+</tr>
+<tr>
+<td>descripcion</td>
+<td>text</td>
+<td>YES</td>
+<td></td>
+</tr>
+<tr>
+<td>url</td>
+<td>varchar</td>
+<td>NO</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h2 id="table-definition">Table definition</h2>
+<pre><code class="language-sql">CREATE TABLE
+  metadata.fuentes_tablas (
+    fuentes_tablas_id serial PRIMARY KEY,
+    fuente_id int NOT NULL REFERENCES metadata.fuentes (fuente_id),
+    nombre varchar NOT NULL,
+    fecha_actualizacion date NOT NULL CHECK (
+      fecha_actualizacion &gt;= DATE '1900-01-01'
+      AND fecha_actualizacion &lt;= CURRENT_DATE
+    ),
+    descripcion text,
+    url varchar NOT NULL
+  );
+</code></pre>
 
 
 

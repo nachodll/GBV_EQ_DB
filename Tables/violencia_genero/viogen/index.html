@@ -515,6 +515,15 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#table-definition" class="md-nav__link">
+    <span class="md-ellipsis">
+      Table definition
+    </span>
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -1195,6 +1204,15 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#table-definition" class="md-nav__link">
+    <span class="md-ellipsis">
+      Table definition
+    </span>
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -1214,15 +1232,78 @@
 <h1 id="violencia_generoviogen">violencia_genero.viogen</h1>
 <p><strong>Data loading script:</strong> <code>pipelines/extract_transform/violencia_genero/008_et_viogen.py</code></p>
 <h2 id="columns">Columns</h2>
-<ul>
-<li><code>viogen_id serial PRIMARY KEY</code></li>
-<li><code>provincia_id int NOT NULL REFERENCES geo.provincias (provincia_id)</code></li>
-<li><code>anio int NOT NULL CHECK ( anio BETWEEN 1900 AND EXTRACT( YEAR FROM CURRENT_DATE ) )</code></li>
-<li><code>mes int NOT NULL CHECK (mes BETWEEN 1 AND 12)</code></li>
-<li><code>nivel_riesgo enums.nivel_riesgo_viogen_enum NOT NULL</code></li>
-<li><code>casos int NOT NULL CHECK (casos &gt;= 0)</code></li>
-<li><code>casos_proteccion_policial int NOT NULL CHECK (casos_proteccion_policial &gt;= 0)</code></li>
-</ul>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Data Type</th>
+<th>Is Nullable</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>viogen_id</td>
+<td>serial</td>
+<td>NO</td>
+<td>PRIMARY KEY</td>
+</tr>
+<tr>
+<td>provincia_id</td>
+<td>int</td>
+<td>NO</td>
+<td>REFERENCES geo.provincias (provincia_id)</td>
+</tr>
+<tr>
+<td>anio</td>
+<td>int</td>
+<td>NO</td>
+<td>CHECK ( anio BETWEEN 1900 AND EXTRACT( YEAR FROM CURRENT_DATE ) )</td>
+</tr>
+<tr>
+<td>mes</td>
+<td>int</td>
+<td>NO</td>
+<td>CHECK (mes BETWEEN 1 AND 12)</td>
+</tr>
+<tr>
+<td>nivel_riesgo</td>
+<td>enums.nivel_riesgo_viogen_enum</td>
+<td>NO</td>
+<td></td>
+</tr>
+<tr>
+<td>casos</td>
+<td>int</td>
+<td>NO</td>
+<td>CHECK (casos &gt;= 0)</td>
+</tr>
+<tr>
+<td>casos_proteccion_policial</td>
+<td>int</td>
+<td>NO</td>
+<td>CHECK (casos_proteccion_policial &gt;= 0)</td>
+</tr>
+</tbody>
+</table>
+<h2 id="table-definition">Table definition</h2>
+<pre><code class="language-sql">CREATE TABLE
+  violencia_genero.viogen (
+    viogen_id serial PRIMARY KEY,
+    provincia_id int NOT NULL REFERENCES geo.provincias (provincia_id),
+    anio int NOT NULL CHECK (
+      anio BETWEEN 1900 AND EXTRACT(
+        YEAR
+        FROM
+          CURRENT_DATE
+      )
+    ),
+    mes int NOT NULL CHECK (mes BETWEEN 1 AND 12),
+    nivel_riesgo enums.nivel_riesgo_viogen_enum NOT NULL,
+    casos int NOT NULL CHECK (casos &gt;= 0),
+    casos_proteccion_policial int NOT NULL CHECK (casos_proteccion_policial &gt;= 0)
+  );
+</code></pre>
 
 
 

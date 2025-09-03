@@ -377,6 +377,15 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#table-definition" class="md-nav__link">
+    <span class="md-ellipsis">
+      Table definition
+    </span>
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -1195,6 +1204,15 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#table-definition" class="md-nav__link">
+    <span class="md-ellipsis">
+      Table definition
+    </span>
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -1214,13 +1232,64 @@
 <h1 id="violencia_generofeminicidios_fuera_pareja_expareja">violencia_genero.feminicidios_fuera_pareja_expareja</h1>
 <p><strong>Data loading script:</strong> <code>pipelines/extract_transform/violencia_genero/002_et_feminicidios_fuera_pareja_expareja.py</code></p>
 <h2 id="columns">Columns</h2>
-<ul>
-<li><code>feminicidios_fuera_pareja_expareja_id serial PRIMARY KEY</code></li>
-<li><code>feminicidios int NOT NULL CHECK (feminicidios &gt;= 0)</code></li>
-<li><code>tipo_feminicidio enums.tipo_feminicidio_enum NOT NULL</code></li>
-<li><code>comunidad_autonoma_id int NOT NULL REFERENCES geo.comunidades_autonomas (comunidad_autonoma_id)</code></li>
-<li><code>anio int NOT NULL CHECK ( anio BETWEEN 1900 AND EXTRACT( YEAR FROM CURRENT_DATE ) )</code></li>
-</ul>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Data Type</th>
+<th>Is Nullable</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>feminicidios_fuera_pareja_expareja_id</td>
+<td>serial</td>
+<td>NO</td>
+<td>PRIMARY KEY</td>
+</tr>
+<tr>
+<td>feminicidios</td>
+<td>int</td>
+<td>NO</td>
+<td>CHECK (feminicidios &gt;= 0)</td>
+</tr>
+<tr>
+<td>tipo_feminicidio</td>
+<td>enums.tipo_feminicidio_enum</td>
+<td>NO</td>
+<td></td>
+</tr>
+<tr>
+<td>comunidad_autonoma_id</td>
+<td>int</td>
+<td>NO</td>
+<td>REFERENCES geo.comunidades_autonomas (comunidad_autonoma_id)</td>
+</tr>
+<tr>
+<td>anio</td>
+<td>int</td>
+<td>NO</td>
+<td>CHECK ( anio BETWEEN 1900 AND EXTRACT( YEAR FROM CURRENT_DATE ) )</td>
+</tr>
+</tbody>
+</table>
+<h2 id="table-definition">Table definition</h2>
+<pre><code class="language-sql">CREATE TABLE
+  violencia_genero.feminicidios_fuera_pareja_expareja (
+    feminicidios_fuera_pareja_expareja_id serial PRIMARY KEY,
+    feminicidios int NOT NULL CHECK (feminicidios &gt;= 0),
+    tipo_feminicidio enums.tipo_feminicidio_enum NOT NULL,
+    comunidad_autonoma_id int NOT NULL REFERENCES geo.comunidades_autonomas (comunidad_autonoma_id),
+    anio int NOT NULL CHECK (
+      anio BETWEEN 1900 AND EXTRACT(
+        YEAR
+        FROM
+          CURRENT_DATE
+      )
+    )
+  );
+</code></pre>
 
 
 

@@ -354,6 +354,33 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#table-definition" class="md-nav__link">
+    <span class="md-ellipsis">
+      Table definition
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#notable-transformations" class="md-nav__link">
+    <span class="md-ellipsis">
+      Notable transformations
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#source" class="md-nav__link">
+    <span class="md-ellipsis">
+      Source
+    </span>
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -1195,6 +1222,33 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#table-definition" class="md-nav__link">
+    <span class="md-ellipsis">
+      Table definition
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#notable-transformations" class="md-nav__link">
+    <span class="md-ellipsis">
+      Notable transformations
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#source" class="md-nav__link">
+    <span class="md-ellipsis">
+      Source
+    </span>
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -1212,18 +1266,102 @@
 
 
 <h1 id="violencia_generofeminicidios_pareja_expareja">violencia_genero.feminicidios_pareja_expareja</h1>
-<p><strong>Data loading script:</strong> <code>pipelines/extract_transform/violencia_genero/001_et_feminicidios_pareja_expareja.py</code></p>
-<h2 id="columns">Columns</h2>
 <ul>
-<li><code>feminicidios_pareja_expareja_id serial PRIMARY KEY</code></li>
-<li><code>feminicidios int NOT NULL CHECK (feminicidios &gt;= 0)</code></li>
-<li><code>huerfanos_menores int NOT NULL CHECK (huerfanos_menores &gt;= 0)</code></li>
-<li><code>provincia_id int NOT NULL REFERENCES geo.provincias (provincia_id)</code></li>
-<li><code>anio int NOT NULL CHECK ( anio BETWEEN 1900 AND EXTRACT( YEAR FROM CURRENT_DATE ) )</code></li>
-<li><code>mes int NOT NULL CHECK (mes BETWEEN 1 AND 12)</code></li>
-<li><code>victima_grupo_edad varchar CHECK ( victima_grupo_edad ~ '^\d+-\d+$' OR victima_grupo_edad ~ '^&lt;\d+$' OR victima_grupo_edad ~ '^&gt;\d+$' )</code></li>
-<li><code>agresor_grupo_edad varchar CHECK ( agresor_grupo_edad ~ '^\d+-\d+$' OR agresor_grupo_edad ~ '^&lt;\d+$' OR agresor_grupo_edad ~ '^&gt;\d+$' )</code></li>
+<li><strong>Time period</strong>: 2003-2025 (monthly)</li>
+<li><strong>Regional breakdown</strong>: provincias</li>
 </ul>
+<h2 id="columns">Columns</h2>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Data Type</th>
+<th>Is Nullable</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>feminicidios_pareja_expareja_id</td>
+<td>serial</td>
+<td>NO</td>
+<td>primary key</td>
+</tr>
+<tr>
+<td>feminicidios</td>
+<td>int</td>
+<td>NO</td>
+<td>number of feminicides</td>
+</tr>
+<tr>
+<td>huerfanos_menores</td>
+<td>int</td>
+<td>NO</td>
+<td>number of orphan left by feminicides</td>
+</tr>
+<tr>
+<td>provincia_id</td>
+<td>int</td>
+<td>NO</td>
+<td>references geo.provincias</td>
+</tr>
+<tr>
+<td>anio</td>
+<td>int</td>
+<td>NO</td>
+<td>year</td>
+</tr>
+<tr>
+<td>mes</td>
+<td>int</td>
+<td>NO</td>
+<td>month</td>
+</tr>
+<tr>
+<td>victima_grupo_edad</td>
+<td>varchar</td>
+<td>YES</td>
+<td>victim's group of age</td>
+</tr>
+<tr>
+<td>agresor_grupo_edad</td>
+<td>varchar</td>
+<td>YES</td>
+<td>aggresor's group of age</td>
+</tr>
+</tbody>
+</table>
+<h2 id="table-definition">Table definition</h2>
+<pre><code class="language-sql">CREATE TABLE
+  violencia_genero.feminicidios_pareja_expareja (
+    feminicidios_pareja_expareja_id serial PRIMARY KEY,
+    feminicidios int NOT NULL CHECK (feminicidios &gt;= 0),
+    huerfanos_menores int NOT NULL CHECK (huerfanos_menores &gt;= 0),
+    provincia_id int NOT NULL REFERENCES geo.provincias (provincia_id),
+    anio int NOT NULL CHECK (
+      anio BETWEEN 1900 AND EXTRACT(
+        YEAR
+        FROM
+          CURRENT_DATE
+      )
+    ),
+    mes int NOT NULL CHECK (mes BETWEEN 1 AND 12),
+    victima_grupo_edad varchar CHECK (
+      victima_grupo_edad ~ '^\d+-\d+$'
+      OR victima_grupo_edad ~ '^&lt;\d+$'
+      OR victima_grupo_edad ~ '^&gt;\d+$'
+    ),
+    agresor_grupo_edad varchar CHECK (
+      agresor_grupo_edad ~ '^\d+-\d+$'
+      OR agresor_grupo_edad ~ '^&lt;\d+$'
+      OR agresor_grupo_edad ~ '^&gt;\d+$'
+    )
+  );
+</code></pre>
+<h2 id="notable-transformations">Notable transformations</h2>
+<p>No notable transformations were performed over this dataset.</p>
+<h2 id="source">Source</h2>
+<p>Data extracted from <a href="https://estadisticasviolenciagenero.igualdad.gob.es/" target="_blank">Portal Estadísdico de la Delegación del Gobierno contra la Violencia de Género</a></p>
 
 
 

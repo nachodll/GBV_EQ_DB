@@ -423,6 +423,15 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#table-definition" class="md-nav__link">
+    <span class="md-ellipsis">
+      Table definition
+    </span>
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -1195,6 +1204,15 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#table-definition" class="md-nav__link">
+    <span class="md-ellipsis">
+      Table definition
+    </span>
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -1214,18 +1232,99 @@
 <h1 id="violencia_generoservicio_016">violencia_genero.servicio_016</h1>
 <p><strong>Data loading script:</strong> <code>pipelines/extract_transform/violencia_genero/004_et_servicio_016.py</code></p>
 <h2 id="columns">Columns</h2>
-<ul>
-<li><code>servicio_016_id serial PRIMARY KEY</code></li>
-<li><code>provincia_id int REFERENCES geo.provincias (provincia_id)</code></li>
-<li><code>anio int NOT NULL CHECK ( anio BETWEEN 1900 AND EXTRACT( YEAR FROM CURRENT_DATE ) )</code></li>
-<li><code>mes int NOT NULL CHECK (mes BETWEEN 1 AND 12)</code></li>
-<li><code>persona_consulta enums.persona_consulta_enum</code></li>
-<li><code>tipo_violencia enums.tipo_violencia_enum</code></li>
-<li><code>llamadas int NOT NULL CHECK (llamadas &gt;= 0)</code></li>
-<li><code>whatsapps int NOT NULL CHECK (whatsapps &gt;= 0)</code></li>
-<li><code>emails int NOT NULL CHECK (emails &gt;= 0)</code></li>
-<li><code>chats int NOT NULL CHECK (chats &gt;= 0)</code></li>
-</ul>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Data Type</th>
+<th>Is Nullable</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>servicio_016_id</td>
+<td>serial</td>
+<td>NO</td>
+<td>PRIMARY KEY</td>
+</tr>
+<tr>
+<td>provincia_id</td>
+<td>int</td>
+<td>YES</td>
+<td>REFERENCES geo.provincias (provincia_id)</td>
+</tr>
+<tr>
+<td>anio</td>
+<td>int</td>
+<td>NO</td>
+<td>CHECK ( anio BETWEEN 1900 AND EXTRACT( YEAR FROM CURRENT_DATE ) )</td>
+</tr>
+<tr>
+<td>mes</td>
+<td>int</td>
+<td>NO</td>
+<td>CHECK (mes BETWEEN 1 AND 12)</td>
+</tr>
+<tr>
+<td>persona_consulta</td>
+<td>enums.persona_consulta_enum</td>
+<td>YES</td>
+<td></td>
+</tr>
+<tr>
+<td>tipo_violencia</td>
+<td>enums.tipo_violencia_enum</td>
+<td>YES</td>
+<td></td>
+</tr>
+<tr>
+<td>llamadas</td>
+<td>int</td>
+<td>NO</td>
+<td>CHECK (llamadas &gt;= 0)</td>
+</tr>
+<tr>
+<td>whatsapps</td>
+<td>int</td>
+<td>NO</td>
+<td>CHECK (whatsapps &gt;= 0)</td>
+</tr>
+<tr>
+<td>emails</td>
+<td>int</td>
+<td>NO</td>
+<td>CHECK (emails &gt;= 0)</td>
+</tr>
+<tr>
+<td>chats</td>
+<td>int</td>
+<td>NO</td>
+<td>CHECK (chats &gt;= 0)</td>
+</tr>
+</tbody>
+</table>
+<h2 id="table-definition">Table definition</h2>
+<pre><code class="language-sql">CREATE TABLE
+  violencia_genero.servicio_016 (
+    servicio_016_id serial PRIMARY KEY,
+    provincia_id int REFERENCES geo.provincias (provincia_id),
+    anio int NOT NULL CHECK (
+      anio BETWEEN 1900 AND EXTRACT(
+        YEAR
+        FROM
+          CURRENT_DATE
+      )
+    ),
+    mes int NOT NULL CHECK (mes BETWEEN 1 AND 12),
+    persona_consulta enums.persona_consulta_enum,
+    tipo_violencia enums.tipo_violencia_enum,
+    llamadas int NOT NULL CHECK (llamadas &gt;= 0),
+    whatsapps int NOT NULL CHECK (whatsapps &gt;= 0),
+    emails int NOT NULL CHECK (emails &gt;= 0),
+    chats int NOT NULL CHECK (chats &gt;= 0)
+  );
+</code></pre>
 
 
 

@@ -469,6 +469,15 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#table-definition" class="md-nav__link">
+    <span class="md-ellipsis">
+      Table definition
+    </span>
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -1195,6 +1204,15 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#table-definition" class="md-nav__link">
+    <span class="md-ellipsis">
+      Table definition
+    </span>
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -1214,15 +1232,78 @@
 <h1 id="violencia_generodispositivos_electronicos_seguimiento">violencia_genero.dispositivos_electronicos_seguimiento</h1>
 <p><strong>Data loading script:</strong> <code>pipelines/extract_transform/violencia_genero/006_et_dispositivos_electronicos_seguimiento.py</code></p>
 <h2 id="columns">Columns</h2>
-<ul>
-<li><code>dispositivos_electronicos_seguimiento_id serial PRIMARY KEY</code></li>
-<li><code>provincia_id int NOT NULL REFERENCES geo.provincias (provincia_id)</code></li>
-<li><code>anio int NOT NULL CHECK ( anio BETWEEN 1900 AND EXTRACT( YEAR FROM CURRENT_DATE ) )</code></li>
-<li><code>mes int NOT NULL CHECK (mes BETWEEN 1 AND 12)</code></li>
-<li><code>instalaciones_acumuladas int NOT NULL CHECK (instalaciones_acumuladas &gt;= 0)</code></li>
-<li><code>desinstalaciones_acumuladas int NOT NULL CHECK (desinstalaciones_acumuladas &gt;= 0)</code></li>
-<li><code>dispositivos_activos int NOT NULL CHECK (dispositivos_activos &gt;= 0)</code></li>
-</ul>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Data Type</th>
+<th>Is Nullable</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>dispositivos_electronicos_seguimiento_id</td>
+<td>serial</td>
+<td>NO</td>
+<td>PRIMARY KEY</td>
+</tr>
+<tr>
+<td>provincia_id</td>
+<td>int</td>
+<td>NO</td>
+<td>REFERENCES geo.provincias (provincia_id)</td>
+</tr>
+<tr>
+<td>anio</td>
+<td>int</td>
+<td>NO</td>
+<td>CHECK ( anio BETWEEN 1900 AND EXTRACT( YEAR FROM CURRENT_DATE ) )</td>
+</tr>
+<tr>
+<td>mes</td>
+<td>int</td>
+<td>NO</td>
+<td>CHECK (mes BETWEEN 1 AND 12)</td>
+</tr>
+<tr>
+<td>instalaciones_acumuladas</td>
+<td>int</td>
+<td>NO</td>
+<td>CHECK (instalaciones_acumuladas &gt;= 0)</td>
+</tr>
+<tr>
+<td>desinstalaciones_acumuladas</td>
+<td>int</td>
+<td>NO</td>
+<td>CHECK (desinstalaciones_acumuladas &gt;= 0)</td>
+</tr>
+<tr>
+<td>dispositivos_activos</td>
+<td>int</td>
+<td>NO</td>
+<td>CHECK (dispositivos_activos &gt;= 0)</td>
+</tr>
+</tbody>
+</table>
+<h2 id="table-definition">Table definition</h2>
+<pre><code class="language-sql">CREATE TABLE
+  violencia_genero.dispositivos_electronicos_seguimiento (
+    dispositivos_electronicos_seguimiento_id serial PRIMARY KEY,
+    provincia_id int NOT NULL REFERENCES geo.provincias (provincia_id),
+    anio int NOT NULL CHECK (
+      anio BETWEEN 1900 AND EXTRACT(
+        YEAR
+        FROM
+          CURRENT_DATE
+      )
+    ),
+    mes int NOT NULL CHECK (mes BETWEEN 1 AND 12),
+    instalaciones_acumuladas int NOT NULL CHECK (instalaciones_acumuladas &gt;= 0),
+    desinstalaciones_acumuladas int NOT NULL CHECK (desinstalaciones_acumuladas &gt;= 0),
+    dispositivos_activos int NOT NULL CHECK (dispositivos_activos &gt;= 0)
+  );
+</code></pre>
 
 
 
