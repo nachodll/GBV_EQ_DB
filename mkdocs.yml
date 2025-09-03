@@ -1,22 +1,38 @@
-site_name: Violencia de Género - Documentación Técnica
+site_name: GBVEQ - Documentation
 theme:
-  name: material
+    name: material
 
 nav:
-  - Inicio: index.md
-
-  - Fuentes:
-      - Índice de fuentes: fuentes/README.md
-      - Barómetros del CIS: fuentes/violencia/cis_barometros.md
-
-  - Tablas:
-      - violencia_genero: tablas/violencia_genero.md
-
-  - Scripts:
-      - transformar_cis.py: scripts/transformar_cis.md
-
-  - Procesos:
-      - Dependencias y entorno: procesos/dependencias.md
-
-  - Decisiones técnicas:
-      - (por completar): decisiones/README.md
+    - Home: index.md
+    - Tables:
+        - violencia_genero:
+                - feminicidios_pareja_expareja: Tables/violencia_genero/feminicidios_pareja_expareja.md
+                - feminicidios_fuera_pareja_expareja: Tables/violencia_genero/feminicidios_fuera_pareja_expareja.md
+                - menores_victimas_mortales: Tables/violencia_genero/menores_victimas_mortales.md
+                - servicio_016: Tables/violencia_genero/servicio_016.md
+                - usuarias_atenpro: Tables/violencia_genero/usuarias_atenpro.md
+                - dispositivos_electronicos_seguimiento: Tables/violencia_genero/dispositivos_electronicos_seguimiento.md
+                - ayudas_articulo_27: Tables/violencia_genero/ayudas_articulo_27.md
+                - viogen: Tables/violencia_genero/viogen.md
+                - autorizaciones_residencia_trabajo_vvg: Tables/violencia_genero/autorizaciones_residencia_trabajo_vvg.md
+                - denuncias_vg_pareja: Tables/violencia_genero/denuncias_vg_pareja.md
+                - ordenes_proteccion: Tables/violencia_genero/ordenes_proteccion.md
+                - renta_activa_insercion: Tables/violencia_genero/renta_activa_insercion.md
+                - contratos_bonificados_sustitucion: Tables/violencia_genero/contratos_bonificados_sustitucion.md
+                - ayudas_cambio_residencia: Tables/violencia_genero/ayudas_cambio_residencia.md
+        - demografia:
+                - poblacion_municipio: Tables/demografia/poblacion_municipios.md
+                - poblacion_grupo_edad: Tables/demografia/poblacion_grupo_edad.md
+        - igualdad_formal:
+                - eige_dominios: Tables/igualdad_formal/eige_dominios.md
+                - eige_indicadores: Tables/igualdad_formal/eige_indicadores.md
+                - eige_interseccionalidades: Tables/igualdad_formal/eige_interseccionalidades.md
+                - eige_violencia: Tables/igualdad_formal/eige_violencia.md
+        - educacion_juventud:
+                - matriculados_educacion_no_universitaria: Tables/educacion_juventud/matriculados_educacion_no_universitaria.md
+        - migracion:
+                - residentes_extranjeros: Tables/migracion/residentes_extranjeros.md
+        - tecnologia_y_medios:
+                - acceso_internet_viviendas: Tables/tecnologia_y_medios/acceso_internet_viviendas.md
+                - uso_internet_personas: Tables/tecnologia_y_medios/uso_internet_personas.md
+                - uso_internet_ninios: Tables/tecnologia_y_medios/uso_internet_ninios.md
