@@ -504,11 +504,7 @@ def main():
         )
 
         # Drop all rows with aggregated data (e.g., "TOTAL")
-        num_rows_before = len(df)
         df = df[df["provincia_id"] != "Total nacional"]
-        logging.warning(f"Dropped {num_rows_before - len(df)} rows with aggregated data for 'provincia_id'.")
-
-        num_rows_before = len(df)
         groups_to_drop = [
             "Europa",
             "UE-15",
@@ -526,27 +522,11 @@ def main():
             "Total",
         ]
         df = df[~df["nacionalidad"].isin(groups_to_drop)]  # type: ignore
-        logging.warning(f"Dropped {num_rows_before - len(df)} rows with aggregated data for 'nacionalidad'.")
-
-        num_rows_before = len(df)
         df = df[df["tipo_documentacion"] != "Total"]
-        logging.warning(f"Dropped {num_rows_before - len(df)} rows with aggregated data for 'tipo_documentacion'.")
-
-        num_rows_before = len(df)
         df = df[df["sexo"] != "Ambos sexos"]
-        logging.warning(f"Dropped {num_rows_before - len(df)} rows with aggregated data for 'sexo'.")
-
-        num_rows_before = len(df)
         df = df[df["es_nacido_espania"] != "Total"]
-        logging.warning(f"Dropped {num_rows_before - len(df)} rows with aggregated data for 'es_nacido_espania'.")
-
-        num_rows_before = len(df)
         df = df[df["grupo_edad"] != "Total"]
-        logging.warning(f"Dropped {num_rows_before - len(df)} rows with aggregated data for 'grupo_edad'.")
-
-        num_rows_before = len(df)
         df = df[df["regimen"] != "Total"]
-        logging.warning(f"Dropped {num_rows_before - len(df)} rows with aggregated data for 'regimen'.")
 
         # Convert nan to None
         df = df.where(pd.notnull(df), None)  # type: ignore

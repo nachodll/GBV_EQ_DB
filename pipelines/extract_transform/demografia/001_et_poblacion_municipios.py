@@ -43,20 +43,14 @@ def main():
         )
 
         # Extract municipio_id and drop if it's province_id (less 5 digits)
-        num_rows_before = len(df)
         df["municipio_id"] = df["municipio_id"].astype(str).str.split(" ").str[0]
         df = df[df["municipio_id"].str.match(r"^\d{5}$")]  # type: ignore
-        logging.warning(f"Dropped {num_rows_before - len(df)} rows with aggregated data for 'municipio_id'.")
 
         # Drop rows with missing values in poblacion
-        num_rows_before = len(df)
         df.dropna(subset=["poblacion"], inplace=True)  # type: ignore
-        logging.warning(f"Dropped {num_rows_before - len(df)} rows with missing 'poblacion' values.")
 
         # Drop all rows with aggregated data (e.g., "TOTAL")
-        num_rows_before = len(df)
         df = df[df["sexo"] != "Total"]
-        logging.warning(f"Dropped {num_rows_before - len(df)} rows with aggregated data for 'sexo'.")
 
         # Normalize and validate all columns (municipio_id is already validated)
         df["anio"] = apply_and_check(df["anio"], normalize_year)

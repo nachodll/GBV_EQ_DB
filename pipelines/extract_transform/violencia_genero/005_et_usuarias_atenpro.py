@@ -43,10 +43,8 @@ def main():
         df = df.drop(columns=["Comunidad autónoma"])
 
         # Dropping rows with negative values in 'altas' or 'bajas'
-        rows_before = len(df)
         df = df[df["altas"] >= 0]
         df = df[df["bajas"] >= 0]
-        logging.warning(f"Dropped {rows_before - len(df)} rows with negative values in 'altas' or 'bajas'.")
 
         # Normalize and validate all columns
         df["anio"] = apply_and_check(df["anio"], normalize_year)

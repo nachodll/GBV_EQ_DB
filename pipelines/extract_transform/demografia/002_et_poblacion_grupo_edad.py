@@ -42,15 +42,9 @@ def main():
         )
 
         # Drop all rows with aggregated data (e.g., "TOTAL")
-        num_rows_before = len(df)
         df = df[df["grupo_edad"] != "TOTAL EDADES"]
-        logging.warning(f"Dropped {num_rows_before - len(df)} rows with aggregated data for 'grupo_edad'.")
-        num_rows_before = len(df)
         df = df[df["nacionalidad"] != "TOTAL"]
-        logging.warning(f"Dropped {num_rows_before - len(df)} rows with aggregated data for 'nacionalidad'.")
-        num_rows_before = len(df)
         df = df[df["sexo"] != "Ambos sexos"]
-        logging.warning(f"Dropped {num_rows_before - len(df)} rows with aggregated data for 'sexo'.")
 
         # Normalize and validate columns
         df["grupo_edad"] = apply_and_check(df["grupo_edad"], normalize_age_group)
