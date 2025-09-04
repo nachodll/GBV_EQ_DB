@@ -215,7 +215,7 @@ CREATE TABLE
   violencia_genero.feminicidios_pareja_expareja (
     feminicidios_pareja_expareja_id serial PRIMARY KEY,
     feminicidios int NOT NULL CHECK (feminicidios >= 0),
-    huerfanos_menores int NOT NULL CHECK (huerfanos_menores >= 0),
+    huerfanos_menores int CHECK (huerfanos_menores >= 0),
     provincia_id int NOT NULL REFERENCES geo.provincias (provincia_id),
     anio int NOT NULL CHECK (
       anio BETWEEN 1900 AND EXTRACT(

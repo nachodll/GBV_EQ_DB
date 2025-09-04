@@ -52,6 +52,9 @@ def main():
         df["feminicidios"] = apply_and_check(df["feminicidios"], normalize_positive_integer)
         df["huerfanos_menores"] = apply_and_check(df["huerfanos_menores"], normalize_positive_integer)
 
+        # Data for huerfanos_menores is not available before 2013, it is set as NULL
+        df.loc[df["anio"] < 2013, "huerfanos_menores"] = None
+
         # Save cleaned CSV
         CLEAN_CSV_PATH.parent.mkdir(parents=True, exist_ok=True)
         df.to_csv(CLEAN_CSV_PATH, index=False, sep=";")
