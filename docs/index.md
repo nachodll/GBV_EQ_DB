@@ -13,10 +13,15 @@ The source code of the project can be found at the <a href="https://github.com/n
 
 ## Database
 
-This project's database is not publicly accessible.
+This project's database is not publicly accessible for the moment (currently under development).
 
 - All datasets (raw and clean) can be found at the <a href="https://github.com/nachodll/GBV_EQ_DB_data" target="_blank">private Github Repository</a>. Contact Leire Rincón for access.
 - The PostgreSQL database is deployed at a physical server at UAB facilities and access is also private. More on how to access in the following <a href="https://uab-my.sharepoint.com/my?id=%2Fpersonal%2F1781576%5Fuab%5Fcat%2FDocuments%2FDatos%2DGBV%5FET%2FSteps%20to%20connect%20to%20UAB%20db%2023ec1ff81eb480e597e8ec2f25861331%2Ehtml&parent=%2Fpersonal%2F1781576%5Fuab%5Fcat%2FDocuments%2FDatos%2DGBV%5FET" target="_blank">internal document</a>.
+
+## Contact
+
+- Leire Rincón: leire.rincon@uab.cat
+- Ignacio Dorado: nachodoradollamas@gmail.com
 
 ## Indicators
 
