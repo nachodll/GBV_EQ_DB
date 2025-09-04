@@ -36,6 +36,7 @@ nav:
                 - acceso_internet_viviendas: Tables/tecnologia_y_medios/acceso_internet_viviendas.md
                 - uso_internet_personas: Tables/tecnologia_y_medios/uso_internet_personas.md
                 - uso_internet_ninios: Tables/tecnologia_y_medios/uso_internet_ninios.md
+                - usuarios_redes_sociales: Tables/tecnologia_y_medios/usuarios_redes_sociales.md
         - geo:
                 - comunidades_autonomas: Tables/geo/comunidades_autonomas.md
                 - provincias: Tables/geo/provincias.md

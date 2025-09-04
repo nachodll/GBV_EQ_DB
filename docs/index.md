@@ -427,10 +427,10 @@ Tables are distributed in different schemas according to the field to which thei
             <td>INE</td>
         </tr>
         </tr>
-        <tr style="background-color: #f8ccccff;">
-            <td>Uso de Redes Sociales</td>
-            <td></td>
-            <td></td>
+        <tr>
+            <td><a href="./Tables/tecnologia_y_medios/usuarios_redes_sociales/">usuarios_redes_sociales</a></td>
+            <td>2014-2024</td>
+            <td>Cities</td>
             <td>Social Media Family</td>
         </tr>
         <tr style="background-color: #f8ccccff;">
