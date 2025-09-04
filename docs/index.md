@@ -523,10 +523,22 @@ Tables are distributed in different schemas according to the field to which thei
         </tr>
     </thead>
     <tbody>
-        <tr style="background-color: #f8ccccff;">
-            <td>Interrupciones Voluntarias del Embarazo</td>
-            <td></td>
-            <td></td>
+        <tr>
+            <td><a href="./Tables/salud/ive_total/">ive_total</a></td>
+            <td>2014-2023</td>
+            <td>Spain</td>
+            <td>Ministerio Sanidad</td>
+        </tr>
+        <tr>
+            <td><a href="./Tables/salud/ive_grupo_edad/">ive_grupo_edad</a></td>
+            <td>2014-2023</td>
+            <td>Spain</td>
+            <td>Ministerio Sanidad</td>
+        </tr>
+        <tr>
+            <td><a href="./Tables/salud/ive_ccaa/">ive_ccaa</a></td>
+            <td>2014-2023</td>
+            <td>Comunidades autónomas</td>
             <td>Ministerio Sanidad</td>
         </tr>
     </tbody>
