@@ -61,6 +61,9 @@ TABLES_TO_LOAD: Dict[Path, Optional[Callable[[Connection, pd.DataFrame], None]]]
     CLEAN_DATA_DIR / "tecnologia_y_medios" / "uso_internet_personas.csv": None,
     CLEAN_DATA_DIR / "tecnologia_y_medios" / "uso_internet_ninios.csv": None,
     CLEAN_DATA_DIR / "tecnologia_y_medios" / "usuarios_redes_sociales.csv": None,
+    CLEAN_DATA_DIR / "salud" / "ive_total.csv": None,
+    CLEAN_DATA_DIR / "salud" / "ive_grupo_edad.csv": None,
+    CLEAN_DATA_DIR / "salud" / "ive_ccaa.csv": None,
 }
 
 

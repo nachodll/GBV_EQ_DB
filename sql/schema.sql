@@ -16,6 +16,8 @@ CREATE SCHEMA enums;
 
 CREATE SCHEMA tecnologia_y_medios;
 
+CREATE SCHEMA salud;
+
 ------------------------------------------------------------------------------------
 -- enums
 ------------------------------------------------------------------------------------
@@ -696,6 +698,65 @@ CREATE TABLE
       )
     ),
     usuarios int NOT NULL CHECK (usuarios >= 0)
+  );
+
+------------------------------------------------------------------------------------
+-- salud
+------------------------------------------------------------------------------------
+CREATE TABLE
+  salud.ive_total (
+    ive_total_id serial PRIMARY KEY,
+    anio int NOT NULL CHECK (
+      anio BETWEEN 1900 AND EXTRACT(
+        YEAR
+        FROM
+          CURRENT_DATE
+      )
+    ),
+    centros_notificadores int NOT NULL CHECK (centros_notificadores >= 0),
+    ives int NOT NULL CHECK (ives >= 0),
+    tasa float NOT NULL CHECK (
+      tasa >= 0
+      AND tasa <= 1000
+    )
+  );
+
+CREATE TABLE
+  salud.ive_grupo_edad (
+    ive_grupo_edad_id serial PRIMARY KEY,
+    anio int NOT NULL CHECK (
+      anio BETWEEN 1900 AND EXTRACT(
+        YEAR
+        FROM
+          CURRENT_DATE
+      )
+    ),
+    grupo_edad varchar NOT NULL CHECK (
+      grupo_edad ~ '^\d+-\d+$'
+      OR grupo_edad ~ '^<\d+$'
+      OR grupo_edad ~ '^>\d+$'
+    ),
+    tasa float NOT NULL CHECK (
+      tasa >= 0
+      AND tasa <= 1000
+    )
+  );
+
+CREATE TABLE
+  salud.ive_ccaa (
+    ive_ccaa_id serial PRIMARY KEY,
+    anio int NOT NULL CHECK (
+      anio BETWEEN 1900 AND EXTRACT(
+        YEAR
+        FROM
+          CURRENT_DATE
+      )
+    ),
+    comunidad_autonoma_id int NOT NULL REFERENCES geo.comunidades_autonomas (comunidad_autonoma_id),
+    tasa float NOT NULL CHECK (
+      tasa >= 0
+      AND tasa <= 1000
+    )
   );
 
 ------------------------------------------------------------------------------------
