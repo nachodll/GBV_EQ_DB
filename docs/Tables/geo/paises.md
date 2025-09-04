@@ -1,8 +1,23 @@
 # geo.paises
 
-**Data loading script:** Not available
+Country names. Primary key is auto generated.
 
 ## Columns
 
-- `pais_id serial PRIMARY KEY`
-- `nombre varchar UNIQUE NOT NULL`
+| Name | Data Type | Is Nullable | Description |
+| --- | --- | --- | --- |
+| pais_id | serial | NO | primary key |
+| nombre | varchar | NO | unique |
+
+## Table definition
+
+```sql
+CREATE TABLE
+  geo.paises (
+    pais_id serial PRIMARY KEY,
+    nombre varchar UNIQUE NOT NULL
+  );
+```
+
+## Source
+Own elaboration
