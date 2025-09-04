@@ -1,4 +1,17 @@
 site_name: GBVEQ - Documentation
+
+plugins:
+  - search
+  - i18n:
+      languages:
+        - locale: es
+          name: Español
+          build: true
+        - locale: en
+          default: true
+          name: English
+          build: true
+
 theme:
     name: material
 
