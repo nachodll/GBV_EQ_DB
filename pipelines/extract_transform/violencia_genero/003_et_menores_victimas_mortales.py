@@ -1,5 +1,5 @@
 """Extract and transform data
-Sourceses:
+Sources:
     DGVG003
 Target tables:
     menores_victimas_mortales"""
