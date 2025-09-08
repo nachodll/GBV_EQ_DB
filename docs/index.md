@@ -6,10 +6,10 @@ The project aims to generate a central and unified database of gender-based viol
 
 The source code of the project can be found at the <a href="https://github.com/nachodll/GBV_EQ_DB" target="_blank">public Github Repository</a>. This repository contains the following:
 
-- **ETL scripts** for data processing
-- **SQL schema** for the database
-- **Scrapers** used to collect data
-- **Documentation** source code (generates this static page)
+- **ETL scripts** for data processing.
+- **SQL schema** for the database.
+- **Scrapers** used to collect data.
+- **Documentation source code** to generate this static page.
 
 ## Database
 
@@ -169,14 +169,14 @@ Tables are distributed in different schemas according to the field to which thei
     <tbody>
         <tr>
             <td><a href="./Tables/demografia/poblacion_municipios/">poblacion_municipios</a></td>
-            <td></td>
-            <td></td>
+            <td>1996-2024</td>
+            <td>Municipios</td>
             <td>INE</td>
         </tr>
         <tr>
             <td><a href="./Tables/demografia/poblacion_grupo_edad/">problacion_grupo_edad</a></td>
-            <td></td>
-            <td></td>
+            <td>1998-2022</td>
+            <td>Spain</td>
             <td>INE</td>
         </tr>
         <tr style="background-color: #f8ccccff;">
@@ -262,26 +262,26 @@ Tables are distributed in different schemas according to the field to which thei
     <tbody>
         <tr>
             <td><a href="./Tables/igualdad_formal/eige_dominios/">eige_dominios</a></td>
-            <td></td>
-            <td></td>
+            <td>2013-2024</td>
+            <td>Spain</td>
             <td>EIGE</td>
         </tr>
         <tr>
             <td><a href="./Tables/igualdad_formal/eige_indicadores/">eige_indicadores</a></td>
-            <td></td>
-            <td></td>
+            <td>2013-2025</td>
+            <td>Spain</td>
             <td>EIGE</td>
         </tr>
         <tr>
             <td><a href="./Tables/igualdad_formal/eige_interseccionalidades/">eige_interseccionalidades</a></td>
-            <td></td>
-            <td></td>
+            <td>2017-2024</td>
+            <td>Spain</td>
             <td>EIGE</td>
         </tr>
         <tr>
             <td><a href="./Tables/igualdad_formal/eige_violencia/">eige_violencia</a></td>
-            <td></td>
-            <td></td>
+            <td>2013, 2024</td>
+            <td>Spain</td>
             <td>EIGE</td>
         </tr>
         <tr style="background-color: #f8ccccff;">
@@ -357,8 +357,8 @@ Tables are distributed in different schemas according to the field to which thei
         </tr>
         <tr>
             <td><a href="./Tables/educacion_juventud/matriculados_educacion_no_universitaria/">matriculados_educacion_no_universitaria</a></td>
-            <td></td>
-            <td></td>
+            <td>1999-2023</td>
+            <td>Provincias</td>
             <td>Ministerio Educacion</td>
         </tr>
         <tr style="background-color: #f8ccccff;">
@@ -376,7 +376,7 @@ Tables are distributed in different schemas according to the field to which thei
     </tbody>
 </table>
 
-### 6. migiracion
+### 6. migracion
 
 <table>
     <thead>
@@ -390,8 +390,8 @@ Tables are distributed in different schemas according to the field to which thei
     <tbody>
         <tr>
             <td><a href="./Tables/migracion/residentes_extranjeros/">residentes_extranjeros</a></td>
-            <td></td>
-            <td></td>
+            <td>1996-2024</td>
+            <td>Provincias</td>
             <td>OPI</td>
         </tr>
     </tbody>
@@ -410,20 +410,20 @@ Tables are distributed in different schemas according to the field to which thei
     <tbody>
         <tr>
             <td><a href="./Tables/tecnologia_y_medios/acceso_internet_viviendas/">acceso_internet_viviendas</a></td>
-            <td></td>
-            <td></td>
+            <td>2006-2024</td>
+            <td>Comunidades</td>
             <td>INE</td>
         </tr>
         <tr>
             <td><a href="./Tables/tecnologia_y_medios/uso_internet_personas/">uso_internet_personas</a></td>
-            <td></td>
-            <td></td>
+            <td>2006-2024</td>
+            <td>Comunidades</td>
             <td>INE</td>
         </tr>
         <tr>
             <td><a href="./Tables/tecnologia_y_medios/uso_internet_ninios/">uso_internet_ninios</a></td>
-            <td></td>
-            <td></td>
+            <td>2006-2024</td>
+            <td>Comunidades</td>
             <td>INE</td>
         </tr>
         </tr>
@@ -538,7 +538,7 @@ Tables are distributed in different schemas according to the field to which thei
         <tr>
             <td><a href="./Tables/salud/ive_ccaa/">ive_ccaa</a></td>
             <td>2014-2023</td>
-            <td>Comunidades autónomas</td>
+            <td>Comunidades</td>
             <td>Ministerio Sanidad</td>
         </tr>
     </tbody>

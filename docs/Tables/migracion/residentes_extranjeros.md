@@ -56,7 +56,7 @@ CREATE TABLE
 
 ## Notable transformations
 
-- Data after 2013 belongs to two different merged tables: "Personas con autorización de residencia por provincia según sexo, grupo de edad, principales nacionalidades y lugar de nacimiento." for entries with `tipo_documentacion = 'Autorización'` and "Personas con certificado de registro o TIE-Acuerdo de Retirada por provincia según sexo, grupo de edad, principales nacionalidades y lugar de nacimiento." for entries with `tipo_documentacion = 'TIE-Acuerdo de Retirada' or 'Certificado de Registro'`.
+- Data after 2013 belongs to two different merged tables: "Personas con autorización de residencia por provincia según sexo, grupo de edad, principales nacionalidades y lugar de nacimiento" for entries with `tipo_documentacion = 'Autorización'` and "Personas con certificado de registro o TIE-Acuerdo de Retirada por provincia según sexo, grupo de edad, principales nacionalidades y lugar de nacimiento" for entries with `tipo_documentacion = 'TIE-Acuerdo de Retirada' or 'Certificado de Registro'`.
 - Data for 2012, 2011 and 2011 is distributed among several .xls files, one per province. Sheet 4 of these files was used and all of them were merged into a single dataset.
 - Data for 2002-2009 was extracted from 2010 files, since sheet 1 contains a detailed historic evolution. It was merged into a single dataset.
 - Data for 2001 was extracted from sheet 8 of its respective .xls file.

@@ -1,41 +1,40 @@
-# Gender Based Violence in Equal Times (GBVEQ)
+# Violencia de Género en Tiempos de Igualdad (GBVEQ)
 
-Esto es lo mismo pero en español
+El proyecto tiene como objetivo generar una base de datos central y unificada sobre violencia de género, integrando factores explicativos, así como variables socioeconómicas, culturales y políticas que influyen en su prevalencia.
 
-## Source code
+## Código fuente
 
-The source code of the project can be found at the <a href="https://github.com/nachodll/GBV_EQ_DB" target="_blank">public Github Repository</a>. This repository contains the following:
+El código fuente del proyecto se encuentra en el <a href="https://github.com/nachodll/GBV_EQ_DB" target="_blank">repositorio público de Github</a>. Este repositorio contiene:
 
-- **ETL scripts** for data processing
-- **SQL schema** for the database
-- **Scrapers** used to collect data
-- **Documentation** source code (generates this static page)
+- **Scripts ETL** para el procesamiento de datos.
+- **Esquema SQL** de la base de datos.
+- **Scrapers** utilizados para recopilar datos.
+- **Código de la documentación** que genera esta página estática.
 
-## Database
+## Base de datos
 
-This project's database is not publicly accessible for the moment (currently under development).
+La base de datos de este proyecto no es de acceso público por el momento (actualmente en desarrollo).
 
-- All datasets (raw and clean) can be found at the <a href="https://github.com/nachodll/GBV_EQ_DB_data" target="_blank">private Github Repository</a>. Contact Leire Rincón for access.
-- The PostgreSQL database is deployed at a physical server at UAB facilities and access is also private. More on how to access in the following <a href="https://uab-my.sharepoint.com/my?id=%2Fpersonal%2F1781576%5Fuab%5Fcat%2FDocuments%2FDatos%2DGBV%5FET%2FSteps%20to%20connect%20to%20UAB%20db%2023ec1ff81eb480e597e8ec2f25861331%2Ehtml&parent=%2Fpersonal%2F1781576%5Fuab%5Fcat%2FDocuments%2FDatos%2DGBV%5FET" target="_blank">internal document</a>.
+- Todos los conjuntos de datos (crudos y limpios) se encuentran en el <a href="https://github.com/nachodll/GBV_EQ_DB_data" target="_blank">repositorio privado de Github</a>. Contactar con Leire Rincón para obtener acceso.
+- La base de datos PostgreSQL está desplegada en un servidor físico en las instalaciones de la UAB y el acceso también es privado. Más información sobre cómo acceder en el siguiente <a href="https://uab-my.sharepoint.com/my?id=%2Fpersonal%2F1781576%5Fuab%5Fcat%2FDocuments%2FDatos%2DGBV%5FET%2FSteps%20to%20connect%20to%20UAB%20db%2023ec1ff81eb480e597e8ec2f25861331%2Ehtml&parent=%2Fpersonal%2F1781576%5Fuab%5Fcat%2FDocuments%2FDatos%2DGBV%5FET" target="_blank">documento interno</a>.
 
-## Contact
+## Contacto
 
 - Leire Rincón: leire.rincon@uab.cat
 - Ignacio Dorado: nachodoradollamas@gmail.com
 
-## Indicators
+## Indicadores
 
-Tables are distributed in different schemas according to the field to which their data belongs. The main schema, which contains the target variables, is *violencia_genero*. The remaining schemas contain independent socioeconomic, cultural, or political indicators. Following, a summary table for each schema is displayed. 
+Las tablas se distribuyen en diferentes esquemas según el ámbito al que pertenecen los datos. El esquema principal, que contiene las variables objetivo, es *violencia_genero*. Los esquemas restantes contienen indicadores socioeconómicos, culturales o políticos independientes. A continuación se muestra una tabla resumen para cada esquema.
 
 ### 1. violencia_genero
-
 <table>
     <thead>
         <tr>
-            <th>Table</th>
-            <th>Time Period</th>
-            <th>Regional Breakdown</th>
-            <th>Source</th>
+            <th>Tabla</th>
+            <th>Periodo temporal</th>
+            <th>Desagregación regional</th>
+            <th>Fuente</th>
         </tr>
     </thead>
     <tbody>
@@ -160,23 +159,23 @@ Tables are distributed in different schemas according to the field to which thei
 <table>
     <thead>
         <tr>
-            <th>Table</th>
-            <th>Time Period</th>
-            <th>Regional Breakdown</th>
-            <th>Source</th>
+            <th>Tabla</th>
+            <th>Periodo temporal</th>
+            <th>Desagregación regional</th>
+            <th>Fuente</th>
         </tr>
     </thead>
     <tbody>
         <tr>
             <td><a href="./Tables/demografia/poblacion_municipios/">poblacion_municipios</a></td>
-            <td></td>
-            <td></td>
+            <td>1996-2024</td>
+            <td>Municipios</td>
             <td>INE</td>
         </tr>
         <tr>
             <td><a href="./Tables/demografia/poblacion_grupo_edad/">problacion_grupo_edad</a></td>
-            <td></td>
-            <td></td>
+            <td>1998-2022</td>
+            <td>España</td>
             <td>INE</td>
         </tr>
         <tr style="background-color: #f8ccccff;">
@@ -253,35 +252,35 @@ Tables are distributed in different schemas according to the field to which thei
 <table>
     <thead>
         <tr>
-            <th>Table</th>
-            <th>Time Period</th>
-            <th>Regional Breakdown</th>
-            <th>Source</th>
+            <th>Tabla</th>
+            <th>Periodo temporal</th>
+            <th>Desagregación regional</th>
+            <th>Fuente</th>
         </tr>
     </thead>
     <tbody>
         <tr>
             <td><a href="./Tables/igualdad_formal/eige_dominios/">eige_dominios</a></td>
-            <td></td>
-            <td></td>
+            <td>2013-2024</td>
+            <td>España</td>
             <td>EIGE</td>
         </tr>
         <tr>
             <td><a href="./Tables/igualdad_formal/eige_indicadores/">eige_indicadores</a></td>
-            <td></td>
-            <td></td>
+            <td>2013-2025</td>
+            <td>España</td>
             <td>EIGE</td>
         </tr>
         <tr>
             <td><a href="./Tables/igualdad_formal/eige_interseccionalidades/">eige_interseccionalidades</a></td>
-            <td></td>
-            <td></td>
+            <td>2017-2024</td>
+            <td>España</td>
             <td>EIGE</td>
         </tr>
         <tr>
             <td><a href="./Tables/igualdad_formal/eige_violencia/">eige_violencia</a></td>
-            <td></td>
-            <td></td>
+            <td>2013, 2024</td>
+            <td>España</td>
             <td>EIGE</td>
         </tr>
         <tr style="background-color: #f8ccccff;">
@@ -309,10 +308,10 @@ Tables are distributed in different schemas according to the field to which thei
 <table>
     <thead>
         <tr>
-            <th>Table</th>
-            <th>Time Period</th>
-            <th>Regional Breakdown</th>
-            <th>Source</th>
+            <th>Tabla</th>
+            <th>Periodo temporal</th>
+            <th>Desagregación regional</th>
+            <th>Fuente</th>
         </tr>
     </thead>
     <tbody>
@@ -342,10 +341,10 @@ Tables are distributed in different schemas according to the field to which thei
 <table>
     <thead>
         <tr>
-            <th>Table</th>
-            <th>Time Period</th>
-            <th>Regional Breakdown</th>
-            <th>Source</th>
+            <th>Tabla</th>
+            <th>Periodo temporal</th>
+            <th>Desagregación regional</th>
+            <th>Fuente</th>
         </tr>
     </thead>
     <tbody>
@@ -357,8 +356,8 @@ Tables are distributed in different schemas according to the field to which thei
         </tr>
         <tr>
             <td><a href="./Tables/educacion_juventud/matriculados_educacion_no_universitaria/">matriculados_educacion_no_universitaria</a></td>
-            <td></td>
-            <td></td>
+            <td>1999-2023</td>
+            <td>Provincias</td>
             <td>Ministerio Educacion</td>
         </tr>
         <tr style="background-color: #f8ccccff;">
@@ -376,22 +375,22 @@ Tables are distributed in different schemas according to the field to which thei
     </tbody>
 </table>
 
-### 6. migiracion
+### 6. migracion
 
 <table>
     <thead>
         <tr>
-            <th>Table</th>
-            <th>Time Period</th>
-            <th>Regional Breakdown</th>
-            <th>Source</th>
+            <th>Tabla</th>
+            <th>Periodo temporal</th>
+            <th>Desagregación regional</th>
+            <th>Fuente</th>
         </tr>
     </thead>
     <tbody>
         <tr>
             <td><a href="./Tables/migracion/residentes_extranjeros/">residentes_extranjeros</a></td>
-            <td></td>
-            <td></td>
+            <td>1996-2024</td>
+            <td>Provincias</td>
             <td>OPI</td>
         </tr>
     </tbody>
@@ -401,29 +400,29 @@ Tables are distributed in different schemas according to the field to which thei
 <table>
     <thead>
         <tr>
-            <th>Table</th>
-            <th>Time Period</th>
-            <th>Regional Breakdown</th>
-            <th>Source</th>
+            <th>Tabla</th>
+            <th>Periodo temporal</th>
+            <th>Desagregación regional</th>
+            <th>Fuente</th>
         </tr>
     </thead>
     <tbody>
         <tr>
             <td><a href="./Tables/tecnologia_y_medios/acceso_internet_viviendas/">acceso_internet_viviendas</a></td>
-            <td></td>
-            <td></td>
+            <td>2006-2024</td>
+            <td>Comunidades</td>
             <td>INE</td>
         </tr>
         <tr>
             <td><a href="./Tables/tecnologia_y_medios/uso_internet_personas/">uso_internet_personas</a></td>
-            <td></td>
-            <td></td>
+            <td>2006-2024</td>
+            <td>Comunidades</td>
             <td>INE</td>
         </tr>
         <tr>
             <td><a href="./Tables/tecnologia_y_medios/uso_internet_ninios/">uso_internet_ninios</a></td>
-            <td></td>
-            <td></td>
+            <td>2006-2024</td>
+            <td>Comunidades</td>
             <td>INE</td>
         </tr>
         </tr>
@@ -446,10 +445,10 @@ Tables are distributed in different schemas according to the field to which thei
 <table>
     <thead>
         <tr>
-            <th>Table</th>
-            <th>Time Period</th>
-            <th>Regional Breakdown</th>
-            <th>Source</th>
+            <th>Tabla</th>
+            <th>Periodo temporal</th>
+            <th>Desagregación regional</th>
+            <th>Fuente</th>
         </tr>
     </thead>
     <tbody>
@@ -496,10 +495,10 @@ Tables are distributed in different schemas according to the field to which thei
 <table>
     <thead>
         <tr>
-            <th>Table</th>
-            <th>Time Period</th>
-            <th>Regional Breakdown</th>
-            <th>Source</th>
+            <th>Tabla</th>
+            <th>Periodo temporal</th>
+            <th>Desagregación regional</th>
+            <th>Fuente</th>
         </tr>
     </thead>
     <tbody>
@@ -516,29 +515,29 @@ Tables are distributed in different schemas according to the field to which thei
 <table>
     <thead>
         <tr>
-            <th>Table</th>
-            <th>Time Period</th>
-            <th>Regional Breakdown</th>
-            <th>Source</th>
+            <th>Tabla</th>
+            <th>Periodo temporal</th>
+            <th>Desagregación regional</th>
+            <th>Fuente</th>
         </tr>
     </thead>
     <tbody>
         <tr>
             <td><a href="./Tables/salud/ive_total/">ive_total</a></td>
             <td>2014-2023</td>
-            <td>Spain</td>
+            <td>España</td>
             <td>Ministerio Sanidad</td>
         </tr>
         <tr>
             <td><a href="./Tables/salud/ive_grupo_edad/">ive_grupo_edad</a></td>
             <td>2014-2023</td>
-            <td>Spain</td>
+            <td>España</td>
             <td>Ministerio Sanidad</td>
         </tr>
         <tr>
             <td><a href="./Tables/salud/ive_ccaa/">ive_ccaa</a></td>
             <td>2014-2023</td>
-            <td>Comunidades autónomas</td>
+            <td>Comunidades</td>
             <td>Ministerio Sanidad</td>
         </tr>
     </tbody>
@@ -548,10 +547,10 @@ Tables are distributed in different schemas according to the field to which thei
 <table>
     <thead>
         <tr>
-            <th>Table</th>
-            <th>Time Period</th>
-            <th>Regional Breakdown</th>
-            <th>Source</th>
+            <th>Tabla</th>
+            <th>Periodo temporal</th>
+            <th>Desagregación regional</th>
+            <th>Fuente</th>
         </tr>
     </thead>
     <tbody>
