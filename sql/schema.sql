@@ -289,6 +289,41 @@ CREATE TABLE
     )
   );
 
+CREATE TABLE
+  demografia.divorcios_segun_duracion_matrimonio (
+    divorcios_segun_duracion_matrimonio_id serial PRIMARY KEY,
+    anio int NOT NULL CHECK (
+      anio BETWEEN 1900 AND EXTRACT(
+        YEAR
+        FROM
+          CURRENT_DATE
+      )
+    ),
+    provincia_id int REFERENCES geo.provincias (provincia_id),
+    duracion_matrimonio varchar NOT NULL CHECK (
+      duracion_matrimonio IN (
+        'Menos de 1 año',
+        'De 1 año',
+        'De 1 a 2 años',
+        'De 2 a 4 años',
+        'De 3 a 5 años',
+        'De 5 a 9 años',
+        'De 6 a 10 años',
+        'De 10 a 14 años',
+        'De 11 a 15 años',
+        'De 15 a 19 años',
+        'De 16 a 19 años',
+        'De 20 a 29 años',
+        '20 y más años',
+        '30 y más años'
+      )
+    ),
+    porcentaje_divorcios float CHECK (
+      porcentaje_divorcios >= 0
+      AND porcentaje_divorcios <= 100
+    )
+  );
+
 ------------------------------------------------------------------------------------
 -- violencia_genero
 ------------------------------------------------------------------------------------
