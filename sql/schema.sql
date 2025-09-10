@@ -240,6 +240,32 @@ CREATE TABLE
     es_residente_espania boolean NOT NULL
   );
 
+CREATE TABLE
+  demografia.matrimonios_homosexuales (
+    matrimonios_homosexuales_id serial PRIMARY KEY,
+    anio int NOT NULL CHECK (
+      anio BETWEEN 1900 AND EXTRACT(
+        YEAR
+        FROM
+          CURRENT_DATE
+      )
+    ),
+    provincia_id int REFERENCES geo.provincias (provincia_id),
+    conyuge_1_grupo_edad varchar NOT NULL CHECK (
+      conyuge_1_grupo_edad ~ '^\d+-\d+$'
+      OR conyuge_1_grupo_edad ~ '^<\d+$'
+      OR conyuge_1_grupo_edad ~ '^>\d+$'
+    ),
+    conyuge_2_grupo_edad varchar NOT NULL CHECK (
+      conyuge_2_grupo_edad ~ '^\d+-\d+$'
+      OR conyuge_2_grupo_edad ~ '^<\d+$'
+      OR conyuge_2_grupo_edad ~ '^>\d+$'
+    ),
+    matrimonios_hombres int NOT NULL CHECK (matrimonios_hombres >= 0),
+    matrimonios_mujeres int NOT NULL CHECK (matrimonios_mujeres >= 0),
+    es_residente_espania boolean NOT NULL
+  );
+
 ------------------------------------------------------------------------------------
 -- violencia_genero
 ------------------------------------------------------------------------------------
