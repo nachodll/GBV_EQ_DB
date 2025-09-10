@@ -191,10 +191,10 @@ Tables are distributed in different schemas according to the field to which thei
             <td>Provincias</td>
             <td>INE</td>
         </tr>
-        <tr style="background-color: #f8ccccff;">
-            <td>Tasa de divoricialidad por sexo y edad</td>
-            <td></td>
-            <td></td>
+        <tr>
+            <td><a href="./Tables/demografia/tasa_divorcialidad/">tasa_divorcialidad</a></td>
+            <td>2005-2023</td>
+            <td>Provincias</td>
             <td>INE</td>
         </tr>
         <tr style="background-color: #f8ccccff;">

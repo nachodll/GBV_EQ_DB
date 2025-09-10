@@ -41,6 +41,7 @@ nav:
             - poblacion_grupo_edad: Tables/demografia/poblacion_grupo_edad.md
             - matrimonios_heterosexuales: Tables/demografia/matrimonios_heterosexuales.md
             - matrimonios_homosexuales: Tables/demografia/matrimonios_homosexuales.md
+            - tasa_divorcialidad: Tables/demografia/tasa_divorcialidad.md
         - igualdad_formal:
             - eige_dominios: Tables/igualdad_formal/eige_dominios.md
             - eige_indicadores: Tables/igualdad_formal/eige_indicadores.md
