@@ -1,6 +1,6 @@
 # demografia.tasa_divorcialidad
 
-Divorce rate in Spain, disaggregated by province, sex, age group and year. The results for the 2005-2010 period only take into account divorces of marriages between people of different sexes.
+Divorce rate in Spain, disaggregated by province, sex, age group and year. The results for the 2005-2010 period only take into account divorces of marriages between people of different sexes. Age groups categories are slightly different for periods 2005-2010 and 2010-2023.
 
 - **Time period**: 2005-2023, annually (only heterosexual marriages for the 2005-2010 period)
 - **Regional breakdown**: provincias
@@ -13,7 +13,7 @@ Divorce rate in Spain, disaggregated by province, sex, age group and year. The r
 | anio | int | NO | year |
 | provincia_id | int | YES | references geo.provincias |
 | sexo | enums.sexo_enum | NO | sex |
-| grupo_edad | varchar | YES | age group |
+| grupo_edad | varchar | YES | age group, categories varies slightly accross periods |
 | tasa_divorcialidad | float | NO | divorce rate per 1000 people |
 
 ## Table definition

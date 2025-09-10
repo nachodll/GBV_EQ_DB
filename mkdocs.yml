@@ -42,6 +42,7 @@ nav:
             - matrimonios_heterosexuales: Tables/demografia/matrimonios_heterosexuales.md
             - matrimonios_homosexuales: Tables/demografia/matrimonios_homosexuales.md
             - tasa_divorcialidad: Tables/demografia/tasa_divorcialidad.md
+            - divorcios_segun_duracion_matrimonio: Tables/demografia/divorcios_segun_duracion_matrimonio.md
         - igualdad_formal:
             - eige_dominios: Tables/igualdad_formal/eige_dominios.md
             - eige_indicadores: Tables/igualdad_formal/eige_indicadores.md

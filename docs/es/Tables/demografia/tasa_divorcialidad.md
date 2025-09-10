@@ -1,6 +1,6 @@
 # demografia.tasa_divorcialidad
 
-Tasa de divorcios en España, desagregada por provincia, sexo, grupo de edad y año. Los resultados del periodo 2005-2010 solo tienen en cuenta divorcios de matrimonios entre personas de distinto sexo.
+Tasa de divorcios en España, desagregada por provincia, sexo, grupo de edad y año. Los resultados del periodo 2005-2010 solo tienen en cuenta divorcios de matrimonios entre personas de distinto sexo. Las categorías de grupos de edad son varián ligeramente entre el periodo 2005-2010 y el periodo 2010-2023.
 
 
 - **Periodo temporal**: 2005-2023, anual (solo matrimonios heterosexuales para el periodo 2005-2010)
@@ -14,7 +14,7 @@ Tasa de divorcios en España, desagregada por provincia, sexo, grupo de edad y a
 | anio | int | NO | año |
 | provincia_id | int | YES | referencia a geo.provincias |
 | sexo | enums.sexo_enum | NO | sexo |
-| grupo_edad | varchar | YES | grupo de edad |
+| grupo_edad | varchar | YES | grupo de edad, las categorías varían ligeramente entre periodos |
 | tasa_divorcialidad | float | NO | tasa de divorcios por 1000 personas |
 
 ## Definición de la tabla

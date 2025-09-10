@@ -197,10 +197,10 @@ Tables are distributed in different schemas according to the field to which thei
             <td>Provincias</td>
             <td>INE</td>
         </tr>
-        <tr style="background-color: #f8ccccff;">
-            <td>Proporción de divorcios según grupo de duración de matrimonio</td>
-            <td></td>
-            <td></td>
+        <tr>
+            <td>divorcios_segun_duracion_matrimonio</td>
+            <td>2005-2023</td>
+            <td>Provincias</td>
             <td>INE</td>
         </tr>
         <tr style="background-color: #f8ccccff;">
