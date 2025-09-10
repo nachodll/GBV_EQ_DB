@@ -197,19 +197,18 @@ Las tablas se distribuyen en diferentes esquemas según el ámbito al que perten
             <td>INE</td>
         </tr>
         <tr>
-            <td>divorcios_segun_duracion_matrimonio</td>
+            <td><a href="./Tables/demografia/divorcios_segun_duracion_matrimonio/">divorcios_segun_duracion_matrimonio</a></td>
             <td>2005-2023</td>
             <td>Provincias</td>
             <td>INE</td>
         </tr>
-        <tr style="background-color: #f8ccccff;">
-            <td>Nulidades, separaciones y divorcios</td>
-            <td></td>
-            <td></td>
+        <tr>
+            <td><a href="./Tables/demografia/nulidades_separaciones_divorcios/">nulidades_separaciones_divorcios</a></td>
+            <td>2012-2024</td>
+            <td>Provincias</td>
             <td>INE</td>
         </tr>
-        <tr style="background-color: #f8ccccff;">
-            <td>Hogares monoparentales</td>
+        <tr style="background-color: #f8ccccff;">          <td>Hogares monoparentales</td>
             <td></td>
             <td></td>
             <td>INE</td>
