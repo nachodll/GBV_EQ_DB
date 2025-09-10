@@ -210,6 +210,36 @@ CREATE TABLE
     poblacion int NOT NULL CHECK (poblacion >= 0)
   );
 
+CREATE TABLE
+  demografia.matrimonios_heterosexuales (
+    matrimonios_heterosexuales_id serial PRIMARY KEY,
+    anio int NOT NULL CHECK (
+      anio BETWEEN 1900 AND EXTRACT(
+        YEAR
+        FROM
+          CURRENT_DATE
+      )
+    ),
+    provincia_id int REFERENCES geo.provincias (provincia_id),
+    sexo enums.sexo_enum NOT NULL,
+    edad varchar NOT NULL CHECK (
+      edad ~ '^\d+$'
+      OR edad ~ '^<\d+$'
+      OR edad ~ '^>\d+$'
+    ),
+    estado_civil_anterior varchar CHECK (
+      estado_civil_anterior IN (
+        'Total',
+        'Solteros/Solteras',
+        'Viudos/Viudas',
+        'Divorciados/Divorciadas'
+      )
+      OR estado_civil_anterior IS NULL
+    ),
+    matrimonios int NOT NULL CHECK (matrimonios >= 0),
+    es_residente_espania boolean NOT NULL
+  );
+
 ------------------------------------------------------------------------------------
 -- violencia_genero
 ------------------------------------------------------------------------------------

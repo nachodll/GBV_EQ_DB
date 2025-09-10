@@ -388,6 +388,14 @@ def test_normalize_age_group_basic_range():
     assert r1.status is r2.status is NormalizationStatus.VALID
 
 
+def test_normalize_age_group_single_age():
+    r1 = normalize_age_group("19 años")
+    r2 = normalize_age_group("  0  años ")
+    assert r1.value == "19"
+    assert r2.value == "0"
+    assert r1.status is r2.status is NormalizationStatus.VALID
+
+
 def test_normalize_age_group_spaces_case():
     r1 = normalize_age_group("  41-50 AÑOS ")
     r2 = normalize_age_group("51 - 60 años")

@@ -286,6 +286,14 @@ def normalize_age_group(raw: Optional[str]) -> NormalizationResult:
     if _is_unknown(clean):
         return NormalizationResult(None, NormalizationStatus.UNKNOWN, raw)
 
+    # Special case: "19 años"
+    match_single = re.match(r"^(\d+)$", clean)
+    if match_single:
+        age = int(match_single.group(1))
+        if age < 0:
+            return NormalizationResult(None, NormalizationStatus.INVALID, raw)
+        return NormalizationResult(f"{age}", NormalizationStatus.VALID, raw)
+
     # Special cases: "De 0 a 15 años", "De 16 a 64 años"
     match_de_range = re.match(r"de(\d+)a(\d+)", clean)
     if match_de_range:
