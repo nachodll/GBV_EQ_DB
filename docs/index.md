@@ -185,22 +185,10 @@ Tables are distributed in different schemas according to the field to which thei
             <td>Provincias</td>
             <td>INE</td>
         </tr>
-        <tr style="background-color: #f8ccccff;">
-            <td>Matrimonios entre personas de diferente sexo por Estado Civil Anterior</td>
-            <td></td>
-            <td></td>
-            <td>INE</td>
-        </tr>
-        <tr style="background-color: #f8ccccff;">
-            <td>Matrimonios entre hombres</td>
-            <td></td>
-            <td></td>
-            <td>INE</td>
-        </tr>
-        <tr style="background-color: #f8ccccff;">
-            <td>Matrimonios entre mujeres</td>
-            <td></td>
-            <td></td>
+        <tr>
+            <td><a href="./Tables/demografia/matrimonios_homosexuales/">matrimonios_homosexuales</a></td>
+            <td>2005-2023</td>
+            <td>Provincias</td>
             <td>INE</td>
         </tr>
         <tr style="background-color: #f8ccccff;">
