@@ -324,6 +324,23 @@ CREATE TABLE
     )
   );
 
+CREATE TABLE
+  demografia.nulidades_separaciones_divorcios (
+    nulidades_separaciones_divorcios_id serial PRIMARY KEY,
+    anio int NOT NULL CHECK (
+      anio BETWEEN 1900 AND EXTRACT(
+        YEAR
+        FROM
+          CURRENT_DATE
+      )
+    ),
+    provincia_id int REFERENCES geo.provincias (provincia_id),
+    tipo_disolucion varchar NOT NULL CHECK (
+      tipo_disolucion IN ('Nulidades', 'Separaciones', 'Divorcios')
+    ),
+    disoluciones_matrimoniales int NOT NULL CHECK (disoluciones_matrimoniales >= 0)
+  );
+
 ------------------------------------------------------------------------------------
 -- violencia_genero
 ------------------------------------------------------------------------------------
