@@ -178,10 +178,10 @@ Las tablas se distribuyen en diferentes esquemas según el ámbito al que perten
             <td>España</td>
             <td>INE</td>
         </tr>
-        <tr style="background-color: #f8ccccff;">
-            <td>Matrimonios entre personas de diferente sexo</td>
-            <td></td>
-            <td></td>
+        <tr>
+            <td><a href="./Tables/demografia/matrimonios_heterosexuales/">matrimonios_heterosexuales</a></td>
+            <td>1975-2023</td>
+            <td>Provincias</td>
             <td>INE</td>
         </tr>
         <tr style="background-color: #f8ccccff;">

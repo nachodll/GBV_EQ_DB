@@ -39,6 +39,7 @@ nav:
         - demografia:
             - poblacion_municipio: Tables/demografia/poblacion_municipios.md
             - poblacion_grupo_edad: Tables/demografia/poblacion_grupo_edad.md
+            - matrimonios_heterosexuales: Tables/demografia/matrimonios_heterosexuales.md
         - igualdad_formal:
             - eige_dominios: Tables/igualdad_formal/eige_dominios.md
             - eige_indicadores: Tables/igualdad_formal/eige_indicadores.md

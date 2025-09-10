@@ -179,10 +179,10 @@ Tables are distributed in different schemas according to the field to which thei
             <td>Spain</td>
             <td>INE</td>
         </tr>
-        <tr style="background-color: #f8ccccff;">
-            <td>Matrimonios entre personas de diferente sexo</td>
-            <td></td>
-            <td></td>
+        <tr>
+            <td><a href="./Tables/demografia/matrimonios_heterosexuales/">matrimonios_heterosexuales</a></td>
+            <td>1975-2023</td>
+            <td>Provincias</td>
             <td>INE</td>
         </tr>
         <tr style="background-color: #f8ccccff;">
