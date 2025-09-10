@@ -53,6 +53,7 @@ TABLES_TO_LOAD: Dict[Path, Optional[Callable[[Connection, pd.DataFrame], None]]]
     CLEAN_DATA_DIR / "demografia" / "poblacion_grupo_edad.csv": load_poblacion_grupo_edad,
     CLEAN_DATA_DIR / "demografia" / "matrimonios_heterosexuales.csv": None,
     CLEAN_DATA_DIR / "demografia" / "matrimonios_homosexuales.csv": None,
+    CLEAN_DATA_DIR / "demografia" / "tasa_divorcialidad.csv": None,
     CLEAN_DATA_DIR / "migracion" / "residentes_extranjeros.csv": load_residentes_extranjeros,
     CLEAN_DATA_DIR / "igualdad_formal" / "eige_dominios.csv": load_eige_dominios,
     CLEAN_DATA_DIR / "igualdad_formal" / "eige_indicadores.csv": load_eige_indicadores,

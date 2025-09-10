@@ -266,6 +266,29 @@ CREATE TABLE
     es_residente_espania boolean NOT NULL
   );
 
+CREATE TABLE
+  demografia.tasa_divorcialidad (
+    tasa_divorcialidad_id serial PRIMARY KEY,
+    anio int NOT NULL CHECK (
+      anio BETWEEN 1900 AND EXTRACT(
+        YEAR
+        FROM
+          CURRENT_DATE
+      )
+    ),
+    provincia_id int REFERENCES geo.provincias (provincia_id),
+    sexo enums.sexo_enum NOT NULL,
+    grupo_edad varchar CHECK (
+      grupo_edad ~ '^\d+-\d+$'
+      OR grupo_edad ~ '^<\d+$'
+      OR grupo_edad ~ '^>\d+$'
+    ),
+    tasa_divorcialidad float NOT NULL CHECK (
+      tasa_divorcialidad >= 0
+      AND tasa_divorcialidad <= 1000
+    )
+  );
+
 ------------------------------------------------------------------------------------
 -- violencia_genero
 ------------------------------------------------------------------------------------
