@@ -71,9 +71,6 @@ def main():
         df["matrimonios_hombres"] = df["matrimonios_hombres"].fillna(0)  # type: ignore
         df["matrimonios_mujeres"] = df["matrimonios_mujeres"].fillna(0)  # type: ignore
 
-        # Remove numbers from province names
-        df["provincia_id"] = df["provincia_id"].str.replace(r"\b\d{2}\b", "", regex=True)
-
         # Drop rows with aggregated data
         df = df[df["provincia_id"] != "Total"]
         df = df[df["conyuge_1_grupo_edad"] != "Todas las edades"]

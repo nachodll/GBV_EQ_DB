@@ -60,7 +60,8 @@ def _normalize_region_name(name: str, normalization_dict: dict[str, int]) -> int
     Ignores case, accents, and any spaces (leading, trailing, or in the middle).
     Returns the normalized name, or None if not found.
     """
-    cleaned = name.strip()
+    cleaned = re.sub(r"\b\d{1,2}\b", "", name).strip()
+
     # Try direct match first
     if cleaned in normalization_dict:
         return normalization_dict[cleaned]

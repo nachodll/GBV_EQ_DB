@@ -81,9 +81,6 @@ def main():
         # Drop rows with missing values for 'matrimonios'
         df = df[df["matrimonios"].notna()]
 
-        # Remove numbers from province names
-        df["provincia_id"] = df["provincia_id"].str.replace(r"\b\d{2}\b", "", regex=True)
-
         # Adapt to expected values
         df["edad"] = df["edad"].replace({"Menos de 15 años": "<15"})  # type: ignore
 

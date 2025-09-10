@@ -46,9 +46,6 @@ def main():
             inplace=True,
         )
 
-        # Remove numbers from province names
-        df["provincia_id"] = df["provincia_id"].str.replace(r"\b\d{2}\b", "", regex=True)
-
         # Adapt to expected format
         df["grupo_edad"] = df["grupo_edad"].replace("19 y menos años", "<19")  # type: ignore
         df["grupo_edad"] = df["grupo_edad"].replace("18 y menos años", "<18")  # type: ignore

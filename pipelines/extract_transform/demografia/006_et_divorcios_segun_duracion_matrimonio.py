@@ -44,9 +44,6 @@ def main():
             inplace=True,
         )
 
-        # Remove numbers from province names
-        df["provincia_id"] = df["provincia_id"].str.replace(r"\b\d{2}\b", "", regex=True)
-
         # Drop rows with missing 'porcentaje_divorcios'
         df = df[df["porcentaje_divorcios"] != ".."]
 

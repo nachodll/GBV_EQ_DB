@@ -122,6 +122,12 @@ def test_normalize_provincia_basic():
     assert result.status is NormalizationStatus.VALID
 
 
+def test_normalize_provincia_with_number():
+    result = normalize_provincia("01 Álava")
+    assert result.value == 1
+    assert result.status is NormalizationStatus.VALID
+
+
 def test_normalize_provincia_accent_and_case():
     result = normalize_provincia("alAvá")
     assert result.value == 1
@@ -174,6 +180,12 @@ def test_normalize_provincia_invalid():
 def test_normalize_comunidad_autonoma_basic():
     result = normalize_comunidad_autonoma("Andalucía")
     assert result.value == 1
+    assert result.status is NormalizationStatus.VALID
+
+
+def test_normalize_comunidad_autonoma_with_number():
+    result = normalize_comunidad_autonoma("03 Asturias")
+    assert result.value == 3
     assert result.status is NormalizationStatus.VALID
 
 
