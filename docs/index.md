@@ -45,7 +45,7 @@ Tables are distributed in different schemas according to the field to which thei
             <td>Provincias</td>
             <td>DGVG</td>
             </tr>
-            <tr>
+        <tr>
             <td><a href="./Tables/violencia_genero/feminicidios_fuera_pareja_expareja/">feminicidios_fuera_pareja_expareja</a></td>
             <td>2022-2025</td>
             <td>Comunidades</td>
@@ -209,10 +209,10 @@ Tables are distributed in different schemas according to the field to which thei
             <td>Provincias</td>
             <td>INE</td>
         </tr>
-        <tr style="background-color: #f8ccccff;">
-            <td>Hogares monoparentales</td>
-            <td></td>
-            <td></td>
+        <tr>
+            <td><a href="./Tables/demografia/hogares_monoparentales/">hogares_monoparentales</a></td>
+            <td>2014-2020</td>
+            <td>Comunidades</td>
             <td>INE</td>
         </tr>
         <tr style="background-color: #f8ccccff;">

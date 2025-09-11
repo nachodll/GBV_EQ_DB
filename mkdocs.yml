@@ -44,6 +44,7 @@ nav:
             - tasa_divorcialidad: Tables/demografia/tasa_divorcialidad.md
             - divorcios_segun_duracion_matrimonio: Tables/demografia/divorcios_segun_duracion_matrimonio.md
             - nulidades_separaciones_divorcios: Tables/demografia/nulidades_separaciones_divorcios.md
+            - hogares_monoparentales: Tables/demografia/hogares_monoparentales.md
         - igualdad_formal:
             - eige_dominios: Tables/igualdad_formal/eige_dominios.md
             - eige_indicadores: Tables/igualdad_formal/eige_indicadores.md

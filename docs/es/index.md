@@ -208,9 +208,10 @@ Las tablas se distribuyen en diferentes esquemas según el ámbito al que perten
             <td>Provincias</td>
             <td>INE</td>
         </tr>
-        <tr style="background-color: #f8ccccff;">          <td>Hogares monoparentales</td>
-            <td></td>
-            <td></td>
+        <tr>
+            <td><a href="./Tables/demografia/hogares_monoparentales/">hogares_monoparentales</a></td>
+            <td>2014-2020</td>
+            <td>Comunidades</td>
             <td>INE</td>
         </tr>
         <tr style="background-color: #f8ccccff;">
