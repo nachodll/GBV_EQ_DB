@@ -32,6 +32,7 @@ SCRIPTS: List[Path] = [
     ET_SCRIPTS_DIR / "demografia" / "005_et_tasa_divorcialidad.py",
     ET_SCRIPTS_DIR / "demografia" / "006_et_divorcios_segun_duracion_matrimonio.py",
     ET_SCRIPTS_DIR / "demografia" / "007_et_nulidades_separaciones_divorcios.py",
+    ET_SCRIPTS_DIR / "demografia" / "008_et_hogares_monoparentales.py",
     ET_SCRIPTS_DIR / "migracion" / "001_et_residentes_extranjeros.py",
     ET_SCRIPTS_DIR / "igualdad_formal" / "001_et_eige_dominios.py",
     ET_SCRIPTS_DIR / "igualdad_formal" / "002_et_eige_indicadores.py",

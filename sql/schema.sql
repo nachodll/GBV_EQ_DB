@@ -341,6 +341,36 @@ CREATE TABLE
     disoluciones_matrimoniales int NOT NULL CHECK (disoluciones_matrimoniales >= 0)
   );
 
+CREATE TABLE
+  demografia.hogares_monoparentales (
+    hogares_monoparentales_id serial PRIMARY KEY,
+    anio int NOT NULL CHECK (
+      anio BETWEEN 1900 AND EXTRACT(
+        YEAR
+        FROM
+          CURRENT_DATE
+      )
+    ),
+    comunidad_autonoma_id int NOT NULL REFERENCES geo.comunidades_autonomas (comunidad_autonoma_id),
+    sexo enums.sexo_enum NOT NULL,
+    grupo_edad varchar CHECK (
+      grupo_edad ~ '^\d+-\d+$'
+      OR grupo_edad ~ '^<\d+$'
+      OR grupo_edad ~ '^>\d+$'
+    ),
+    estado_civil varchar CHECK (
+      estado_civil IN (
+        'Soltero/a',
+        'Casado/a',
+        'Viudo/a',
+        'Separado/a',
+        'Divorciado/a'
+      )
+      OR estado_civil IS NULL
+    ),
+    hogares_monoparentales float NOT NULL CHECK (hogares_monoparentales >= 0)
+  );
+
 ------------------------------------------------------------------------------------
 -- violencia_genero
 ------------------------------------------------------------------------------------
