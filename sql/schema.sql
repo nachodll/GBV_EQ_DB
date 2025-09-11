@@ -371,6 +371,20 @@ CREATE TABLE
     hogares_monoparentales float NOT NULL CHECK (hogares_monoparentales >= 0)
   );
 
+CREATE TABLE
+  demografia.tasa_bruta_natalidad (
+    tasa_bruta_natalidad_id serial PRIMARY KEY,
+    anio int NOT NULL CHECK (
+      anio BETWEEN 1900 AND EXTRACT(
+        YEAR
+        FROM
+          CURRENT_DATE
+      )
+    ),
+    provincia_id int REFERENCES geo.provincias (provincia_id),
+    tasa_bruta_natalidad float NOT NULL CHECK (tasa_bruta_natalidad >= 0)
+  );
+
 ------------------------------------------------------------------------------------
 -- violencia_genero
 ------------------------------------------------------------------------------------
