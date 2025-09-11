@@ -221,16 +221,10 @@ Tables are distributed in different schemas according to the field to which thei
             <td>Provincias</td>
             <td>INE</td>
         </tr>
-        <tr style="background-color: #f8ccccff;">
-            <td>Empleo del Tiempo 2009</td>
-            <td></td>
-            <td></td>
-            <td>INE</td>
-        </tr>
-        <tr style="background-color: #f8ccccff;">
-            <td>Empleo del Tiempo 2002</td>
-            <td></td>
-            <td></td>
+        <tr>
+            <td><a href="./Tables/demografia/uso_tiempo/">uso_tiempo</a></td>
+            <td>2002-2003, 2009-2010</td>
+            <td>Comunidades</td>
             <td>INE</td>
         </tr>
     </tbody>
