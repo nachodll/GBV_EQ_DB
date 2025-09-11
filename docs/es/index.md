@@ -214,10 +214,10 @@ Las tablas se distribuyen en diferentes esquemas según el ámbito al que perten
             <td>Comunidades</td>
             <td>INE</td>
         </tr>
-        <tr style="background-color: #f8ccccff;">
-            <td>Tasa Bruta Natalidad</td>
-            <td></td>
-            <td></td>
+        <tr>
+            <td><a href="./Tables/demografia/tasa_bruta_natalidad/">tasa_bruta_natalidad</a></td>
+            <td>1975-2023</td>
+            <td>Provincias</td>
             <td>INE</td>
         </tr>
         <tr style="background-color: #f8ccccff;">
