@@ -385,6 +385,42 @@ CREATE TABLE
     tasa_bruta_natalidad float NOT NULL CHECK (tasa_bruta_natalidad >= 0)
   );
 
+CREATE TABLE
+  demografia.uso_tiempo (
+    uso_tiempo_id serial PRIMARY KEY,
+    anio int NOT NULL CHECK (
+      anio BETWEEN 1900 AND EXTRACT(
+        YEAR
+        FROM
+          CURRENT_DATE
+      )
+    ),
+    comunidad_autonoma_id int NOT NULL REFERENCES geo.comunidades_autonomas (comunidad_autonoma_id),
+    sexo enums.sexo_enum NOT NULL,
+    actividad varchar NOT NULL CHECK (
+      actividad IN (
+        '0 Cuidados personales',
+        '1 Trabajo remunerado',
+        '2 Estudios',
+        '3 Hogar y familia',
+        '4 Trabajo voluntario y reuniones',
+        '5 Vida social y diversión',
+        '6 Deportes y actividades al aire libre',
+        '7 Aficiones e informática',
+        '8 Medios de comunicación',
+        '9 Trayectos y empleo del tiempo no especificado'
+      )
+    ),
+    horas int NOT NULL CHECK (
+      horas >= 0
+      AND horas <= 24
+    ),
+    minutos int NOT NULL CHECK (
+      minutos >= 0
+      AND minutos < 60
+    )
+  );
+
 ------------------------------------------------------------------------------------
 -- violencia_genero
 ------------------------------------------------------------------------------------
