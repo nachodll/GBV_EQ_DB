@@ -675,6 +675,42 @@ CREATE TABLE
     denuncias_presentadas int NOT NULL CHECK (denuncias_presentadas >= 0)
   );
 
+CREATE TABLE
+  violencia_genero.infracciones_penales_inputadas_vg (
+    infracciones_penales_inputadas_vg_id serial PRIMARY KEY,
+    anio int NOT NULL CHECK (
+      anio BETWEEN 1900 AND EXTRACT(
+        YEAR
+        FROM
+          CURRENT_DATE
+      )
+    ),
+    comunidad_autonoma_id int NOT NULL REFERENCES geo.comunidades_autonomas (comunidad_autonoma_id),
+    tipo_infraccion text NOT NULL CHECK (
+      tipo_infraccion IN (
+        'Delitos',
+        'Homicidio y sus formas',
+        'Lesiones',
+        'Detenciones ilegales y secuestro',
+        'Amenazas',
+        'Coacciones',
+        'Torturas e integridad moral',
+        'Agresiones sexuales',
+        'Abusos sexuales',
+        'Abusos y agresiones sexuales a menores de 16 años',
+        'Allanamiento de morada',
+        'Injurias',
+        'Daños',
+        'Quebrantamiento de condena',
+        'Otros delitos sin especificar',
+        'Faltas',
+        'Faltas contra las personas',
+        'Otras faltas sin especificar'
+      )
+    ),
+    infracciones_penales_inputadas int NOT NULL CHECK (infracciones_penales_inputadas >= 0)
+  );
+
 ------------------------------------------------------------------------------------
 -- igualdad_formal
 ------------------------------------------------------------------------------------
