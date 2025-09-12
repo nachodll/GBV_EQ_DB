@@ -100,6 +100,12 @@ Tables are distributed in different schemas according to the field to which thei
             <td>DGVG</td>
             </tr>
             <tr>
+            <td><a href="./Tables/violencia_genero/denuncias_vg_presentadas/">denuncias_vg_presentadas</a></td>
+            <td>2007-2024</td>
+            <td>Comunidades</td>
+            <td>Instituto de las Mujeres</td>
+            </tr>
+            <tr>
             <td><a href="./Tables/violencia_genero/ordenes_proteccion/">ordenes_proteccion</a></td>
             <td>2009-2025</td>
             <td>Provincias</td>
@@ -147,11 +153,6 @@ Tables are distributed in different schemas according to the field to which thei
             <td>Provincias</td>
             <td>CIS</td>
             </tr>
-            <tr style="background-color: #f8ccccff;">
-            <td>Denuncias Violencia de Género</td>
-            <td>2007-2024</td>
-            <td>Comunidades</td>
-            <td>Instituto de las Mujeres</td>
         </tr>
     </tbody>
 </table>
