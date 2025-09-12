@@ -33,6 +33,7 @@ nav:
             - autorizaciones_residencia_trabajo_vvg: Tables/violencia_genero/autorizaciones_residencia_trabajo_vvg.md
             - denuncias_vg_pareja: Tables/violencia_genero/denuncias_vg_pareja.md
             - denuncias_vg_presentadas: Tables/violencia_genero/denuncias_vg_presentadas.md
+            - infracciones_penales_inputadas_vg: Tables/violencia_genero/infracciones_penales_inputadas_vg.md
             - ordenes_proteccion: Tables/violencia_genero/ordenes_proteccion.md
             - renta_activa_insercion: Tables/violencia_genero/renta_activa_insercion.md
             - contratos_bonificados_sustitucion: Tables/violencia_genero/contratos_bonificados_sustitucion.md

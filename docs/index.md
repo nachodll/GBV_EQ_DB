@@ -106,6 +106,12 @@ Tables are distributed in different schemas according to the field to which thei
             <td>Instituto de las Mujeres</td>
             </tr>
             <tr>
+            <td><a href="./Tables/violencia_genero/infracciones_penales_inputadas_vg/">infracciones_penales_inputadas_vg</a></td>
+            <td>2011-2024</td>
+            <td>Comunidades</td>
+            <td>INE</td>
+            </tr>
+            <tr>
             <td><a href="./Tables/violencia_genero/ordenes_proteccion/">ordenes_proteccion</a></td>
             <td>2009-2025</td>
             <td>Provincias</td>
