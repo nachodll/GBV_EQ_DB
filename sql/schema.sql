@@ -661,6 +661,20 @@ CREATE TABLE
     ayudas_cambio_residencia int NOT NULL CHECK (ayudas_cambio_residencia >= 0)
   );
 
+CREATE TABLE
+  violencia_genero.denuncias_vg_presentadas (
+    denuncias_vg_presentadas_id serial PRIMARY KEY,
+    comunidad_autonoma_id int NOT NULL REFERENCES geo.comunidades_autonomas (comunidad_autonoma_id),
+    anio int NOT NULL CHECK (
+      anio BETWEEN 1900 AND EXTRACT(
+        YEAR
+        FROM
+          CURRENT_DATE
+      )
+    ),
+    denuncias_presentadas int NOT NULL CHECK (denuncias_presentadas >= 0)
+  );
+
 ------------------------------------------------------------------------------------
 -- igualdad_formal
 ------------------------------------------------------------------------------------
