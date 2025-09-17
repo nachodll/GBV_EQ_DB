@@ -711,6 +711,13 @@ CREATE TABLE
     infracciones_penales_inputadas int NOT NULL CHECK (infracciones_penales_inputadas >= 0)
   );
 
+CREATE TABLE
+  violencia_genero.encuesta_europea_2022 (
+    encuesta_europea_2022_id serial PRIMARY KEY,
+    encuesta_id int NOT NULL,
+    variables_json jsonb NOT NULL
+  );
+
 ------------------------------------------------------------------------------------
 -- igualdad_formal
 ------------------------------------------------------------------------------------

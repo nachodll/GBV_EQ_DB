@@ -1,3 +1,4 @@
+import json
 import re
 import unicodedata
 from dataclasses import dataclass
@@ -385,6 +386,18 @@ def normalize_plain_text(text: str) -> NormalizationResult:
         return NormalizationResult(None, NormalizationStatus.INVALID, clean_str)
 
     return NormalizationResult(clean_str, NormalizationStatus.VALID, clean_str)
+
+
+def normalize_json_string(json_str: str) -> NormalizationResult:
+    """Validate that a string is a valid JSON."""
+    if _is_unknown(json_str):
+        return NormalizationResult(None, NormalizationStatus.UNKNOWN, json_str)
+    try:
+        raw_str = json_str.strip()
+        parsed = json.loads(raw_str)
+        return NormalizationResult(json.dumps(parsed), NormalizationStatus.VALID, raw_str)
+    except (json.JSONDecodeError, TypeError):
+        return NormalizationResult(None, NormalizationStatus.INVALID, json_str)
 
 
 def apply_and_check(series: pd.Series, func: Callable[[Any], NormalizationResult]):  # type: ignore

@@ -8,6 +8,7 @@ from utils.normalization import (
     normalize_age_group,
     normalize_comunidad_autonoma,
     normalize_date,
+    normalize_json_string,
     normalize_month,
     normalize_municipio,
     normalize_municipio_id,
@@ -551,3 +552,39 @@ def test_apply_and_check_dict_invalid():
     mapping = {"a": 1, "b": 2}
     with pytest.raises(ValueError):
         apply_and_check_dict(ser, mapping)
+
+
+def test_normalize_json_string_valid():
+    result = normalize_json_string('{"a": 1, "b": "foo"}')
+    assert result.status is NormalizationStatus.VALID
+    assert result.value == '{"a": 1, "b": "foo"}'
+
+
+def test_normalize_json_string_valid_with_spaces():
+    result = normalize_json_string('  { "x": [1,2,3], "y": null }  ')
+    assert result.status is NormalizationStatus.VALID
+    assert result.value == '{"x": [1, 2, 3], "y": null}'
+
+
+def test_normalize_json_string_invalid():
+    result = normalize_json_string("{a: 1, b: 2}")  # keys not quoted
+    assert result.status is NormalizationStatus.INVALID
+    assert result.value is None
+
+
+def test_normalize_json_string_empty():
+    result = normalize_json_string("")
+    assert result.status is NormalizationStatus.UNKNOWN
+    assert result.value is None
+
+
+def test_normalize_json_string_unknown():
+    result = normalize_json_string("No consta")
+    assert result.status is NormalizationStatus.UNKNOWN
+    assert result.value is None
+
+
+def test_normalize_json_string_none():
+    result = normalize_json_string(None)
+    assert result.status is NormalizationStatus.UNKNOWN
+    assert result.value is None

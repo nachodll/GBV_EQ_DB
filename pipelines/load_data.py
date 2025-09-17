@@ -51,6 +51,7 @@ TABLES_TO_LOAD: Dict[Path, Optional[Callable[[Connection, pd.DataFrame], None]]]
     CLEAN_DATA_DIR / "violencia_genero" / "ayudas_cambio_residencia.csv": None,
     CLEAN_DATA_DIR / "violencia_genero" / "denuncias_vg_presentadas.csv": None,
     CLEAN_DATA_DIR / "violencia_genero" / "infracciones_penales_inputadas_vg.csv": None,
+    CLEAN_DATA_DIR / "violencia_genero" / "encuesta_europea_2022.csv": None,
     CLEAN_DATA_DIR / "demografia" / "poblacion_municipios.csv": None,
     CLEAN_DATA_DIR / "demografia" / "poblacion_grupo_edad.csv": load_poblacion_grupo_edad,
     CLEAN_DATA_DIR / "demografia" / "matrimonios_heterosexuales.csv": None,
