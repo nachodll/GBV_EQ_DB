@@ -714,7 +714,7 @@ CREATE TABLE
 CREATE TABLE
   violencia_genero.encuesta_europea_2022 (
     encuesta_europea_2022_id serial PRIMARY KEY,
-    encuesta_id int NOT NULL,
+    encuestado_id int NOT NULL,
     variables_json jsonb NOT NULL
   );
 

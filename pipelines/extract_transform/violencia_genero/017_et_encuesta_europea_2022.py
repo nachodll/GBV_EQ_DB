@@ -37,13 +37,13 @@ def main():
         # Aggregate all columns except PERS_ID_R into a dict, then to JSON
         df_json = pd.DataFrame(
             {
-                "encuesta_id": df["PERS_ID_R"],
+                "encuestado_id": df["PERS_ID_R"],
                 "variables_json": df.drop(columns=["PERS_ID_R"]).apply(lambda x: x.to_dict(), axis=1).apply(json.dumps),  # type: ignore
             }
         )
 
         # Validate and normalize columns
-        df_json["encuesta_id"] = apply_and_check(df_json["encuesta_id"], normalize_positive_integer)
+        df_json["encuestado_id"] = apply_and_check(df_json["encuestado_id"], normalize_positive_integer)
         df_json["variables_json"] = apply_and_check(df_json["variables_json"], normalize_json_string)
 
         # Save to CSV
