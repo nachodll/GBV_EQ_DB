@@ -38,6 +38,7 @@ nav:
             - renta_activa_insercion: Tables/violencia_genero/renta_activa_insercion.md
             - contratos_bonificados_sustitucion: Tables/violencia_genero/contratos_bonificados_sustitucion.md
             - ayudas_cambio_residencia: Tables/violencia_genero/ayudas_cambio_residencia.md
+            - encuesta_europea_2022: Tables/violencia_genero/encuesta_europea_2022.md
         - demografia:
             - poblacion_municipio: Tables/demografia/poblacion_municipios.md
             - poblacion_grupo_edad: Tables/demografia/poblacion_grupo_edad.md

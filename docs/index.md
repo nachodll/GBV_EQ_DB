@@ -135,10 +135,10 @@ Tables are distributed in different schemas according to the field to which thei
             <td>Provincias</td>
             <td>DGVG</td>
             </tr>
-            <tr style="background-color: #f8ccccff;">
-            <td>Encuesta Europea 2023</td>
-            <td>2024</td>
-            <td>Nacional</td>
+            <tr>
+            <td><a href="./Tables/violencia_genero/encuesta_europea_2022/">encuesta_europea_2022</a></td>
+            <td>2022</td>
+            <td>Spain</td>
             <td>Eurostat</td>
             </tr>
             <tr style="background-color: #f8ccccff;">
