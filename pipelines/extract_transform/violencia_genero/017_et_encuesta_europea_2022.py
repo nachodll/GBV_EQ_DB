@@ -33,7 +33,7 @@ def main():
         # Replace NaN with None for JSON serialization
         df = df.replace({np.nan: None})  # type: ignore
 
-        # Aggregate all columns except PERS_ID_R into a dict, then to JSON
+        # Aggregate all columns into a dict, then to JSON
         df_json = pd.DataFrame(
             {
                 "variables_json": df.apply(lambda x: x.to_dict(), axis=1).apply(json.dumps),  # type: ignore

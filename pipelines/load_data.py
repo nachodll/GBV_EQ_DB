@@ -86,7 +86,7 @@ def load_csv_files(paths: List[Path]) -> Dict[str, pd.DataFrame]:
     dataframes: Dict[str, pd.DataFrame] = {}
     for path in paths:
         try:
-            df = pd.read_csv(path, sep=";")  # type: ignore
+            df = pd.read_csv(path, sep=";", escapechar="\\")  # type: ignore
             schema = path.parent.name.lower()
             table_name = path.stem.lower()
             full_table_name = f"{schema}.{table_name}"

@@ -395,7 +395,7 @@ def normalize_json_string(json_str: str) -> NormalizationResult:
     try:
         raw_str = json_str.strip()
         parsed = json.loads(raw_str)
-        return NormalizationResult(json.dumps(parsed), NormalizationStatus.VALID, raw_str)
+        return NormalizationResult(json.dumps(parsed), NormalizationStatus.VALID, json_str)
     except (json.JSONDecodeError, TypeError):
         return NormalizationResult(None, NormalizationStatus.INVALID, json_str)
 
