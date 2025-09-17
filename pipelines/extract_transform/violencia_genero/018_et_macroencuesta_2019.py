@@ -1,8 +1,8 @@
 """Extract and transform data
 Sources:
-    EUROSTAT001
+    CIS001
 Target tables:
-    encuesta_europea_2022
+    macroencuesta_2019
 """
 
 import csv
@@ -12,6 +12,7 @@ from pathlib import Path
 
 import numpy as np
 import pandas as pd
+import pyreadstat  # type: ignore
 
 from utils.logging import setup_logging
 from utils.normalization import (
@@ -19,16 +20,14 @@ from utils.normalization import (
     normalize_json_string,
 )
 
-RAW_CSV_PATH = (
-    Path("data") / "raw" / "EUROSTAT" / "EUROSTAT001-EncuestaEuropeaViolenciaGénero" / "encuesta_europea_GBV.csv"
-)
-CLEAN_CSV_PATH = Path("data") / "clean" / "violencia_genero" / "encuesta_europea_2022.csv"
+RAW_SAV_PATH = Path("data") / "raw" / "CIS" / "CIS001-Macroencuesta2019" / "3235.sav"
+CLEAN_CSV_PATH = Path("data") / "clean" / "violencia_genero" / "macroencuesta_2019.csv"
 
 
 def main():
     try:
-        # Read raw CSV
-        df = pd.read_csv(RAW_CSV_PATH, sep=";")  # type: ignore
+        # Read raw SAV
+        df, meta = pyreadstat.read_sav(RAW_SAV_PATH)  # type: ignore
 
         # Replace NaN with None for JSON serialization
         df = df.replace({np.nan: None})  # type: ignore

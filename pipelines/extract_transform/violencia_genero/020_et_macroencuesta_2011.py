@@ -1,8 +1,8 @@
 """Extract and transform data
 Sources:
-    EUROSTAT001
+    CIS003
 Target tables:
-    encuesta_europea_2022
+    macroencuesta_2011
 """
 
 import csv
@@ -12,6 +12,7 @@ from pathlib import Path
 
 import numpy as np
 import pandas as pd
+import pyreadstat  # type: ignore
 
 from utils.logging import setup_logging
 from utils.normalization import (
@@ -19,16 +20,14 @@ from utils.normalization import (
     normalize_json_string,
 )
 
-RAW_CSV_PATH = (
-    Path("data") / "raw" / "EUROSTAT" / "EUROSTAT001-EncuestaEuropeaViolenciaGénero" / "encuesta_europea_GBV.csv"
-)
-CLEAN_CSV_PATH = Path("data") / "clean" / "violencia_genero" / "encuesta_europea_2022.csv"
+RAW_SAV_PATH = Path("data") / "raw" / "CIS" / "CIS003-Macroencuesta2011" / "2858.sav"
+CLEAN_CSV_PATH = Path("data") / "clean" / "violencia_genero" / "macroencuesta_2011.csv"
 
 
 def main():
     try:
-        # Read raw CSV
-        df = pd.read_csv(RAW_CSV_PATH, sep=";")  # type: ignore
+        # Read raw SAV
+        df, meta = pyreadstat.read_sav(RAW_SAV_PATH)  # type: ignore
 
         # Replace NaN with None for JSON serialization
         df = df.replace({np.nan: None})  # type: ignore
@@ -45,7 +44,7 @@ def main():
 
         # Save to CSV
         CLEAN_CSV_PATH.parent.mkdir(parents=True, exist_ok=True)
-        df_json.to_csv(CLEAN_CSV_PATH, index=False, sep=";", quoting=csv.QUOTE_NONE, escapechar="\\")
+        df_json.to_csv(CLEAN_CSV_PATH, index=False, sep=";", quoting=csv.QUOTE_NONE)
         logging.info(f"Cleaned data saved to {CLEAN_CSV_PATH}")
 
     except FileNotFoundError as e:

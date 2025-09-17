@@ -12,8 +12,7 @@ Para más detalles acerca de la enconcuesta y las variables utilizadas, consulta
 | Nombre | Tipo de dato | Es Nullable | Descripción |
 | --- | --- | --- | --- |
 | encuesta_europea_2022_id | serial | NO | primary key |
-| encuestado_id | int | NO | identificador de la persona encuestada proporcionado en los microdatos originales |
-| variables_json | jsonb | NO | documento JSON con el resto de variables de la encuesta para la persona encuestada |
+| variables_json | jsonb | NO | documento JSON con las variables de la encuesta para la persona encuestada |
 
 ## Definición de la tabla
 
@@ -21,7 +20,6 @@ Para más detalles acerca de la enconcuesta y las variables utilizadas, consulta
 CREATE TABLE
   violencia_genero.encuesta_europea_2022 (
     encuesta_europea_2022_id serial PRIMARY KEY,
-    encuestado_id int NOT NULL,
     variables_json jsonb NOT NULL
   );
 ```
@@ -29,8 +27,8 @@ CREATE TABLE
 ## Transformaciones notables
 
 - El CSV de Eurostat se lee utilizando punto y coma como separador y los valores ausentes se convierten en nulos antes de la serialización.
-- Debido a la gran cantidad de varibles y con el objetivo de preservar todas ellas, todas las columnas distintas del identificador de la persona encuestada (`PERS_ID_R`) se agrupan en un diccionario y se almacenan como cadena JSON en `variables_json`, de modo que cada fila representa una respuesta completa de la encuesta.
-- Se valida que el identificador de la persona encuestada sea un entero positivo y que la cadena JSON esté bien formada antes de cargarla en la base de datos.
+- Debido a la gran cantidad de varibles y con el objetivo de preservar todas ellas, todas las columnas se agrupan en un diccionario y se almacenan como cadena JSON en `variables_json`, de modo que cada fila representa una respuesta completa de la encuesta.
+- Se valida que que la cadena JSON esté bien formada antes de cargarla en la base de datos.
 
 ## Fuente
 Datos extraídos de la <a href="https://ec.europa.eu/eurostat/web/microdata/gender-based-violence" target="_blank">encuesta de la Unión Europea sobre violencia de género de Eurostat (2022)</a>.

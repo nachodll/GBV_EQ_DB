@@ -12,8 +12,7 @@ For more details on how the survey was conducted and information about the varia
 | Name | Data Type | Is Nullable | Description |
 | --- | --- | --- | --- |
 | encuesta_europea_2022_id | serial | NO | primary key |
-| encuestado_id | int | NO | identifier of the respondent provided in the original microdata |
-| variables_json | jsonb | NO | JSON document with the remaining survey variables for the respondent |
+| variables_json | jsonb | NO | JSON document with the survey variables for the respondent |
 
 ## Table definition
 
@@ -21,7 +20,6 @@ For more details on how the survey was conducted and information about the varia
 CREATE TABLE
   violencia_genero.encuesta_europea_2022 (
     encuesta_europea_2022_id serial PRIMARY KEY,
-    encuestado_id int NOT NULL,
     variables_json jsonb NOT NULL
   );
 ```
@@ -29,8 +27,8 @@ CREATE TABLE
 ## Notable transformations
 
 - The raw Eurostat CSV is read using a semicolon delimiter and missing values are converted to nulls prior to serialisation.
-- Due to the large amount of variables and in order to preserve the entire variable set, all columns other than the respondent identifier (`encuestado_id`) are aggregated into a dictionary and stored as a JSON string in `variables_json` so each row represents a full survey response.
-- Data validation ensures the respondent identifier is a positive integer and the JSON string is well formed before loading it into the database.
+- Due to the large amount of variables and in order to preserve the entire variable set, all columns are aggregated into a dictionary and stored as a JSON string in `variables_json` so each row represents a full survey response.
+- Data validation ensures the JSON string is well formed before loading it into the database.
 
 ## Source
 Data extracted from <a href="https://ec.europa.eu/eurostat/web/microdata/gender-based-violence" target="_blank">Eurostat's European Union survey on gender-based violence (2022)</a>.

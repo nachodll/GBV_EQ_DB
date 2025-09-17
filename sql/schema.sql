@@ -714,7 +714,24 @@ CREATE TABLE
 CREATE TABLE
   violencia_genero.encuesta_europea_2022 (
     encuesta_europea_2022_id serial PRIMARY KEY,
-    encuestado_id int NOT NULL,
+    variables_json jsonb NOT NULL
+  );
+
+CREATE TABLE
+  violencia_genero.macroencuesta_2019 (
+    macroencuesta_2019_id serial PRIMARY KEY,
+    variables_json jsonb NOT NULL
+  );
+
+CREATE TABLE
+  violencia_genero.macroencuesta_2015 (
+    macroencuesta_2015_id serial PRIMARY KEY,
+    variables_json jsonb NOT NULL
+  );
+
+CREATE TABLE
+  violencia_genero.macroencuesta_2011 (
+    macroencuesta_2011_id serial PRIMARY KEY,
     variables_json jsonb NOT NULL
   );
 
