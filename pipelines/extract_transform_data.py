@@ -31,6 +31,7 @@ SCRIPTS: List[Path] = [
     ET_SCRIPTS_DIR / "violencia_genero" / "018_et_macroencuesta_2019.py",
     ET_SCRIPTS_DIR / "violencia_genero" / "019_et_macroencuesta_2015.py",
     ET_SCRIPTS_DIR / "violencia_genero" / "020_et_macroencuesta_2011.py",
+    ET_SCRIPTS_DIR / "violencia_genero" / "021_et_fusion_encuestas.py",
     ET_SCRIPTS_DIR / "demografia" / "001_et_poblacion_municipios.py",
     ET_SCRIPTS_DIR / "demografia" / "002_et_poblacion_grupo_edad.py",
     ET_SCRIPTS_DIR / "demografia" / "003_et_matrimonios_heterosexuales.py",

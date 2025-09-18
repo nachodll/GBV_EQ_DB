@@ -738,6 +738,34 @@ CREATE TABLE
     variables_json jsonb NOT NULL
   );
 
+CREATE TABLE
+  violencia_genero.fusion_encuestas (
+    fusion_encuestas_id serial PRIMARY KEY,
+    provincia_id int NOT NULL REFERENCES geo.provincias (provincia_id),
+    codigo_estudio int NOT NULL,
+    anio int NOT NULL CHECK (
+      anio BETWEEN 1900 AND EXTRACT(
+        YEAR
+        FROM
+          CURRENT_DATE
+      )
+    ),
+    mes int NOT NULL CHECK (mes BETWEEN 1 AND 12),
+    violencia_sexual_1_pareja boolean NOT NULL,
+    violencia_sexual_1_fuera_pareja boolean NOT NULL,
+    violencia_sexual_2_pareja boolean NOT NULL,
+    violencia_sexual_3_pareja boolean NOT NULL,
+    violencia_fisica_1_pareja boolean NOT NULL,
+    violencia_fisica_2_pareja boolean NOT NULL,
+    violencia_fisica_2_fuera_pareja boolean NOT NULL,
+    violencia_fisica_3_pareja boolean NOT NULL,
+    violencia_fisica_4_pareja boolean NOT NULL,
+    violencia_fisica_5_pareja boolean NOT NULL,
+    violencia_fisica_5_fuera_pareja boolean NOT NULL,
+    violencia_fisica_6_pareja boolean NOT NULL,
+    violencia_fisica_6_fuera_pareja boolean NOT NULL
+  );
+
 ------------------------------------------------------------------------------------
 -- igualdad_formal
 ------------------------------------------------------------------------------------

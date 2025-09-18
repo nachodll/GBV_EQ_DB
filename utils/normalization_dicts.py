@@ -117,7 +117,9 @@ DICT_COMUNIDADES_AUTOMAS = {
     "Rioja, La": 17,
     "Rioja": 17,
     "Ceuta": 18,
+    "Ceuta (Ciudad Autónoma de)": 18,
     "Melilla": 19,
+    "Melilla (Ciudad Autónoma de)": 19,
 }
 
 
