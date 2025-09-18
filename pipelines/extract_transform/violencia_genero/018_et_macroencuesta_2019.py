@@ -18,6 +18,7 @@ from utils.logging import setup_logging
 from utils.normalization import (
     apply_and_check,  # type: ignore
     normalize_json_string,
+    normalize_provincia,
 )
 
 RAW_SAV_PATH = Path("data") / "raw" / "CIS" / "CIS001-Macroencuesta2019" / "3235.sav"
@@ -39,6 +40,7 @@ def main():
         # Aggregate all columns into a dict, then to JSON
         df_json = pd.DataFrame(
             {
+                "provincia_id": df["PROV"].astype(str),  # type: ignore
                 "variables_json": df.apply(  # type: ignore
                     lambda x: json.dumps(row_to_clean_dict(x.to_dict()), ensure_ascii=False),  # type: ignore
                     axis=1,  # type: ignore
@@ -51,6 +53,7 @@ def main():
 
         # Validate and normalize columns
         df_json["variables_json"] = apply_and_check(df_json["variables_json"], normalize_json_string)
+        df_json["provincia_id"] = apply_and_check(df_json["provincia_id"], normalize_provincia)
 
         # Save to CSV
         CLEAN_CSV_PATH.parent.mkdir(parents=True, exist_ok=True)

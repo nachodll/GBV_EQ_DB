@@ -720,18 +720,21 @@ CREATE TABLE
 CREATE TABLE
   violencia_genero.macroencuesta_2019 (
     macroencuesta_2019_id serial PRIMARY KEY,
+    provincia_id int NOT NULL REFERENCES geo.provincias (provincia_id),
     variables_json jsonb NOT NULL
   );
 
 CREATE TABLE
   violencia_genero.macroencuesta_2015 (
     macroencuesta_2015_id serial PRIMARY KEY,
+    provincia_id int NOT NULL REFERENCES geo.provincias (provincia_id),
     variables_json jsonb NOT NULL
   );
 
 CREATE TABLE
   violencia_genero.macroencuesta_2011 (
     macroencuesta_2011_id serial PRIMARY KEY,
+    provincia_id int NOT NULL REFERENCES geo.provincias (provincia_id),
     variables_json jsonb NOT NULL
   );
 
