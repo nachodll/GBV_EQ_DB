@@ -39,6 +39,10 @@ nav:
             - contratos_bonificados_sustitucion: Tables/violencia_genero/contratos_bonificados_sustitucion.md
             - ayudas_cambio_residencia: Tables/violencia_genero/ayudas_cambio_residencia.md
             - encuesta_europea_2022: Tables/violencia_genero/encuesta_europea_2022.md
+            - macroencuesta_2019: Tables/violencia_genero/macroencuesta_2019.md
+            - macroencuesta_2015: Tables/violencia_genero/macroencuesta_2015.md
+            - macroencuesta_2011: Tables/violencia_genero/macroencuesta_2011.md
+            - fusion_encuestas: Tables/violencia_genero/fusion_encuestas.md
         - demografia:
             - poblacion_municipio: Tables/demografia/poblacion_municipios.md
             - poblacion_grupo_edad: Tables/demografia/poblacion_grupo_edad.md

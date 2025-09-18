@@ -585,6 +585,6 @@ def test_normalize_json_string_unknown():
 
 
 def test_normalize_json_string_none():
-    result = normalize_json_string(None)
+    result = normalize_json_string(None)  # type: ignore
     assert result.status is NormalizationStatus.UNKNOWN
     assert result.value is None

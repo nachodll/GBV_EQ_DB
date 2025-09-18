@@ -141,21 +141,27 @@ Tables are distributed in different schemas according to the field to which thei
             <td>Spain</td>
             <td>Eurostat</td>
             </tr>
-            <tr style="background-color: #f8ccccff;">
-            <td>Macroencuesta 2019</td>
+            <tr>
+            <td><a href="./Tables/violencia_genero/macroencuesta_2019/">macroencuesta_2019</a></td>
             <td>2019</td>
             <td>Provincias</td>
             <td>CIS</td>
             </tr>
-            <tr style="background-color: #f8ccccff;">
-            <td>Macroencuesta 2015</td>
+            <tr>
+            <td><a href="./Tables/violencia_genero/macroencuesta_2015/">macroencuesta_2015</a></td>
             <td>2015</td>
             <td>Provincias</td>
             <td>CIS</td>
             </tr>
-            <tr style="background-color: #f8ccccff;">
-            <td>Macroencuesta 2011</td>
+            <tr>
+            <td><a href="./Tables/violencia_genero/macroencuesta_2011/">macroencuesta_2011</a></td>
             <td>2011</td>
+            <td>Provincias</td>
+            <td>CIS</td>
+            </tr>
+            <tr>
+            <td><a href="./Tables/violencia_genero/fusion_encuestas/">fusion_encuestas</a></td>
+            <td>2015, 2019</td>
             <td>Provincias</td>
             <td>CIS</td>
             </tr>
