@@ -278,22 +278,16 @@ Las tablas se distribuyen en diferentes esquemas según el ámbito al que perten
             <td>España</td>
             <td>EIGE</td>
         </tr>
-        <tr style="background-color: #f8ccccff;">
-            <td>Ganancia por Hora Trabajo</td>
-            <td></td>
-            <td></td>
+        <tr>
+            <td><a href="./Tables/igualdad_formal/ganancia_por_hora_trabajo/">ganancia_por_hora_trabajo</a></td>
+            <td>2004-2023</td>
+            <td>Comunidades</td>
             <td>INE</td>
         </tr>
-        <tr style="background-color: #f8ccccff;">
-            <td>Ganancia por Hora Trabajo</td>
-            <td></td>
-            <td></td>
-            <td>INE</td>
-        </tr>
-        <tr style="background-color: #f8ccccff;">
-            <td>Mujeres en cargos autonómicos</td>
-            <td></td>
-            <td></td>
+        <tr>
+            <td><a href="./Tables/igualdad_formal/mujeres_cargos_autonomicos/">mujeres_cargos_autonomicos</a></td>
+            <td>1996-2024</td>
+            <td>Comunidades</td>
             <td>Instituto de las Mujeres</td>
         </tr>
     </tbody>

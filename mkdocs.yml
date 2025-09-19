@@ -57,6 +57,8 @@ nav:
             - eige_indicadores: Tables/igualdad_formal/eige_indicadores.md
             - eige_interseccionalidades: Tables/igualdad_formal/eige_interseccionalidades.md
             - eige_violencia: Tables/igualdad_formal/eige_violencia.md
+            - ganancia_por_hora_trabajo: Tables/igualdad_formal/ganancia_por_hora_trabajo.md
+            - mujeres_cargos_autonomicos: Tables/igualdad_formal/mujeres_cargos_autonomicos.md
         - educacion_juventud:
             - matriculados_educacion_no_universitaria: Tables/educacion_juventud/matriculados_educacion_no_universitaria.md
         - migracion:
