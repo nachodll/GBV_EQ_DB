@@ -904,6 +904,21 @@ CREATE TABLE
     ganancia_por_hora_trabajo float NOT NULL CHECK (ganancia_por_hora_trabajo >= 0)
   );
 
+CREATE TABLE
+  igualdad_formal.mujeres_cargos_autonomicos (
+    mujeres_cargos_autonomicos_id serial PRIMARY KEY,
+    anio int NOT NULL CHECK (
+      anio BETWEEN 1900 AND EXTRACT(
+        YEAR
+        FROM
+          CURRENT_DATE
+      )
+    ),
+    comunidad_autonoma_id int NOT NULL REFERENCES geo.comunidades_autonomas (comunidad_autonoma_id),
+    sexo enums.sexo_enum NOT NULL,
+    numero_cargos int NOT NULL CHECK (numero_cargos >= 0)
+  );
+
 ------------------------------------------------------------------------------------
 -- educacion_juventud
 ------------------------------------------------------------------------------------
