@@ -44,7 +44,7 @@ CREATE TYPE enums.nivel_riesgo_viogen_enum AS ENUM(
   'Extremo'
 );
 
-CREATE TYPE enums.sexo_enum AS ENUM('Hombre', 'Mujer');
+CREATE TYPE enums.sexo_enum AS ENUM('Hombre', 'Mujer', 'Total');
 
 CREATE TYPE enums.origen_denuncia_enum AS ENUM(
   'Presentada directamente por víctima',
@@ -879,6 +879,29 @@ CREATE TABLE
     pais_id int NOT NULL REFERENCES geo.paises (pais_id),
     indicador text NOT NULL,
     valor int NOT NULL CHECK (valor >= 0)
+  );
+
+CREATE TABLE
+  igualdad_formal.ganancia_por_hora_trabajo (
+    ganancia_por_hora_trabajo_id serial PRIMARY KEY,
+    anio int NOT NULL CHECK (
+      anio BETWEEN 1900 AND EXTRACT(
+        YEAR
+        FROM
+          CURRENT_DATE
+      )
+    ),
+    comunidad_autonoma_id int NOT NULL REFERENCES geo.comunidades_autonomas (comunidad_autonoma_id),
+    sexo enums.sexo_enum NOT NULL,
+    sector_actividad text NOT NULL CHECK (
+      sector_actividad IN (
+        'Todos los sectores',
+        'Industria',
+        'Construcción',
+        'Servicios'
+      )
+    ),
+    ganancia_por_hora_trabajo float NOT NULL CHECK (ganancia_por_hora_trabajo >= 0)
   );
 
 ------------------------------------------------------------------------------------

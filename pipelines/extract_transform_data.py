@@ -47,6 +47,7 @@ SCRIPTS: List[Path] = [
     ET_SCRIPTS_DIR / "igualdad_formal" / "002_et_eige_indicadores.py",
     ET_SCRIPTS_DIR / "igualdad_formal" / "003_et_eige_interseccionalidades.py",
     ET_SCRIPTS_DIR / "igualdad_formal" / "004_et_eige_violencia.py",
+    ET_SCRIPTS_DIR / "igualdad_formal" / "005_et_ganancia_por_hora_trabajo.py",
     ET_SCRIPTS_DIR / "educacion_juventud" / "001_et_matriculados_educacion_no_universitaria.py",
     ET_SCRIPTS_DIR / "tecnologia_y_medios" / "001_et_acceso_internet_viviendas.py",
     ET_SCRIPTS_DIR / "tecnologia_y_medios" / "002_et_uso_internet_personas.py",
