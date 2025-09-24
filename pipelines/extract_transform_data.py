@@ -59,6 +59,7 @@ SCRIPTS: List[Path] = [
     ET_SCRIPTS_DIR / "salud" / "003_et_ive_ccaa.py",
     ET_SCRIPTS_DIR / "politica" / "001_et_elecciones_congreso.py",
     ET_SCRIPTS_DIR / "politica" / "002_et_presidentes_espania.py",
+    ET_SCRIPTS_DIR / "politica" / "003_et_presidentes_autonomicos.py",
 ]
 
 

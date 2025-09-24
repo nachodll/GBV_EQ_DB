@@ -1152,6 +1152,18 @@ CREATE TABLE
     )
   );
 
+CREATE TABLE
+  politica.presidentes_autonomicos (
+    presidentes_autonomicos_id serial PRIMARY KEY,
+    comunidad_autonoma_id int NOT NULL REFERENCES geo.comunidades_autonomas (comunidad_autonoma_id),
+    legislatura varchar NOT NULL CHECK (
+      legislatura ~ '^(?=[MDCLXVI])M{0,4}(CM|CD|D?C{0,3})(XC|XL|L?X{0,3})(IX|IV|V?I{0,3})$'
+    ),
+    presidente varchar NOT NULL,
+    nombramiento date NOT NULL CHECK (nombramiento <= CURRENT_DATE),
+    partido text NOT NULL
+  );
+
 ------------------------------------------------------------------------------------
 -- Grant permissions to readonly user over all schemas
 ------------------------------------------------------------------------------------
