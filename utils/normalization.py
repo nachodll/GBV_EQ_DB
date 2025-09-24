@@ -45,7 +45,7 @@ def _is_unknown(value: Optional[str]) -> bool:
     """Return True if the cleaned value represents an explicit unknown."""
     if value is None or pd.isna(value):  # type: ignore
         return True
-    return value.strip().lower() in DICT_UNKNOWN_STRINGS
+    return str(value).strip().lower() in DICT_UNKNOWN_STRINGS
 
 
 def _strip_accents(text: str) -> str:
@@ -188,15 +188,31 @@ def normalize_nationality(name: str) -> NormalizationResult:
     return NormalizationResult(None, NormalizationStatus.INVALID, name)
 
 
-def normalize_month(month: str) -> NormalizationResult:
-    """Normalize a month name to its corresponding number."""
+def normalize_month(month: str | int | float) -> NormalizationResult:
+    """Normalize a month name or number to its corresponding number."""
 
-    if _is_unknown(month):
-        return NormalizationResult(None, NormalizationStatus.UNKNOWN, month)
+    if _is_unknown(month):  # type: ignore
+        return NormalizationResult(None, NormalizationStatus.UNKNOWN, month)  # type: ignore
 
+    # Accept numbers directly
+    if isinstance(month, (int, float)):
+        if 1 <= int(month) <= 12:
+            return NormalizationResult(int(month), NormalizationStatus.VALID, str(month))
+        return NormalizationResult(None, NormalizationStatus.INVALID, str(month))
+
+    # Look up strings in DICT_MONTHS
+    month_str = month.strip().lower()
     for key in DICT_MONTHS:
-        if key.lower() == month.strip().lower():
+        if key.lower() == month_str:
             return NormalizationResult(DICT_MONTHS[key], NormalizationStatus.VALID, month)
+
+    # Try to parse string as number
+    try:
+        num = int(month_str)
+        if 1 <= num <= 12:
+            return NormalizationResult(num, NormalizationStatus.VALID, month)
+    except ValueError:
+        pass
 
     return NormalizationResult(None, NormalizationStatus.INVALID, month)
 

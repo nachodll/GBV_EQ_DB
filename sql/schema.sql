@@ -18,6 +18,8 @@ CREATE SCHEMA tecnologia_y_medios;
 
 CREATE SCHEMA salud;
 
+CREATE SCHEMA politica;
+
 ------------------------------------------------------------------------------------
 -- enums
 ------------------------------------------------------------------------------------
@@ -1111,6 +1113,25 @@ CREATE TABLE
       tasa >= 0
       AND tasa <= 1000
     )
+  );
+
+------------------------------------------------------------------------------------
+-- politica
+------------------------------------------------------------------------------------
+CREATE TABLE
+  politica.elecciones_congreso (
+    elecciones_congreso_id serial PRIMARY KEY,
+    anio int NOT NULL CHECK (
+      anio BETWEEN 1900 AND EXTRACT(
+        YEAR
+        FROM
+          CURRENT_DATE
+      )
+    ),
+    mes int NOT NULL CHECK (mes BETWEEN 1 AND 12),
+    candidatura varchar NOT NULL,
+    votos int NOT NULL CHECK (votos >= 0),
+    representantes int NOT NULL CHECK (representantes >= 0)
   );
 
 ------------------------------------------------------------------------------------

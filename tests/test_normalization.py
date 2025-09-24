@@ -316,6 +316,14 @@ def test_normalize_month_case():
     assert result.status is NormalizationStatus.VALID
 
 
+def test_normalize_month_number():
+    r1 = normalize_month(1)
+    r2 = normalize_month("1")
+    r3 = normalize_month("  01  ")
+    assert r1.value == 1 and r2.value == 1 and r3.value == 1
+    assert r1.status is r2.status is r3.status is NormalizationStatus.VALID
+
+
 def test_normalize_month_unknown():
     result = normalize_month("no consta")
     assert result.value is None
