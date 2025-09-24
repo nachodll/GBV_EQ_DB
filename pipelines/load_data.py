@@ -82,6 +82,7 @@ TABLES_TO_LOAD: Dict[Path, Optional[Callable[[Connection, pd.DataFrame], None]]]
     CLEAN_DATA_DIR / "salud" / "ive_grupo_edad.csv": None,
     CLEAN_DATA_DIR / "salud" / "ive_ccaa.csv": None,
     CLEAN_DATA_DIR / "politica" / "elecciones_congreso.csv": None,
+    CLEAN_DATA_DIR / "politica" / "presidentes_espania.csv": None,
 }
 
 

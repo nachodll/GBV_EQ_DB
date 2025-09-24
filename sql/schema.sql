@@ -1134,6 +1134,24 @@ CREATE TABLE
     representantes int NOT NULL CHECK (representantes >= 0)
   );
 
+CREATE TABLE
+  politica.presidentes_espania (
+    presidentes_espania_id serial PRIMARY KEY,
+    legislatura varchar NOT NULL CHECK (
+      legislatura ~ '^(?=[MDCLXVI])M{0,4}(CM|CD|D?C{0,3})(XC|XL|L?X{0,3})(IX|IV|V?I{0,3})$'
+    ),
+    presidente varchar NOT NULL,
+    nombramiento date NOT NULL CHECK (nombramiento <= CURRENT_DATE),
+    cese date CHECK (
+      cese <= CURRENT_DATE
+      AND cese >= nombramiento
+    ),
+    partidos_gobierno text NOT NULL,
+    tipo_mayoria text NOT NULL CHECK (
+      tipo_mayoria IN ('Absoluta', 'Simple', 'Minoría', 'En funciones')
+    )
+  );
+
 ------------------------------------------------------------------------------------
 -- Grant permissions to readonly user over all schemas
 ------------------------------------------------------------------------------------

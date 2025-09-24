@@ -246,6 +246,10 @@ def normalize_year(year: Union[str, int, float]) -> NormalizationResult:
 def normalize_date(date_str: str) -> NormalizationResult:
     """Normalize a date string to a datetime object."""
 
+    # Accept datetime objects directly
+    if isinstance(date_str, datetime):
+        return NormalizationResult(date_str, NormalizationStatus.VALID, str(date_str))
+
     raw_str = date_str.strip()
     if _is_unknown(raw_str):
         return NormalizationResult(None, NormalizationStatus.UNKNOWN, raw_str)

@@ -1,3 +1,5 @@
+import datetime
+
 import pandas as pd
 import pytest
 
@@ -283,7 +285,14 @@ def test_normalize_date_basic():
     assert r1.status is r2.status is r3.status is NormalizationStatus.VALID
 
 
-def normalize_date_unknown():
+def test_normalize_date_datetime():
+    dt = datetime.datetime(2020, 1, 1)  # type: ignore
+    result = normalize_date(dt)
+    assert result.value == pd.Timestamp("2020-01-01")
+    assert result.status is NormalizationStatus.VALID
+
+
+def test_normalize_date_unknown():
     result = normalize_date("No consta")
     assert result.value is None
     assert result.status is NormalizationStatus.UNKNOWN
