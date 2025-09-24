@@ -1164,6 +1164,16 @@ CREATE TABLE
     partido text NOT NULL
   );
 
+CREATE TABLE
+  politica.elecciones_parlamentos_autonomicos (
+    elecciones_parlamentos_autonomicos_id serial PRIMARY KEY,
+    fecha date NOT NULL CHECK (fecha <= CURRENT_DATE),
+    comunidad_autonoma_id int NOT NULL REFERENCES geo.comunidades_autonomas (comunidad_autonoma_id),
+    candidatura varchar NOT NULL,
+    votos int NOT NULL CHECK (votos >= 0),
+    representantes int NOT NULL CHECK (representantes >= 0)
+  );
+
 ------------------------------------------------------------------------------------
 -- Grant permissions to readonly user over all schemas
 ------------------------------------------------------------------------------------
