@@ -350,17 +350,17 @@ Tables are distributed in different schemas according to the field to which thei
             <td>Provincias</td>
             <td>Ministerio Educacion</td>
         </tr>
-        <tr style="background-color: #f8ccccff;">
-            <td>Matriculados Universidad</td>
-            <td></td>
-            <td></td>
-            <td>Ministerio de Ciencia, Educación y Universidades</td>
+        <tr>
+            <td><a href="./Tables/educacion_juventud/matriculados_universidad/">matriculados_universidad</a></td>
+            <td>1985-2024</td>
+            <td>Comunidades</td>
+            <td>Ministerio de Ciencia Innovacion y Universidades</td>
         </tr>
-        <tr style="background-color: #f8ccccff;">
-            <td>Egresados Universidad</td>
-            <td></td>
-            <td></td>
-            <td>Ministerio de Ciencia, Educación y Universidades</td>
+        <tr>
+            <td><a href="./Tables/educacion_juventud/egresados_universidad/">egresados_universidad</a></td>
+            <td>1985-2024</td>
+            <td>Comunidades</td>
+            <td>Ministerio de Ciencia Innovacion y Universidades</td>
         </tr>
     </tbody>
 </table>

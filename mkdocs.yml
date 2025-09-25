@@ -61,6 +61,8 @@ nav:
             - mujeres_cargos_autonomicos: Tables/igualdad_formal/mujeres_cargos_autonomicos.md
         - educacion_juventud:
             - matriculados_educacion_no_universitaria: Tables/educacion_juventud/matriculados_educacion_no_universitaria.md
+            - matriculados_universidad: Tables/educacion_juventud/matriculados_universidad.md
+            - egresados_universidad: Tables/educacion_juventud/egresados_universidad.md
         - migracion:
             - residentes_extranjeros: Tables/migracion/residentes_extranjeros.md
         - tecnologia_y_medios:
