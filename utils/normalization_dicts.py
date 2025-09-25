@@ -69,6 +69,7 @@ DICT_QUARTER = {
 
 DICT_COMUNIDADES_AUTOMAS = {
     "Total nacional": 0,
+    "Total": 0,
     "Andalucía": 1,
     "Aragón": 2,
     "Asturias": 3,
@@ -82,6 +83,7 @@ DICT_COMUNIDADES_AUTOMAS = {
     "Baleares, Illes": 4,
     "Balears (Illes)": 4,
     "Baleares": 4,
+    "Islas Canarias": 5,
     "Canarias": 5,
     "Cantabria": 6,
     "Castilla y León": 7,

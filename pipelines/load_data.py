@@ -74,6 +74,7 @@ TABLES_TO_LOAD: Dict[Path, Optional[Callable[[Connection, pd.DataFrame], None]]]
     CLEAN_DATA_DIR / "igualdad_formal" / "ganancia_por_hora_trabajo.csv": None,
     CLEAN_DATA_DIR / "igualdad_formal" / "mujeres_cargos_autonomicos.csv": None,
     CLEAN_DATA_DIR / "educacion_juventud" / "matriculados_educacion_no_universitaria.csv": None,
+    CLEAN_DATA_DIR / "educacion_juventud" / "matriculados_universidad.csv": None,
     CLEAN_DATA_DIR / "tecnologia_y_medios" / "acceso_internet_viviendas.csv": None,
     CLEAN_DATA_DIR / "tecnologia_y_medios" / "uso_internet_personas.csv": None,
     CLEAN_DATA_DIR / "tecnologia_y_medios" / "uso_internet_ninios.csv": None,
