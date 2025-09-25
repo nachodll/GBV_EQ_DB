@@ -25,7 +25,7 @@ CLEAN_CSV_PATH = Path("data") / "clean" / "politica" / "presidentes_espania.csv"
 def main():
     try:
         # Read xlsx file
-        df = pd.read_excel(RAW_XLSX_PATH, sheet_name="Hoja1", nrows=22)  # type: ignore
+        df = pd.read_excel(RAW_XLSX_PATH, sheet_name="Hoja1", nrows=23)  # type: ignore
 
         # Rename columns
         df = df.rename(
