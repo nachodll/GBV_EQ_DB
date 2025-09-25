@@ -70,6 +70,11 @@ nav:
             - uso_internet_personas: Tables/tecnologia_y_medios/uso_internet_personas.md
             - uso_internet_ninios: Tables/tecnologia_y_medios/uso_internet_ninios.md
             - usuarios_redes_sociales: Tables/tecnologia_y_medios/usuarios_redes_sociales.md
+        - politica:
+            - elecciones_congreso: Tables/politica/elecciones_congreso.md
+            - elecciones_parlamentos_autonomicos: Tables/politica/elecciones_parlamentos_autonomicos.md
+            - presidentes_espania: Tables/politica/presidentes_espania.md
+            - presidentes_autonomicos: Tables/politica/presidentes_autonomicos.md
         - geo:
             - comunidades_autonomas: Tables/geo/comunidades_autonomas.md
             - provincias: Tables/geo/provincias.md

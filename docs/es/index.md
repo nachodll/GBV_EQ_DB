@@ -543,29 +543,29 @@ Las tablas se distribuyen en diferentes esquemas según el ámbito al que perten
         </tr>
     </thead>
     <tbody>
-        <tr style="background-color: #f8ccccff;">
-            <td>Composición histórica congreso de los diputados</td>
-            <td></td>
-            <td></td>
-            <td>Ministerio Interior</td>
+        <tr>
+            <td><a href="./Tables/politica/elecciones_congreso/">elecciones_congreso</a></td>
+            <td>1977-2023</td>
+            <td>España</td>
+            <td>Ministerio del Interior</td>
         </tr>
-        <tr style="background-color: #f8ccccff;">
-            <td>Presidentes de España</td>
-            <td></td>
-            <td></td>
-            <td>Moncloa</td>
+        <tr>
+            <td><a href="./Tables/politica/elecciones_parlamentos_autonomicos/">elecciones_parlamentos_autonomicos</a></td>
+            <td>1980-2025</td>
+            <td>Comunidades</td>
+            <td>Junta Electoral Central</td>
         </tr>
-        <tr style="background-color: #f8ccccff;">
-            <td>Presidentes autonómicos</td>
-            <td></td>
-            <td></td>
-            <td>Senado</td>
+        <tr>
+            <td><a href="./Tables/politica/presidentes_espania/">presidentes_espania</a></td>
+            <td>1979-2023</td>
+            <td>España</td>
+            <td>La Moncloa</td>
         </tr>
-        <tr style="background-color: #f8ccccff;">
-            <td>Composición histórica parlamentos autonómicos</td>
-            <td></td>
-            <td></td>
-            <td>Gobiernos Autonómicos</td>
+        <tr>
+            <td><a href="./Tables/politica/presidentes_autonomicos/">presidentes_autonomicos</a></td>
+            <td>1980-2025</td>
+            <td>Comunidades</td>
+            <td>Senado de España</td>
         </tr>
     </tbody>
 </table>
