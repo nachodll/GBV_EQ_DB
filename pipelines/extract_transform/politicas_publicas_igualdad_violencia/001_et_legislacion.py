@@ -9,7 +9,6 @@ import logging
 from pathlib import Path
 
 import pandas as pd
-import pdfplumber  # type: ignore
 
 from utils.logging import setup_logging
 from utils.normalization import (
