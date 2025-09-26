@@ -24,16 +24,6 @@ RAW_XLSX_PATH = RAW_DIR_PATH / "Leyes VG.xlsx"
 CLEAN_CSV_PATH = Path("data") / "clean" / "politicas_publicas_igualdad_violencia" / "legislacion.csv"
 
 
-def extract_text_pdf(path: str) -> str:
-    text = ""
-    with pdfplumber.open(path) as pdf:  # type: ignore
-        for page in pdf.pages:  # type: ignore
-            page_text = page.extract_text()  # type: ignore
-            if page_text:
-                text += page_text + "\n"  # type: ignore
-    return text  # type: ignore
-
-
 def main():
     try:
         # Read xlsx file
@@ -51,7 +41,7 @@ def main():
                 "Fecha derogación": "fecha_derogacion",
             }
         )
-        df.drop(columns=["Pdf"], errors="ignore")
+        df = df.drop(columns=["Pdf"], errors="ignore")
 
         # Transform column 'vigente' to boolean
         df["vigente"] = df["vigente"].apply(lambda x: False if str(x).strip().upper() == "DEROGADA" else True)  # type: ignore
