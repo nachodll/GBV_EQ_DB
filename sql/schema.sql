@@ -1296,6 +1296,21 @@ CREATE TABLE
     )
   );
 
+CREATE TABLE
+  politicas_publicas_igualdad_violencia.institutos_mujer (
+    institutos_mujer_id serial PRIMARY KEY,
+    comunidad_autonoma_id int NOT NULL REFERENCES geo.comunidades_autonomas (comunidad_autonoma_id),
+    nombre text NOT NULL,
+    anio_fundacion int CHECK (
+      anio_fundacion BETWEEN 1900 AND EXTRACT(
+        YEAR
+        FROM
+          CURRENT_DATE
+      )
+    ),
+    enlace text
+  );
+
 ------------------------------------------------------------------------------------
 -- Grant permissions to readonly user over all schemas
 ------------------------------------------------------------------------------------
