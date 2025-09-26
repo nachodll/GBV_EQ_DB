@@ -59,6 +59,9 @@ nav:
             - eige_violencia: Tables/igualdad_formal/eige_violencia.md
             - ganancia_por_hora_trabajo: Tables/igualdad_formal/ganancia_por_hora_trabajo.md
             - mujeres_cargos_autonomicos: Tables/igualdad_formal/mujeres_cargos_autonomicos.md
+        - politicas_publicas_igualdad_violencia:
+            - legislacion: Tables/politicas_publicas_igualdad_violencia/legislacion.md
+            - institutos_mujer: Tables/politicas_publicas_igualdad_violencia/institutos_mujer.md
         - educacion_juventud:
             - matriculados_educacion_no_universitaria: Tables/educacion_juventud/matriculados_educacion_no_universitaria.md
             - matriculados_universidad: Tables/educacion_juventud/matriculados_universidad.md

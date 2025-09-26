@@ -305,16 +305,16 @@ Tables are distributed in different schemas according to the field to which thei
         </tr>
     </thead>
     <tbody>
-        <tr style="background-color: #f8ccccff;">
-            <td>Legislación VDG</td>
-            <td></td>
-            <td></td>
-            <td>BOE</td>
+        <tr>
+            <td><a href="./Tables/politicas_publicas_igualdad_violencia/legislacion/">legislacion</a></td>
+            <td>2001-2025</td>
+            <td>Comunidades</td>
+            <td>Self-produced (BOE)</td>
         </tr>
-        <tr style="background-color: #f8ccccff;">
-            <td>Organismos de igualdad</td>
-            <td></td>
-            <td></td>
+        <tr>
+            <td><a href="./Tables/politicas_publicas_igualdad_violencia/institutos_mujer/">institutos_mujer</a></td>
+            <td>1983-2025</td>
+            <td>Comunidades</td>
             <td>Instituto de las Mujeres</td>
         </tr>
         <tr style="background-color: #f8ccccff;">
