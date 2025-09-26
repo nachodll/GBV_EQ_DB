@@ -287,7 +287,7 @@ def test_normalize_date_basic():
 
 def test_normalize_date_datetime():
     dt = datetime.datetime(2020, 1, 1)  # type: ignore
-    result = normalize_date(dt)
+    result = normalize_date(dt)  # type: ignore
     assert result.value == pd.Timestamp("2020-01-01")
     assert result.status is NormalizationStatus.VALID
 

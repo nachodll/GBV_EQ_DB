@@ -20,6 +20,8 @@ CREATE SCHEMA salud;
 
 CREATE SCHEMA politica;
 
+CREATE SCHEMA politicas_publicas_igualdad_violencia;
+
 ------------------------------------------------------------------------------------
 -- enums
 ------------------------------------------------------------------------------------
@@ -1274,6 +1276,24 @@ CREATE TABLE
     candidatura varchar NOT NULL,
     votos int NOT NULL CHECK (votos >= 0),
     representantes int NOT NULL CHECK (representantes >= 0)
+  );
+
+------------------------------------------------------------------------------------
+-- politicas_publicas_igualdad_violencia
+------------------------------------------------------------------------------------
+CREATE TABLE
+  politicas_publicas_igualdad_violencia.legislacion (
+    legislacion_id serial PRIMARY KEY,
+    comunidad_autonoma_id int REFERENCES geo.comunidades_autonomas (comunidad_autonoma_id),
+    nombre text NOT NULL,
+    fecha_aprobacion date NOT NULL CHECK (fecha_aprobacion <= CURRENT_DATE),
+    enlace_boe text NOT NULL,
+    tematica text NOT NULL CHECK (tematica IN ('Violencia de género', 'Igualdad')),
+    vigente boolean NOT NULL,
+    fecha_derogacion date CHECK (
+      fecha_derogacion <= CURRENT_DATE
+      AND fecha_derogacion >= fecha_aprobacion
+    )
   );
 
 ------------------------------------------------------------------------------------

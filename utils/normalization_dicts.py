@@ -70,6 +70,7 @@ DICT_QUARTER = {
 DICT_COMUNIDADES_AUTOMAS = {
     "Total nacional": 0,
     "Total": 0,
+    "España": 0,
     "Andalucía": 1,
     "Aragón": 2,
     "Asturias": 3,
