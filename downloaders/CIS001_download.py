@@ -33,8 +33,10 @@ def setup_logging() -> None:
     LOG_DIR.mkdir(exist_ok=True)
     logging.basicConfig(
         level=logging.INFO,
-        format="%(asctime)s %(levelname)s [%(name)s] %(message)s",
+        format="%(message)s",
+        # format="%(asctime)s %(levelname)s [%(name)s] %(message)s",
         handlers=[
+            logging.StreamHandler(),
             logging.FileHandler(LOG_PATH),
         ],
     )
@@ -61,16 +63,16 @@ def main():
         # Accept cookies
         try:
             wait.until(EC.element_to_be_clickable((By.CLASS_NAME, "cn-ok"))).click()
-            print("🍪 Cookies accepted")
+            logging.info("🍪 Cookies accepted")
         except Exception:
-            print("ℹ️ No cookie banner found")
+            logging.info("ℹ️ No cookie banner found")
 
         # Load table
         wait.until(EC.presence_of_element_located((By.ID, "tablaEstudios")))
         estudio_urls = []
 
         while True:
-            print("🔄 Processing page...")
+            logging.info("🔄 Processing page...")
             wait.until(EC.presence_of_all_elements_located((By.CSS_SELECTOR, "table#tablaEstudios tbody tr")))
             rows = driver.find_elements(By.CSS_SELECTOR, "table#tablaEstudios tbody tr")
 
@@ -90,17 +92,16 @@ def main():
             try:
                 next_btn = driver.find_element(By.ID, "tablaEstudios_next")
                 if "disabled" in next_btn.get_attribute("class"):  # type: ignore
-                    print("✅ Last page reached")
+                    logging.info("✅ Last page reached")
                     break
                 else:
                     next_btn.click()
                     time.sleep(0.1)
             except Exception as e:
-                print(f"❌ Not able to check next page: {e}")
-                logging.error(f"Not able to check next page: {e}")
+                logging.error(f"❌ Not able to check next page: {e}")
                 break
 
-        print(f"\n🔗 Total number of studies found: {len(estudio_urls)}")  # type: ignore
+        logging.info(f"\n🔗 Total number of studies found: {len(estudio_urls)}")  # type: ignore
 
         # Visit each study link
         all_var_mappings = {}
@@ -110,7 +111,7 @@ def main():
         missing_vars_summary = ""
         for idx, (url, fecha, codigo) in enumerate(estudio_urls):  # type: ignore
             try:
-                print(f"\n➡️ Accessing {idx + 1}/{len(estudio_urls)}: {url}")  # type: ignore
+                logging.info(f"\n➡️ Accessing {idx + 1}/{len(estudio_urls)}: {url}")  # type: ignore
                 driver.get(url)  # type: ignore
 
                 # Terms to search for each variable
@@ -190,30 +191,27 @@ def main():
 
                     all_var_mappings[codigo] = var_map
                     if len(var_map) - 2 == len(variables):  # type: ignore
-                        print("✅ All variables found")
+                        logging.info("✅ All variables found")
                     else:
                         missing_vars = set(variables.keys()) - set(var_map.keys())  # type: ignore
                         missing_vars_summary += f"{fecha}\t{codigo}\t{url}:\t {list(missing_vars)}\n"
-                        print(f"❓ Some variables not found: {list(missing_vars)}")  # type: ignore
+                        logging.info(f"❓ Some variables not found: {list(missing_vars)}")  # type: ignore
 
                 except (NoSuchElementException, ElementNotInteractableException, TimeoutException):
-                    print("⚠️ No variable mapping available for this study")
-                    logging.warning(f"No variable mapping available for {url}")
-                except Exception as e:
-                    print("⚠️ Unexpected error during variable mapping")
-                    logging.warning(f"Unexpected error during variable mapping for {url}: {e}")
+                    logging.warning("⚠️ No variable mapping available for this study")
+                except Exception:
+                    logging.warning("⚠️ Unexpected error during variable mapping")
 
                 # Download data zip file if available and if DOWNLOAD_DATA is set to True
                 if DOWNLOAD_DATA:
                     try:
                         data_zip_link = driver.find_element(By.XPATH, "//a[contains(text(), 'Fichero datos')]")
                         wait.until(EC.element_to_be_clickable(data_zip_link))
-                        print("📥 Data zip file available. Opening form...")
+                        logging.info("📥 Data zip file available. Opening form...")
                         driver.execute_script("arguments[0].click();", data_zip_link)  # type: ignore
                     except NoSuchElementException:
                         no_data_zip_studies.append(codigo)  # type: ignore
-                        print("⚠️ No data zip file available for this study")
-                        logging.warning(f"No data zip file available for {url}")
+                        logging.warning("⚠️ No data zip file available for this study")
                         continue
 
                     if len(driver.window_handles) > 1:
@@ -251,8 +249,7 @@ def main():
                             )
                             checkbox.click()
                         except Exception:
-                            print("❌ Checkbox not found")
-                            logging.error(f"Checkbox not found for {url}")
+                            logging.error("❌ Checkbox not found")
                             continue
 
                     submit_btn = driver.find_element(By.ID, "ddm-form-submit")
@@ -260,9 +257,8 @@ def main():
 
                     wait.until(EC.element_to_be_clickable((By.XPATH, "//a[contains(text(),'Descargar')]")))
                     download_btn = driver.find_element(By.XPATH, "//a[contains(text(),'Descargar')]")
-                    print(f"⬇️ Downloading from: {download_btn.get_attribute('href')}")  # type: ignore
+                    logging.info(f"⬇️ Downloading from: {download_btn.get_attribute('href')}")  # type: ignore
                     driver.execute_script("arguments[0].click();", download_btn)  # type: ignore
-                    logging.info(f"Downloaded data for {url}")
                     successful_downloads += 1
 
                     if len(driver.window_handles) > 1:
@@ -271,8 +267,7 @@ def main():
 
             except Exception as e:
                 error_studies.append(codigo)  # type: ignore
-                print(f"❌ Error processing {url}: {e}")
-                logging.error(f"Error processing {url}: {e}")
+                logging.error(f"❌ Error processing {url}: {e}")
 
         # Save variable mappings
         with open(VARIABLE_MAP_JSON_PATH, "w", encoding="utf-8") as f:
@@ -291,7 +286,6 @@ def main():
             f"Studies with no data zip: {no_data_zip_studies}\n"  # type: ignore
             f"Studies with errors: {error_studies}\n"  # type: ignore
         )
-        print(summary)
         logging.info(summary)
 
     finally:
