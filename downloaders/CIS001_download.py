@@ -9,12 +9,12 @@ from pathlib import Path
 
 from dotenv import load_dotenv
 from selenium import webdriver
-from selenium.common.exceptions import ElementNotInteractableException, NoSuchElementException
+from selenium.common.exceptions import ElementNotInteractableException, NoSuchElementException, TimeoutException
 from selenium.webdriver.chrome.options import Options
 from selenium.webdriver.chrome.service import Service
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support import expected_conditions as EC
-from selenium.webdriver.support.ui import WebDriverWait
+from selenium.webdriver.support.ui import Select, WebDriverWait
 
 load_dotenv()
 DRIVER_PATH = Path("/opt/homebrew/bin/chromedriver")
@@ -53,7 +53,7 @@ def main():
     options.add_argument("--headless")
     service = Service(str(DRIVER_PATH))
     driver = webdriver.Chrome(service=service, options=options)
-    wait = WebDriverWait(driver, 15)
+    wait = WebDriverWait(driver, 2)
 
     try:
         driver.get(URL)
@@ -148,15 +148,26 @@ def main():
                         EC.element_to_be_clickable((By.XPATH, "//button[contains(text(), 'Buscador de variables')]"))
                     )
                     buscador_variables_button.click()
-                    titulo_input = wait.until(
-                        EC.visibility_of_element_located((By.XPATH, "//input[@placeholder='Título']"))
-                    )
-
-                    # Focus screen for easier debugging
-                    # driver.execute_script(  # type: ignore
-                    #     "arguments[0].scrollIntoView({behavior: 'smooth', block: 'center'});", titulo_input
-                    # )
-                    # driver.execute_script("arguments[0].focus();", titulo_input)  # type: ignore
+                    try:
+                        titulo_input = wait.until(
+                            EC.visibility_of_element_located((By.XPATH, "//input[@placeholder='Título']"))
+                        )
+                    except TimeoutException:
+                        # Retry after selecting a different option in the dropdown (bug workaround)
+                        select_elem = wait.until(
+                            EC.presence_of_element_located((By.CSS_SELECTOR, "select.variable.mr-2.w-50"))
+                        )
+                        select = Select(select_elem)
+                        select.select_by_index(1)
+                        buscador_variables_button = wait.until(
+                            EC.element_to_be_clickable(
+                                (By.XPATH, "//button[contains(text(), 'Buscador de variables')]")
+                            )
+                        )
+                        buscador_variables_button.click()
+                        titulo_input = wait.until(
+                            EC.visibility_of_element_located((By.XPATH, "//input[@placeholder='Título']"))
+                        )
 
                     var_map = {}
                     var_map["fecha"] = fecha
@@ -185,7 +196,7 @@ def main():
                         missing_vars_summary += f"{fecha}\t{codigo}\t{url}:\t {list(missing_vars)}\n"
                         print(f"❓ Some variables not found: {list(missing_vars)}")  # type: ignore
 
-                except (NoSuchElementException, ElementNotInteractableException):
+                except (NoSuchElementException, ElementNotInteractableException, TimeoutException):
                     print("⚠️ No variable mapping available for this study")
                     logging.warning(f"No variable mapping available for {url}")
                 except Exception as e:
