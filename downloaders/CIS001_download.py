@@ -24,6 +24,7 @@ CIS_EMAIL = os.getenv("CIS_EMAIL")
 
 LOG_DIR = Path("logs") / "download_CIS"
 LOG_PATH = LOG_DIR / f"{datetime.now().isoformat()}.log"
+VARIABLE_MAP_JSON_PATH = Path("data") / "debug" / "CIS_variable_mappings.json"
 DOWNLOAD_DATA = True  # Set to False to only map variables without downloading data
 
 
@@ -159,7 +160,7 @@ def main():
 
                     var_map = {}
                     var_map["fecha"] = fecha
-                    var_map["codigo"] = codigo
+                    var_map["url"] = url
                     for var, search_terms in variables.items():
                         for term in search_terms:
                             try:
@@ -176,7 +177,7 @@ def main():
                             except NoSuchElementException:
                                 continue
 
-                    all_var_mappings[url] = var_map
+                    all_var_mappings[codigo] = var_map
                     if len(var_map) - 2 == len(variables):  # type: ignore
                         print("✅ All variables found")
                     else:
@@ -263,7 +264,7 @@ def main():
                 logging.error(f"Error processing {url}: {e}")
 
         # Save variable mappings
-        with open("data/debug/CIS_variable_mappings.json", "w", encoding="utf-8") as f:
+        with open(VARIABLE_MAP_JSON_PATH, "w", encoding="utf-8") as f:
             json.dump(all_var_mappings, f, ensure_ascii=False, indent=4)
         with open("data/debug/missing_vars.txt", "w", encoding="utf-8") as f:
             f.write(missing_vars_summary)  # type: ignore
