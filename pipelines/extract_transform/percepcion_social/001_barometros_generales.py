@@ -15,6 +15,8 @@ import pandas as pd
 from utils.logging import setup_logging
 from utils.normalization import (
     apply_and_check,  # type: ignore
+    normalize_comunidad_autonoma,
+    normalize_provincia,
 )
 
 RAW_SAV_DIR = Path("data") / "raw" / "CIS" / "CIS004-BarómetrosGenerales"
@@ -78,7 +80,7 @@ def load_all_sav_files(directory: Path) -> dict[str, pd.DataFrame]:
             continue
         for sav_file in sav_files:
             try:
-                df_study = pd.read_spss(sav_file)
+                df_study = pd.read_spss(sav_file, convert_categoricals=True)  # type: ignore
                 study_code = subdir.name[2:6]
                 if study_code.isdigit() and len(study_code) == 4:
                     dataframes_dict[study_code] = df_study
@@ -112,12 +114,12 @@ def main():
             with open("data/debug/barometros_generales_dict.pkl", "rb") as f:
                 df_dict = pickle.load(f)
 
-        # Load variable mapping from JSON (with updates). Each study code maps to a dict of {standard_name: original_name}
+        # Load variable mapping from JSON (with updates)
         studies_variable_map = get_updated_map()
 
         # For each dataframe, rename columns according to the mapping and concatenate
-        missing = []
         all_dfs = []
+        studies_with_missing_maps = []
         for code, df in df_dict.items():
             mapping = studies_variable_map.get(code)  # type: ignore
             df_study = pd.DataFrame()
@@ -137,22 +139,56 @@ def main():
                             df_study[standard_name] = df[variant_original_name]
                     elif original_name.lower() in df.columns:
                         df_study[standard_name] = df[original_name.lower()]
-                    elif standard_name not in [
-                        "provincia",
-                        "comunidad_autonoma",
-                    ]:
-                        missing.append(code)  # type: ignore
-                        print(
-                            f"Column '{original_name}' ({standard_name}) not found in study {code}: {mapping.get('url')}"
-                        )
+                    elif standard_name not in ["provincia", "comunidad_autonoma"]:
+                        studies_with_missing_maps.append(code)  # type: ignore
+                        print(f"Column '{original_name}' ({standard_name}) not found in study {code}")
 
             df_study["codigo_estudio"] = code
             df_study["fecha"] = mapping["fecha"]
             all_dfs.append(df_study)  # type: ignore
 
         df = pd.concat(all_dfs, ignore_index=True)  # type: ignore
+        print(f"{len(studies_with_missing_maps)} missing columns in {len(set(studies_with_missing_maps))} studies")  # type: ignore
 
-        print(f"{len(missing)} missing columns in {len(set(missing))} studies")  # type: ignore
+        # Delete all () and {} in comunidad_autonoma and account for typos
+        df["comunidad_autonoma"] = df["comunidad_autonoma"].str.replace(r"[\(\{].*?[\)\}]", "", regex=True).str.strip()
+        df["comunidad_autonoma"] = (
+            df["comunidad_autonoma"]
+            .str.replace("Exremadura", "Extremadura")
+            .str.replace("E5remadura", "Extremadura")
+            .str.replace("Castilla-Len", "Castilla y León")
+        )
+
+        # Delete all () and {} in provincia and fix typos and encoding issues
+        df["provincia"] = df["provincia"].str.replace(r"[\(\{].*?[\)\}]", "", regex=True).str.strip()
+        df["provincia"] = (
+            df["provincia"]
+            .str.replace("Logroño", "La Rioja")
+            .str.replace("Logro�o", "La Rioja")
+            .str.replace("Santander", "Cantabria")
+            .str.replace("SANTANDER", "Cantabria")
+            .str.replace("Santader", "Cantabria")
+            .str.replace("Salamaca", "Salamanca")
+            .str.replace("M laga", "Málaga")
+            .str.replace("Almer�a", "Almería")
+            .str.replace("Le�n", "León")
+            .str.replace("OREN.S.E", "Ourense")
+            .str.replace("Coru�a", "Coruña")
+            .str.replace("Oviedo", "Asturias")
+            .str.replace("OVIEDO", "Asturias")
+            .str.replace("Ja�n", "Jaén")
+            .str.replace("Guip�zcoa", "Guipúzcoa")
+            .str.replace("�lava", "Álava")
+            .str.replace("C�rdoba", "Córdoba")
+            .str.replace("C�diz", "Cádiz")
+            .str.replace("Castell�n de la Plana", "Castellón de la Plana")
+            .str.replace("C�ceres", "Cáceres")
+            .str.replace("M�laga", "Málaga")
+        )
+
+        # Validate and normalize columns
+        df["comunidad_autonoma"] = apply_and_check(df["comunidad_autonoma"], normalize_comunidad_autonoma)
+        df["provincia"] = apply_and_check(df["provincia"], normalize_provincia)
 
         # Save to clean CSV
         CLEAN_CSV_PATH.parent.mkdir(parents=True, exist_ok=True)
