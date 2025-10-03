@@ -38,10 +38,10 @@ class NormalizationResult:
 
     value: Optional[Any]
     status: NormalizationStatus
-    raw: str
+    raw: Union[str, int, float, None]
 
 
-def _is_unknown(value: Optional[str]) -> bool:
+def _is_unknown(value: Optional[Union[str, int, float]]) -> bool:
     """Return True if the cleaned value represents an explicit unknown."""
     if value is None or pd.isna(value):  # type: ignore
         return True
@@ -87,22 +87,39 @@ def _normalize_region_name(name: str, normalization_dict: dict[str, int]) -> int
     return None
 
 
-def normalize_provincia(name: str) -> NormalizationResult:
+def normalize_provincia(name: Union[str, int, float]) -> NormalizationResult:
     """Normalize a province name using the dict_provincia dictionary."""
 
     if _is_unknown(name):
         return NormalizationResult(None, NormalizationStatus.UNKNOWN, name)
+
+    # Accept numbers directly if they match a value in the dictionary
+    if isinstance(name, str) and name.strip().isdigit():
+        name = int(name.strip())
+    if isinstance(name, (int, float)):
+        if int(name) in DICT_PROVINCIAS.values():
+            return NormalizationResult(int(name), NormalizationStatus.VALID, name)
+        return NormalizationResult(None, NormalizationStatus.INVALID, name)
+
     normalized = _normalize_region_name(name, DICT_PROVINCIAS)
     if normalized is None:
         return NormalizationResult(None, NormalizationStatus.INVALID, name)
     return NormalizationResult(normalized, NormalizationStatus.VALID, name)
 
 
-def normalize_comunidad_autonoma(name: str) -> NormalizationResult:
+def normalize_comunidad_autonoma(name: Union[str, int, float]) -> NormalizationResult:
     """Normalize a comunidad autónoma name using the dict_comunidad_autonoma dictionary."""
 
     if _is_unknown(name):
         return NormalizationResult(None, NormalizationStatus.UNKNOWN, name)
+
+    # Accept numbers directly if they match a value in the dictionary
+    if isinstance(name, str) and name.strip().isdigit():
+        name = int(name.strip())
+    if isinstance(name, (int, float)):
+        if int(name) in DICT_COMUNIDADES_AUTOMAS.values():
+            return NormalizationResult(int(name), NormalizationStatus.VALID, name)
+        return NormalizationResult(None, NormalizationStatus.INVALID, name)
 
     normalized = _normalize_region_name(name, DICT_COMUNIDADES_AUTOMAS)
     if normalized is None:

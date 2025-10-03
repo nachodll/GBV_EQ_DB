@@ -125,6 +125,14 @@ def test_normalize_provincia_basic():
     assert result.status is NormalizationStatus.VALID
 
 
+def normalize_provincia_only_number():
+    r1 = normalize_provincia(1)
+    r2 = normalize_provincia(1.0)
+    r3 = normalize_provincia("1")
+    assert r1.value == 1 and r2.value == 1 and r3.value == 1
+    assert r1.status is r2.status is r3.status is NormalizationStatus.VALID
+
+
 def test_normalize_provincia_with_number():
     result = normalize_provincia("01 Álava")
     assert result.value == 1
@@ -184,6 +192,14 @@ def test_normalize_comunidad_autonoma_basic():
     result = normalize_comunidad_autonoma("Andalucía")
     assert result.value == 1
     assert result.status is NormalizationStatus.VALID
+
+
+def test_normalize_comunidad_autonoma_only_number():
+    r1 = normalize_comunidad_autonoma(3)
+    r2 = normalize_comunidad_autonoma(3.0)
+    r3 = normalize_comunidad_autonoma("3")
+    assert r1.value == 3 and r2.value == 3 and r3.value == 3
+    assert r1.status is r2.status is r3.status is NormalizationStatus.VALID
 
 
 def test_normalize_comunidad_autonoma_with_number():
