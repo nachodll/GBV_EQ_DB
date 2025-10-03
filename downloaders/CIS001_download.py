@@ -1,4 +1,19 @@
-"""Download CIS general survey data by automating the public website."""
+"""Download CIS general survey data by automating the public website.
+
+This script automates the process of scraping the CIS (Centro de Investigaciones Sociológicas) general barometer survey
+data from the official website using Selenium. It performs the following tasks:
+- Navigates through all pages of the CIS barometer studies table and collects study URLs, codes, and dates.
+- For each study, attempts to map key survey variables by searching for them in the site's variable explorer.
+- Optionally downloads the associated data ZIP file for each study (if available), filling out the required email form.
+
+**Outputs produced:**
+- A JSON file (`data/debug/CIS_variable_mappings.json`) containing the variable mappings for each study.
+- A text file (`data/debug/missing_vars.txt`) listing variables that could not be mapped.
+- Log files in the `logs/download_CIS/` directory with detailed information about the scraping and download process.
+- Downloaded ZIP data files (if `DOWNLOAD_DATA` is set to True).
+
+Environment variables (such as `CIS_EMAIL`) must be set in a `.env` file for automated form submission.
+"""
 
 import json
 import logging
