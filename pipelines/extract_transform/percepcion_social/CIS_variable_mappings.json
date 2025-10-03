@@ -4474,8 +4474,7 @@
         "url": "https://www.cis.es/es/detalle-ficha-estudio?idEstudio=704",
         "edad": "P47",
         "sexo": "P46",
-        "ideologia": "P41",
-        "problemas_generales": "P9"
+        "ideologia": "P41"
     },
     "1707": {
         "fecha": "10-10-1987",
@@ -4497,8 +4496,7 @@
         "url": "https://www.cis.es/es/detalle-ficha-estudio?idEstudio=688",
         "edad": "P50",
         "sexo": "P49",
-        "ideologia": "P47",
-        "problemas_generales": "P27"
+        "ideologia": "P47"
     },
     "1695": {
         "fecha": "01-06-1987",
@@ -4528,8 +4526,7 @@
         "url": "https://www.cis.es/es/detalle-ficha-estudio?idEstudio=605",
         "edad": "P48",
         "sexo": "P46",
-        "ideologia": "P44",
-        "problemas_generales": "P21"
+        "ideologia": "P44"
     },
     "1597": {
         "fecha": "12-02-1987",
@@ -4601,8 +4598,7 @@
         "edad": "P46",
         "sexo": "P42",
         "religiosidad": "P50",
-        "ideologia": "P39",
-        "problemas_generales": "P22"
+        "ideologia": "P39"
     },
     "1498": {
         "fecha": "13-12-1985",
