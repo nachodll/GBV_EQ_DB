@@ -26,7 +26,7 @@ from utils.normalization import (
 RAW_SAV_DIR = Path("data") / "raw" / "CIS" / "CIS004-BarómetrosGenerales"
 CLEAN_CSV_PATH = Path("data") / "clean" / "percepcion_social" / "barometros_generales.csv"
 JSON_VARIABLE_MAP_PATH = Path("pipelines") / "extract_transform" / "percepcion_social" / "CIS_variable_mappings.json"
-LOAD_FROM_RAW = False  # Set to True to load .sav files directly, False to load from pickle for debugging
+LOAD_FROM_RAW = True  # Set to True to load .sav files directly, False to load from pickle for debugging
 
 
 def get_map_from_json() -> dict[int, dict[str, str]]:
@@ -59,20 +59,20 @@ def get_updated_map() -> dict[int, dict[str, str]]:
         if "problemas_personales" in mapping:
             original_var = mapping.pop("problemas_personales")
             for i in range(1, 4):
-                mapping[f"problemas_personal_{i}"] = f"{original_var[:-2]}_{i}"
+                mapping[f"problema_personal_{i}"] = f"{original_var[:-2]}_{i}"
 
                 # starting from study 3309, problems are mapped to standard names
                 if int(code) >= 3309:
-                    mapping[f"problemas_personal_{i}"] = f"PPERSONAL_{i}"
+                    mapping[f"problema_personal_{i}"] = f"PPERSONAL_{i}"
 
         if "problemas_generales" in mapping:
             original_var = mapping.pop("problemas_generales")
             for i in range(1, 4):
-                mapping[f"problemas_espania_{i}"] = f"{original_var[:-2]}_{i}"
+                mapping[f"problema_espania_{i}"] = f"{original_var[:-2]}_{i}"
 
                 # starting from study 3309, problems are mapped to standard names
                 if int(code) >= 3309:
-                    mapping[f"problemas_espania_{i}"] = f"PESPANNA_{i}"
+                    mapping[f"problema_espania_{i}"] = f"PESPANNA_{i}"
 
     return variable_maps
 
@@ -98,18 +98,18 @@ def load_all_sav_files(directory: Path) -> dict[str, pd.DataFrame]:
                 else:
                     logging.warning(f"Skipping file with unexpected name: {sav_file}")
             except Exception as e:
-                logging.error(f"Error processing file {sav_file}: {e}")
+                logging.warning(f"Error processing file {sav_file}: {e}")
                 corrupted_sav_files.append(subdir)  # type: ignore
                 continue
-    summary = (
-        f"Number of subdirectories: {len(sorted_subdirs)}\n"
-        f"Number of files processed: {len(dataframes_dict)}\n"  # type: ignore
-        f"Number of subdirectories without .sav files: {len(no_sav_subdirs)}\n"  # type: ignore
-        f"Number of corrupted .sav files: {len(corrupted_sav_files)}\n"  # type: ignore
-        f"Subdirectories without .sav files: {[subdir.name for subdir in no_sav_subdirs]}\n"  # type: ignore
-        f"Corrupted .sav files: {[subdir.name for subdir in corrupted_sav_files]}"  # type: ignore
-    )
-    print(summary)
+    # summary = (
+    #     f"Number of subdirectories: {len(sorted_subdirs)}\n"
+    #     f"Number of files processed: {len(dataframes_dict)}\n"  # type: ignore
+    #     f"Number of subdirectories without .sav files: {len(no_sav_subdirs)}\n"  # type: ignore
+    #     f"Number of corrupted .sav files: {len(corrupted_sav_files)}\n"  # type: ignore
+    #     f"Subdirectories without .sav files: {[subdir.name for subdir in no_sav_subdirs]}\n"  # type: ignore
+    #     f"Corrupted .sav files: {[subdir.name for subdir in corrupted_sav_files]}"  # type: ignore
+    # )
+    # print(summary)
 
     return dataframes_dict  # type: ignore
 
@@ -142,9 +142,7 @@ def main():
                 if standard_name not in ["fecha", "url"]:
                     if original_name in df.columns:
                         df_study[standard_name] = df[original_name]
-                    elif standard_name.startswith("problemas_personal") or standard_name.startswith(
-                        "problemas_espania"
-                    ):
+                    elif standard_name.startswith("problema_personal") or standard_name.startswith("problema_espania"):
                         variant_original_name = original_name.replace("_", "0")
                         if variant_original_name in df.columns:
                             df_study[standard_name] = df[variant_original_name]
@@ -152,14 +150,14 @@ def main():
                         df_study[standard_name] = df[original_name.lower()]
                     elif standard_name not in ["provincia", "comunidad_autonoma"]:
                         studies_with_missing_maps.append(code)  # type: ignore
-                        print(f"Column '{original_name}' ({standard_name}) not found in study {code}")
+                        logging.warning(f"Column '{original_name}' ({standard_name}) not found in study {code}")
 
             df_study["codigo_estudio"] = code
             df_study["fecha"] = mapping["fecha"]
             all_dfs.append(df_study)  # type: ignore
 
         df = pd.concat(all_dfs, ignore_index=True)  # type: ignore
-        print(f"{len(studies_with_missing_maps)} missing columns in {len(set(studies_with_missing_maps))} studies")  # type: ignore
+        # print(f"{len(studies_with_missing_maps)} missing columns in {len(set(studies_with_missing_maps))} studies")
 
         # Delete all () and {} in comunidad_autonoma and account for typos
         df["comunidad_autonoma"] = df["comunidad_autonoma"].str.replace(r"[\(\{].*?[\)\}]", "", regex=True).str.strip()
@@ -266,6 +264,170 @@ def main():
             9.0: None,
         }
 
+        # Map for problema_espania (study 3164 has numerical codes)
+        problemas_mapping = {  # type: ignore
+            1: "El paro",
+            2: "Las drogas",
+            3: "La inseguridad ciudadana",
+            4: "El terrorismo, ETA",
+            5: "Las infraestructuras",
+            6: "La sanidad",
+            7: "La vivienda",
+            8: "Los problemas de índole económica",
+            9: "Los problemas relacionados con la calidad del empleo",
+            10: "Los problemas de la agricultura, ganadería y pesca",
+            11: "La corrupción y el fraude",
+            12: "Las pensiones",
+            13: "Los/as políticos/as en general, los partidos y la política",
+            14: "Las guerras en general",
+            15: "La Administración de Justicia",
+            16: "Los problemas de índole social",
+            17: "El racismo",
+            18: "La inmigración",
+            19: "La violencia contra la mujer",
+            20: "Los problemas relacionados con la juventud",
+            21: "La crisis de valores",
+            22: "La educación",
+            23: "Los problemas medioambientales",
+            24: "El Gobierno y partidos o políticos/as concretos/as",
+            25: "El funcionamiento de los servicios públicos",
+            26: "Los nacionalismos",
+            27: "Los problemas relacionados con la mujer",
+            28: "El terrorismo internacional",
+            29: "Las preocupaciones y situaciones personales",
+            30: "Estatutos de autonomía",
+            31: "Las negociaciones con ETA",
+            32: "Reforma Laboral",
+            33: '"Los recortes"',
+            34: "Los bancos",
+            35: "La subida del IVA",
+            36: "Los desahucios",
+            37: "El fraude fiscal",
+            38: "Las hipotecas",
+            39: "La Monarquía",
+            40: "Las excarcelaciones",
+            41: "La Ley del aborto",
+            42: "Subida de tarifas energéticas",
+            43: "Ébola",
+            44: "Refugiados/as",
+            45: "Independencia de Cataluña",
+            46: "La falta de acuerdos. Situación política. Inestabilidad política",
+            47: "Emigración",
+            48: "Problemas relacionados con autónomos/as",
+            49: "Falta de inversión en industrias e I+D",
+            96: "Otras respuestas",
+            97: "Ninguno",
+            98: None,
+            99: None,
+            "N.C.": None,
+            "N.S.": None,
+            "N.S": None,
+            "N.S/N.C.": None,
+            "N.S/N.C..": None,
+            "N.S./N.C.": None,
+            "N.S./N.C..": None,
+            "No_contesta": None,
+            "No_sabe": None,
+            "Otras respuestas": "Otros",
+            "Otro/s": "Otros",
+            "Otros problemas": "Otros",
+            "Ninguno en especial": "Ninguno",
+            "Ningún problema": "Ninguno",
+            '"Vacas locas"': "Vacas locas",
+            "'Vacas locas'": "Vacas locas",
+            'El problema de las "vacas locas"': "Vacas locas",
+            '"Los recortes"': "Los recortes",
+            "'Los recortes'": "Los recortes",
+            "Delincuencia, inseguridad ciudadana": "Delincuencia e inseguridad ciudadana",
+            "Delincuencia, inseguridad ciudadana, violencia": "Delincuencia e inseguridad ciudadana, violencia",
+            "Delincuencia. Inseguridad ciudadana": "Delincuencia e inseguridad ciudadana",
+            "Delincuencia/inseguridad ciudadana": "Delincuencia e inseguridad ciudadana",
+            "Delincuencia/inseguridad ciudadana/violencia": "Delincuencia e inseguridad ciudadana, violencia",
+            "Droga": "Las drogas",
+            "Drogas": "Las drogas",
+            "Droga, alcoholismo": "Las drogas",
+            "El peligro de la droga": "Las drogas",
+            "El problema de la droga": "Las drogas",
+            "Déficits de valores sociales": "Déficit de valores sociales",
+            "Economía, crisis económica. Reconversión": "Económica, crisis económica. Reconversión",
+            "El Gobierno y partidos o políticos concretos": "El Gobierno y partidos o políticos/as concretos",
+            "El Gobierno y partidos o políticos/as concretos/as": "El Gobierno y partidos o políticos/as concretos",
+            "El Gobierno, los políticos y los partidos": "El Gobierno y partidos o políticos/as concretos",
+            "El Gobierno, los políticos y los partidos concretos": "El Gobierno y partidos o políticos/as concretos",
+            "El Gobierno, mala gestión del COVID del Gobierno, falta de i": "El Gobierno, mala gestión del COVID del Gobierno, falta de información",  # noqa: E501
+            "El orden público y seguridad ciudadana": "El orden público y la seguridad ciudadana",
+            "Corrupción, fraude": "Corrupción y fraude",
+            "Demasiados políticos, cargos públicos: no profesionales, muc": "Demasiados políticos, cargos públicos: no profesionales, mucho gasto",  # noqa: E501
+            "El Sida": "El sida",
+            "SIDA": "El sida",
+            "El terrorismo. ETA": "El terrorismo, ETA",
+            "Terrorismo, ETA": "El terrorismo, ETA",
+            "Terrorismo": "El terrorismo",
+            "emigración)": "La emigración",
+            "Emigración": "La emigración",
+            "Escasez y mal funcionamiento de los servicios públicos": "Escasez y/o mal funcionamiento de los servicios públicos",  # noqa: E501
+            "Euro": "El euro",
+            "Falta claridad en las informaciones y medidas relacionadas c": "Falta claridad en las informaciones y medidas relacionadas con la COVID-19",  # noqa: E501
+            "Falta de acuerdo entre los/as políticos/as, entre el Gobiern": "Falta de acuerdo entre los/as políticos/as, entre el Gobierno central y autonómicos",  # noqa: E501
+            "Fraude fiscal": "El fraude fiscal",
+            "El funcionamiento/cobertura de los servicios públicos": "Funcionamiento y cobertura de los servicios públicos",  # noqa: E501
+            "Funcionamiento, cobertura de los servicios públicos": "Funcionamiento y cobertura de los servicios públicos",  # noqa: E501
+            "Funcionamiento/cobertura de los servicios públicos": "Funcionamiento y cobertura de los servicios públicos",  # noqa: E501
+            "Impuestos, Declaración de la renta, fiscalidad": "Impuestos, declaración de la renta, fiscalidad",
+            "Infraestructuras": "Infraestructura",
+            "Paro": "El paro",
+            "Pensiones": "Las pensiones",
+            "La pensiones": "Las pensiones",
+            "La contaminación; el medio ambiente": "Contaminación, medio ambiente",
+            "Medio ambiente, contaminación": "Contaminación, medio ambiente",
+            "Medio Ambiente": "El medio ambiente",
+            "Medio ambiente": "El medio ambiente",
+            "Medioambiente": "El medio ambiente",
+            "Bancos": "Los bancos",
+            "Monarquía": "La Monarquía",
+            "La ley del aborto": "La Ley del aborto",
+            "Corrupción política": "La corrupción política",
+            "Corrupción y fraude": "La corrupción y el fraude",
+            "Crisis de valores": "La crisis de valores",
+            "La crisis económica, los problemas de índole económica": "La crisis económica, los problemas de índole económicos",  # noqa: E501
+            "La crisis energética": "Crisis energética",
+            "Crisis política": "La crisis política",
+            "Crisis de valores sociales": "Déficit de valores sociales",
+            "Racismo": "El racismo",
+            "Escasez de agua/sequía": "Escasez de agua, sequía",
+            "La sequía": "Escasez de agua, sequía",
+            "Hipotecas": "Las hipotecas",
+            "Sanidad": "La sanidad",
+            "Seguridad social, pensiones, sanidad": "Seguridad Social, pensiones, sanidad",
+            "Las desigualdades, incluida la de género, las diferencias de": "Las desigualdades, incluida la de género, las diferencias de clases, la pobreza",  # noqa: E501
+            "La inseguridad ciudadana, la delincuencia, la falta de civis": "La inseguridad ciudadana, la delincuencia, la falta de civismo",  # noqa: E501
+            "Los cambios de hábitos en mi vida cotidiana (no hacer vida n": "Los cambios de hábitos en mi vida cotidiana (no hacer vida normal, etc.)",  # noqa: E501
+            "Los ciudadanos/as, el comportamiento, egoísmo, poco cívicos,": "Los ciudadanos/as, el comportamiento, egoísmo, poco cívicos, bulos",  # noqa: E501
+            "Los deshaucios": "Los desahucios",
+            "Los peligros para la salud: COVID-19. El coronavirus. Falta": "Los peligros para la salud: COVID-19. El coronavirus. Falta de recursos suficientes para hacer frente a la pandemia",  # noqa: E501
+            "Los problemas relacionados con la juventud. Falta de apoyo y": "Los problemas relacionados con la juventud. Falta de apoyo y oportunidades a los/as jóvenes",  # noqa: E501
+            "Los problemas relacionados con la mujer. La violencia de gén": "Los problemas relacionados con la mujer. La violencia de género",  # noqa: E501
+            "Los problemas sobre la gestión de la vacunación, lentitud, r": "Los problemas sobre la gestión de la vacunación, lentitud, retraso",  # noqa: E501
+            "Los/as ciudadanos/as, comportamiento, egoísmo, cada uno/a a": "Los/as ciudadanos/as, comportamiento, egoísmo, cada uno/a a lo suyo/poco cívicos, bulos",  # noqa: E501
+            "Poca conciencia ciudadana (falta de civismo, de sentido espí": "Poca conciencia ciudadana (falta de civismo, de sentido espíritu cívico)",  # noqa: E501
+            "Problemas psicológicos derivados de la pandemia (preocupacio": "Problemas psicológicos derivados de la pandemia (preocupaciones, soledad, tristeza,  desamparo, etc.)",  # noqa: E501
+            "Limitaciones en las relaciones sociales, familiares, amigos/": "Limitaciones en las relaciones sociales, familiares, amigos",  # noqa: E501
+        }
+
+        problemas_columns = [
+            "problema_espania_1",
+            "problema_espania_2",
+            "problema_espania_3",
+            "problema_personal_1",
+            "problema_personal_2",
+            "problema_personal_3",
+        ]
+
+        # Remove {} and trailing spaces and map values in problemas columns
+        for column in problemas_columns:
+            df[column] = df[column].str.replace(r"\{.*$", "", regex=True).str.strip()  # type: ignore
+            df[column] = df[column].str.strip().replace(problemas_mapping)  # type: ignore
+
         # Rename some columns
         df = df.rename(columns={"provincia": "provincia_id", "comunidad_autonoma": "comunidad_autonoma_id"})
 
@@ -281,20 +443,12 @@ def main():
         )
         df["ideologia"] = apply_and_check(df["ideologia"], normalize_positive_integer)
         df["religiosidad"] = apply_and_check_dict(df["religiosidad"], religiosidad_map)  # type: ignore
-
-        # keep only some columns
-        target_columns = [
-            "comunidad_autonoma_id",
-            "provincia_id",
-            "fecha",
-            "codigo_estudio",
-            "cuestionario",
-            "edad",
-            "sexo",
-            "ideologia",
-            "religiosidad",
-        ]
-        df = df[target_columns]
+        df["problema_espania_1"] = apply_and_check(df["problema_espania_1"], normalize_plain_text)
+        df["problema_espania_2"] = apply_and_check(df["problema_espania_2"], normalize_plain_text)
+        df["problema_espania_3"] = apply_and_check(df["problema_espania_3"], normalize_plain_text)
+        df["problema_personal_1"] = apply_and_check(df["problema_personal_1"], normalize_plain_text)
+        df["problema_personal_2"] = apply_and_check(df["problema_personal_2"], normalize_plain_text)
+        df["problema_personal_3"] = apply_and_check(df["problema_personal_3"], normalize_plain_text)
 
         # Save to clean CSV
         CLEAN_CSV_PATH.parent.mkdir(parents=True, exist_ok=True)
