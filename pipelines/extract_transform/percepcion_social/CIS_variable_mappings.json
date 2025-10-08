@@ -3877,8 +3877,7 @@
         "edad": "P42",
         "sexo": "P41",
         "religiosidad": "P49",
-        "ideologia": "P38",
-        "problemas_generales": "P18MV"
+        "ideologia": "P38"
     },
     "2115": {
         "fecha": "20-09-1994",
@@ -3999,8 +3998,7 @@
         "provincia": "PROV",
         "edad": "P39",
         "sexo": "P38",
-        "ideologia": "P35",
-        "problemas_generales": "P15MV"
+        "ideologia": "P35"
     },
     "2062": {
         "fecha": "25-06-1993",
@@ -4061,8 +4059,7 @@
         "provincia": "PROV",
         "edad": "P36",
         "sexo": "P35",
-        "ideologia": "P32",
-        "problemas_generales": "P19MV"
+        "ideologia": "P32"
     },
     "2044": {
         "fecha": "15-12-1992",
@@ -4299,8 +4296,7 @@
         "edad": "P36",
         "sexo": "P35",
         "religiosidad": "P39",
-        "ideologia": "P32",
-        "problemas_generales": "P21MV"
+        "ideologia": "P32"
     },
     "1850": {
         "fecha": "14-12-1989",
@@ -4452,8 +4448,7 @@
         "url": "https://www.cis.es/es/detalle-ficha-estudio?idEstudio=722",
         "edad": "P44",
         "sexo": "P43",
-        "ideologia": "P41",
-        "problemas_generales": "P3MV"
+        "ideologia": "P41"
     },
     "1725": {
         "fecha": "22-01-1988",
@@ -4488,8 +4483,7 @@
         "url": "https://www.cis.es/es/detalle-ficha-estudio?idEstudio=690",
         "edad": "P54",
         "sexo": "P53",
-        "ideologia": "P51",
-        "problemas_generales": "P4MV"
+        "ideologia": "P51"
     },
     "1697": {
         "fecha": "22-07-1987",
