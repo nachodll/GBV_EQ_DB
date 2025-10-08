@@ -15,7 +15,11 @@ import pandas as pd
 from utils.logging import setup_logging
 from utils.normalization import (
     apply_and_check,  # type: ignore
+    apply_and_check_dict,  # type: ignore
     normalize_comunidad_autonoma,
+    normalize_date,
+    normalize_plain_text,
+    normalize_positive_integer,
     normalize_provincia,
 )
 
@@ -44,24 +48,31 @@ def get_updated_map() -> dict[int, dict[str, str]]:
         # provincia is always mapped to "PROV"
         mapping["provincia"] = "PROV"
 
+        # cues is always mapped to "CUES"
+        mapping["cuestionario"] = "CUES"
+
+        # ideologia is not extracted for studies before 1320 due to different scale
+        if int(code) < 1320 and "ideologia" in mapping:
+            mapping.pop("ideologia")
+
         # breakdown multiple answer questions into separate columns
         if "problemas_personales" in mapping:
             original_var = mapping.pop("problemas_personales")
             for i in range(1, 4):
-                mapping[f"problemas_personales_{i}"] = f"{original_var[:-2]}_{i}"
+                mapping[f"problemas_personal_{i}"] = f"{original_var[:-2]}_{i}"
 
                 # starting from study 3309, problems are mapped to standard names
                 if int(code) >= 3309:
-                    mapping[f"problemas_personales_{i}"] = f"PPERSONAL_{i}"
+                    mapping[f"problemas_personal_{i}"] = f"PPERSONAL_{i}"
 
         if "problemas_generales" in mapping:
             original_var = mapping.pop("problemas_generales")
             for i in range(1, 4):
-                mapping[f"problemas_generales_{i}"] = f"{original_var[:-2]}_{i}"
+                mapping[f"problemas_espania_{i}"] = f"{original_var[:-2]}_{i}"
 
                 # starting from study 3309, problems are mapped to standard names
                 if int(code) >= 3309:
-                    mapping[f"problemas_generales_{i}"] = f"PESPANNA_{i}"
+                    mapping[f"problemas_espania_{i}"] = f"PESPANNA_{i}"
 
     return variable_maps
 
@@ -117,23 +128,23 @@ def main():
         # Load variable mapping from JSON (with updates)
         studies_variable_map = get_updated_map()
 
-        # For each dataframe, rename columns according to the mapping and concatenate
+        # For each dataframe, select the target columns and rename according to the mapping
         all_dfs = []
         studies_with_missing_maps = []
         for code, df in df_dict.items():
             mapping = studies_variable_map.get(code)  # type: ignore
             df_study = pd.DataFrame()
             if not mapping:
-                print("No mapping found for study code:", code)
+                logging.warning(f"No mapping found for study code: {code}")
                 continue
 
             for standard_name, original_name in mapping.items():
                 if standard_name not in ["fecha", "url"]:
                     if original_name in df.columns:
                         df_study[standard_name] = df[original_name]
-                    elif standard_name.startswith("problemas_personales") or standard_name.startswith(
-                        "problemas_generales"
-                    ):  # type: ignore
+                    elif standard_name.startswith("problemas_personal") or standard_name.startswith(
+                        "problemas_espania"
+                    ):
                         variant_original_name = original_name.replace("_", "0")
                         if variant_original_name in df.columns:
                             df_study[standard_name] = df[variant_original_name]
@@ -186,9 +197,104 @@ def main():
             .str.replace("M�laga", "Málaga")
         )
 
+        # Drop floating points in cuestionario
+        df["cuestionario"] = df["cuestionario"].apply(lambda x: str(x).split(".")[0] if pd.notnull(x) else x)  # type: ignore
+
+        # Replace age ranges with None and cast to integer
+        age_pattern = r"De 41 a 60 años|De 26 a 40 años|Más de 60|De 18 a 25 años|N.C.|N.S."
+        df["edad"] = df["edad"].astype(str).replace("nan", None).str.replace(age_pattern, "", regex=True)  # type: ignore
+        df["edad"] = df["edad"].replace("", None)  # type: ignore
+        df["edad"] = df["edad"].astype(float).astype("Int64")  # type: ignore
+
+        # Replace sexo values that are not 1 or 2 with 'hombre' and 'mujer' respectively
+        df["sexo"] = df["sexo"].replace(  # type: ignore
+            {1.0: "Hombre", 2.0: "Mujer", "NC": None, "N.C.": None, 98.0: None, 99.0: None}
+        )
+
+        # For ideologia, izquierda=1, derecha=10, nsnc=None and remove floating points
+        ns_nc_values = ["N.S.", "N.S", "N.C", "N.C.", "No sabe", "No contesta", 98.0, 99.0]  # type: ignore
+        df["ideologia"] = df["ideologia"].replace(ns_nc_values, None)  # type: ignore
+        df["ideologia"] = df["ideologia"].replace(  # type: ignore
+            {r"(?i).*extrema izquierda.*": 1, r"(?i).*extrema derecha.*": 10}, regex=True
+        )
+        df["ideologia"] = df["ideologia"].replace(  # type: ignore
+            {r"(?i).*izquierda.*": 1, r"(?i).*derecha.*": 10}, regex=True
+        )
+        df["ideologia"] = df["ideologia"].apply(lambda x: str(x).split(".")[0] if pd.notnull(x) else x)  # type: ignore
+
+        # Dictionary to map values for religiosidad
+        religiosidad_map = {  # type: ignore
+            "Ateo/a": "Ateo/a",
+            "Ateo": "Ateo/a",
+            "Ateo/a (Niegan la existencia de Dios)": "Ateo/a",
+            "Ateo/a (niegan la existencia de Dios)": "Ateo/a",
+            4.0: "Ateo/a",
+            "Agnóstico/a": "Agnóstico/a",
+            "Agnóstico/a (No niegan la existencia de Dios pero tampoco la": "Agnóstico/a",
+            "Agnóstico/a (no niegan la existencia de Dios pero tampoco la": "Agnóstico/a",
+            "Agnóstico/a (no niegan la existencia de Dios pero tampoco la descartan)": "Agnóstico/a",
+            "Indiferente, no creyente": "Indiferente, no creyente",
+            "No creyente": "Indiferente, no creyente",
+            "No creyente {No crey.}": "Indiferente, no creyente",
+            "Indiferente": "Indiferente, no creyente",
+            "Indiferente {Indif.}": "Indiferente, no creyente",
+            3.0: "Indiferente, no creyente",
+            "Católico/a": "Católico/a",
+            "Católico": "Católico/a",
+            "Católico {Cat.}": "Católico/a",
+            1.0: "Católico/a",
+            "Católico/a practicante": "Católico/a practicante",
+            "Católico practicante": "Católico/a practicante",
+            "Muy buen católico": "Católico/a practicante",
+            "Católico poco prácticamente": "Católico/a practicante",
+            "Católico/a no practicante": "Católico/a no practicante",
+            "Católico no practicante": "Católico/a no practicante",
+            "Creyente de otra religión": "Creyente de otra religión",
+            "Creyente de otras religiones": "Creyente de otra religión",
+            "Creyente otra religión": "Creyente de otra religión",
+            "Creyente de otra religión {Crey.}": "Creyente de otra religión",
+            "Creyente practicante de otras religiones": "Creyente de otra religión",
+            "Creyente no practicante de otras religiones": "Creyente de otra religión",
+            "Otras religiones": "Creyente de otra religión",
+            2.0: "Creyente de otra religión",
+            "Otra respuesta": None,
+            "Otras respuestas": None,
+            "Otra respuesta {Otra}": None,
+            "N.C.": None,
+            "N.C": None,
+            "N.S.": None,
+            9.0: None,
+        }
+
+        # Rename some columns
+        df = df.rename(columns={"provincia": "provincia_id", "comunidad_autonoma": "comunidad_autonoma_id"})
+
         # Validate and normalize columns
-        df["comunidad_autonoma"] = apply_and_check(df["comunidad_autonoma"], normalize_comunidad_autonoma)
-        df["provincia"] = apply_and_check(df["provincia"], normalize_provincia)
+        df["comunidad_autonoma_id"] = apply_and_check(df["comunidad_autonoma_id"], normalize_comunidad_autonoma)
+        df["provincia_id"] = apply_and_check(df["provincia_id"], normalize_provincia)
+        df["fecha"] = apply_and_check(df["fecha"], normalize_date)
+        df["codigo_estudio"] = apply_and_check(df["codigo_estudio"], normalize_plain_text)
+        df["cuestionario"] = apply_and_check(df["cuestionario"], normalize_positive_integer)
+        df["edad"] = apply_and_check(df["edad"], normalize_positive_integer)
+        df["sexo"] = apply_and_check_dict(
+            df["sexo"], {"Hombre": "Hombre", "Mujer": "Mujer", "hombre": "Hombre", "mujer": "Mujer"}
+        )
+        df["ideologia"] = apply_and_check(df["ideologia"], normalize_positive_integer)
+        df["religiosidad"] = apply_and_check_dict(df["religiosidad"], religiosidad_map)  # type: ignore
+
+        # keep only some columns
+        target_columns = [
+            "comunidad_autonoma_id",
+            "provincia_id",
+            "fecha",
+            "codigo_estudio",
+            "cuestionario",
+            "edad",
+            "sexo",
+            "ideologia",
+            "religiosidad",
+        ]
+        df = df[target_columns]
 
         # Save to clean CSV
         CLEAN_CSV_PATH.parent.mkdir(parents=True, exist_ok=True)

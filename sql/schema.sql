@@ -22,6 +22,8 @@ CREATE SCHEMA politica;
 
 CREATE SCHEMA politicas_publicas_igualdad_violencia;
 
+CREATE SCHEMA percepcion_social;
+
 ------------------------------------------------------------------------------------
 -- enums
 ------------------------------------------------------------------------------------
@@ -1309,6 +1311,40 @@ CREATE TABLE
       )
     ),
     enlace text
+  );
+
+------------------------------------------------------------------------------------
+-- percepcion_social
+------------------------------------------------------------------------------------
+CREATE TABLE
+  percepcion_social.barometros_generales (
+    barometros_generales_id serial PRIMARY KEY,
+    fecha date NOT NULL CHECK (fecha <= CURRENT_DATE),
+    codigo_estudio varchar(4) NOT NULL CHECK (codigo_estudio ~ '^\d{4}$'),
+    cuestionario int,
+    comunidad_autonoma_id int REFERENCES geo.comunidades_autonomas (comunidad_autonoma_id),
+    provincia_id int REFERENCES geo.provincias (provincia_id),
+    edad int CHECK (edad BETWEEN 1 AND 150),
+    sexo enums.sexo_enum,
+    ideologia int CHECK (ideologia BETWEEN 1 AND 10),
+    religiosidad varchar CHECK (
+      religiosidad IN (
+        'Ateo/a',
+        'Agnóstico/a',
+        'Indiferente, no creyente',
+        'Católico/a',
+        'Católico/a practicante',
+        'Católico/a no practicante',
+        'Creyente de otra religión'
+      )
+      OR religiosidad IS NULL
+    ),
+    problema_personal_1 text,
+    problema_personal_2 text,
+    problema_personal_3 text,
+    problema_espania_1 text,
+    problema_espania_2 text,
+    problema_espania_3 text
   );
 
 ------------------------------------------------------------------------------------

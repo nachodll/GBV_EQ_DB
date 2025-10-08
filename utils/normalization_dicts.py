@@ -36,14 +36,7 @@ def _load_municipios_dict() -> dict[int, dict[str, int]]:
 
 DICT_MUNICIPIOS: dict[int, dict[str, int]] = _load_municipios_dict()
 
-DICT_UNKNOWN_STRINGS = {
-    "",
-    "unknown",
-    "n/c",
-    "no consta",
-    "noconsta",
-    "desconocida",
-}
+DICT_UNKNOWN_STRINGS = {"", "unknown", "n/c", "no consta", "noconsta", "desconocida", "NC", "N.C."}
 
 DICT_MONTHS = {
     "Enero": 1,

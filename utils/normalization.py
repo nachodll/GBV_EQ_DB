@@ -379,10 +379,10 @@ def normalize_age_group(raw: Optional[str]) -> NormalizationResult:
 
 def normalize_positive_integer(value: Union[str, int, float]) -> NormalizationResult:
     """Normalize a string, int or float to a positive integer."""
-    raw_str = str(value)
-    if isinstance(value, str) and _is_unknown(value):
-        return NormalizationResult(None, NormalizationStatus.UNKNOWN, raw_str)
+    if _is_unknown(value):
+        return NormalizationResult(None, NormalizationStatus.UNKNOWN, value)
     try:
+        raw_str = str(value)
         if isinstance(value, str):
             num = int(value.strip())
         else:
@@ -391,7 +391,7 @@ def normalize_positive_integer(value: Union[str, int, float]) -> NormalizationRe
             return NormalizationResult(num, NormalizationStatus.VALID, raw_str)
         return NormalizationResult(None, NormalizationStatus.INVALID, raw_str)
     except ValueError:
-        return NormalizationResult(None, NormalizationStatus.INVALID, raw_str)
+        return NormalizationResult(None, NormalizationStatus.INVALID, value)
 
 
 def normalize_positive_float(value: Union[str, int, float]) -> NormalizationResult:
