@@ -413,11 +413,11 @@ def normalize_positive_float(value: Union[str, int, float]) -> NormalizationResu
 
 def normalize_plain_text(text: str) -> NormalizationResult:
     """Normalize a plain text string by stripping whitespaces"""
-    clean_str = text.strip()
-    if _is_unknown(clean_str):
-        return NormalizationResult(None, NormalizationStatus.UNKNOWN, clean_str)
+    if _is_unknown(text):
+        return NormalizationResult(None, NormalizationStatus.UNKNOWN, text)
 
     # Check for forbidden characters: null bytes, control characters
+    clean_str = text.strip()
     forbidden_pattern = r"[\x00-\x1F\x7F]"
     if re.search(forbidden_pattern, clean_str):
         return NormalizationResult(None, NormalizationStatus.INVALID, clean_str)
