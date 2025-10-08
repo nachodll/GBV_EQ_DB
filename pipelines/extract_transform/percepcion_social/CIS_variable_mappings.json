@@ -3855,7 +3855,7 @@
         "url": "https://www.cis.es/es/detalle-ficha-estudio?idEstudio=1117",
         "comunidad_autonoma": "CCAA",
         "provincia": "PROV",
-        "edad": "P1",
+        "edad": "P43",
         "sexo": "P42",
         "ideologia": "P37",
         "problemas_generales": "P7MR"
@@ -3865,7 +3865,7 @@
         "url": "https://www.cis.es/es/detalle-ficha-estudio?idEstudio=1113",
         "comunidad_autonoma": "CCAA",
         "provincia": "PROV",
-        "edad": "P21",
+        "edad": "P44",
         "sexo": "P43",
         "ideologia": "P40"
     },
@@ -3885,7 +3885,7 @@
         "url": "https://www.cis.es/es/detalle-ficha-estudio?idEstudio=1106",
         "comunidad_autonoma": "CCAA",
         "provincia": "P501",
-        "edad": "P16",
+        "edad": "P49",
         "sexo": "P48",
         "ideologia": "P45",
         "problemas_generales": "P14MR"
@@ -4050,7 +4050,7 @@
         "url": "https://www.cis.es/es/detalle-ficha-estudio?idEstudio=1038",
         "comunidad_autonoma": "CCAA",
         "provincia": "PROV",
-        "edad": "P16",
+        "edad": "P27",
         "sexo": "P26",
         "religiosidad": "P47",
         "ideologia": "P23"
