@@ -76,6 +76,7 @@ DICT_COMUNIDADES_AUTOMAS = {
     "Balears, Illes": 4,
     "Baleares, Illes": 4,
     "Balears (Illes)": 4,
+    "Baleares (Islas)": 4,
     "Balears": 4,
     "Baleares": 4,
     "Islas Canarias": 5,
