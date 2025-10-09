@@ -491,10 +491,10 @@ Las tablas se distribuyen en diferentes esquemas según el ámbito al que perten
         </tr>
     </thead>
     <tbody>
-        <tr style="background-color: #f8ccccff;">
-            <td>Tasas de Actividad, Paro y Empleo</td>
-            <td></td>
-            <td></td>
+        <tr>
+            <td><a href="./Tables/economia_laboral/tasa_actividad_paro_empleo/">tasa_actividad_paro_empleo</a></td>
+            <td>2002-2025</td>
+            <td>Provincias</td>
             <td>INE</td>
         </tr>
     </tbody>
