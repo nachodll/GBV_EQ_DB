@@ -75,6 +75,11 @@ nav:
             - usuarios_redes_sociales: Tables/tecnologia_y_medios/usuarios_redes_sociales.md
         - percepcion_social:
             - barometros_generales: Tables/percepcion_social/barometros_generales.md
+            - encuesta_igualdad_2023: Tables/percepcion_social/encuesta_igualdad_2023.md
+            - encuesta_violencia_sexual_2023: Tables/percepcion_social/encuesta_violencia_sexual_2023.md
+            - encuesta_violencia_sexual_2017: Tables/percepcion_social/encuesta_violencia_sexual_2017.md
+            - encuesta_violencia_genero_juventud_2013: Tables/percepcion_social/encuesta_violencia_genero_juventud_2013.md
+            - encuesta_violencia_genero_2012: Tables/percepcion_social/encuesta_violencia_genero_2012.md
         - politica:
             - elecciones_congreso: Tables/politica/elecciones_congreso.md
             - elecciones_parlamentos_autonomicos: Tables/politica/elecciones_parlamentos_autonomicos.md

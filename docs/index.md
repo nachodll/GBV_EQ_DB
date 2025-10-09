@@ -448,34 +448,34 @@ Tables are distributed in different schemas according to the field to which thei
             <td>Comunidades, Provincias</td>
             <td>CIS</td>
         </tr>
-        <tr style="background-color: #f8ccccff;">
-            <td>Barómetro: Percepciones sobre la igualdad entre hombres y mujeres</td>
-            <td></td>
-            <td></td>
+        <tr>
+            <td><a href="./Tables/percepcion_social/encuesta_igualdad_2023/">encuesta_igualdad_2023</a></td>
+            <td>2023</td>
+            <td>Provincias</td>
             <td>CIS</td>
         </tr>
-        <tr style="background-color: #f8ccccff;">
-            <td>Barómetro: la violencia sexual contra las mujeres</td>
-            <td></td>
-            <td></td>
+        <tr>
+            <td><a href="./Tables/percepcion_social/encuesta_violencia_sexual_2023/">encuesta_violencia_sexual_2023</a></td>
+            <td>2023</td>
+            <td>Provincias</td>
             <td>CIS</td>
         </tr>
-        <tr style="background-color: #f8ccccff;">
-            <td>Barómetro: percepción social de la violencia sexual</td>
-            <td></td>
-            <td></td>
+        <tr>
+            <td><a href="./Tables/percepcion_social/encuesta_violencia_sexual_2017/">encuesta_violencia_sexual_2017</a></td>
+            <td>2017</td>
+            <td>Provincias</td>
             <td>CIS</td>
         </tr>
-        <tr style="background-color: #f8ccccff;">
-            <td>Barómetro: Percepción social de la violencia de género por la adolescencia y la juventud</td>
-            <td></td>
-            <td></td>
+        <tr>
+            <td><a href="./Tables/percepcion_social/encuesta_violencia_genero_juventud_2013/">encuesta_violencia_genero_juventud_2013</a></td>
+            <td>2013</td>
+            <td>Provincias</td>
             <td>CIS</td>
         </tr>
-        <tr style="background-color: #f8ccccff;">
-            <td>Barómetro: percepción social de la violencia de género</td>
-            <td></td>
-            <td></td>
+        <tr>
+            <td><a href="./Tables/percepcion_social/encuesta_violencia_genero_2012/">encuesta_violencia_genero_2012</a></td>
+            <td>2012</td>
+            <td>Provincias</td>
             <td>CIS</td>
         </tr>
     </tbody>
