@@ -442,10 +442,10 @@ Tables are distributed in different schemas according to the field to which thei
         </tr>
     </thead>
     <tbody>
-        <tr style="background-color: #f8ccccff;">
-            <td>Barómetros Generales</td>
-            <td></td>
-            <td></td>
+        <tr>
+            <td><a href="./Tables/percepcion_social/barometros_generales/">barometros_generales</a></td>
+            <td>1979-2025</td>
+            <td>Comunidades, Provincias</td>
             <td>CIS</td>
         </tr>
         <tr style="background-color: #f8ccccff;">

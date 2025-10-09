@@ -73,6 +73,8 @@ nav:
             - uso_internet_personas: Tables/tecnologia_y_medios/uso_internet_personas.md
             - uso_internet_ninios: Tables/tecnologia_y_medios/uso_internet_ninios.md
             - usuarios_redes_sociales: Tables/tecnologia_y_medios/usuarios_redes_sociales.md
+        - percepcion_social:
+            - barometros_generales: Tables/percepcion_social/barometros_generales.md
         - politica:
             - elecciones_congreso: Tables/politica/elecciones_congreso.md
             - elecciones_parlamentos_autonomicos: Tables/politica/elecciones_parlamentos_autonomicos.md
