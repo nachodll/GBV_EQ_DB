@@ -1369,6 +1369,17 @@ CREATE TABLE
     variables_json jsonb NOT NULL
   );
 
+CREATE TABLE
+  percepcion_social.encuesta_violencia_sexual_2017 (
+    encuesta_violencia_sexual_2017_id serial PRIMARY KEY,
+    codigo_estudio varchar(4) NOT NULL CHECK (codigo_estudio ~ '^\d{4}$'),
+    fecha date NOT NULL CHECK (fecha <= CURRENT_DATE),
+    cuestionario int NOT NULL,
+    comunidad_autonoma_id int REFERENCES geo.comunidades_autonomas (comunidad_autonoma_id),
+    provincia_id int REFERENCES geo.provincias (provincia_id),
+    variables_json jsonb NOT NULL
+  );
+
 ------------------------------------------------------------------------------------
 -- Grant permissions to readonly user over all schemas
 ------------------------------------------------------------------------------------
