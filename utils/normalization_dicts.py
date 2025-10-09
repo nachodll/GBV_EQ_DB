@@ -129,6 +129,9 @@ DICT_COMUNIDADES_AUTOMAS = {
 
 
 DICT_PROVINCIAS = {
+    "Total nacional": 0,
+    "Total": 0,
+    "España": 0,
     "Araba/Álava": 1,
     "Araba-Álava": 1,
     "Álava": 1,
