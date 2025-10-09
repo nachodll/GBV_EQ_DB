@@ -24,6 +24,8 @@ CREATE SCHEMA politicas_publicas_igualdad_violencia;
 
 CREATE SCHEMA percepcion_social;
 
+CREATE SCHEMA economia_laboral;
+
 ------------------------------------------------------------------------------------
 -- enums
 ------------------------------------------------------------------------------------
@@ -1400,6 +1402,35 @@ CREATE TABLE
     comunidad_autonoma_id int REFERENCES geo.comunidades_autonomas (comunidad_autonoma_id),
     provincia_id int REFERENCES geo.provincias (provincia_id),
     variables_json jsonb NOT NULL
+  );
+
+------------------------------------------------------------------------------------
+-- economia_laboral
+------------------------------------------------------------------------------------
+CREATE TABLE
+  economia_laboral.tasa_actividad_paro_empleo (
+    tasa_actividad_paro_empleo_id serial PRIMARY KEY,
+    anio int NOT NULL CHECK (
+      anio BETWEEN 1900 AND EXTRACT(
+        YEAR
+        FROM
+          CURRENT_DATE
+      )
+    ),
+    trimestre int NOT NULL CHECK (trimestre BETWEEN 1 AND 4),
+    provincia_id int NOT NULL REFERENCES geo.provincias (provincia_id),
+    sexo enums.sexo_enum NOT NULL,
+    tasa text NOT NULL CHECK (
+      tasa IN (
+        'Tasa de actividad',
+        'Tasa de empleo',
+        'Tasa de paro'
+      )
+    ),
+    total float NOT NULL CHECK (
+      total >= 0
+      AND total <= 100
+    )
   );
 
 ------------------------------------------------------------------------------------
