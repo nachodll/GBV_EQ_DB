@@ -69,7 +69,7 @@ CREATE TABLE
 
 ## Notable transformations
 
-- <a href="https://github.com/nachodll/GBV_EQ_DB/blob/main/downloaders/CIS001_download.py"> Selenium automation</a> (CIS001_download.py) iterates through every CIS barometer page, records metadata, and stores provisional variable maps before downloading available ZIP archives.
+- <a href="https://github.com/nachodll/GBV_EQ_DB/blob/main/downloaders/CIS004_download.py"> Selenium automation</a> (CIS004_download.py) iterates through every CIS barometer page, records metadata, and stores provisional variable maps before downloading available ZIP archives.
 - Variable mappings are first produced automatically by the CIS downloader and then patched during transformation to set consistent field names, account for missing mappings, and split multiple-answer questions into individual columns because the scraped JSON map is not fully reliable on its own.
 - ZIP files are uncompressed and the directory structure is readjusted in case of nested directories.
 - Target variables are extracted from each study and merged into a single dataframe. Variables are extracted only if they are part of the target variable set and there is a map for such study and such variable.

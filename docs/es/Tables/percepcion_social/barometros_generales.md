@@ -69,7 +69,7 @@ CREATE TABLE
 
 ## Transformaciones destacadas
 
-- <a href="https://github.com/nachodll/GBV_EQ_DB/blob/main/downloaders/CIS001_download.py"> La automatización con Selenium </a>(CIS001_download.py) recorre cada página de barómetros del CIS, registra la metadata y almacena mapeos provisionales de variables antes de descargar los ZIP disponibles.
+- <a href="https://github.com/nachodll/GBV_EQ_DB/blob/main/downloaders/CIS004_download.py"> La automatización con Selenium </a>(CIS004_download.py) recorre cada página de barómetros del CIS, registra la metadata y almacena mapeos provisionales de variables antes de descargar los ZIP disponibles.
 - Los mapeos de variables se obtienen automáticamente con el descargador del CIS y se corrigen durante la transformación para fijar nombres consistentes, cubrir ausencias y dividir las preguntas de respuesta múltiple, dado que el JSON generado en el scraping no es plenamente fiable.
 - Los ficheros ZIP son descomprimidos y la estructura de directorios es reajustada en caso de directorios anidados.
 - Las variables objetivo se extraen de cada estudio y se fusionan en un único dataframe. Las variables se extraen solo si forman parte del conjunto de variables objetivo y existe un mapa para dicho estudio y dicha variable.

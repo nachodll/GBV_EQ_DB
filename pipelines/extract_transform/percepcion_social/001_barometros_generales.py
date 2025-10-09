@@ -1,6 +1,8 @@
 """Extract and transform data
 Sources:
-    CIS004
+    CIS004 - Each subdirectory is a barometro general study containing a .sav file
+    CIS_variable_mappings.json - Mapping of standard variable names to original variable names for each study,
+        scrapped from the questionnaires in the CIS website. Check downloaders/CIS004_downloader.py
 Target tables:
     barometros_generales
 """
