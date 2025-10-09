@@ -43,8 +43,8 @@ def run_python_script(script: Path, *args: str):
                 logging.critical(indent + clean)
             elif "INFO" in line:
                 logging.info(indent + clean)
-            else:
-                print(line, end="")  # fallback for lines without log level
+            # else:
+            #     print(line, end="")  # fallback for lines without log level
 
     process.wait()
     if process.returncode != 0:
