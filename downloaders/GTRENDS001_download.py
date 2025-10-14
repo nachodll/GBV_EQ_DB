@@ -290,6 +290,54 @@ def build_explore_url(region_code: str, terms: list[str]) -> str:
     return f"https://trends.google.com/trends/explore?date=all,all&geo=ES,{region_code}&q={q}&hl=es"
 
 
+def apply_emulation(driver: webdriver.Chrome):
+    """Set stable, human-like emulation via CDP before navigation."""
+    try:
+        driver.execute_cdp_cmd("Emulation.setTimezoneOverride", {"timezoneId": "Europe/Madrid"})  # type: ignore
+    except Exception:
+        pass
+    try:
+        driver.execute_cdp_cmd("Emulation.setLocaleOverride", {"locale": "es-ES"})  # type: ignore
+    except Exception:
+        pass
+    try:
+        driver.execute_cdp_cmd(  # type: ignore
+            "Emulation.setGeolocationOverride",
+            {
+                "latitude": 40.4168,
+                "longitude": -3.7038,
+                "accuracy": 30,
+            },
+        )
+    except Exception:
+        pass
+    # UA + Client Hints metadata (helps align Sec-CH-UA with UA)
+    try:
+        driver.execute_cdp_cmd(  # type: ignore
+            "Network.setUserAgentOverride",
+            {
+                "userAgent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 15_6_1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36",
+                "platform": "MacIntel",
+                "acceptLanguage": "es-ES,es;q=0.9,en;q=0.8",
+                "userAgentMetadata": {
+                    "brands": [
+                        {"brand": "Chromium", "version": "120"},
+                        {"brand": "Google Chrome", "version": "120"},
+                        {"brand": "Not:A-Brand", "version": "99"},
+                    ],
+                    "fullVersion": "120.0.0.0",
+                    "platform": "macOS",
+                    "platformVersion": "15.6.1",
+                    "architecture": "arm",
+                    "model": "",
+                    "mobile": False,
+                },
+            },
+        )
+    except Exception:
+        pass
+
+
 def new_driver_for_profile(profile_dir: Path) -> webdriver.Chrome:
     profile_dir.mkdir(parents=True, exist_ok=True)
 
@@ -317,6 +365,7 @@ def new_driver_for_profile(profile_dir: Path) -> webdriver.Chrome:
         pass
 
     # Apply stealth and warm-up
+    apply_emulation(drv)
     apply_stealth(drv)
     establish_session(drv)
     return drv
@@ -340,7 +389,7 @@ def main():
     setup_logging()
     PROFILE_ROOT.mkdir(exist_ok=True, parents=True)
 
-    profile_idx = 400
+    profile_idx = 325
     driver = new_driver_for_profile(PROFILE_ROOT / f"profile_{profile_idx}")
     WebDriverWait(driver, 15)
 
