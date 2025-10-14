@@ -1,16 +1,11 @@
-"""Fetch Google Trends popularity data using Selenium. Reqires:
-1. Ensure chromedriver is installed and matches your Chrome version
-2. Execute the following command in a terminal to start a Chrome instance with remote debugging:
-pkill -f "Google Chrome" || true
-mkdir -p "$HOME/ChromeRemoteProfile"
-/Applications/Google Chrome.app/Contents/MacOS/Google Chrome \
-  --remote-debugging-port=9222 \
-  --user-data-dir="$HOME/ChromeRemoteProfile" \
-  --profile-directory=Default
-3. Log in to Google in that Chrome instance
-4. Run this script to attach to that Chrome instance and automate downloads
-Note: On macOS, ensure you have given terminal access to control Chrome in System Preferences
-"""
+"""Fetch Google Trends popularity data using Selenium (undetected-chromedriver).
+
+Overview
+- Launches a headful Chrome via undetected-chromedriver (UC).
+- Applies basic stealth patches and accepts consent.
+- Batches queries (anchor + up to BATCH_SIZE terms) and downloads CSVs.
+- On failure or soft-throttling, rotates to a fresh Chrome profile directory automatically
+  under: ~/ChromeRemoteProfiles (profile_0, profile_1, ...). No remote debugging required."""
 
 import logging
 import subprocess
@@ -24,8 +19,6 @@ from urllib.parse import quote
 import undetected_chromedriver as uc  # type: ignore
 from numpy import random
 from selenium import webdriver
-from selenium.webdriver.chrome.options import Options
-from selenium.webdriver.chrome.service import Service
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.support.ui import WebDriverWait
@@ -216,14 +209,14 @@ def chunked(iterable: Iterable[str], n: int) -> Iterator[List[str]]:
 
 def trends_ready(driver: webdriver.Chrome, timeout: int = 20):
     w = WebDriverWait(driver, timeout)
-    w.until(lambda d: d.execute_script("return document.readyState") == "complete")
+    w.until(lambda d: d.execute_script("return document.readyState") == "complete")  # type: ignore
     w.until(EC.presence_of_element_located((By.CSS_SELECTOR, "trends-widget, .widget")))
 
 
 def clear_trends_storage(driver: webdriver.Chrome):
     try:
-        driver.execute_cdp_cmd("Network.clearBrowserCache", {})
-        driver.execute_cdp_cmd(
+        driver.execute_cdp_cmd("Network.clearBrowserCache", {})  # type: ignore
+        driver.execute_cdp_cmd(  # type: ignore
             "Storage.clearDataForOrigin",
             {
                 "origin": "https://trends.google.com",
@@ -236,10 +229,10 @@ def clear_trends_storage(driver: webdriver.Chrome):
 
 def apply_stealth(driver: webdriver.Chrome):
     try:
-        driver.execute_cdp_cmd(
+        driver.execute_cdp_cmd(  # type: ignore
             "Network.setUserAgentOverride",
             {
-                "userAgent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 15_6_1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36",
+                "userAgent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 15_6_1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36",  # noqa: E501
                 "platform": "MacIntel",
                 "acceptLanguage": "es-ES,es;q=0.9,en;q=0.8",
             },
@@ -272,13 +265,13 @@ if (originalPermissions) {
 }
 """
     try:
-        driver.execute_cdp_cmd("Page.addScriptToEvaluateOnNewDocument", {"source": stealth_js})
+        driver.execute_cdp_cmd("Page.addScriptToEvaluateOnNewDocument", {"source": stealth_js})  # type: ignore
     except Exception:
         pass
 
 
 def establish_session(driver: webdriver.Chrome):
-    driver.set_window_size(1368, 820)
+    driver.set_window_size(1368, 820)  # type: ignore
     driver.get("https://www.google.com/?hl=es")
     try:
         btn = WebDriverWait(driver, 8).until(
@@ -299,33 +292,32 @@ def build_explore_url(region_code: str, terms: list[str]) -> str:
 
 def new_driver_for_profile(profile_dir: Path) -> webdriver.Chrome:
     profile_dir.mkdir(parents=True, exist_ok=True)
-    opts = Options()
-    # Use dedicated profile dir; each rotation creates a new one
-    opts.add_argument(f"--user-data-dir={str(profile_dir)}")
-    opts.add_argument("--profile-directory=Default")
-    opts.add_argument("--no-first-run")
-    opts.add_argument("--no-default-browser-check")
-    opts.add_argument("--disable-features=BlockThirdPartyCookies")
-    opts.add_argument("--lang=es-ES,es")
-    opts.add_argument("--start-maximized")
-    # Important: do NOT add automation flags like AutomationControlled
 
-    # Optional: keep downloads default; customize via preferences if needed
-    # prefs = {"download.prompt_for_download": False}
-    # opts.add_experimental_option("prefs", prefs)
+    # undetected-chromedriver options
+    uopts = uc.ChromeOptions()
+    uopts.add_argument(f"--user-data-dir={str(profile_dir)}")
+    uopts.add_argument("--profile-directory=Default")
+    uopts.add_argument("--no-first-run")
+    uopts.add_argument("--no-default-browser-check")
+    uopts.add_argument("--disable-features=BlockThirdPartyCookies")
+    uopts.add_argument("--lang=es-ES,es")
+    uopts.add_argument("--start-maximized")
+    # Do NOT add AutomationControlled flag
 
-    service = Service(str(DRIVER_PATH))  # ensure chromedriver matches Chrome
-    drv = webdriver.Chrome(service=service, options=opts)
+    # Optional: preferences (downloads, etc.)
+    # uopts.add_experimental_option("prefs", {"download.prompt_for_download": False})
 
-    # Bring Chrome to foreground (macOS) so you can see it
+    # Start UC (no Service/DRIVER_PATH needed)
+    drv = uc.Chrome(options=uopts, headless=False)
+
+    # Bring Chrome to foreground (macOS)
     try:
         subprocess.run(["osascript", "-e", 'tell application "Google Chrome" to activate'], check=False)
     except Exception:
         pass
 
-    # Apply stealth before any site navigation
+    # Apply stealth and warm-up
     apply_stealth(drv)
-    # Warm-up + consent
     establish_session(drv)
     return drv
 
@@ -348,9 +340,9 @@ def main():
     setup_logging()
     PROFILE_ROOT.mkdir(exist_ok=True, parents=True)
 
-    profile_idx = 0
+    profile_idx = 400
     driver = new_driver_for_profile(PROFILE_ROOT / f"profile_{profile_idx}")
-    wait = WebDriverWait(driver, 15)
+    WebDriverWait(driver, 15)
 
     try:
         all_terms = PORN_SEARCHES + PORN_PLATFORMS  # ...existing code...
@@ -391,7 +383,7 @@ def main():
                             pass
                         profile_idx += 1
                         driver = new_driver_for_profile(PROFILE_ROOT / f"profile_{profile_idx}")
-                        wait = WebDriverWait(driver, 15)
+                        WebDriverWait(driver, 15)
                         time.sleep(random.uniform(3.0, 6.0))  # type: ignore
 
                 if not success:
