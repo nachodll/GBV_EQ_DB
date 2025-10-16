@@ -20,13 +20,7 @@ from utils.normalization import (
     normalize_year,
 )
 
-RAW_XLSX_PATHS = [
-    Path("data") / "raw" / "SS" / "SS001-MaternidadPaternidadCuidadoMenorYCuidadoFamiliares" / "PNM-2019.xlsx",
-    Path("data") / "raw" / "SS" / "SS001-MaternidadPaternidadCuidadoMenorYCuidadoFamiliares" / "PNM-2020.xlsx",
-    Path("data") / "raw" / "SS" / "SS001-MaternidadPaternidadCuidadoMenorYCuidadoFamiliares" / "PNM-2021.xlsx",
-    Path("data") / "raw" / "SS" / "SS001-MaternidadPaternidadCuidadoMenorYCuidadoFamiliares" / "PNM-2022.xlsx",
-    Path("data") / "raw" / "SS" / "SS001-MaternidadPaternidadCuidadoMenorYCuidadoFamiliares" / "PNM-2023.xlsx",
-]
+RAW_XLSX_DIR = Path("data") / "raw" / "SS" / "SS001-MaternidadPaternidadCuidadoMenorYCuidadoFamiliares"
 CLEAN_CSV_PATH = Path("data") / "clean" / "educacion_juventud" / "prestaciones_nacimiento_y_cuidado_menor.csv"
 
 
@@ -123,8 +117,11 @@ def get_df_from_all_excels(paths: list[Path]) -> pd.DataFrame:
 
 def main():
     try:
-        # Read raw XLSX
-        df = get_df_from_all_excels(RAW_XLSX_PATHS)
+        # Get all raw XLSX paths and load to df
+        raw_xlsx_paths = sorted(RAW_XLSX_DIR.glob("*.xlsx"))
+        raw_xlsx_paths = [p for p in raw_xlsx_paths if int(p.stem.split("-")[-1]) >= 2019]
+        raw_xlsx_paths = [p for p in raw_xlsx_paths if not p.name.startswith(("~$", "._")) or p.name.endswith("~")]
+        df = get_df_from_all_excels(raw_xlsx_paths)
 
         # Validate and normalize columns
         df["anio"] = apply_and_check(df["anio"], normalize_year)
