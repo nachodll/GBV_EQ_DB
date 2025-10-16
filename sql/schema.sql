@@ -1097,6 +1097,23 @@ CREATE TABLE
     excedencias int CHECK (excedencias >= 0)
   );
 
+CREATE TABLE
+  educacion_juventud.permisos_maternidad_paternidad (
+    permisos_maternidad_paternidad_id serial PRIMARY KEY,
+    anio int NOT NULL CHECK (
+      anio BETWEEN 1900 AND EXTRACT(
+        YEAR
+        FROM
+          CURRENT_DATE
+      )
+    ),
+    provincia_id int NOT NULL REFERENCES geo.provincias (provincia_id),
+    tipo_permiso text NOT NULL CHECK (tipo_permiso IN ('Maternidad', 'Paternidad')),
+    percibidas_madre int NOT NULL CHECK (percibidas_madre >= 0),
+    percibidas_padre int NOT NULL CHECK (percibidas_padre >= 0),
+    importe_miles_euros float NOT NULL CHECK (importe_miles_euros >= 0)
+  );
+
 ------------------------------------------------------------------------------------
 -- tecnologia_y_medios
 ------------------------------------------------------------------------------------
