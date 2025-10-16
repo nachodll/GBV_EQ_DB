@@ -1094,7 +1094,7 @@ CREATE TABLE
       motivo IN ('Cuidado de hijos', 'Cuidado de familiares')
     ),
     provincia_id int NOT NULL REFERENCES geo.provincias (provincia_id),
-    excedencias int NOT NULL CHECK (excedencias >= 0)
+    excedencias int CHECK (excedencias >= 0)
   );
 
 ------------------------------------------------------------------------------------
