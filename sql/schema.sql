@@ -1062,6 +1062,41 @@ CREATE TABLE
     egresados int NOT NULL CHECK (egresados >= 0)
   );
 
+CREATE TABLE
+  educacion_juventud.prestaciones_nacimiento_y_cuidado_menor (
+    prestaciones_nacimiento_y_cuidado_menor_id serial PRIMARY KEY,
+    anio int NOT NULL CHECK (
+      anio BETWEEN 1900 AND EXTRACT(
+        YEAR
+        FROM
+          CURRENT_DATE
+      )
+    ),
+    provincia_id int NOT NULL REFERENCES geo.provincias (provincia_id),
+    prestaciones_primer_progenitor int NOT NULL CHECK (prestaciones_primer_progenitor >= 0),
+    opcion_a_favor_segundo_progenitor int CHECK (opcion_a_favor_segundo_progenitor >= 0),
+    prestaciones_segundo_progenitor int NOT NULL CHECK (prestaciones_segundo_progenitor >= 0),
+    importe_miles_euros float NOT NULL CHECK (importe_miles_euros >= 0)
+  );
+
+CREATE TABLE
+  educacion_juventud.excedencias_cuidado_hijos_familiares (
+    excedencias_cuidado_hijos_familiares_id serial PRIMARY KEY,
+    anio int NOT NULL CHECK (
+      anio BETWEEN 1900 AND EXTRACT(
+        YEAR
+        FROM
+          CURRENT_DATE
+      )
+    ),
+    sexo enums.sexo_enum NOT NULL,
+    motivo text NOT NULL CHECK (
+      motivo IN ('Cuidado de hijos', 'Cuidado de familiares')
+    ),
+    provincia_id int NOT NULL REFERENCES geo.provincias (provincia_id),
+    excedencias int NOT NULL CHECK (excedencias >= 0)
+  );
+
 ------------------------------------------------------------------------------------
 -- tecnologia_y_medios
 ------------------------------------------------------------------------------------

@@ -203,6 +203,7 @@ DICT_PROVINCIAS = {
     "Santa Cruz de Tenerife": 38,
     "Sta. Cruz de Tenerife": 38,
     "Sta. Cruz Tenerife": 38,
+    "S. C. Tenerife": 38,
     "Tenerife": 38,
     "Cantabria": 39,
     "Segovia": 40,
