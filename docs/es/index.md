@@ -337,11 +337,23 @@ Las tablas se distribuyen en diferentes esquemas según el ámbito al que perten
         </tr>
     </thead>
     <tbody>
-        <tr style="background-color: #f8ccccff;">
-            <td>Excendencias y Permisos Maternidad/Paternidad</td>
-            <td></td>
-            <td></td>
-            <td>Seguridad Social</td>
+        <tr>
+            <td><a href="./Tables/educacion_juventud/excedencias_cuidado_hijos_familiares/">excedencias_cuidado_hijos_familiares</a></td>
+            <td>2007-2023</td>
+            <td>Provincias</td>
+            <td>Ministerio de Trabajo y Economía Social</td>
+        </tr>
+        <tr>
+            <td><a href="./Tables/educacion_juventud/prestaciones_nacimiento_y_cuidado_menor/">prestaciones_nacimiento_y_cuidado_menor</a></td>
+            <td>2019-2023</td>
+            <td>Provincias</td>
+            <td>Ministerio de Trabajo y Economía Social</td>
+        </tr>
+        <tr>
+            <td><a href="./Tables/educacion_juventud/prestaciones_maternidad_paternidad/">prestaciones_maternidad_paternidad</a></td>
+            <td>2002-2019</td>
+            <td>Provincias</td>
+            <td>Ministerio de Trabajo y Economía Social</td>
         </tr>
         <tr>
             <td><a href="./Tables/educacion_juventud/matriculados_educacion_no_universitaria/">matriculados_educacion_no_universitaria</a></td>

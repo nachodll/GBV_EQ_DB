@@ -63,6 +63,9 @@ nav:
             - legislacion: Tables/politicas_publicas_igualdad_violencia/legislacion.md
             - institutos_mujer: Tables/politicas_publicas_igualdad_violencia/institutos_mujer.md
         - educacion_juventud:
+            - excedencias_cuidado_hijos_familiares: Tables/educacion_juventud/excedencias_cuidado_hijos_familiares.md
+            - prestaciones_nacimiento_y_cuidado_menor: Tables/educacion_juventud/prestaciones_nacimiento_y_cuidado_menor.md
+            - prestaciones_maternidad_paternidad: Tables/educacion_juventud/prestaciones_maternidad_paternidad.md
             - matriculados_educacion_no_universitaria: Tables/educacion_juventud/matriculados_educacion_no_universitaria.md
             - matriculados_universidad: Tables/educacion_juventud/matriculados_universidad.md
             - egresados_universidad: Tables/educacion_juventud/egresados_universidad.md
