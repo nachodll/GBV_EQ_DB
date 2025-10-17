@@ -78,6 +78,7 @@ TABLES_TO_LOAD: Dict[Path, Optional[Callable[[Connection, pd.DataFrame], None]]]
     CLEAN_DATA_DIR / "educacion_juventud" / "egresados_universidad.csv": None,
     CLEAN_DATA_DIR / "educacion_juventud" / "prestaciones_nacimiento_y_cuidado_menor.csv": None,
     CLEAN_DATA_DIR / "educacion_juventud" / "excedencias_cuidado_hijos_familiares.csv": None,
+    CLEAN_DATA_DIR / "educacion_juventud" / "prestaciones_maternidad_paternidad.csv": None,
     CLEAN_DATA_DIR / "tecnologia_y_medios" / "acceso_internet_viviendas.csv": None,
     CLEAN_DATA_DIR / "tecnologia_y_medios" / "uso_internet_personas.csv": None,
     CLEAN_DATA_DIR / "tecnologia_y_medios" / "uso_internet_ninios.csv": None,

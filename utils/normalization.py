@@ -396,10 +396,10 @@ def normalize_positive_integer(value: Union[str, int, float]) -> NormalizationRe
 
 def normalize_positive_float(value: Union[str, int, float]) -> NormalizationResult:
     """Normalize a string, int or float to a positive float."""
-    raw_str = str(value)
-    if isinstance(value, str) and _is_unknown(value):
-        return NormalizationResult(None, NormalizationStatus.UNKNOWN, raw_str)
+    if _is_unknown(value):
+        return NormalizationResult(None, NormalizationStatus.UNKNOWN, value)
     try:
+        raw_str = str(value)
         if isinstance(value, str):
             num = float(value.strip())
         else:
@@ -408,7 +408,7 @@ def normalize_positive_float(value: Union[str, int, float]) -> NormalizationResu
             return NormalizationResult(num, NormalizationStatus.VALID, raw_str)
         return NormalizationResult(None, NormalizationStatus.INVALID, raw_str)
     except ValueError:
-        return NormalizationResult(None, NormalizationStatus.INVALID, raw_str)
+        return NormalizationResult(None, NormalizationStatus.INVALID, value)
 
 
 def normalize_plain_text(text: str) -> NormalizationResult:
