@@ -12,8 +12,8 @@ import pandas as pd
 
 from utils.logging import setup_logging
 from utils.normalization import (
-    apply_and_check,  # type: ignore
-    apply_and_check_dict,  # type: ignore
+    apply_and_check,
+    apply_and_check_dict,
     normalize_positive_float,
     normalize_provincia,
     normalize_quarter,
@@ -27,7 +27,7 @@ CLEAN_CSV_PATH = Path("data") / "clean" / "economia_laboral" / "tasa_actividad_p
 def main():
     try:
         # Read csv file into a DataFrame
-        df = pd.read_csv(RAW_CSV_PATH, sep=";", decimal=",")  # type: ignore
+        df = pd.read_csv(RAW_CSV_PATH, sep=";", decimal=",")
 
         # Split periodo into year and quarter
         df[["anio", "trimestre"]] = df["Periodo"].str.split("T", expand=True)

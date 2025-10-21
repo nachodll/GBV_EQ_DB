@@ -26,7 +26,7 @@ CLEAN_CSV_PATH = Path("data") / "clean" / "demografia" / "nulidades_separaciones
 def main():
     try:
         # Read csv file into a DataFrame
-        df = pd.read_csv(RAW_CSV_PATH, sep="\t", thousands=".")  # type: ignore
+        df = pd.read_csv(RAW_CSV_PATH, sep="\t", thousands=".")
 
         # Rename columns
         df.rename(

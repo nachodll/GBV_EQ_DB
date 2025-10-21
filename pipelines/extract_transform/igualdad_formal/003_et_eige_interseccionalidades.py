@@ -12,8 +12,8 @@ import pandas as pd
 
 from utils.logging import setup_logging
 from utils.normalization import (
-    apply_and_check,  # type: ignore
-    apply_and_check_dict,  # type: ignore
+    apply_and_check,
+    apply_and_check_dict,
     normalize_nationality,
     normalize_plain_text,
     normalize_positive_integer,
@@ -27,7 +27,7 @@ CLEAN_CSV_PATH = Path("data") / "clean" / "igualdad_formal" / "eige_interseccion
 def main():
     try:
         # Read file
-        df = pd.read_csv(RAW_CSV_PATH)  # type: ignore
+        df = pd.read_csv(RAW_CSV_PATH)
         df.columns = df.columns.str.strip()
 
         # Rename columns
@@ -43,7 +43,7 @@ def main():
         )
 
         # Change nan for None in valor column
-        df["valor"] = df["valor"].fillna(0).astype(int)  # type: ignore
+        df["valor"] = df["valor"].fillna(0).astype(int)
 
         interseccionalidad_map = {
             v: v

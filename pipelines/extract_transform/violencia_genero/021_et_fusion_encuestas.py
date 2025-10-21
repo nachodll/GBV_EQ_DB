@@ -9,11 +9,11 @@ import logging
 from pathlib import Path
 
 import pandas as pd
-import pyreadstat  # type: ignore
+import pyreadstat
 
 from utils.logging import setup_logging
 from utils.normalization import (
-    apply_and_check,  # type: ignore
+    apply_and_check,
     normalize_month,
     normalize_positive_integer,
     normalize_provincia,
@@ -28,15 +28,15 @@ CLEAN_CSV_PATH = Path("data") / "clean" / "violencia_genero" / "fusion_encuestas
 def main():
     try:
         # Read raw SAV files
-        df_2015, _ = pyreadstat.read_sav(RAW_SAV_PATH_2015, apply_value_formats=True)  # type: ignore
-        df_2019, _ = pyreadstat.read_sav(RAW_SAV_PATH_2019, apply_value_formats=True)  # type: ignore
+        df_2015, _ = pyreadstat.read_sav(RAW_SAV_PATH_2015, apply_value_formats=True)
+        df_2019, _ = pyreadstat.read_sav(RAW_SAV_PATH_2019, apply_value_formats=True)
 
         # Extract common variables and add metadata for both years
-        df_2015_subset = df_2015[["PROV"]].copy()  # type: ignore
+        df_2015_subset = df_2015[["PROV"]].copy()
         df_2015_subset["codigo_estudio"] = 3027
         df_2015_subset["anio"] = 2014
         df_2015_subset["mes"] = "Septiembre"
-        df_2019_subset = df_2019[["PROV"]].copy()  # type: ignore
+        df_2019_subset = df_2019[["PROV"]].copy()
         df_2019_subset["codigo_estudio"] = 3235
         df_2019_subset["anio"] = 2019
         df_2019_subset["mes"] = "Septiembre"
@@ -76,14 +76,14 @@ def main():
 
         # Apply conditions for 2019
         for var, columns in var_mapping_2019.items():
-            df_2019_subset[var] = df_2019[columns].eq("Sí").any(axis=1)  # type: ignore
+            df_2019_subset[var] = df_2019[columns].eq("Sí").any(axis=1)
 
         # Apply conditions for 2015
         for var, columns in var_mapping_2015.items():
-            df_2015_subset[var] = df_2015[columns].eq("Sí").any(axis=1)  # type: ignore
+            df_2015_subset[var] = df_2015[columns].eq("Sí").any(axis=1)
 
         # Concatenate the two subsets and rename columns
-        df = pd.concat([df_2019_subset, df_2015_subset], ignore_index=True)  # type: ignore
+        df = pd.concat([df_2019_subset, df_2015_subset], ignore_index=True)
         df.rename(
             columns={
                 "PROV": "provincia_id",

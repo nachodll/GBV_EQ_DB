@@ -13,8 +13,8 @@ import pandas as pd
 
 from utils.logging import setup_logging
 from utils.normalization import (
-    apply_and_check,  # type: ignore
-    apply_and_check_dict,  # type: ignore
+    apply_and_check,
+    apply_and_check_dict,
     normalize_age_group,
     normalize_positive_integer,
     normalize_provincia,
@@ -29,15 +29,15 @@ CLEAN_CSV_PATH = Path("data") / "clean" / "demografia" / "matrimonios_heterosexu
 def main():
     try:
         # Read csv file into a DataFrame
-        df = pd.read_csv(RAW_CSV_PATH, sep="\t", thousands=".")  # type: ignore
-        df_2 = pd.read_csv(RAW_CSV_PATH_2, sep="\t", thousands=".")  # type: ignore
+        df = pd.read_csv(RAW_CSV_PATH, sep="\t", thousands=".")
+        df_2 = pd.read_csv(RAW_CSV_PATH_2, sep="\t", thousands=".")
 
         # Adapt to expected format
-        df_2["Total Nacional"] = df_2["Nacional y Provincias"].apply(  # type: ignore
-            lambda x: "No residente" if x == "No residente" else "Total Nacional"  # type: ignore
+        df_2["Total Nacional"] = df_2["Nacional y Provincias"].apply(
+            lambda x: "No residente" if x == "No residente" else "Total Nacional"
         )
-        df_2["Nacional y Provincias"] = df_2["Nacional y Provincias"].replace(["Total Nacional", "No residente"], None)  # type: ignore
-        df_2 = df_2[df_2["Edad de los cónyuges"] != "Todas las edades"]  # type: ignore
+        df_2["Nacional y Provincias"] = df_2["Nacional y Provincias"].replace(["Total Nacional", "No residente"], None)
+        df_2 = df_2[df_2["Edad de los cónyuges"] != "Todas las edades"]
 
         # df contains all total counts, df_2 contains breakdown by 'Estado civil anterior'
         df["Estado civil anterior"] = "Total"
@@ -73,7 +73,7 @@ def main():
         )
 
         # Map values 'es_residente_espania' to boolean
-        df["es_residente_espania"] = df["es_residente_espania"].apply(lambda x: x == "Total Nacional")  # type: ignore
+        df["es_residente_espania"] = df["es_residente_espania"].apply(lambda x: x == "Total Nacional")
 
         # Drop all rows with aggregated data (e.g., "TOTAL")
         df = df[~(df["provincia_id"].isna() & (df["es_residente_espania"]))]
@@ -82,7 +82,7 @@ def main():
         df = df[df["matrimonios"].notna()]
 
         # Adapt to expected values
-        df["edad"] = df["edad"].replace({"Menos de 15 años": "<15"})  # type: ignore
+        df["edad"] = df["edad"].replace({"Menos de 15 años": "<15"})
 
         # Normalize and validate columns
         df["provincia_id"] = apply_and_check(df["provincia_id"], normalize_provincia)

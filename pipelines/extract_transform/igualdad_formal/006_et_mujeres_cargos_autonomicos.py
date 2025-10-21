@@ -12,8 +12,8 @@ import pandas as pd
 
 from utils.logging import setup_logging
 from utils.normalization import (
-    apply_and_check,  # type: ignore
-    apply_and_check_dict,  # type: ignore
+    apply_and_check,
+    apply_and_check_dict,
     normalize_comunidad_autonoma,
     normalize_positive_integer,
     normalize_year,
@@ -27,13 +27,13 @@ def format_data_per_sex(df: pd.DataFrame, year_headers: pd.Series, sex: str) -> 
     all_entries = []
     for row in range(0, df.shape[0]):
         for col in range(2, df.shape[1]):
-            entry = {  # type: ignore
+            entry = {
                 "comunidad_autonoma_id": df.iat[row, 1],
                 "anio": year_headers.iat[col],
                 "numero_cargos": df.iat[row, col],
                 "sexo": sex,
             }
-            all_entries.append(entry)  # type: ignore
+            all_entries.append(entry)
 
     return pd.DataFrame(all_entries)
 
@@ -41,7 +41,7 @@ def format_data_per_sex(df: pd.DataFrame, year_headers: pd.Series, sex: str) -> 
 def main():
     try:
         # Read xls file
-        excel_df = pd.read_excel(RAW_XLS_PATH, sheet_name="Evo w95", header=None)  # type: ignore
+        excel_df = pd.read_excel(RAW_XLS_PATH, sheet_name="Evo w95", header=None)
 
         # Get year headers
         year_headers = excel_df.iloc[2]

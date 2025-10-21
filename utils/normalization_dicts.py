@@ -8,13 +8,13 @@ def _load_municipios_dict() -> dict[int, dict[str, int]]:
     """Load municipios data keyed by provincia id"""
     municipios_dict: dict[int, dict[str, int]] = {}
     with open(MUNICIPIOS_PATH, "r", encoding="utf-8") as f:
-        reader = csv.DictReader(f, delimiter=";")  # type: ignore
-        for row in reader:  # type: ignore
-            provincia_id = int(row["provincia_id"])  # type: ignore
-            municipio_name = row["nombre"].strip()  # type: ignore
-            municipio_id = int(row["municipio_id"])  # type: ignore
+        reader = csv.DictReader(f, delimiter=";")
+        for row in reader:
+            provincia_id = int(row["provincia_id"])
+            municipio_name = row["nombre"].strip()
+            municipio_id = int(row["municipio_id"])
             prov_dict = municipios_dict.setdefault(provincia_id, {})
-            prov_dict.setdefault(municipio_name, municipio_id)  # type: ignore
+            prov_dict.setdefault(municipio_name, municipio_id)
 
             # Special case "/" (Arrasate/Mondragón)
             slash_variants = [part.strip() for part in municipio_name.split("/")]

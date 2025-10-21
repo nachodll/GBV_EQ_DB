@@ -12,7 +12,7 @@ import pandas as pd
 
 from utils.logging import setup_logging
 from utils.normalization import (
-    apply_and_check,  # type: ignore
+    apply_and_check,
     normalize_comunidad_autonoma,
     normalize_date,
     normalize_plain_text,
@@ -26,7 +26,7 @@ CLEAN_CSV_PATH = Path("data") / "clean" / "politica" / "elecciones_parlamentos_a
 def main():
     try:
         # Read csv file
-        df = pd.read_csv(RAW_CSV_PATH, sep=";", keep_default_na=False, na_values=[])  # type: ignore
+        df = pd.read_csv(RAW_CSV_PATH, sep=";", keep_default_na=False, na_values=[])
 
         # Validate and normalize columns
         df["comunidad_autonoma_id"] = apply_and_check(df["comunidad_autonoma_id"], normalize_comunidad_autonoma)

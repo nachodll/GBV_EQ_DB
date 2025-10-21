@@ -12,8 +12,8 @@ import pandas as pd
 
 from utils.logging import setup_logging
 from utils.normalization import (
-    apply_and_check,  # type: ignore
-    apply_and_check_dict,  # type: ignore
+    apply_and_check,
+    apply_and_check_dict,
     normalize_nationality,
     normalize_positive_float,
     normalize_year,
@@ -26,7 +26,7 @@ CLEAN_CSV_PATH = Path("data") / "clean" / "igualdad_formal" / "eige_dominios.csv
 def main():
     try:
         # Read file
-        df = pd.read_csv(RAW_CSV_PATH)  # type: ignore
+        df = pd.read_csv(RAW_CSV_PATH)
         df.columns = df.columns.str.strip()
 
         # Rename columns
@@ -74,7 +74,7 @@ def main():
 
         # Save to clean data
         CLEAN_CSV_PATH.parent.mkdir(parents=True, exist_ok=True)
-        df.to_csv(CLEAN_CSV_PATH, index=False, sep=";")  # type: ignore
+        df.to_csv(CLEAN_CSV_PATH, index=False, sep=";")
         logging.info(f"Data successfully transformed and saved to {CLEAN_CSV_PATH}")
 
     except FileNotFoundError as e:

@@ -12,7 +12,7 @@ import pandas as pd
 
 from utils.logging import setup_logging
 from utils.normalization import (
-    apply_and_check,  # type: ignore
+    apply_and_check,
     normalize_comunidad_autonoma,
     normalize_positive_integer,
     normalize_year,
@@ -24,18 +24,18 @@ CLEAN_CSV_PATH = Path("data") / "clean" / "violencia_genero" / "denuncias_vg_pre
 
 def main():
     try:
-        excel_df = pd.read_excel(RAW_XLS_PATH, sheet_name="Evo w852", skiprows=3, header=None)  # type: ignore
+        excel_df = pd.read_excel(RAW_XLS_PATH, sheet_name="Evo w852", skiprows=3, header=None)
 
         # Extract data from excel into desired format
         all_entries = []
         for row in range(3, 20):
             for col in range(1, 19):
-                entry = {  # type: ignore
-                    "anio": excel_df.iat[0, col],  # type: ignore
-                    "comunidad_autonoma_id": excel_df.iat[row, 0],  # type: ignore
-                    "denuncias_presentadas": excel_df.iat[row, col],  # type: ignore
+                entry = {
+                    "anio": excel_df.iat[0, col],
+                    "comunidad_autonoma_id": excel_df.iat[row, 0],
+                    "denuncias_presentadas": excel_df.iat[row, col],
                 }
-                all_entries.append(entry)  # type: ignore
+                all_entries.append(entry)
         df = pd.DataFrame(all_entries)
 
         # Normalize and validate all columns

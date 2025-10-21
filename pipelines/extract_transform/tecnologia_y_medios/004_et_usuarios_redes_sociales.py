@@ -12,7 +12,7 @@ import pandas as pd
 
 from utils.logging import setup_logging
 from utils.normalization import (
-    apply_and_check,  # type: ignore
+    apply_and_check,
     normalize_plain_text,
     normalize_positive_integer,
     normalize_year,
@@ -25,7 +25,7 @@ CLEAN_CSV_PATH = Path("data") / "clean" / "tecnologia_y_medios" / "usuarios_rede
 def main():
     try:
         # Read csv file into a DataFrame
-        df = pd.read_csv(RAW_CSV_PATH, sep=";", thousands=".")  # type: ignore
+        df = pd.read_csv(RAW_CSV_PATH, sep=";", thousands=".")
 
         # Rename columns
         df.rename(

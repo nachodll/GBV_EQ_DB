@@ -13,8 +13,8 @@ import pandas as pd
 
 from utils.logging import setup_logging
 from utils.normalization import (
-    apply_and_check,  # type: ignore
-    apply_and_check_dict,  # type: ignore
+    apply_and_check,
+    apply_and_check_dict,
     normalize_positive_integer,
     normalize_provincia,
     normalize_year,
@@ -80,7 +80,7 @@ def get_df_from_all_excels(paths: list[Path]) -> pd.DataFrame:
 
     for path in paths:
         year = int(path.stem.split("-")[1])
-        excel_df = pd.read_excel(path, header=None, sheet_name=SHEET_NAME_DICT[year])  # type: ignore
+        excel_df = pd.read_excel(path, header=None, sheet_name=SHEET_NAME_DICT[year])
 
         # Fix wrong columns for specific years
         if year == 2017 or year == 2018:
@@ -95,14 +95,14 @@ def get_df_from_all_excels(paths: list[Path]) -> pd.DataFrame:
         else:
             motivo_header_idx = 4 if year >= 2014 else 6
             motivo_header = excel_df.iloc[motivo_header_idx, :]
-            motivo_header = motivo_header.replace("nan", "")  # type: ignore
+            motivo_header = motivo_header.replace("nan", "")
             motivo_header = motivo_header.ffill().tolist()
         sexo_header_idx = 5 if year >= 2014 else 7
         sexo_header = excel_df.iloc[sexo_header_idx, :].ffill().tolist()
         year_header = excel_df.iloc[sexo_header_idx + 1, :].tolist()  # only used before 2012
 
-        excel_df[0] = excel_df[0].apply(_norm)  # type: ignore
-        andalucia_idx = excel_df.index[excel_df[0].eq("ANDALUCIA")][0]  # type: ignore
+        excel_df[0] = excel_df[0].apply(_norm)
+        andalucia_idx = excel_df.index[excel_df[0].eq("ANDALUCIA")][0]
         melilla_idx = excel_df.index[excel_df[0].eq("Melilla")][0]
 
         for i in range(andalucia_idx, melilla_idx + 1):
@@ -126,14 +126,14 @@ def get_df_from_all_excels(paths: list[Path]) -> pd.DataFrame:
                 ]:
                     continue
 
-                entry = {  # type: ignore
+                entry = {
                     "anio": year,
-                    "provincia_id": excel_df.iat[i, 0],  # type: ignore
+                    "provincia_id": excel_df.iat[i, 0],
                     "motivo": motivo_header[j],
                     "sexo": sexo_header[j],
                     "excedencias": excel_df.iat[i, j],
                 }
-                all_entries.append(entry)  # type: ignore
+                all_entries.append(entry)
 
     df = pd.DataFrame(all_entries)
     return df
@@ -147,7 +147,7 @@ def main():
 
         # Drop rows with aggregate data for provincia_id and map comunidad_autonoma to their provincias
         df = df[
-            ~df["provincia_id"].isin(  # type: ignore
+            ~df["provincia_id"].isin(
                 [
                     "ANDALUCIA",
                     "ARAGON",
@@ -163,7 +163,7 @@ def main():
                 ]
             )
         ]
-        df["provincia_id"] = df["provincia_id"].replace(  # type: ignore
+        df["provincia_id"] = df["provincia_id"].replace(
             {
                 "NAVARRA (C. FORAL DE)": "Navarra",
                 "ASTURIAS (PRINCIPADO DE)": "Asturias",
@@ -176,7 +176,7 @@ def main():
         logging.info(f"Number of entries per year:\n{df['anio'].value_counts()}")
 
         # Replace - with NULL for excedencias
-        df["excedencias"] = df["excedencias"].replace("-", None)  # type: ignore
+        df["excedencias"] = df["excedencias"].replace("-", None)
 
         # Validate and normalize columns
         df["anio"] = apply_and_check(df["anio"], normalize_year)

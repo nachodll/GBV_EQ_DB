@@ -12,8 +12,8 @@ import pandas as pd
 
 from utils.logging import setup_logging
 from utils.normalization import (
-    apply_and_check,  # type: ignore
-    apply_and_check_dict,  # type: ignore
+    apply_and_check,
+    apply_and_check_dict,
     normalize_age_group,
     normalize_nationality,
     normalize_positive_integer,
@@ -27,7 +27,7 @@ CLEAN_CSV_PATH = Path("data") / "clean" / "demografia" / "poblacion_grupo_edad.c
 def main():
     try:
         # Read csv file into a DataFrame
-        df = pd.read_csv(RAW_CSV_PATH, sep="\t", thousands=".")  # type: ignore
+        df = pd.read_csv(RAW_CSV_PATH, sep="\t", thousands=".")
 
         # Rename columns
         df.rename(

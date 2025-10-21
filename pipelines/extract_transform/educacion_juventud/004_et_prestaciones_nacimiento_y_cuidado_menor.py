@@ -13,7 +13,7 @@ import pandas as pd
 
 from utils.logging import setup_logging
 from utils.normalization import (
-    apply_and_check,  # type: ignore
+    apply_and_check,
     normalize_positive_float,
     normalize_positive_integer,
     normalize_provincia,
@@ -30,7 +30,7 @@ def get_df_from_all_excels(paths: list[Path]) -> pd.DataFrame:
     for path in paths:
         year = int(path.stem.split("-")[-1])
         sheet_name = "PNM-1" if year > 2020 else "PNM03"
-        excel_df = pd.read_excel(path, header=None, sheet_name=sheet_name)  # type: ignore
+        excel_df = pd.read_excel(path, header=None, sheet_name=sheet_name)
 
         prestaciones_header = excel_df.iloc[5, :].ffill().tolist()
         anio_header = excel_df.iloc[7, :].tolist()
@@ -77,18 +77,18 @@ def get_df_from_all_excels(paths: list[Path]) -> pd.DataFrame:
                 "prestaciones_segundo_progenitor": segundo_progenitor,
                 "importe_miles_euros": importe,
             }
-            all_entries.append(entry)  # type: ignore
+            all_entries.append(entry)
 
         excel_df.to_csv("data/debug/prestaciones.csv", index=False, sep=";")
 
     df = pd.DataFrame(all_entries)
 
     # Round to 2 decimals importe_miles_euros
-    df["importe_miles_euros"] = pd.to_numeric(df["importe_miles_euros"], errors="coerce").round(2)  # type: ignore
+    df["importe_miles_euros"] = pd.to_numeric(df["importe_miles_euros"], errors="coerce").round(2)
 
     # Drop rows with aggregate data for provincia_id and map comunidad_autonoma to their provincias
     df = df[
-        ~df["provincia_id"].isin(  # type: ignore
+        ~df["provincia_id"].isin(
             [
                 "ANDALUCÍA",
                 "ARAGÓN",
@@ -103,7 +103,7 @@ def get_df_from_all_excels(paths: list[Path]) -> pd.DataFrame:
             ]
         )
     ]
-    df["provincia_id"] = df["provincia_id"].replace(  # type: ignore
+    df["provincia_id"] = df["provincia_id"].replace(
         {
             "NAVARRA (C. FORAL DE)": "Navarra",
             "ASTURIAS (PRINCIPADO DE)": "Asturias",

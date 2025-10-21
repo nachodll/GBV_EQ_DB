@@ -12,7 +12,7 @@ import pandas as pd
 
 from utils.logging import setup_logging
 from utils.normalization import (
-    apply_and_check,  # type: ignore
+    apply_and_check,
     normalize_month,
     normalize_plain_text,
     normalize_positive_integer,
@@ -29,7 +29,7 @@ def main():
         all_files = list(RAW_CSVS_DIR.glob("*.csv"))
         if not all_files:
             raise FileNotFoundError(f"No CSV files found in directory: {RAW_CSVS_DIR}")
-        df = pd.concat((pd.read_csv(f, sep=";", decimal=",", thousands=".") for f in all_files), ignore_index=True)  # type: ignore
+        df = pd.concat((pd.read_csv(f, sep=";", decimal=",", thousands=".") for f in all_files), ignore_index=True)
 
         # Drop unnused columns
         df["anio"] = df["Id convocatoria"].astype(str).str.slice(0, 4).astype(int)

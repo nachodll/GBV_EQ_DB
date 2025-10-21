@@ -13,7 +13,7 @@ import pandas as pd
 
 from utils.logging import setup_logging
 from utils.normalization import (
-    apply_and_check,  # type: ignore
+    apply_and_check,
     normalize_age_group,
     normalize_positive_integer,
     normalize_provincia,
@@ -28,8 +28,8 @@ CLEAN_CSV_PATH = Path("data") / "clean" / "demografia" / "matrimonios_homosexual
 def main():
     try:
         # Read csv file into a DataFrame
-        df_hombres = pd.read_csv(RAW_CSV_PATH_HOMBRES, sep="\t", thousands=".")  # type: ignore
-        df_mujeres = pd.read_csv(RAW_CSV_PATH_MUJERES, sep="\t", thousands=".")  # type: ignore
+        df_hombres = pd.read_csv(RAW_CSV_PATH_HOMBRES, sep="\t", thousands=".")
+        df_mujeres = pd.read_csv(RAW_CSV_PATH_MUJERES, sep="\t", thousands=".")
 
         # Rename columns
         df_hombres.rename(
@@ -54,7 +54,7 @@ def main():
         )
 
         # Merge both DataFrames on common columns
-        df = pd.merge(  # type: ignore
+        df = pd.merge(
             df_hombres,
             df_mujeres,
             on=["provincia_id", "conyuge_1_grupo_edad", "conyuge_2_grupo_edad", "anio"],
@@ -62,14 +62,12 @@ def main():
         )
 
         # Map boolenan value `es_residente_espania` from provincia_id
-        df["es_residente_espania"] = df["provincia_id"].apply(  # type: ignore
-            lambda x: False if x == "No residente" else True  # type: ignore
-        )
-        df["provincia_id"] = df["provincia_id"].replace("No residente", None)  # type: ignore
+        df["es_residente_espania"] = df["provincia_id"].apply(lambda x: False if x == "No residente" else True)
+        df["provincia_id"] = df["provincia_id"].replace("No residente", None)
 
         # Replace matrimonios NaN with 0
-        df["matrimonios_hombres"] = df["matrimonios_hombres"].fillna(0)  # type: ignore
-        df["matrimonios_mujeres"] = df["matrimonios_mujeres"].fillna(0)  # type: ignore
+        df["matrimonios_hombres"] = df["matrimonios_hombres"].fillna(0)
+        df["matrimonios_mujeres"] = df["matrimonios_mujeres"].fillna(0)
 
         # Drop rows with aggregated data
         df = df[df["provincia_id"] != "Total"]
@@ -77,8 +75,8 @@ def main():
         df = df[df["conyuge_2_grupo_edad"] != "Todas las edades"]
 
         # Adapt to expected format
-        df["conyuge_1_grupo_edad"] = df["conyuge_1_grupo_edad"].replace("Menos de 15 años", "<15")  # type: ignore
-        df["conyuge_2_grupo_edad"] = df["conyuge_2_grupo_edad"].replace("Menos de 15 años", "<15")  # type: ignore
+        df["conyuge_1_grupo_edad"] = df["conyuge_1_grupo_edad"].replace("Menos de 15 años", "<15")
+        df["conyuge_2_grupo_edad"] = df["conyuge_2_grupo_edad"].replace("Menos de 15 años", "<15")
 
         # Normalize and validate data
         df["provincia_id"] = apply_and_check(df["provincia_id"], normalize_provincia)

@@ -11,7 +11,7 @@ import pandas as pd
 
 from utils.logging import setup_logging
 from utils.normalization import (
-    apply_and_check,  # type: ignore
+    apply_and_check,
     normalize_age_group,
     normalize_month,
     normalize_positive_integer,
@@ -27,7 +27,7 @@ CLEAN_CSV_PATH = Path("data") / "clean" / "violencia_genero" / "feminicidios_par
 def main():
     try:
         # Read file
-        df = pd.read_csv(str(RAW_CSV_PATH))  # type: ignore
+        df = pd.read_csv(str(RAW_CSV_PATH))
         df.columns = df.columns.str.strip()
 
         # Rename columns

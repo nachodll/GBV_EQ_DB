@@ -12,8 +12,8 @@ import pandas as pd
 
 from utils.logging import setup_logging
 from utils.normalization import (
-    apply_and_check,  # type: ignore
-    apply_and_check_dict,  # type: ignore
+    apply_and_check,
+    apply_and_check_dict,
     normalize_date,
     normalize_plain_text,
 )
@@ -25,7 +25,7 @@ CLEAN_CSV_PATH = Path("data") / "clean" / "politica" / "presidentes_espania.csv"
 def main():
     try:
         # Read xlsx file
-        df = pd.read_excel(RAW_XLSX_PATH, sheet_name="Hoja1", nrows=23)  # type: ignore
+        df = pd.read_excel(RAW_XLSX_PATH, sheet_name="Hoja1", nrows=23)
 
         # Rename columns
         df = df.rename(

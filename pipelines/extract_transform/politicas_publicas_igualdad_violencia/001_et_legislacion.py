@@ -12,7 +12,7 @@ import pandas as pd
 
 from utils.logging import setup_logging
 from utils.normalization import (
-    apply_and_check,  # type: ignore
+    apply_and_check,
     apply_and_check_dict,
     normalize_comunidad_autonoma,
     normalize_date,
@@ -27,7 +27,7 @@ CLEAN_CSV_PATH = Path("data") / "clean" / "politicas_publicas_igualdad_violencia
 def main():
     try:
         # Read xlsx file
-        df = pd.read_excel(RAW_XLSX_PATH, sheet_name="Hoja1", usecols=range(8))  # type: ignore
+        df = pd.read_excel(RAW_XLSX_PATH, sheet_name="Hoja1", usecols=range(8))
 
         # Rename columns
         df = df.rename(
@@ -44,7 +44,7 @@ def main():
         df = df.drop(columns=["Pdf"], errors="ignore")
 
         # Transform column 'vigente' to boolean
-        df["vigente"] = df["vigente"].apply(lambda x: False if str(x).strip().upper() == "DEROGADA" else True)  # type: ignore
+        df["vigente"] = df["vigente"].apply(lambda x: False if str(x).strip().upper() == "DEROGADA" else True)
 
         # Validate and normalize columns
         df["comunidad_autonoma_id"] = apply_and_check(df["comunidad_autonoma_id"], normalize_comunidad_autonoma)

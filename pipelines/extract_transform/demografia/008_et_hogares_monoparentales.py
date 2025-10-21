@@ -28,7 +28,7 @@ CLEAN_CSV_PATH = Path("data") / "clean" / "demografia" / "hogares_monoparentales
 def main():
     try:
         # Read csv file into a DataFrame
-        df = pd.read_csv(RAW_CSV_PATH, sep="\t", thousands=".", decimal=",")  # type: ignore
+        df = pd.read_csv(RAW_CSV_PATH, sep="\t", thousands=".", decimal=",")
 
         # Rename columns
         df.rename(
@@ -55,7 +55,7 @@ def main():
         df["grupo_edad"] = df["grupo_edad"].str.replace("Menos de 15 años", "<15", regex=False)
 
         # Replace missing values in 'hogares_monoparentales' with 0 and cast to float
-        df["hogares_monoparentales"] = df["hogares_monoparentales"].replace("..", 0)  # type: ignore
+        df["hogares_monoparentales"] = df["hogares_monoparentales"].replace("..", 0)
         df["hogares_monoparentales"] = (
             df["hogares_monoparentales"].astype(str).str.replace(",", ".", regex=False).astype(float)
         )

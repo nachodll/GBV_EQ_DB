@@ -12,7 +12,7 @@ import pandas as pd
 
 from utils.logging import setup_logging
 from utils.normalization import (
-    apply_and_check,  # type: ignore
+    apply_and_check,
     apply_and_check_dict,
     normalize_comunidad_autonoma,
     normalize_plain_text,
@@ -26,7 +26,7 @@ CLEAN_CSV_PATH = Path("data") / "clean" / "educacion_juventud" / "egresados_univ
 def main():
     try:
         # Read raw XLSX
-        excel_df = pd.read_excel(RAW_XLSX_PATH, dtype=str, header=None)  # type: ignore
+        excel_df = pd.read_excel(RAW_XLSX_PATH, dtype=str, header=None)
 
         # General headers for the entire dataframe
         sexo_header = excel_df.iloc[6, :].ffill().tolist()
@@ -62,12 +62,12 @@ def main():
                                 "curso": curso_header[j],
                                 "egresados": tu_df.iat[i, j],
                             }
-                            all_entries.append(entry)  # type: ignore
+                            all_entries.append(entry)
 
-        df = pd.DataFrame(all_entries)  # type: ignore
+        df = pd.DataFrame(all_entries)
 
         # Replace "No desglosado" with None for comunidad_autonoma
-        df["comunidad_autonoma_id"] = df["comunidad_autonoma_id"].replace("No desglosado", None)  # type: ignore
+        df["comunidad_autonoma_id"] = df["comunidad_autonoma_id"].replace("No desglosado", None)
         # Drop all rows with "Estado" in comunidad_autonoma
         df = df[df["comunidad_autonoma_id"] != "Estado"]
         # Adapt curso from yyyy-yyyy to yyyy-yy format

@@ -13,12 +13,12 @@ def load_poblacion_grupo_edad(conn: Connection, df: pd.DataFrame) -> None:
 
     # Replace 'nacionalidad' in df with its corresponding id
     df = df.copy()
-    df["nacionalidad"] = df["nacionalidad"].map(nacionalidad_map)  # type: ignore
+    df["nacionalidad"] = df["nacionalidad"].map(nacionalidad_map)
 
     # Check for unmapped nacionalidades
-    unmapped = df[df["nacionalidad"].isna()]["nacionalidad"].unique().tolist()  # type: ignore
-    unmapped_original = df[~df["nacionalidad"].isin(nacionalidad_map.keys())]["nacionalidad"].unique()  # type: ignore
-    if len(unmapped) > 0:  # type: ignore
+    unmapped = df[df["nacionalidad"].isna()]["nacionalidad"].unique().tolist()
+    unmapped_original = df[~df["nacionalidad"].isin(nacionalidad_map.keys())]["nacionalidad"].unique()
+    if len(unmapped) > 0:
         raise ValueError(f"Unmapped nacionalidad values: {unmapped_original}")
 
     # Insert into table

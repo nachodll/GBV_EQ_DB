@@ -30,10 +30,10 @@ def extract_2009() -> pd.DataFrame:
     """Extract data from 2009 source"""
 
     # Read csv file into a DataFrame
-    df = pd.read_csv(RAW_CSV_PATH_2009, sep=";")  # type: ignore
+    df = pd.read_csv(RAW_CSV_PATH_2009, sep=";")
 
     # Pivot so horas/minutos become columns
-    df = df.pivot_table(  # type: ignore
+    df = df.pivot_table(
         index=["Sexo", "Total Nacional", "Comunidades y Ciudades Autónomas", "Actividades principales (1 dígito)"],
         columns="Promedio: Seleccionar horas y minutos",
         values="Total",
@@ -60,8 +60,8 @@ def extract_2009() -> pd.DataFrame:
 
     # Replace - in column horas and minutos with ""
     df["horas"] = df["horas"].astype(str).str.replace(".", "0", regex=False)
-    df["horas"] = df["horas"].str.replace("-", "", regex=False).astype(int)  # type: ignore
-    df["minutos"] = df["minutos"].str.replace("-", "", regex=False).astype(int)  # type: ignore
+    df["horas"] = df["horas"].str.replace("-", "", regex=False).astype(int)
+    df["minutos"] = df["minutos"].str.replace("-", "", regex=False).astype(int)
 
     return df
 
@@ -86,17 +86,17 @@ def excel_to_dataframe(excel_df: pd.DataFrame, sexo: str, anio: int) -> pd.DataF
     all_entries = []
     for row in range(2, 19):
         for col in range(2, 20):
-            time = excel_df.iat[row, col]  # type: ignore
-            if pd.notna(time):  # type: ignore
-                entry = {  # type: ignore
+            time = excel_df.iat[row, col]
+            if pd.notna(time):
+                entry = {
                     "anio": anio,
-                    "comunidad_autonoma_id": excel_df.iat[row, 0],  # type: ignore
-                    "actividad": activity_dictionary.get(str(excel_df.iat[0, col])),  # type: ignore
+                    "comunidad_autonoma_id": excel_df.iat[row, 0],
+                    "actividad": activity_dictionary.get(str(excel_df.iat[0, col])),
                     "sexo": sexo,
                     "horas": time.hour,  # type: ignore
                     "minutos": time.minute,  # type: ignore
                 }
-                all_entries.append(entry)  # type: ignore
+                all_entries.append(entry)
 
     return pd.DataFrame(all_entries)
 
@@ -105,8 +105,8 @@ def extract_2002() -> pd.DataFrame:
     """Extract data from 2002 source"""
 
     # Read both sheets into DataFrames
-    excel_df_men = pd.read_excel(RAW_XLS_PATH_2002, sheet_name="9.2", skiprows=3, header=None)  # type: ignore
-    excel_df_women = pd.read_excel(RAW_XLS_PATH_2002, sheet_name="9.3", skiprows=3, header=None)  # type: ignore
+    excel_df_men = pd.read_excel(RAW_XLS_PATH_2002, sheet_name="9.2", skiprows=3, header=None)
+    excel_df_women = pd.read_excel(RAW_XLS_PATH_2002, sheet_name="9.3", skiprows=3, header=None)
 
     # Convert both DataFrames to the desired format
     df_men = excel_to_dataframe(excel_df_men, "Varones", 2002)

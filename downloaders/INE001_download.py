@@ -65,13 +65,13 @@ def main():
 
         for button in download_buttons:
             try:
-                provincia_elem = button.find_element(By.XPATH, ".//ancestor::li//a[contains(@class, 'titulo')]")  # type: ignore
+                provincia_elem = button.find_element(By.XPATH, ".//ancestor::li//a[contains(@class, 'titulo')]")
                 provincia = provincia_elem.text.strip()
                 print(f"\n➡️ Processing {provincia}")
 
                 # Get direct link to pop up window
-                popup_link = button.get_attribute("href")  # type: ignore
-                driver.execute_script("window.open(arguments[0]);", popup_link)  # type: ignore
+                popup_link = button.get_attribute("href")
+                driver.execute_script("window.open(arguments[0]);", popup_link)
                 driver.switch_to.window(driver.window_handles[-1])
 
                 # Wait until pop up with file formats loads
@@ -79,13 +79,13 @@ def main():
                 formats = driver.find_elements(By.CSS_SELECTOR, "ul.export li a")
                 csv_format = None
                 for format in formats:
-                    title = format.get_attribute("title")  # type: ignore
+                    title = format.get_attribute("title")
                     if title is not None and "CSV: separado por tabuladores" in title:
                         csv_format = format
                         break
 
                 if csv_format:
-                    href_csv = csv_format.get_attribute("href")  # type: ignore
+                    href_csv = csv_format.get_attribute("href")
                     if href_csv is not None:
                         driver.get(href_csv)
                         print(f"⬇️ Downloading CSV for {provincia}")

@@ -12,7 +12,7 @@ import pandas as pd
 
 from utils.logging import setup_logging
 from utils.normalization import (
-    apply_and_check,  # type: ignore
+    apply_and_check,
     normalize_plain_text,
     normalize_positive_float,
     normalize_provincia,
@@ -27,11 +27,11 @@ CLEAN_CSV_PATH = Path("data") / "clean" / "demografia" / "divorcios_segun_duraci
 def main():
     try:
         # Read csv file into a DataFrame
-        df_pre_2010 = pd.read_csv(RAW_CSV_PATH_PRE_2010, sep="\t", decimal=",")  # type: ignore
-        df_post_2010 = pd.read_csv(RAW_CSV_PATH_POST_2010, sep="\t", decimal=",")  # type: ignore
+        df_pre_2010 = pd.read_csv(RAW_CSV_PATH_PRE_2010, sep="\t", decimal=",")
+        df_post_2010 = pd.read_csv(RAW_CSV_PATH_POST_2010, sep="\t", decimal=",")
 
         # Merge both DataFrames
-        df = pd.concat([df_pre_2010, df_post_2010], ignore_index=True)  # type: ignore
+        df = pd.concat([df_pre_2010, df_post_2010], ignore_index=True)
 
         # Rename columns
         df.rename(

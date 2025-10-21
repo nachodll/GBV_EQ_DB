@@ -25,13 +25,13 @@ CLEAN_CSV_PATH = Path("data") / "clean" / "salud" / "ive_ccaa.csv"
 def main():
     try:
         # Read xlsx file into a DataFrame
-        excel_df = pd.read_excel(RAW_XLSX_PATH, sheet_name="Tabla 3", header=1)  # type: ignore
+        excel_df = pd.read_excel(RAW_XLSX_PATH, sheet_name="Tabla 3", header=1)
 
         # Reshape excel to df
         all_records = []
         for row in excel_df.itertuples(index=False):
             for cell in row[1:]:
-                all_records.append(  # type: ignore
+                all_records.append(
                     {
                         "anio": excel_df.columns[row.index(cell)],
                         "comunidad_autonoma_id": row[0],
@@ -41,7 +41,7 @@ def main():
         df = pd.DataFrame(all_records)
 
         # Drop total and Ceuta y Melilla
-        df = df[~df["comunidad_autonoma_id"].isin(["Total", "Ceuta y Melilla, Ciudades Autónomas"])]  # type: ignore
+        df = df[~df["comunidad_autonoma_id"].isin(["Total", "Ceuta y Melilla, Ciudades Autónomas"])]
 
         # Normalize and validate columns
         df["anio"] = apply_and_check(df["anio"], normalize_year)

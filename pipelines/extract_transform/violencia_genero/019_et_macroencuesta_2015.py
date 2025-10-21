@@ -12,11 +12,11 @@ from pathlib import Path
 
 import numpy as np
 import pandas as pd
-import pyreadstat  # type: ignore
+import pyreadstat
 
 from utils.logging import setup_logging
 from utils.normalization import (
-    apply_and_check,  # type: ignore
+    apply_and_check,
     normalize_json_string,
     normalize_provincia,
 )
@@ -28,23 +28,23 @@ CLEAN_CSV_PATH = Path("data") / "clean" / "violencia_genero" / "macroencuesta_20
 def main():
     try:
         # Read raw SAV
-        df, meta = pyreadstat.read_sav(RAW_SAV_PATH, apply_value_formats=True)  # type: ignore
+        df, meta = pyreadstat.read_sav(RAW_SAV_PATH, apply_value_formats=True)
 
         # Convert row to dict and replace empty strings and NaN with None
-        def row_to_clean_dict(row):  # type: ignore
+        def row_to_clean_dict(row):
             return {
-                k: None if (v == "" or v == "NaN" or (isinstance(v, float) and np.isnan(v)) or v is None) else v  # type: ignore
-                for k, v in row.items()  # type: ignore
+                k: None if (v == "" or v == "NaN" or (isinstance(v, float) and np.isnan(v)) or v is None) else v
+                for k, v in row.items()
             }
 
         # Aggregate all columns into a dict, then to JSON
         df_json = pd.DataFrame(
             {
-                "provincia_id": df["PROV"].astype(str),  # type: ignore
-                "variables_json": df.apply(  # type: ignore
-                    lambda x: json.dumps(row_to_clean_dict(x.to_dict()), ensure_ascii=False),  # type: ignore
-                    axis=1,  # type: ignore
-                ),  # type: ignore
+                "provincia_id": df["PROV"].astype(str),
+                "variables_json": df.apply(
+                    lambda x: json.dumps(row_to_clean_dict(x.to_dict()), ensure_ascii=False),
+                    axis=1,
+                ),
             }
         )
 

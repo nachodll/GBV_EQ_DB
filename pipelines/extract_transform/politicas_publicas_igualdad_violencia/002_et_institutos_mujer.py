@@ -12,7 +12,7 @@ import pandas as pd
 
 from utils.logging import setup_logging
 from utils.normalization import (
-    apply_and_check,  # type: ignore
+    apply_and_check,
     normalize_comunidad_autonoma,
     normalize_plain_text,
     normalize_year,
@@ -25,7 +25,7 @@ CLEAN_CSV_PATH = Path("data") / "clean" / "politicas_publicas_igualdad_violencia
 def main():
     try:
         # Read xlsx file
-        df = pd.read_excel(RAW_XLSX_PATH, sheet_name="Institutos")  # type: ignore
+        df = pd.read_excel(RAW_XLSX_PATH, sheet_name="Institutos")
 
         # Rename columns
         df = df.rename(

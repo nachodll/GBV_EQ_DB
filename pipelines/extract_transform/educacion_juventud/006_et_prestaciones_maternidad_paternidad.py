@@ -16,8 +16,8 @@ import pandas as pd
 
 from utils.logging import setup_logging
 from utils.normalization import (
-    apply_and_check,  # type: ignore
-    apply_and_check_dict,  # type: ignore
+    apply_and_check,
+    apply_and_check_dict,
     normalize_positive_float,
     normalize_positive_integer,
     normalize_provincia,
@@ -210,9 +210,9 @@ def _coerce_year_token(v: Any) -> Any:
         except Exception:
             pass
         return v
-    if isinstance(v, (float, np.floating)) and float(v).is_integer():  # type: ignore
-        return int(v)  # type: ignore
-    return v  # type: ignore
+    if isinstance(v, (float, np.floating)) and float(v).is_integer():
+        return int(v)
+    return v
 
 
 def get_maternidad_entries(excel_df: pd.DataFrame, year: int) -> List[Dict[str, Any]]:
@@ -234,7 +234,7 @@ def get_maternidad_entries(excel_df: pd.DataFrame, year: int) -> List[Dict[str, 
     anio_header = excel_df.iloc[anio_idx, :].ffill().tolist()
     anio_header = [_coerce_year_token(x) for x in anio_header]
 
-    excel_df[0] = excel_df[0].apply(_norm)  # type: ignore
+    excel_df[0] = excel_df[0].apply(_norm)
     andalucia_idx = excel_df.index[excel_df[0].str.strip().eq("ANDALUCIA")][0]
     melilla_idx = excel_df.index[excel_df[0].str.strip().eq("Melilla")][0]
 
@@ -262,7 +262,7 @@ def get_maternidad_entries(excel_df: pd.DataFrame, year: int) -> List[Dict[str, 
             elif perceptor_header[j].startswith("Importe"):
                 importe = excel_df.iat[i, j]
 
-        entry = {  # type: ignore
+        entry = {
             "anio": year,
             "provincia_id": excel_df.iat[i, 0],
             "tipo": "Maternidad",
@@ -270,7 +270,7 @@ def get_maternidad_entries(excel_df: pd.DataFrame, year: int) -> List[Dict[str, 
             "percibidas_padre": padre,
             "importe_miles_euros": importe,
         }
-        all_entries.append(entry)  # type: ignore
+        all_entries.append(entry)
     return all_entries
 
 
@@ -287,7 +287,7 @@ def get_paternidad_entries(excel_df: pd.DataFrame, year: int) -> List[Dict[str, 
     anio_header = excel_df.iloc[anio_idx, :].tolist()
     anio_header = [_coerce_year_token(x) for x in anio_header]
 
-    excel_df[0] = excel_df[0].apply(_norm)  # type: ignore
+    excel_df[0] = excel_df[0].apply(_norm)
     andalucia_idx = excel_df.index[excel_df[0].str.strip().eq("ANDALUCIA")][0]
     melilla_idx = excel_df.index[excel_df[0].str.strip().eq("Melilla")][0]
 
@@ -310,7 +310,7 @@ def get_paternidad_entries(excel_df: pd.DataFrame, year: int) -> List[Dict[str, 
             elif prestaciones_header[j].startswith("Importe"):
                 importe = excel_df.iat[i, j]
 
-        entry = {  # type: ignore
+        entry = {
             "anio": year,
             "provincia_id": excel_df.iat[i, 0],
             "tipo": "Paternidad",
@@ -318,7 +318,7 @@ def get_paternidad_entries(excel_df: pd.DataFrame, year: int) -> List[Dict[str, 
             "percibidas_padre": prestaciones,
             "importe_miles_euros": importe,
         }
-        all_entries.append(entry)  # type: ignore
+        all_entries.append(entry)
 
     return all_entries
 
@@ -330,7 +330,7 @@ def get_df_from_excels() -> pd.DataFrame:
         for tipo, file_dict in pat_mat_dict.items():
             path = RAW_XLSX_DIR / file_dict["file"]
             sheet = file_dict["sheet"]
-            excel_df = pd.read_excel(path, sheet_name=sheet, header=None)  # type: ignore
+            excel_df = pd.read_excel(path, sheet_name=sheet, header=None)
             excel_df.to_csv("data/debug/mat_pat_debug.csv")
 
             if tipo == "maternidad":
@@ -372,7 +372,7 @@ def get_df_from_excels() -> pd.DataFrame:
                 )
             new_entries = [e for e in new_entries if str(e.get("provincia_id", "")).strip() not in AGGREGATES]  # type: ignore
 
-            all_entries.extend(new_entries)  # type: ignore
+            all_entries.extend(new_entries)
 
     return pd.DataFrame(all_entries)
 
@@ -383,7 +383,7 @@ def main():
         df = get_df_from_excels()
 
         # Round importe to 2 decimal places
-        df["importe_miles_euros"] = pd.to_numeric(df["importe_miles_euros"], errors="coerce").round(2)  # type: ignore
+        df["importe_miles_euros"] = pd.to_numeric(df["importe_miles_euros"], errors="coerce").round(2)
 
         # Validate and normalize data
         df["anio"] = apply_and_check(df["anio"], normalize_year)

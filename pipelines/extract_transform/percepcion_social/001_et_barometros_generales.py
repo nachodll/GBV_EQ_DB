@@ -16,8 +16,8 @@ import pandas as pd
 
 from utils.logging import setup_logging
 from utils.normalization import (
-    apply_and_check,  # type: ignore
-    apply_and_check_dict,  # type: ignore
+    apply_and_check,
+    apply_and_check_dict,
     normalize_comunidad_autonoma,
     normalize_date,
     normalize_plain_text,
@@ -93,7 +93,7 @@ def load_all_sav_files(directory: Path) -> dict[str, pd.DataFrame]:
             continue
         for sav_file in sav_files:
             try:
-                df_study = pd.read_spss(sav_file, convert_categoricals=True)  # type: ignore
+                df_study = pd.read_spss(sav_file, convert_categoricals=True)
                 study_code = subdir.name[2:6]
                 if study_code.isdigit() and len(study_code) == 4:
                     dataframes_dict[study_code] = df_study
@@ -101,19 +101,19 @@ def load_all_sav_files(directory: Path) -> dict[str, pd.DataFrame]:
                     logging.warning(f"Skipping file with unexpected name: {sav_file}")
             except Exception as e:
                 logging.warning(f"Error processing file {sav_file}: {e}")
-                corrupted_sav_files.append(subdir)  # type: ignore
+                corrupted_sav_files.append(subdir)
                 continue
     # summary = (
     #     f"Number of subdirectories: {len(sorted_subdirs)}\n"
-    #     f"Number of files processed: {len(dataframes_dict)}\n"  # type: ignore
-    #     f"Number of subdirectories without .sav files: {len(no_sav_subdirs)}\n"  # type: ignore
-    #     f"Number of corrupted .sav files: {len(corrupted_sav_files)}\n"  # type: ignore
-    #     f"Subdirectories without .sav files: {[subdir.name for subdir in no_sav_subdirs]}\n"  # type: ignore
-    #     f"Corrupted .sav files: {[subdir.name for subdir in corrupted_sav_files]}"  # type: ignore
+    #     f"Number of files processed: {len(dataframes_dict)}\n"
+    #     f"Number of subdirectories without .sav files: {len(no_sav_subdirs)}\n"
+    #     f"Number of corrupted .sav files: {len(corrupted_sav_files)}\n"
+    #     f"Subdirectories without .sav files: {[subdir.name for subdir in no_sav_subdirs]}\n"
+    #     f"Corrupted .sav files: {[subdir.name for subdir in corrupted_sav_files]}"
     # )
     # print(summary)
 
-    return dataframes_dict  # type: ignore
+    return dataframes_dict
 
 
 def main():
@@ -151,14 +151,14 @@ def main():
                     elif original_name.lower() in df.columns:
                         df_study[standard_name] = df[original_name.lower()]
                     elif standard_name not in ["provincia", "comunidad_autonoma"]:
-                        studies_with_missing_maps.append(code)  # type: ignore
+                        studies_with_missing_maps.append(code)
                         logging.warning(f"Column '{original_name}' ({standard_name}) not found in study {code}")
 
             df_study["codigo_estudio"] = code
             df_study["fecha"] = mapping["fecha"]
-            all_dfs.append(df_study)  # type: ignore
+            all_dfs.append(df_study)
 
-        df = pd.concat(all_dfs, ignore_index=True)  # type: ignore
+        df = pd.concat(all_dfs, ignore_index=True)
         # print(f"{len(studies_with_missing_maps)} missing columns in {len(set(studies_with_missing_maps))} studies")
 
         # Delete all () and {} in comunidad_autonoma and account for typos
@@ -198,32 +198,28 @@ def main():
         )
 
         # Drop floating points in cuestionario
-        df["cuestionario"] = df["cuestionario"].apply(lambda x: str(x).split(".")[0] if pd.notnull(x) else x)  # type: ignore
+        df["cuestionario"] = df["cuestionario"].apply(lambda x: str(x).split(".")[0] if pd.notnull(x) else x)
 
         # Replace age ranges with None and cast to integer
         age_pattern = r"De 41 a 60 años|De 26 a 40 años|Más de 60|De 18 a 25 años|N.C.|N.S."
-        df["edad"] = df["edad"].astype(str).replace("nan", None).str.replace(age_pattern, "", regex=True)  # type: ignore
-        df["edad"] = df["edad"].replace("", None)  # type: ignore
-        df["edad"] = df["edad"].astype(float).astype("Int64")  # type: ignore
+        df["edad"] = df["edad"].astype(str).replace("nan", None).str.replace(age_pattern, "", regex=True)
+        df["edad"] = df["edad"].replace("", None)
+        df["edad"] = df["edad"].astype(float).astype("Int64")
 
         # Replace sexo values that are not 1 or 2 with 'hombre' and 'mujer' respectively
-        df["sexo"] = df["sexo"].replace(  # type: ignore
-            {1.0: "Hombre", 2.0: "Mujer", "NC": None, "N.C.": None, 98.0: None, 99.0: None}
-        )
+        df["sexo"] = df["sexo"].replace({1.0: "Hombre", 2.0: "Mujer", "NC": None, "N.C.": None, 98.0: None, 99.0: None})
 
         # For ideologia, izquierda=1, derecha=10, nsnc=None and remove floating points
-        ns_nc_values = ["N.S.", "N.S", "N.C", "N.C.", "No sabe", "No contesta", 98.0, 99.0]  # type: ignore
-        df["ideologia"] = df["ideologia"].replace(ns_nc_values, None)  # type: ignore
-        df["ideologia"] = df["ideologia"].replace(  # type: ignore
+        ns_nc_values = ["N.S.", "N.S", "N.C", "N.C.", "No sabe", "No contesta", 98.0, 99.0]
+        df["ideologia"] = df["ideologia"].replace(ns_nc_values, None)
+        df["ideologia"] = df["ideologia"].replace(
             {r"(?i).*extrema izquierda.*": 1, r"(?i).*extrema derecha.*": 10}, regex=True
         )
-        df["ideologia"] = df["ideologia"].replace(  # type: ignore
-            {r"(?i).*izquierda.*": 1, r"(?i).*derecha.*": 10}, regex=True
-        )
-        df["ideologia"] = df["ideologia"].apply(lambda x: str(x).split(".")[0] if pd.notnull(x) else x)  # type: ignore
+        df["ideologia"] = df["ideologia"].replace({r"(?i).*izquierda.*": 1, r"(?i).*derecha.*": 10}, regex=True)
+        df["ideologia"] = df["ideologia"].apply(lambda x: str(x).split(".")[0] if pd.notnull(x) else x)
 
         # Dictionary to map values for religiosidad
-        religiosidad_map = {  # type: ignore
+        religiosidad_map = {
             "Ateo/a": "Ateo/a",
             "Ateo": "Ateo/a",
             "Ateo/a (Niegan la existencia de Dios)": "Ateo/a",
@@ -267,7 +263,7 @@ def main():
         }
 
         # Map for problema_espania (study 3164 has numerical codes)
-        problemas_mapping = {  # type: ignore
+        problemas_mapping = {
             1: "El paro",
             2: "Las drogas",
             3: "La inseguridad ciudadana",
@@ -427,8 +423,8 @@ def main():
 
         # Remove {} and trailing spaces and map values in problemas columns
         for column in problemas_columns:
-            df[column] = df[column].str.replace(r"\{.*$", "", regex=True).str.strip()  # type: ignore
-            df[column] = df[column].str.strip().replace(problemas_mapping)  # type: ignore
+            df[column] = df[column].str.replace(r"\{.*$", "", regex=True).str.strip()
+            df[column] = df[column].str.strip().replace(problemas_mapping)
 
         # Rename some columns
         df = df.rename(columns={"provincia": "provincia_id", "comunidad_autonoma": "comunidad_autonoma_id"})
@@ -444,7 +440,7 @@ def main():
             df["sexo"], {"Hombre": "Hombre", "Mujer": "Mujer", "hombre": "Hombre", "mujer": "Mujer"}
         )
         df["ideologia"] = apply_and_check(df["ideologia"], normalize_positive_integer)
-        df["religiosidad"] = apply_and_check_dict(df["religiosidad"], religiosidad_map)  # type: ignore
+        df["religiosidad"] = apply_and_check_dict(df["religiosidad"], religiosidad_map)
         df["problema_espania_1"] = apply_and_check(df["problema_espania_1"], normalize_plain_text)
         df["problema_espania_2"] = apply_and_check(df["problema_espania_2"], normalize_plain_text)
         df["problema_espania_3"] = apply_and_check(df["problema_espania_3"], normalize_plain_text)

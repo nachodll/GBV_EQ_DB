@@ -43,7 +43,7 @@ class NormalizationResult:
 
 def _is_unknown(value: Optional[Union[str, int, float]]) -> bool:
     """Return True if the cleaned value represents an explicit unknown."""
-    if value is None or pd.isna(value):  # type: ignore
+    if value is None or pd.isna(value):
         return True
     return str(value).strip().lower() in DICT_UNKNOWN_STRINGS
 
@@ -208,8 +208,8 @@ def normalize_nationality(name: str) -> NormalizationResult:
 def normalize_month(month: str | int | float) -> NormalizationResult:
     """Normalize a month name or number to its corresponding number."""
 
-    if _is_unknown(month):  # type: ignore
-        return NormalizationResult(None, NormalizationStatus.UNKNOWN, month)  # type: ignore
+    if _is_unknown(month):
+        return NormalizationResult(None, NormalizationStatus.UNKNOWN, month)
 
     # Accept numbers directly
     if isinstance(month, (int, float)):
@@ -437,17 +437,17 @@ def normalize_json_string(json_str: str) -> NormalizationResult:
         return NormalizationResult(None, NormalizationStatus.INVALID, json_str)
 
 
-def apply_and_check(series: pd.Series, func: Callable[[Any], NormalizationResult]):  # type: ignore
+def apply_and_check(series: pd.Series, func: Callable[[Any], NormalizationResult]):
     """Apply a normalization function and fail on invalid results."""
     results = series.apply(func)  # type: ignore
 
-    invalid = [r.raw for r in results if r.status is NormalizationStatus.INVALID]  # type: ignore
+    invalid = [r.raw for r in results if r.status is NormalizationStatus.INVALID]
     if invalid:
-        raise ValueError(f"Invalid values ({len(invalid)}) in column '{series.name}: {set(invalid)}")  # type: ignore
-    return results.map(lambda r: r.value)  # type: ignore
+        raise ValueError(f"Invalid values ({len(invalid)}) in column '{series.name}: {set(invalid)}")
+    return results.map(lambda r: r.value)
 
 
-def apply_and_check_dict(series: pd.Series, mapping: dict[str, Any]):  # type: ignore
+def apply_and_check_dict(series: pd.Series, mapping: dict[str, Any]):
     """Normalize a string using a custom mapping dictionary."""
 
     def mapping_func(value: str) -> NormalizationResult:
@@ -457,4 +457,4 @@ def apply_and_check_dict(series: pd.Series, mapping: dict[str, Any]):  # type: i
             return NormalizationResult(mapping[value], NormalizationStatus.VALID, value)
         return NormalizationResult(None, NormalizationStatus.INVALID, value)
 
-    return apply_and_check(series, mapping_func)  # type: ignore
+    return apply_and_check(series, mapping_func)

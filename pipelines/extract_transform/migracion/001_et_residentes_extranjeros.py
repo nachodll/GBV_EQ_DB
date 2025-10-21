@@ -15,8 +15,8 @@ import pandas as pd
 
 from utils.logging import setup_logging
 from utils.normalization import (
-    apply_and_check,  # type: ignore
-    apply_and_check_dict,  # type: ignore
+    apply_and_check,
+    apply_and_check_dict,
     normalize_age_group,
     normalize_date,
     normalize_nationality,
@@ -42,18 +42,18 @@ CLEAN_CSV_PATH = Path("data") / "clean" / "migracion" / "residentes_extranjeros.
 def excel_1996_to_df(file: Path) -> pd.DataFrame:
     """Read an excel file and return a DataFrame with table 1. Used for year 1997."""
     try:
-        excel_df = pd.read_excel(file, sheet_name="1", header=None)  # type: ignore
+        excel_df = pd.read_excel(file, sheet_name="1", header=None)
 
         # Extract headers
         year = file.name.split("-")[-1].split(".")[0]
-        nationality_headers = excel_df.iloc[6].ffill().copy()  # type: ignore
+        nationality_headers = excel_df.iloc[6].ffill().copy()
 
         # Drop first 6 rows
-        excel_df = excel_df.drop(index=excel_df.index[:7]).reset_index(drop=True)  # type: ignore
+        excel_df = excel_df.drop(index=excel_df.index[:7]).reset_index(drop=True)
 
         # Replace '-' with 0 and convert to int
         excel_df.loc[:, excel_df.columns[1:]] = (
-            excel_df.loc[:, excel_df.columns[1:]].replace("-", 0).infer_objects(copy=False)  # type: ignore
+            excel_df.loc[:, excel_df.columns[1:]].replace("-", 0).infer_objects(copy=False)
         )
 
         # Unify all "other nationalities" under a single category
@@ -66,21 +66,21 @@ def excel_1996_to_df(file: Path) -> pd.DataFrame:
             "     OTROS",
         ]
         cols_to_unify = [col for col in excel_df.columns if nationality_headers[col] in countries_to_unify]
-        new_column = excel_df.loc[:, cols_to_unify].sum(axis=1)  # type: ignore
-        otros_idx = nationality_headers[nationality_headers == "     OTROS"].index[0]  # type: ignore
-        excel_df.loc[:, otros_idx] = new_column  # type: ignore
+        new_column = excel_df.loc[:, cols_to_unify].sum(axis=1)
+        otros_idx = nationality_headers[nationality_headers == "     OTROS"].index[0]
+        excel_df.loc[:, otros_idx] = new_column
         # Drop all columns that were unified into "otros" but "otros" itself
-        cols_to_drop = [col for col in cols_to_unify if int(col) != int(otros_idx)]  # type: ignore
-        excel_df.drop(columns=cols_to_drop, inplace=True)  # type: ignore
-        nationality_headers = nationality_headers[~nationality_headers.index.isin(cols_to_drop)]  # type: ignore
+        cols_to_drop = [col for col in cols_to_unify if int(col) != int(otros_idx)]
+        excel_df.drop(columns=cols_to_drop, inplace=True)
+        nationality_headers = nationality_headers[~nationality_headers.index.isin(cols_to_drop)]
 
         all_records = []
         for col in excel_df.columns[1:]:
             for row in excel_df.index:
-                total = excel_df.loc[row, col]  # type: ignore
-                all_records.append(  # type: ignore
+                total = excel_df.loc[row, col]
+                all_records.append(
                     {
-                        "Provincia": excel_df.loc[row, 0],  # type: ignore
+                        "Provincia": excel_df.loc[row, 0],
                         "Principales nacionalidades": nationality_headers[col],
                         "Fecha": f"{year}-12-31",
                         "Total": total,
@@ -102,7 +102,7 @@ def excel_1996_to_df(file: Path) -> pd.DataFrame:
             "GALICIA",
             "PAÍS VASCO",
         ]
-        df = df[~df["Provincia"].isin(aggregated_to_drop)]  # type: ignore
+        df = df[~df["Provincia"].isin(aggregated_to_drop)]
 
         # Drop all countries aggregated data
         countries_to_drop = [
@@ -120,11 +120,11 @@ def excel_1996_to_df(file: Path) -> pd.DataFrame:
             "TOTAL RES. AMER.",
             "TOTAL ASIA",
         ]
-        df = df[~df["Principales nacionalidades"].isin(countries_to_drop)]  # type: ignore
+        df = df[~df["Principales nacionalidades"].isin(countries_to_drop)]
 
         # Adapt to the expected format
-        df["Principales nacionalidades"] = df["Principales nacionalidades"].replace("APÁTRIDAS, NO CONSTA", "No consta")  # type: ignore
-        df["Total"] = df["Total"].fillna(0)  # type: ignore
+        df["Principales nacionalidades"] = df["Principales nacionalidades"].replace("APÁTRIDAS, NO CONSTA", "No consta")
+        df["Total"] = df["Total"].fillna(0)
 
         return df
 
@@ -138,22 +138,22 @@ def excel_2000_1997_to_df(file: Path) -> pd.DataFrame:
     """Read an excel file and return a DataFrame with table 10. Used for years 2000-1997."""
 
     try:
-        excel_df = pd.read_excel(file, sheet_name="10", header=None)  # type: ignore
+        excel_df = pd.read_excel(file, sheet_name="10", header=None)
 
         # Remove column 4
         excel_df.drop(columns=[4], inplace=True)
 
         year = file.name.split("-")[-1].split(".")[0]
-        sexo_headers = excel_df.iloc[6].ffill().copy()  # type: ignore
+        sexo_headers = excel_df.iloc[6].ffill().copy()
 
         all_records = []
         for col in excel_df.columns[1:]:
             for row in excel_df.index[8:]:
-                total = excel_df.loc[row, col]  # type: ignore
+                total = excel_df.loc[row, col]
                 if total != "-":
-                    all_records.append(  # type: ignore
+                    all_records.append(
                         {
-                            "Provincia": excel_df.loc[row, 0],  # type: ignore
+                            "Provincia": excel_df.loc[row, 0],
                             "Sexo": sexo_headers[col],
                             "Fecha": f"{year}-12-31",
                             "Total": total,
@@ -176,11 +176,11 @@ def excel_2000_1997_to_df(file: Path) -> pd.DataFrame:
             "GALICIA",
             "PAÍS VASCO",
         ]
-        df = df[~df["Provincia"].isin(aggregated_to_drop)]  # type: ignore
+        df = df[~df["Provincia"].isin(aggregated_to_drop)]
 
         # Adapt to the expected format
-        df["Sexo"] = df["Sexo"].replace("VARONES", "Hombres")  # type: ignore
-        df["Sexo"] = df["Sexo"].replace("MUJERES", "Mujeres")  # type: ignore
+        df["Sexo"] = df["Sexo"].replace("VARONES", "Hombres")
+        df["Sexo"] = df["Sexo"].replace("MUJERES", "Mujeres")
 
         return df
 
@@ -194,24 +194,24 @@ def excel_2001_to_df(file: Path) -> pd.DataFrame:
     """Read an excel file and return a DataFrame with table 8. Used for year 2001."""
 
     try:
-        excel_df = pd.read_excel(file, sheet_name="8", header=None)  # type: ignore
+        excel_df = pd.read_excel(file, sheet_name="8", header=None)
 
         # Remove columns 4 and 8 (percentages are not needed)
         excel_df.drop(columns=[4, 8], inplace=True)
 
         # Extract headers
         year = file.name.split("-")[-1].split(".")[0]
-        regimen_headers = excel_df.iloc[6].ffill().copy()  # type: ignore
-        sexo_headers = excel_df.iloc[7].ffill().copy()  # type: ignore
+        regimen_headers = excel_df.iloc[6].ffill().copy()
+        sexo_headers = excel_df.iloc[7].ffill().copy()
 
         all_records = []
         for col in excel_df.columns[1:]:
             for row in excel_df.index[8:]:
-                total = excel_df.loc[row, col]  # type: ignore
+                total = excel_df.loc[row, col]
                 if total != "-":
-                    all_records.append(  # type: ignore
+                    all_records.append(
                         {
-                            "Provincia": excel_df.loc[row, 0],  # type: ignore
+                            "Provincia": excel_df.loc[row, 0],
                             "Sexo": sexo_headers[col],
                             "Régimen": regimen_headers[col],
                             "Fecha": f"{year}-12-31",
@@ -235,13 +235,13 @@ def excel_2001_to_df(file: Path) -> pd.DataFrame:
             "GALICIA",
             "PAÍS VASCO",
         ]
-        df = df[~df["Provincia"].isin(aggregated_to_drop)]  # type: ignore
+        df = df[~df["Provincia"].isin(aggregated_to_drop)]
 
         # Adapt to the expected format
-        df["Sexo"] = df["Sexo"].replace("VARONES", "Hombres")  # type: ignore
-        df["Sexo"] = df["Sexo"].replace("MUJERES", "Mujeres")  # type: ignore
-        df["Régimen"] = df["Régimen"].replace("RÉGIMEN COMUNITARIO", "Régimen de libre circulación UE")  # type: ignore
-        df["Régimen"] = df["Régimen"].replace("RÉGIMEN GENERAL", "Régimen General")  # type: ignore
+        df["Sexo"] = df["Sexo"].replace("VARONES", "Hombres")
+        df["Sexo"] = df["Sexo"].replace("MUJERES", "Mujeres")
+        df["Régimen"] = df["Régimen"].replace("RÉGIMEN COMUNITARIO", "Régimen de libre circulación UE")
+        df["Régimen"] = df["Régimen"].replace("RÉGIMEN GENERAL", "Régimen General")
 
         return df
     except FileNotFoundError:
@@ -257,36 +257,36 @@ def excel_directory_to_df(dir: Path) -> pd.DataFrame:
     all_records = []
     for file in dir.glob("*.xls"):
         try:
-            excel_df = pd.read_excel(file, sheet_name="4", header=None)  # type: ignore
+            excel_df = pd.read_excel(file, sheet_name="4", header=None)
 
             # Special case for a file with a different format, make it match the other files format
             if file.name == "Extranjeros_con_certificado_RD_PROV_18_Granada_2010.xls":
                 excel_df.drop(columns=excel_df.columns[-24:], inplace=True)
-                excel_df = excel_df.drop(index=3).reset_index(drop=True)  # type: ignore
-                excel_df.replace("AELC-EFTA (1)", "AELC1", inplace=True)  # type: ignore
-                excel_df.replace("Apátridas y No consta", "No consta", inplace=True)  # type: ignore
-                excel_df.replace("Régimen Comunitario", "Régimen de libre circulación UE", inplace=True)  # type: ignore
+                excel_df = excel_df.drop(index=3).reset_index(drop=True)
+                excel_df.replace("AELC-EFTA (1)", "AELC1", inplace=True)
+                excel_df.replace("Apátridas y No consta", "No consta", inplace=True)
+                excel_df.replace("Régimen Comunitario", "Régimen de libre circulación UE", inplace=True)
                 excel_df = pd.concat([excel_df, pd.DataFrame([[""] * len(excel_df.columns)])], ignore_index=True)
 
             # Extract constant variables
-            date = excel_df.iloc[0].iloc[0].split(" ")[-1]  # type: ignore
-            provincia = excel_df.iloc[1].iloc[0]  # type: ignore
+            date = excel_df.iloc[0].iloc[0].split(" ")[-1]
+            provincia = excel_df.iloc[1].iloc[0]
 
             # Extract regimen and grupo_edad headers and fill forward excel unmerged cells
-            regimen_headers = excel_df.iloc[3].ffill().copy()  # type: ignore
-            grupo_edad_headers = excel_df.iloc[4].ffill().copy()  # type: ignore
+            regimen_headers = excel_df.iloc[3].ffill().copy()
+            grupo_edad_headers = excel_df.iloc[4].ffill().copy()
 
             # Drop average age columns (even columns but 0)
-            cols_to_drop = [col for col in excel_df.columns if col != 0 and col % 2 == 0]  # type: ignore
+            cols_to_drop = [col for col in excel_df.columns if col != 0 and col % 2 == 0]
             excel_df.drop(columns=cols_to_drop, inplace=True)
 
             # Replace all cels with '-' with 0
-            excel_df.replace("-", 0, inplace=True)  # type: ignore
+            excel_df.replace("-", 0, inplace=True)
 
             # Split the dataframe in 3 parts, 1 per sex
-            ambos_sexos_index = excel_df[0].eq("Ambos sexos").idxmax()  # type: ignore
-            hombres_index = excel_df[0].eq("Hombres").idxmax()  # type: ignore
-            mujeres_index = excel_df[0].eq("Mujeres").idxmax()  # type: ignore
+            ambos_sexos_index = excel_df[0].eq("Ambos sexos").idxmax()
+            hombres_index = excel_df[0].eq("Hombres").idxmax()
+            mujeres_index = excel_df[0].eq("Mujeres").idxmax()
             dfs_per_sex = {
                 "Ambos sexos": excel_df.iloc[ambos_sexos_index + 1 : hombres_index],  # type: ignore
                 "Hombres": excel_df.iloc[hombres_index + 1 : mujeres_index],  # type: ignore
@@ -304,12 +304,12 @@ def excel_directory_to_df(dir: Path) -> pd.DataFrame:
                 ]
 
                 # Calculate the sum of the rows that match the categories to unify
-                rows_to_unify = df_sex[df_sex[0].isin(categories_to_unify)].copy()  # type: ignore
-                summed = rows_to_unify.iloc[:, 1:].sum()  # type: ignore
+                rows_to_unify = df_sex[df_sex[0].isin(categories_to_unify)].copy()
+                summed = rows_to_unify.iloc[:, 1:].sum()
                 new_row = pd.Series(["Otros"] + summed.tolist(), index=df_sex.columns)
 
                 # Remove the rows that match the categories to unify and add the new row
-                df_sex = df_sex[~df_sex[0].isin(categories_to_unify)].copy()  # type: ignore
+                df_sex = df_sex[~df_sex[0].isin(categories_to_unify)].copy()
                 df_sex = pd.concat([df_sex, pd.DataFrame([new_row])], ignore_index=True)
                 dfs_per_sex[key] = df_sex
 
@@ -317,12 +317,12 @@ def excel_directory_to_df(dir: Path) -> pd.DataFrame:
             for key, df in dfs_per_sex.items():
                 sex = key
                 for col in df.columns[1:]:
-                    regimen = regimen_headers[col]  # type: ignore
-                    grupo_edad = grupo_edad_headers[col]  # type: ignore
-                    for _, row in df.iterrows():  # type: ignore
-                        nacionalidad = row[0]  # type: ignore
-                        total = row[col]  # type: ignore
-                        all_records.append(  # type: ignore
+                    regimen = regimen_headers[col]
+                    grupo_edad = grupo_edad_headers[col]
+                    for _, row in df.iterrows():
+                        nacionalidad = row[0]
+                        total = row[col]
+                        all_records.append(
                             {
                                 "Provincia": provincia,
                                 "Sexo": sex,
@@ -349,7 +349,7 @@ def excel_directory_historic_evolution_to_df(dir: Path) -> pd.DataFrame:
     all_records = []
     for file in dir.glob("*.xls"):
         try:
-            excel_df = pd.read_excel(file, sheet_name="1", header=None)  # type: ignore
+            excel_df = pd.read_excel(file, sheet_name="1", header=None)
 
             # Remove '\xa0' characters from the dataframe
             excel_df[excel_df.columns[0]] = (
@@ -358,31 +358,31 @@ def excel_directory_historic_evolution_to_df(dir: Path) -> pd.DataFrame:
 
             # Special case for a file with a different format, make it match the other files format
             if file.name == "Extranjeros_con_certificado_RD_PROV_18_Granada_2010.xls":
-                excel_df.replace("AELC-EFTA (*)", "AELC1", inplace=True)  # type: ignore
-                excel_df.replace("Apátridas y No consta", "No consta", inplace=True)  # type: ignore
-                excel_df.replace(  # type: ignore
+                excel_df.replace("AELC-EFTA (*)", "AELC1", inplace=True)
+                excel_df.replace("Apátridas y No consta", "No consta", inplace=True)
+                excel_df.replace(
                     r".*Régimen Comunitario.*", "Régimen de libre circulación UE", regex=True, inplace=True
                 )
-                excel_df.iloc[3], excel_df.iloc[4] = excel_df.iloc[4], excel_df.iloc[3]  # type: ignore
+                excel_df.iloc[3], excel_df.iloc[4] = excel_df.iloc[4], excel_df.iloc[3]
                 excel_df = pd.concat([excel_df, pd.DataFrame([[""] * len(excel_df.columns)])], ignore_index=True)
 
             # Drop last 48 columns (they are not needed)
             excel_df.drop(columns=excel_df.columns[-48:], inplace=True)
 
             # Extract provincia and headers
-            provincia = excel_df.iloc[1].iloc[0]  # type: ignore
-            regimen_headers = excel_df.iloc[3].ffill().copy()  # type: ignore
-            regimen_headers = regimen_headers.str.strip()  # type: ignore
-            anio_headers = excel_df.iloc[5].ffill().copy()  # type: ignore
+            provincia = excel_df.iloc[1].iloc[0]
+            regimen_headers = excel_df.iloc[3].ffill().copy()
+            regimen_headers = regimen_headers.str.strip()
+            anio_headers = excel_df.iloc[5].ffill().copy()
 
             # Replace all cels with '-' with 0
             for col in excel_df.columns:
-                excel_df[col] = excel_df[col].map(lambda x: 0 if x == "-" else x)  # type: ignore
+                excel_df[col] = excel_df[col].map(lambda x: 0 if x == "-" else x)
 
             # Split the dataframe in 3 parts, 1 per sex
-            ambos_sexos_index = excel_df[0].eq("Ambos sexos").idxmax()  # type: ignore
-            hombres_index = excel_df[0].eq("Hombres").idxmax()  # type: ignore
-            mujeres_index = excel_df[0].eq("Mujeres").idxmax()  # type: ignore
+            ambos_sexos_index = excel_df[0].eq("Ambos sexos").idxmax()
+            hombres_index = excel_df[0].eq("Hombres").idxmax()
+            mujeres_index = excel_df[0].eq("Mujeres").idxmax()
             dfs_per_sex = {
                 "Ambos sexos": excel_df.iloc[ambos_sexos_index + 1 : hombres_index],  # type: ignore
                 "Hombres": excel_df.iloc[hombres_index + 1 : mujeres_index],  # type: ignore
@@ -400,12 +400,12 @@ def excel_directory_historic_evolution_to_df(dir: Path) -> pd.DataFrame:
                 ]
 
                 # Calculate the sum of the rows that match the categories to unify
-                rows_to_unify = df_sex[df_sex[0].isin(categories_to_unify)].copy()  # type: ignore
-                summed = rows_to_unify.iloc[:, 1:].sum()  # type: ignore
+                rows_to_unify = df_sex[df_sex[0].isin(categories_to_unify)].copy()
+                summed = rows_to_unify.iloc[:, 1:].sum()
                 new_row = pd.Series(["Otros"] + summed.tolist(), index=df_sex.columns)
 
                 # Remove the rows that match the categories to unify and add the new row
-                df_sex = df_sex[~df_sex[0].isin(categories_to_unify)].copy()  # type: ignore
+                df_sex = df_sex[~df_sex[0].isin(categories_to_unify)].copy()
                 df_sex = pd.concat([df_sex, pd.DataFrame([new_row])], ignore_index=True)
                 dfs_per_sex[key] = df_sex
 
@@ -413,21 +413,21 @@ def excel_directory_historic_evolution_to_df(dir: Path) -> pd.DataFrame:
             for key, df in dfs_per_sex.items():
                 sex = key
                 for col in df.columns[1:]:
-                    regimen = regimen_headers[col]  # type: ignore
-                    for _, row in df.iterrows():  # type: ignore
-                        nacionalidad = row[0]  # type: ignore
-                        total = row[col]  # type: ignore
-                        anio = anio_headers[col]  # type: ignore
+                    regimen = regimen_headers[col]
+                    for _, row in df.iterrows():
+                        nacionalidad = row[0]
+                        total = row[col]
+                        anio = anio_headers[col]
                         if isinstance(anio, str):
                             anio = anio.split(" ")[0]
                         if anio != 2010:
-                            all_records.append(  # type: ignore
+                            all_records.append(
                                 {
                                     "Provincia": provincia,
                                     "Sexo": sex,
                                     "Principales nacionalidades": nacionalidad,
                                     "Régimen": regimen,
-                                    "Fecha": f"{int(anio)}-12-31",  # type: ignore
+                                    "Fecha": f"{int(anio)}-12-31",
                                     "Total": total,
                                 }
                             )
@@ -442,7 +442,7 @@ def excel_directory_historic_evolution_to_df(dir: Path) -> pd.DataFrame:
 def csv_post_2013(path: Path) -> pd.DataFrame:
     """Read a csv file and return a DataFrame with the post 2013 data."""
 
-    df = pd.read_csv(path, sep="\t", thousands=".")  # type: ignore
+    df = pd.read_csv(path, sep="\t", thousands=".")
 
     if "Tipo de documentación" not in df.columns:
         df["Tipo de documentación"] = "Autorización"
@@ -521,7 +521,7 @@ def main():
             "Todas las nacionalidades",
             "Total",
         ]
-        df = df[~df["nacionalidad"].isin(groups_to_drop)]  # type: ignore
+        df = df[~df["nacionalidad"].isin(groups_to_drop)]
         df = df[df["tipo_documentacion"] != "Total"]
         df = df[df["sexo"] != "Ambos sexos"]
         df = df[df["es_nacido_espania"] != "Total"]
@@ -529,7 +529,7 @@ def main():
         df = df[df["regimen"] != "Total"]
 
         # Convert nan to None
-        df = df.where(pd.notnull(df), None)  # type: ignore
+        df = df.where(pd.notnull(df), None)
 
         # Normalize and validate columns
         df["provincia_id"] = apply_and_check(df["provincia_id"], normalize_provincia)

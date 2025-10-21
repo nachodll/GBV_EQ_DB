@@ -34,7 +34,7 @@ def main():
         df = pd.read_spss(RAW_SAV_PATH, convert_categoricals=True)
 
         # Replace NaN with None for JSON serialization
-        df = df.replace({np.nan: None})  # type: ignore
+        df = df.replace({np.nan: None})
 
         # Convert categorical columns to strings to avoid encoding issues
         for col in df.columns:
@@ -50,7 +50,7 @@ def main():
         df_json["cuestionario"] = df["CUES"].astype(int)
 
         # Aggregate all columns into a dict, then to JSON
-        df_json["variables_json"] = df.apply(lambda x: x.to_dict(), axis=1).apply(json.dumps)  # type: ignore
+        df_json["variables_json"] = df.apply(lambda x: x.to_dict(), axis=1).apply(json.dumps)
 
         # Normalize and validate columns
         df_json["variables_json"] = apply_and_check(df_json["variables_json"], normalize_json_string)

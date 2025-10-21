@@ -12,7 +12,7 @@ import pandas as pd
 
 from utils.logging import setup_logging
 from utils.normalization import (
-    apply_and_check,  # type: ignore
+    apply_and_check,
     normalize_nationality,
     normalize_plain_text,
     normalize_positive_integer,
@@ -26,7 +26,7 @@ CLEAN_CSV_PATH = Path("data") / "clean" / "igualdad_formal" / "eige_violencia.cs
 def main():
     try:
         # Read file
-        df = pd.read_csv(RAW_CSV_PATH)  # type: ignore
+        df = pd.read_csv(RAW_CSV_PATH)
         df.columns = df.columns.str.strip()
 
         # Rename columns

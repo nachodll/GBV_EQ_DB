@@ -92,17 +92,17 @@ def main():
             rows = driver.find_elements(By.CSS_SELECTOR, "table#tablaEstudios tbody tr")
 
             for row in rows:
-                id_estudio = row.get_attribute("id")  # type: ignore
+                id_estudio = row.get_attribute("id")
                 tds = []
                 if id_estudio:
-                    tds = row.find_elements(By.TAG_NAME, "td")  # type: ignore
+                    tds = row.find_elements(By.TAG_NAME, "td")
                 if len(tds) >= 2:
-                    fecha = tds[0].text.strip()  # type: ignore
-                    codigo = tds[1].text.strip()  # type: ignore
+                    fecha = tds[0].text.strip()
+                    codigo = tds[1].text.strip()
                 else:
-                    fecha = codigo = ""  # type: ignore
+                    fecha = codigo = ""
                 url_estudio = f"https://www.cis.es/es/detalle-ficha-estudio?idEstudio={id_estudio}"
-                estudio_urls.append((url_estudio, fecha, codigo))  # type: ignore
+                estudio_urls.append((url_estudio, fecha, codigo))
 
             try:
                 next_btn = driver.find_element(By.ID, "tablaEstudios_next")
@@ -116,7 +116,7 @@ def main():
                 logging.error(f"❌ Not able to check next page: {e}")
                 break
 
-        logging.info(f"\n🔗 Total number of studies found: {len(estudio_urls)}")  # type: ignore
+        logging.info(f"\n🔗 Total number of studies found: {len(estudio_urls)}")
 
         # Visit each study link
         all_var_mappings = {}
@@ -124,10 +124,10 @@ def main():
         error_studies = []
         successful_downloads = 0
         missing_vars_summary = ""
-        for idx, (url, fecha, codigo) in enumerate(estudio_urls):  # type: ignore
+        for idx, (url, fecha, codigo) in enumerate(estudio_urls):
             try:
-                logging.info(f"\n➡️ Accessing {idx + 1}/{len(estudio_urls)}: {url}")  # type: ignore
-                driver.get(url)  # type: ignore
+                logging.info(f"\n➡️ Accessing {idx + 1}/{len(estudio_urls)}: {url}")
+                driver.get(url)
 
                 # Terms to search for each variable
                 variables = {
@@ -197,7 +197,7 @@ def main():
                                 first_left_cell = driver.find_element(
                                     By.XPATH, "(//tr[contains(@class, 'odd') or contains(@class, 'even')]/td[1])[1]"
                                 )
-                                first_left_link = first_left_cell.find_element(By.TAG_NAME, "a")  # type: ignore
+                                first_left_link = first_left_cell.find_element(By.TAG_NAME, "a")
                                 first_left_text = first_left_link.text
                                 var_map[var] = first_left_text
                                 break
@@ -205,12 +205,12 @@ def main():
                                 continue
 
                     all_var_mappings[codigo] = var_map
-                    if len(var_map) - 2 == len(variables):  # type: ignore
+                    if len(var_map) - 2 == len(variables):
                         logging.info("✅ All variables found")
                     else:
-                        missing_vars = set(variables.keys()) - set(var_map.keys())  # type: ignore
+                        missing_vars = set(variables.keys()) - set(var_map.keys())
                         missing_vars_summary += f"{fecha}\t{codigo}\t{url}:\t {list(missing_vars)}\n"
-                        logging.info(f"❓ Some variables not found: {list(missing_vars)}")  # type: ignore
+                        logging.info(f"❓ Some variables not found: {list(missing_vars)}")
 
                 except (NoSuchElementException, ElementNotInteractableException, TimeoutException):
                     logging.warning("⚠️ No variable mapping available for this study")
@@ -223,9 +223,9 @@ def main():
                         data_zip_link = driver.find_element(By.XPATH, "//a[contains(text(), 'Fichero datos')]")
                         wait.until(EC.element_to_be_clickable(data_zip_link))
                         logging.info("📥 Data zip file available. Opening form...")
-                        driver.execute_script("arguments[0].click();", data_zip_link)  # type: ignore
+                        driver.execute_script("arguments[0].click();", data_zip_link)
                     except NoSuchElementException:
-                        no_data_zip_studies.append(codigo)  # type: ignore
+                        no_data_zip_studies.append(codigo)
                         logging.warning("⚠️ No data zip file available for this study")
                         continue
 
@@ -243,12 +243,12 @@ def main():
                     label_email = driver.find_element(
                         By.XPATH, "//label[contains(., 'Email') and not(contains(., 'Confirmar'))]"
                     )
-                    input_email = driver.find_element(By.ID, label_email.get_attribute("for"))  # type: ignore
+                    input_email = driver.find_element(By.ID, label_email.get_attribute("for"))
                     input_email.clear()
                     input_email.send_keys(CIS_EMAIL)
 
                     label_confirm = driver.find_element(By.XPATH, "//label[contains(., 'Confirmar Email')]")
-                    input_confirm = driver.find_element(By.ID, label_confirm.get_attribute("for"))  # type: ignore
+                    input_confirm = driver.find_element(By.ID, label_confirm.get_attribute("for"))
                     input_confirm.clear()
                     input_confirm.send_keys(CIS_EMAIL)
 
@@ -272,8 +272,8 @@ def main():
 
                     wait.until(EC.element_to_be_clickable((By.XPATH, "//a[contains(text(),'Descargar')]")))
                     download_btn = driver.find_element(By.XPATH, "//a[contains(text(),'Descargar')]")
-                    logging.info(f"⬇️ Downloading from: {download_btn.get_attribute('href')}")  # type: ignore
-                    driver.execute_script("arguments[0].click();", download_btn)  # type: ignore
+                    logging.info(f"⬇️ Downloading from: {download_btn.get_attribute('href')}")
+                    driver.execute_script("arguments[0].click();", download_btn)
                     successful_downloads += 1
 
                     if len(driver.window_handles) > 1:
@@ -281,25 +281,25 @@ def main():
                         driver.switch_to.window(driver.window_handles[0])
 
             except Exception as e:
-                error_studies.append(codigo)  # type: ignore
+                error_studies.append(codigo)
                 logging.error(f"❌ Error processing {url}: {e}")
 
         # Save variable mappings
         with open(VARIABLE_MAP_JSON_PATH, "w", encoding="utf-8") as f:
             json.dump(all_var_mappings, f, ensure_ascii=False, indent=4)
         with open("data/debug/missing_vars.txt", "w", encoding="utf-8") as f:
-            f.write(missing_vars_summary)  # type: ignore
+            f.write(missing_vars_summary)
 
         # Summary
         summary = (
             "\n📋 Summary:\n"
-            f"Number of listed studies: {len(estudio_urls)}\n"  # type: ignore
-            f"Number of successful data downloads: {successful_downloads}\n"  # type: ignore
-            f"Number of successful variable mappings: {len(all_var_mappings)}\n"  # type: ignore
-            f"Number of studies with no data zip found: {len(no_data_zip_studies)}\n"  # type: ignore
-            f"Number of studies with errors: {len(error_studies)}\n"  # type: ignore
-            f"Studies with no data zip: {no_data_zip_studies}\n"  # type: ignore
-            f"Studies with errors: {error_studies}\n"  # type: ignore
+            f"Number of listed studies: {len(estudio_urls)}\n"
+            f"Number of successful data downloads: {successful_downloads}\n"
+            f"Number of successful variable mappings: {len(all_var_mappings)}\n"
+            f"Number of studies with no data zip found: {len(no_data_zip_studies)}\n"
+            f"Number of studies with errors: {len(error_studies)}\n"
+            f"Studies with no data zip: {no_data_zip_studies}\n"
+            f"Studies with errors: {error_studies}\n"
         )
         logging.info(summary)
 

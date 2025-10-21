@@ -12,8 +12,8 @@ import pandas as pd
 
 from utils.logging import setup_logging
 from utils.normalization import (
-    apply_and_check,  # type: ignore
-    apply_and_check_dict,  # type: ignore
+    apply_and_check,
+    apply_and_check_dict,
     normalize_age_group,
     normalize_positive_float,
     normalize_provincia,
@@ -28,11 +28,11 @@ CLEAN_CSV_PATH = Path("data") / "clean" / "demografia" / "tasa_divorcialidad.csv
 def main():
     try:
         # Read csv file into a DataFrame
-        df_pre_2010 = pd.read_csv(RAW_CSV_PATH_PRE_2010, sep="\t", decimal=",")  # type: ignore
-        df_post_2010 = pd.read_csv(RAWCSV_PATH_POST_2010, sep="\t", decimal=",")  # type: ignore
+        df_pre_2010 = pd.read_csv(RAW_CSV_PATH_PRE_2010, sep="\t", decimal=",")
+        df_post_2010 = pd.read_csv(RAWCSV_PATH_POST_2010, sep="\t", decimal=",")
 
         # Merge both DataFrames
-        df = pd.concat([df_pre_2010, df_post_2010], ignore_index=True)  # type: ignore
+        df = pd.concat([df_pre_2010, df_post_2010], ignore_index=True)
 
         # Rename columns
         df.rename(
@@ -47,14 +47,14 @@ def main():
         )
 
         # Adapt to expected format
-        df["grupo_edad"] = df["grupo_edad"].replace("19 y menos años", "<19")  # type: ignore
-        df["grupo_edad"] = df["grupo_edad"].replace("18 y menos años", "<18")  # type: ignore
+        df["grupo_edad"] = df["grupo_edad"].replace("19 y menos años", "<19")
+        df["grupo_edad"] = df["grupo_edad"].replace("18 y menos años", "<18")
 
         # Drop rows with missing 'tasa_divorcialidad'
         df = df[df["tasa_divorcialidad"] != ".."]
 
         # Cast to 'tasa_divorcialidad' to float
-        df["tasa_divorcialidad"] = df["tasa_divorcialidad"].astype(str).str.replace(",", ".", regex=False).astype(float)  # type: ignore
+        df["tasa_divorcialidad"] = df["tasa_divorcialidad"].astype(str).str.replace(",", ".", regex=False).astype(float)
 
         # Drop rows with aggregated data
         df = df[df["sexo"] != "Ambos sexos"]

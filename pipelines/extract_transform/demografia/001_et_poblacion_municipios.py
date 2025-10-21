@@ -12,9 +12,9 @@ import pandas as pd
 
 from utils.logging import setup_logging
 from utils.normalization import (
-    apply_and_check,  # type: ignore
-    apply_and_check_dict,  # type: ignore
-    normalize_municipio_id,  # type: ignore
+    apply_and_check,
+    apply_and_check_dict,
+    normalize_municipio_id,
     normalize_positive_integer,
     normalize_year,
 )
@@ -29,7 +29,7 @@ def main():
         csv_files = list(RAW_CSV_DIR.glob("*.csv"))
         if not csv_files:
             raise FileNotFoundError(f"No CSV files found in {RAW_CSV_DIR}")
-        df = pd.concat((pd.read_csv(file, sep="\t", thousands=".") for file in csv_files), ignore_index=True)  # type: ignore
+        df = pd.concat((pd.read_csv(file, sep="\t", thousands=".") for file in csv_files), ignore_index=True)
 
         # Rename columns
         df.rename(
@@ -44,10 +44,10 @@ def main():
 
         # Extract municipio_id and drop if it's province_id (less 5 digits)
         df["municipio_id"] = df["municipio_id"].astype(str).str.split(" ").str[0]
-        df = df[df["municipio_id"].str.match(r"^\d{5}$")]  # type: ignore
+        df = df[df["municipio_id"].str.match(r"^\d{5}$")]
 
         # Drop rows with missing values in poblacion
-        df.dropna(subset=["poblacion"], inplace=True)  # type: ignore
+        df.dropna(subset=["poblacion"], inplace=True)
 
         # Drop all rows with aggregated data (e.g., "TOTAL")
         df = df[df["sexo"] != "Total"]

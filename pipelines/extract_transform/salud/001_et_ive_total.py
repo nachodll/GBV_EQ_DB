@@ -25,7 +25,7 @@ CLEAN_CSV_PATH = Path("data") / "clean" / "salud" / "ive_total.csv"
 def main():
     try:
         # Read xlsx file into a DataFrame
-        df = pd.read_excel(RAW_XLSX_PATH, sheet_name="Tabla 1", header=1)  # type: ignore
+        df = pd.read_excel(RAW_XLSX_PATH, sheet_name="Tabla 1", header=1)
 
         # Rename columns
         df.rename(

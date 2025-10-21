@@ -15,7 +15,7 @@ import pandas as pd
 
 from utils.logging import setup_logging
 from utils.normalization import (
-    apply_and_check,  # type: ignore
+    apply_and_check,
     normalize_json_string,
 )
 
@@ -28,15 +28,15 @@ CLEAN_CSV_PATH = Path("data") / "clean" / "violencia_genero" / "encuesta_europea
 def main():
     try:
         # Read raw CSV
-        df = pd.read_csv(RAW_CSV_PATH, sep=";")  # type: ignore
+        df = pd.read_csv(RAW_CSV_PATH, sep=";")
 
         # Replace NaN with None for JSON serialization
-        df = df.replace({np.nan: None})  # type: ignore
+        df = df.replace({np.nan: None})
 
         # Aggregate all columns into a dict, then to JSON
         df_json = pd.DataFrame(
             {
-                "variables_json": df.apply(lambda x: x.to_dict(), axis=1).apply(json.dumps),  # type: ignore
+                "variables_json": df.apply(lambda x: x.to_dict(), axis=1).apply(json.dumps),
             }
         )
 

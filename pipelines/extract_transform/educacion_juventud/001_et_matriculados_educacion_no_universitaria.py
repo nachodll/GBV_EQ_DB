@@ -13,8 +13,8 @@ import pandas as pd
 
 from utils.logging import setup_logging
 from utils.normalization import (
-    apply_and_check,  # type: ignore
-    apply_and_check_dict,  # type: ignore
+    apply_and_check,
+    apply_and_check_dict,
     normalize_plain_text,
     normalize_positive_integer,
     normalize_provincia,
@@ -28,7 +28,7 @@ CLEAN_CSV_PATH = Path("data") / "clean" / "educacion_juventud" / "matriculados_e
 def read_sheet_from_xls(file: Path, sheet_name: str) -> pd.DataFrame:
     """Read a specific sheet from an XLS file and return it as a DataFrame."""
     try:
-        df = pd.read_excel(file, sheet_name=sheet_name, header=None)  # type: ignore
+        df = pd.read_excel(file, sheet_name=sheet_name, header=None)
         if df.empty:
             raise ValueError(f"The sheet '{sheet_name}' in {file} is empty.")
 
@@ -39,20 +39,20 @@ def read_sheet_from_xls(file: Path, sheet_name: str) -> pd.DataFrame:
                 df.iloc[3, col] = "CF FP " + df.iloc[4, col]  # type: ignore
 
         # Slice the DataFrame to extract headers and data
-        start_idx = df[df[0].str.lower() == "total"].index[0]  # type: ignore
-        end_idx = df[df[0].str.lower() == "melilla"].index[0]  # type: ignore
-        ensenianza_x_header = df.iloc[3, 1:].copy()  # type: ignore
+        start_idx = df[df[0].str.lower() == "total"].index[0]
+        end_idx = df[df[0].str.lower() == "melilla"].index[0]
+        ensenianza_x_header = df.iloc[3, 1:].copy()
         ensenianza_x_header = ensenianza_x_header.astype(str).str.replace(r"[\r\n]+", " ", regex=True)
-        provincia_y_header = df.iloc[start_idx : end_idx + 1, 0].copy()  # type: ignore
+        provincia_y_header = df.iloc[start_idx : end_idx + 1, 0].copy()
         numbers_df = df.iloc[start_idx : end_idx + 1, 1:].copy()
 
         all_records = []
         for col in numbers_df.columns:
-            ensenianza = ensenianza_x_header[col]  # type: ignore
+            ensenianza = ensenianza_x_header[col]
             for row in numbers_df.index:
-                provincia = provincia_y_header[row]  # type: ignore
-                matriculados = numbers_df[col][row]  # type: ignore
-                all_records.append(  # type: ignore
+                provincia = provincia_y_header[row]
+                matriculados = numbers_df[col][row]
+                all_records.append(
                     {
                         "ensenianza": ensenianza,
                         "provincia_id": provincia,
@@ -177,9 +177,9 @@ def read_pre_2011_data(directory: Path) -> pd.DataFrame:
             sheet_df = read_sheet_from_xls(file, sheet_name)
             sheet_df["titularidad"] = titularidad
             sheet_df["curso"] = file.stem
-            dfs.append(sheet_df)  # type: ignore
+            dfs.append(sheet_df)
 
-    df = pd.concat(dfs, ignore_index=True)  # type: ignore
+    df = pd.concat(dfs, ignore_index=True)
 
     return df
 
@@ -194,10 +194,10 @@ def read_post_2011_data(directory: Path) -> pd.DataFrame:
         raise FileNotFoundError(f"No CSV files found in {RAW_CSV_DIR_POST_2011}")
     dfs = []
     for file in csv_files_post_2011:
-        df_file = pd.read_csv(file, sep=";", thousands=".")  # type: ignore
+        df_file = pd.read_csv(file, sep=";", thousands=".")
         df_file["curso"] = file.stem
-        dfs.append(df_file)  # type: ignore
-    df = pd.concat(dfs, ignore_index=True)  # type: ignore
+        dfs.append(df_file)
+    df = pd.concat(dfs, ignore_index=True)
 
     # Rename columns
     df.rename(
@@ -212,7 +212,7 @@ def read_post_2011_data(directory: Path) -> pd.DataFrame:
     )
 
     # Adapt 'titularidad' column to expected values
-    df["titularidad"] = df["titularidad"].replace(  # type: ignore
+    df["titularidad"] = df["titularidad"].replace(
         {
             "CENTROS PÚBLICOS": "Público",
             "CENTROS PRIVADOS": "Privado",
@@ -222,13 +222,13 @@ def read_post_2011_data(directory: Path) -> pd.DataFrame:
     )
 
     # Normalize values in 'ensenianza' column
-    df["ensenianza"] = df["ensenianza"].str.replace(r"\s*\(\d+\)$", "", regex=True)  # type: ignore
+    df["ensenianza"] = df["ensenianza"].str.replace(r"\s*\(\d+\)$", "", regex=True)
 
     # Strip numbers from provincia_id column
     df["provincia_id"] = df["provincia_id"].astype(str).str.replace(r"^\d+\s*", "", regex=True)
 
     # Drop rows with aggregated data
-    df = df[~df["titularidad"].isin(["TODOS LOS CENTROS"])]  # type: ignore
+    df = df[~df["titularidad"].isin(["TODOS LOS CENTROS"])]
     df = df[df["sexo"] != "AMBOS SEXOS"]
 
     return df
@@ -238,14 +238,14 @@ def main():
     try:
         df_post_2011 = read_post_2011_data(RAW_CSV_DIR_POST_2011)
         df_pre_2011 = read_pre_2011_data(RAW_XLS_DIR_PRE_2011)
-        df = pd.concat([df_post_2011, df_pre_2011], ignore_index=True)  # type: ignore
+        df = pd.concat([df_post_2011, df_pre_2011], ignore_index=True)
 
         # Strip numbers (e.g.(4)) from 'provincia_id' values and 'ensenianza' values
-        df["provincia_id"] = df["provincia_id"].str.replace(r"\s*\(\d+\)$", "", regex=True).str.strip()  # type: ignore
-        df["ensenianza"] = df["ensenianza"].str.replace(r"\s*\(\d+\)$", "", regex=True).str.strip()  # type: ignore
+        df["provincia_id"] = df["provincia_id"].str.replace(r"\s*\(\d+\)$", "", regex=True).str.strip()
+        df["ensenianza"] = df["ensenianza"].str.replace(r"\s*\(\d+\)$", "", regex=True).str.strip()
 
         # Normalize 'ensenianza' values
-        df["ensenianza"] = df["ensenianza"].replace(  # type: ignore
+        df["ensenianza"] = df["ensenianza"].replace(
             {
                 "E. Infantil Primer Ciclo": "E. Infantil - Primer ciclo",
                 "E. Infantil Segundo Ciclo": "E. Infantil - Segundo ciclo",
@@ -277,12 +277,12 @@ def main():
 
         # Comunidades with one province are transformed to its corresponding province
         uniprovince_list = ["asturias", "murcia", "navarra", "madrid"]
-        df["provincia_id"] = df["provincia_id"].apply(  # type: ignore
-            lambda x: next((prov for prov in uniprovince_list if prov in str(x).lower()), x)  # type: ignore
+        df["provincia_id"] = df["provincia_id"].apply(
+            lambda x: next((prov for prov in uniprovince_list if prov in str(x).lower()), x)
         )
 
         # Normalize 'matriculados' column 0 values
-        df["matriculados"] = df["matriculados"].replace(["..", -1], 0)  # type: ignore
+        df["matriculados"] = df["matriculados"].replace(["..", -1], 0)
 
         # Drop rows with aggregated data for provincia
         rows_to_drop = [
@@ -298,7 +298,7 @@ def main():
             "galicia",
             "país vasco",
         ]
-        df = df[~df["provincia_id"].apply(lambda x: any(word in str(x).lower() for word in rows_to_drop))]  # type: ignore
+        df = df[~df["provincia_id"].apply(lambda x: any(word in str(x).lower() for word in rows_to_drop))]
 
         # Drop rows with aggregated data for ensenianza
         df = df[df["ensenianza"] != "TOTAL"]

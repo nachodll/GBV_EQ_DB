@@ -25,13 +25,13 @@ CLEAN_CSV_PATH = Path("data") / "clean" / "salud" / "ive_grupo_edad.csv"
 def main():
     try:
         # Read xlsx file into a DataFrame
-        excel_df = pd.read_excel(RAW_XLSX_PATH, sheet_name="Tabla 2", header=1)  # type: ignore
+        excel_df = pd.read_excel(RAW_XLSX_PATH, sheet_name="Tabla 2", header=1)
 
         # Reshape excel to df
         all_records = []
         for row in excel_df.itertuples(index=False):
             for cell in row[1:]:
-                all_records.append(  # type: ignore
+                all_records.append(
                     {
                         "grupo_edad": excel_df.columns[row.index(cell)],
                         "anio": row[0],
@@ -41,7 +41,7 @@ def main():
         df = pd.DataFrame(all_records)
 
         # Replace "19 y menos años" with "<19"
-        df["grupo_edad"] = df["grupo_edad"].replace("19 y menos años", "<19", regex=True)  # type: ignore
+        df["grupo_edad"] = df["grupo_edad"].replace("19 y menos años", "<19", regex=True)
 
         # Normalize and validate columns
         df["grupo_edad"] = apply_and_check(df["grupo_edad"], normalize_age_group)
@@ -50,7 +50,7 @@ def main():
 
         # Save to CSV
         CLEAN_CSV_PATH.parent.mkdir(parents=True, exist_ok=True)
-        df.to_csv(CLEAN_CSV_PATH, index=False, sep=";")  # type: ignore
+        df.to_csv(CLEAN_CSV_PATH, index=False, sep=";")
         logging.info(f"Data saved to {CLEAN_CSV_PATH}")
 
     except FileNotFoundError as e:

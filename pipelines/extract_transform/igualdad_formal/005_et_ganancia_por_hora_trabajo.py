@@ -13,8 +13,8 @@ import pandas as pd
 
 from utils.logging import setup_logging
 from utils.normalization import (
-    apply_and_check,  # type: ignore
-    apply_and_check_dict,  # type: ignore
+    apply_and_check,
+    apply_and_check_dict,
     normalize_comunidad_autonoma,
     normalize_plain_text,
     normalize_positive_float,
@@ -28,7 +28,7 @@ CLEAN_CSV_PATH = Path("data") / "clean" / "igualdad_formal" / "ganancia_por_hora
 
 def load_pre_2007_data() -> pd.DataFrame:
     # Read dsv file
-    df = pd.read_csv(RAW_CSV_PATH_PRE_2007, sep=";")  # type: ignore
+    df = pd.read_csv(RAW_CSV_PATH_PRE_2007, sep=";")
 
     # Rename columns
     df = df.rename(
@@ -43,17 +43,17 @@ def load_pre_2007_data() -> pd.DataFrame:
     df = df.drop(columns=["Total Nacional"], errors="ignore")
 
     # Null values in 'comunidad_autonoma_id' are 'Total nacional'
-    df["comunidad_autonoma_id"] = df["comunidad_autonoma_id"].fillna("Total Nacional")  # type: ignore
+    df["comunidad_autonoma_id"] = df["comunidad_autonoma_id"].fillna("Total Nacional")
 
     # Adapt to expected values in 'sector_actividad' column
-    df["sector_actividad"] = df["sector_actividad"].replace({"Todos los sectores de actividad": "Todos los sectores"})  # type: ignore
+    df["sector_actividad"] = df["sector_actividad"].replace({"Todos los sectores de actividad": "Todos los sectores"})
 
     return df
 
 
 def load_post_2007_data() -> pd.DataFrame:
     # Read csv file
-    df = pd.read_csv(RAW_CSV_PATH_POST_2007, sep=";")  # type: ignore
+    df = pd.read_csv(RAW_CSV_PATH_POST_2007, sep=";")
 
     # Rename columns
     df = df.rename(

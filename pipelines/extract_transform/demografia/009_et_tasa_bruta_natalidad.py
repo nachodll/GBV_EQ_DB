@@ -25,7 +25,7 @@ CLEAN_CSV_PATH = Path("data") / "clean" / "demografia" / "tasa_bruta_natalidad.c
 def main():
     try:
         # Read csv file into a DataFrame
-        df = pd.read_csv(RAW_CSV_PATH, sep=";", thousands=".", decimal=",")  # type: ignore
+        df = pd.read_csv(RAW_CSV_PATH, sep=";", thousands=".", decimal=",")
 
         # Rename columns
         df.rename(
