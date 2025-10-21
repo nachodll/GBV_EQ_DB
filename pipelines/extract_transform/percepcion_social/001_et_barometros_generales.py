@@ -9,7 +9,8 @@ Target tables:
 
 import json
 import logging
-import pickle
+
+# import pickle
 from pathlib import Path
 
 import pandas as pd
@@ -121,11 +122,11 @@ def main():
         # Load data from .sav files or from pickle for debugging
         if LOAD_FROM_RAW:
             df_dict = load_all_sav_files(RAW_SAV_DIR)
-            with open("data/debug/barometros_generales_dict.pkl", "wb") as f:
-                pickle.dump(df_dict, f)
-        else:
-            with open("data/debug/barometros_generales_dict.pkl", "rb") as f:
-                df_dict = pickle.load(f)
+        #     with open("data/debug/barometros_generales_dict.pkl", "wb") as f:
+        #         pickle.dump(df_dict, f)
+        # else:
+        #     with open("data/debug/barometros_generales_dict.pkl", "rb") as f:
+        #         df_dict = pickle.load(f)
 
         # Load variable mapping from JSON (with updates)
         studies_variable_map = get_updated_map()
@@ -133,7 +134,7 @@ def main():
         # For each dataframe, select the target columns and rename according to the mapping
         all_dfs = []
         studies_with_missing_maps = []
-        for code, df in df_dict.items():
+        for code, df in df_dict.items():  # type: ignore
             mapping = studies_variable_map.get(code)  # type: ignore
             df_study = pd.DataFrame()
             if not mapping:
