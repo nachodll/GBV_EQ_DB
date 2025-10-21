@@ -56,6 +56,7 @@ def setup_logging() -> None:
 
     # Save to file only if the file name is main.py
     if Path(sys.argv[0]).name == "main.py":
+        LOG_DIR.parent.mkdir(exist_ok=True)
         LOG_DIR.mkdir(exist_ok=True)
         log_path = LOG_DIR / f"{datetime.now().isoformat()}.log"
         file_handler = logging.FileHandler(log_path)
