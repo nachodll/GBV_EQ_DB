@@ -331,7 +331,6 @@ def get_df_from_excels() -> pd.DataFrame:
             path = RAW_XLSX_DIR / file_dict["file"]
             sheet = file_dict["sheet"]
             excel_df = pd.read_excel(path, sheet_name=sheet, header=None)
-            excel_df.to_csv("data/debug/mat_pat_debug.csv")
 
             if tipo == "maternidad":
                 if year == 2007:
