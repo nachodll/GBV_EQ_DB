@@ -79,8 +79,6 @@ def get_df_from_all_excels(paths: list[Path]) -> pd.DataFrame:
             }
             all_entries.append(entry)
 
-        excel_df.to_csv("data/debug/prestaciones.csv", index=False, sep=";")
-
     df = pd.DataFrame(all_entries)
 
     # Round to 2 decimals importe_miles_euros
