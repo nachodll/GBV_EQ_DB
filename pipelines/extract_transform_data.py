@@ -55,6 +55,7 @@ SCRIPTS: List[Path] = [
     ET_SCRIPTS_DIR / "educacion_juventud" / "004_et_prestaciones_nacimiento_y_cuidado_menor.py",
     ET_SCRIPTS_DIR / "educacion_juventud" / "005_et_excedencias_cuidado_hijos_familiares.py",
     ET_SCRIPTS_DIR / "educacion_juventud" / "006_et_prestaciones_maternidad_paternidad.py",
+    ET_SCRIPTS_DIR / "educacion_juventud" / "007_et_nivel_formacion.py",
     ET_SCRIPTS_DIR / "tecnologia_y_medios" / "001_et_acceso_internet_viviendas.py",
     ET_SCRIPTS_DIR / "tecnologia_y_medios" / "002_et_uso_internet_personas.py",
     ET_SCRIPTS_DIR / "tecnologia_y_medios" / "003_et_uso_internet_ninios.py",

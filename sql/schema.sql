@@ -1116,6 +1116,36 @@ CREATE TABLE
     importe_miles_euros float CHECK (importe_miles_euros >= 0)
   );
 
+CREATE TABLE
+  educacion_juventud.nivel_formacion (
+    nivel_formacion_id serial PRIMARY KEY,
+    anio int NOT NULL CHECK (
+      anio BETWEEN 1900 AND EXTRACT(
+        YEAR
+        FROM
+          CURRENT_DATE
+      )
+    ),
+    comunidad_autonoma_id int NOT NULL REFERENCES geo.comunidades_autonomas (comunidad_autonoma_id),
+    grupo_edad varchar NOT NULL CHECK (
+      grupo_edad ~ '^\d+-\d+$'
+      OR grupo_edad ~ '^<\d+$'
+      OR grupo_edad ~ '^>\d+$'
+    ),
+    nivel_formacion text NOT NULL CHECK (
+      nivel_formacion IN (
+        'Nivel 0-2',
+        'Nivel 3-8',
+        'Nivel 3-4',
+        'Nivel 5-8'
+      )
+    ),
+    porcentaje numeric NOT NULL CHECK (
+      porcentaje >= 0
+      AND porcentaje <= 100
+    )
+  );
+
 ------------------------------------------------------------------------------------
 -- tecnologia_y_medios
 ------------------------------------------------------------------------------------
