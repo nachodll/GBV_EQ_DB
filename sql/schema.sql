@@ -1487,6 +1487,31 @@ CREATE TABLE
     )
   );
 
+CREATE TABLE
+  economia_laboral.riesgo_pobreza_exclusion (
+    riesgo_pobreza_exclusion_id serial PRIMARY KEY,
+    anio int NOT NULL CHECK (
+      anio BETWEEN 1900 AND EXTRACT(
+        YEAR
+        FROM
+          CURRENT_DATE
+      )
+    ),
+    comunidad_autonoma_id int NOT NULL REFERENCES geo.comunidades_autonomas (comunidad_autonoma_id),
+    indicador text NOT NULL CHECK (
+      indicador IN (
+        'Tasa de riesgo de pobreza o exclusión social (indicador AROPE)',
+        'En riesgo de pobreza (renta año anterior a la entrevista)',
+        'Con carencia material severa',
+        'Viviendo en hogares con baja intensidad en el trabajo (de 0 a 59 años)'
+      )
+    ),
+    porcentaje float NOT NULL CHECK (
+      porcentaje >= 0
+      AND porcentaje <= 100
+    )
+  );
+
 ------------------------------------------------------------------------------------
 -- seguridad_criminalidad
 ------------------------------------------------------------------------------------

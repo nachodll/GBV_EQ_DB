@@ -75,6 +75,7 @@ SCRIPTS: List[Path] = [
     ET_SCRIPTS_DIR / "percepcion_social" / "005_et_encuesta_violencia_genero_juventud_2013.py",
     ET_SCRIPTS_DIR / "percepcion_social" / "006_et_encuesta_violencia_genero_2012.py",
     ET_SCRIPTS_DIR / "economia_laboral" / "001_et_tasa_actividad_paro_empleo.py",
+    ET_SCRIPTS_DIR / "economia_laboral" / "002_et_riesgo_pobreza_exclusion.py",
     ET_SCRIPTS_DIR / "seguridad_criminalidad" / "001_et_tasas_homicidios_criminalidad.py",
     ET_SCRIPTS_DIR / "seguridad_criminalidad" / "002_et_delitos_sexuales.py",
 ]
