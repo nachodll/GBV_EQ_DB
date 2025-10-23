@@ -99,6 +99,8 @@ TABLES_TO_LOAD: Dict[Path, Optional[Callable[[Connection, pd.DataFrame], None]]]
     CLEAN_DATA_DIR / "percepcion_social" / "encuesta_violencia_genero_juventud_2013.csv": None,
     CLEAN_DATA_DIR / "percepcion_social" / "encuesta_violencia_genero_2012.csv": None,
     CLEAN_DATA_DIR / "economia_laboral" / "tasa_actividad_paro_empleo.csv": None,
+    CLEAN_DATA_DIR / "seguridad_criminalidad" / "tasas_homicidios_criminalidad.csv": None,
+    CLEAN_DATA_DIR / "seguridad_criminalidad" / "delitos_sexuales.csv": None,
 }
 
 

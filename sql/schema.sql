@@ -26,6 +26,8 @@ CREATE SCHEMA percepcion_social;
 
 CREATE SCHEMA economia_laboral;
 
+CREATE SCHEMA seguridad_criminalidad;
+
 ------------------------------------------------------------------------------------
 -- enums
 ------------------------------------------------------------------------------------
@@ -1483,6 +1485,56 @@ CREATE TABLE
       total >= 0
       AND total <= 100
     )
+  );
+
+------------------------------------------------------------------------------------
+-- seguridad_criminalidad
+------------------------------------------------------------------------------------
+CREATE TABLE
+  seguridad_criminalidad.tasas_homicidios_criminalidad (
+    tasas_homicidios_criminalidad_id serial PRIMARY KEY,
+    comunidad_autonoma_id int NOT NULL REFERENCES geo.comunidades_autonomas (comunidad_autonoma_id),
+    anio int NOT NULL CHECK (
+      anio BETWEEN 1900 AND EXTRACT(
+        YEAR
+        FROM
+          CURRENT_DATE
+      )
+    ),
+    tipo_tasa text NOT NULL CHECK (
+      tipo_tasa IN ('Tasa de homicidios', 'Tasa de criminalidad')
+    ),
+    total float NOT NULL CHECK (total >= 0)
+  );
+
+CREATE TABLE
+  seguridad_criminalidad.delitos_sexuales (
+    delitos_sexuales_id serial PRIMARY KEY,
+    sexo enums.sexo_enum NOT NULL,
+    anio int NOT NULL CHECK (
+      anio BETWEEN 1900 AND EXTRACT(
+        YEAR
+        FROM
+          CURRENT_DATE
+      )
+    ),
+    nivel_1 text NOT NULL CHECK (
+      nivel_1 IN ('8 Contra la libertad e indemnidad sexuales')
+    ),
+    nivel_2 text CHECK (
+      nivel_2 IN (
+        '8.1 Agresiones sexuales',
+        '8.2 Abusos sexuales',
+        '8.2 BIS Abusos y agresiones sexuales a menores de 16 años',
+        '8.3 Acoso sexual',
+        '8.4 Exhibicionismo y provocación sexual',
+        '8.5 Prostitución y corrupción menores'
+      )
+    ),
+    nivel_3 text CHECK (
+      nivel_3 IN ('8.1.1 Agresión sexual', '8.1.2 Violación')
+    ),
+    delitos int NOT NULL CHECK (delitos >= 0)
   );
 
 ------------------------------------------------------------------------------------
