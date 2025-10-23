@@ -317,12 +317,6 @@ Tables are distributed in different schemas according to the field to which thei
             <td>Comunidades</td>
             <td>Instituto de las Mujeres</td>
         </tr>
-        <tr style="background-color: #f8ccccff;">
-            <td>Recursos autonómicos en VG</td>
-            <td></td>
-            <td></td>
-            <td>DGVG</td>
-        </tr>
     </tbody>
 </table>
 
@@ -373,6 +367,12 @@ Tables are distributed in different schemas according to the field to which thei
             <td>1985-2024</td>
             <td>Comunidades</td>
             <td>Ministerio de Ciencia Innovacion y Universidades</td>
+        </tr>
+        <tr>
+            <td><a href="./Tables/educacion_juventud/nivel_formacion/">nivel_formacion</a></td>
+            <td>2004-2023</td>
+            <td>Comunidades</td>
+            <td>INE</td>
         </tr>
     </tbody>
 </table>
@@ -433,12 +433,6 @@ Tables are distributed in different schemas according to the field to which thei
             <td>2014-2024</td>
             <td>Cities</td>
             <td>Social Media Family</td>
-        </tr>
-        <tr style="background-color: #f8ccccff;">
-            <td>Pornografia - Google trends</td>
-            <td></td>
-            <td></td>
-            <td>Google Trends</td>
         </tr>
     </tbody>
 </table>
@@ -510,10 +504,42 @@ Tables are distributed in different schemas according to the field to which thei
             <td>Provincias</td>
             <td>INE</td>
         </tr>
+        <tr>
+            <td><a href="./Tables/economia_laboral/riesgo_pobreza_exclusion/">riesgo_pobreza_exclusion</a></td>
+            <td>2008-2024</td>
+            <td>Comunidades</td>
+            <td>INE</td>
+        </tr>
     </tbody>
 </table>
 
-### 10. salud
+### 10. seguridad_criminalidad
+<table>
+    <thead>
+        <tr>
+            <th>Table</th>
+            <th>Time Period</th>
+            <th>Regional Breakdown</th>
+            <th>Source</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td><a href="./Tables/seguridad_criminalidad/tasas_homicidios_criminalidad/">tasas_homicidios_criminalidad</a></td>
+            <td>2010-2023</td>
+            <td>Comunidades</td>
+            <td>INE</td>
+        </tr>
+        <tr>
+            <td><a href="./Tables/seguridad_criminalidad/delitos_sexuales/">delitos_sexuales</a></td>
+            <td>2017-2024</td>
+            <td>Spain</td>
+            <td>INE</td>
+        </tr>
+    </tbody>
+</table>
+
+### 11. salud
 <table>
     <thead>
         <tr>
@@ -545,7 +571,7 @@ Tables are distributed in different schemas according to the field to which thei
     </tbody>
 </table>
 
-### 11. politica
+### 12. politica
 <table>
     <thead>
         <tr>

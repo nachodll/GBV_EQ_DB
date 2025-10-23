@@ -69,6 +69,7 @@ nav:
             - matriculados_educacion_no_universitaria: Tables/educacion_juventud/matriculados_educacion_no_universitaria.md
             - matriculados_universidad: Tables/educacion_juventud/matriculados_universidad.md
             - egresados_universidad: Tables/educacion_juventud/egresados_universidad.md
+            - nivel_formacion: Tables/educacion_juventud/nivel_formacion.md
         - migracion:
             - residentes_extranjeros: Tables/migracion/residentes_extranjeros.md
         - tecnologia_y_medios:
@@ -85,6 +86,10 @@ nav:
             - encuesta_violencia_genero_2012: Tables/percepcion_social/encuesta_violencia_genero_2012.md
         - economia_laboral:
             - tasa_actividad_paro_empleo: Tables/economia_laboral/tasa_actividad_paro_empleo.md
+            - riesgo_pobreza_exclusion: Tables/economia_laboral/riesgo_pobreza_exclusion.md
+        - seguridad_criminalidad:
+            - tasas_homicidios_criminalidad: Tables/seguridad_criminalidad/tasas_homicidios_criminalidad.md
+            - delitos_sexuales: Tables/seguridad_criminalidad/delitos_sexuales.md
         - politica:
             - elecciones_congreso: Tables/politica/elecciones_congreso.md
             - elecciones_parlamentos_autonomicos: Tables/politica/elecciones_parlamentos_autonomicos.md
