@@ -1573,11 +1573,11 @@ CREATE TABLE
           CURRENT_DATE
       )
     ),
-    nivel_1 text NOT NULL CHECK (
-      nivel_1 IN ('8 Contra la libertad e indemnidad sexuales')
+    nivel_2 text NOT NULL CHECK (
+      nivel_2 IN ('8 Contra la libertad e indemnidad sexuales')
     ),
-    nivel_2 text CHECK (
-      nivel_2 IN (
+    nivel_3 text CHECK (
+      nivel_3 IN (
         '8.1 Agresiones sexuales',
         '8.2 Abusos sexuales',
         '8.2 BIS Abusos y agresiones sexuales a menores de 16 años',
@@ -1586,8 +1586,8 @@ CREATE TABLE
         '8.5 Prostitución y corrupción menores'
       )
     ),
-    nivel_3 text CHECK (
-      nivel_3 IN ('8.1.1 Agresión sexual', '8.1.2 Violación')
+    nivel_4 text CHECK (
+      nivel_4 IN ('8.1.1 Agresión sexual', '8.1.2 Violación')
     ),
     delitos int NOT NULL CHECK (delitos >= 0)
   );
