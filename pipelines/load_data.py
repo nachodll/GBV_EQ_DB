@@ -93,6 +93,7 @@ TABLES_TO_LOAD: Dict[Path, Optional[Callable[[Connection, pd.DataFrame], None]]]
     CLEAN_DATA_DIR / "politica" / "elecciones_parlamentos_autonomicos.csv": None,
     CLEAN_DATA_DIR / "politicas_publicas_igualdad_violencia" / "legislacion.csv": None,
     CLEAN_DATA_DIR / "politicas_publicas_igualdad_violencia" / "institutos_mujer.csv": None,
+    CLEAN_DATA_DIR / "politicas_publicas_igualdad_violencia" / "centros_acogida_emergencia.csv": None,
     CLEAN_DATA_DIR / "percepcion_social" / "barometros_generales.csv": None,
     CLEAN_DATA_DIR / "percepcion_social" / "encuesta_igualdad_2023.csv": None,
     CLEAN_DATA_DIR / "percepcion_social" / "encuesta_violencia_sexual_2023.csv": None,

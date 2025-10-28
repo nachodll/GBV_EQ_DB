@@ -1399,6 +1399,24 @@ CREATE TABLE
     enlace text
   );
 
+CREATE TABLE
+  politicas_publicas_igualdad_violencia.centros_acogida_emergencia (
+    centros_acogida_emergencia_id serial PRIMARY KEY,
+    anio int NOT NULL CHECK (
+      anio BETWEEN 1900 AND EXTRACT(
+        YEAR
+        FROM
+          CURRENT_DATE
+      )
+    ),
+    provincia_id int NOT NULL REFERENCES geo.provincias (provincia_id),
+    centros int CHECK (centros >= 0),
+    plazas int CHECK (plazas >= 0),
+    profesionales int CHECK (profesionales >= 0),
+    mujeres_acogidas int CHECK (mujeres_acogidas >= 0),
+    hijos_a_cargo_acogidos int CHECK (hijos_a_cargo_acogidos >= 0)
+  );
+
 ------------------------------------------------------------------------------------
 -- percepcion_social
 ------------------------------------------------------------------------------------
