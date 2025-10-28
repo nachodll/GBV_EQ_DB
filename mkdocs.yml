@@ -62,6 +62,7 @@ nav:
         - politicas_publicas_igualdad_violencia:
             - legislacion: Tables/politicas_publicas_igualdad_violencia/legislacion.md
             - institutos_mujer: Tables/politicas_publicas_igualdad_violencia/institutos_mujer.md
+            - centros_acogida_emergencia: Tables/politicas_publicas_igualdad_violencia/centros_acogida_emergencia.md
         - educacion_juventud:
             - excedencias_cuidado_hijos_familiares: Tables/educacion_juventud/excedencias_cuidado_hijos_familiares.md
             - prestaciones_nacimiento_y_cuidado_menor: Tables/educacion_juventud/prestaciones_nacimiento_y_cuidado_menor.md

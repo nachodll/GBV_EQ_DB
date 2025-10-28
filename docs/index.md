@@ -317,6 +317,12 @@ Tables are distributed in different schemas according to the field to which thei
             <td>Comunidades</td>
             <td>Instituto de las Mujeres</td>
         </tr>
+        <tr>
+            <td><a href="./Tables/politicas_publicas_igualdad_violencia/centros_acogida_emergencia/">centros_acogida_emergencia</a></td>
+            <td>2017, 2020, 2022</td>
+            <td>Provincias</td>
+            <td>DGVG</td>
+        </tr>
     </tbody>
 </table>
 
