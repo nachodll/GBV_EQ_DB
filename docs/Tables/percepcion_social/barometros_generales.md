@@ -78,3 +78,4 @@ CREATE TABLE
 ## Source
 
 Data extracted from the <a href="https://www.cis.es/catalogo-estudios/resultados-definidos/barometros" target="_blank">Centro de Investigaciones Sociológicas (CIS) General Barometer portal</a>.
+Consulted on 3 October 2025.

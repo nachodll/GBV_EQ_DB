@@ -42,3 +42,4 @@ No se realizaron transformaciones notables sobre este conjunto de datos.
 
 ## Fuente
 Datos extraídos del <a href="https://www.sanidad.gob.es/areas/promocionPrevencion/embarazo/datosEstadisticos.htm#Tabla1" target="_blank">Ministerio de Sanidad</a>.
+Consultado el 9 de junio de 2025.

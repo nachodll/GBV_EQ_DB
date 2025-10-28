@@ -48,3 +48,4 @@ CREATE TABLE
 ## Source
 
 Data extracted from <a href="https://www.lamoncloa.gob.es/Paginas/index.aspx" target="_blank">La Moncloa</a>.
+Consulted on 17 June 2025.

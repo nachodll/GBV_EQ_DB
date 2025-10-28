@@ -42,3 +42,4 @@ CREATE TABLE
 
 Datos recopilados del <a href="https://www.inmujeres.gob.es/servRecursos/OrganismosIgualdad/AmbitoEstatal/AmbitoEstatal.htm" target="_blank">Instituto de las Mujeres</a>.
 
+Consultado el 17 de junio de 2025.

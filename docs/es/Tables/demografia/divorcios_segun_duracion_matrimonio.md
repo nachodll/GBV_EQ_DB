@@ -65,3 +65,4 @@ CREATE TABLE
 Datos para el periodo 2005-2010 extraídos del <a href="https://www.ine.es/jaxiT3/Tabla.htm?t=25214&L=0" target="_blank">Instituto Nacional de Estadística (INE)</a>
 
 Datos para el periodo 2010-2023 extraídos del <a href="https://www.ine.es/jaxiT3/Tabla.htm?t=25213&L=0" target="_blank">Instituto Nacional de Estadística (INE)</a>
+Consultado el 16 de junio de 2025.

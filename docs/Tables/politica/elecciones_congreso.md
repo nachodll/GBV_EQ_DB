@@ -44,3 +44,4 @@ CREATE TABLE
 ## Source
 
 Data extracted from <a href="https://infoelectoral.interior.gob.es/es/elecciones-celebradas/resultados-electorales" target="_blank">Ministerio del Interior</a>.
+Consulted on 17 June 2025.

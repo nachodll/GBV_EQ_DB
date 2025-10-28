@@ -43,3 +43,4 @@ No notable transformations were performed over this dataset.
 
 ## Source
 Data extracted from <a href="https://estadisticasviolenciagenero.igualdad.gob.es/" target="_blank">Portal Estadísdico de la Delegación del Gobierno contra la Violencia de Género (DGVG)</a>. Table: "120 Órdenes de protección".
+Consulted on 10 June 2025.

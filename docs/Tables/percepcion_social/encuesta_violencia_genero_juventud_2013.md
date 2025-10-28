@@ -40,3 +40,4 @@ CREATE TABLE
 ## Source
 
 Data extracted from the <a href="https://www.cis.es/detalle-ficha-estudio?origen=estudio&idEstudio=14106" target="_blank">CIS barometer on perceptions of gender-based violence among youth (study 2992)</a>.
+Consulted on 10 June 2025.

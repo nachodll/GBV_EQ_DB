@@ -54,3 +54,4 @@ Tables were extracted from each year's pdf report and merged together.
 
 ## Source
 Data extracted from <a href="hhttps://thesocialmediafamily.com/" target="_blank">Social Media Family</a> reports. 
+Consulted on 17 June 2025.

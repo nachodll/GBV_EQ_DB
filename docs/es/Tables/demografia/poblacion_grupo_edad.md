@@ -49,3 +49,4 @@ CREATE TABLE
 ## Fuente
 
 Datos extraídos del <a href="https://www.ine.es/jaxi/Tabla.htm?path=/t20/e245/p08/l0/&file=01002.px&L=0" target="_blank">Instituto Nacional de Estadística (INE)</a>
+Consultado el 3 de junio de 2025.

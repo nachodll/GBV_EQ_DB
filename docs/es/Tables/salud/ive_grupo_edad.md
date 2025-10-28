@@ -44,3 +44,4 @@ Se sustituyó "19 y menos años" por "<19" en las etiquetas de grupo de edad.
 
 ## Fuente
 Datos extraídos del <a href="https://www.sanidad.gob.es/areas/promocionPrevencion/embarazo/datosEstadisticos.htm#Tabla1" target="_blank">Ministerio de Sanidad</a>.
+Consultado el 10 de junio de 2025.

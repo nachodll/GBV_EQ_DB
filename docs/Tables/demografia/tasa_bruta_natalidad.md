@@ -40,3 +40,4 @@ CREATE TABLE
 
 Data extracted from <a href="https://www.ine.es/jaxiT3/Tabla.htm?t=1470&L=0" target="_blank">Instituto Nacional de Estadística (INE)</a>
 
+Consulted on 3 June 2025.

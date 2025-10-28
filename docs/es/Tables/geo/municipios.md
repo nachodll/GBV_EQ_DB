@@ -26,3 +26,4 @@ CREATE TABLE
 ## Fuente
 
 Datos extraídos del <a href="https://www.ine.es/dyngs/INEbase/en/operacion.htm?c=Estadistica_C&cid=1254736177031&menu=ultiDatos&idp=1254734710990" target="_blank">Instituto Nacional de Estadística (INE)</a>
+Consultado el 2 de junio de 2025.

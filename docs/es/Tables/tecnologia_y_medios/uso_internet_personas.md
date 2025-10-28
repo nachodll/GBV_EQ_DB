@@ -49,3 +49,4 @@ No se realizaron transformaciones notables sobre este conjunto de datos.
 
 ## Fuente
 Datos extraídos del <a href="https://www.ine.es/jaxi/Tabla.htm?tpx=70471&L=0" target="_blank">Instituto Nacional de Estadística (INE)</a>.
+Consultado el 3 de junio de 2025.

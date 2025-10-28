@@ -40,3 +40,4 @@ CREATE TABLE
 ## Source
 
 Data extracted from the <a href="https://www.cis.es/detalle-ficha-estudio?origen=estudio&idEstudio=14354" target="_blank">CIS barometer on social perceptions of sexual violence (study 3182)</a>.
+Consulted on 11 June 2025.

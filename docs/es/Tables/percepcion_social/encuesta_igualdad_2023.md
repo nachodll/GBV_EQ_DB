@@ -40,3 +40,4 @@ CREATE TABLE
 ## Fuente
 
 Datos extraídos del <a href="https://www.cis.es/detalle-ficha-estudio?origen=estudio&idEstudio=14756" target="_blank">barómetro especial del CIS sobre igualdad entre hombres y mujeres (estudio 3428)</a>.
+Consultado el 10 de junio de 2025.

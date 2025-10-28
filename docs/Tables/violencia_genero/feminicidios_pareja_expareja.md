@@ -53,3 +53,4 @@ No notable transformations were performed over this dataset. Source data provide
 
 ## Source
 Data extracted from <a href="https://estadisticasviolenciagenero.igualdad.gob.es/" target="_blank">Portal Estadísdico de la Delegación del Gobierno contra la Violencia de Género (DGVG)</a>. Table: "010 Feminicidios en la pareja o expareja".
+Consulted on 9 June 2025.

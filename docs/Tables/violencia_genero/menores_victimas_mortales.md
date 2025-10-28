@@ -45,3 +45,4 @@ Source data provider only allows 5 analysis variable to be selected at time. Mor
 
 ## Source
 Data extracted from <a href="https://estadisticasviolenciagenero.igualdad.gob.es/" target="_blank">Portal Estadísdico de la Delegación del Gobierno contra la Violencia de Género (DGVG)</a>. Table: "030 Menores víctimas mortales".
+Consulted on 2 June 2025.

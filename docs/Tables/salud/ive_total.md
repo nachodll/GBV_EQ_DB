@@ -42,3 +42,4 @@ No notable transformations were performed over this dataset.
 
 ## Source
 Data extracted from <a href="https://www.sanidad.gob.es/areas/promocionPrevencion/embarazo/datosEstadisticos.htm#Tabla1" target="_blank">Ministerio de Sanidad</a>.
+Consulted on 9 June 2025.

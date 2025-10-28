@@ -107,3 +107,4 @@ CREATE TABLE
 
 ## Source
 Data extracted from the <a href="https://www.cis.es/" target="_blank">Centro de Investigaciones Sociológicas (CIS)</a>. Macroencuesta de Violencia contra la Mujer 2015 (study 3027) and 2019 (study 3235).
+Consulted on 17 June 2025.

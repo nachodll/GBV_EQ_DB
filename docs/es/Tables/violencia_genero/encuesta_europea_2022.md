@@ -32,3 +32,4 @@ CREATE TABLE
 
 ## Fuente
 Datos extraídos de la <a href="https://ec.europa.eu/eurostat/web/microdata/gender-based-violence" target="_blank">encuesta de la Unión Europea sobre violencia de género de Eurostat (2022)</a>.
+Consultado el 9 de junio de 2025.

@@ -56,3 +56,4 @@ CREATE TABLE
 ## Fuente
 
 Datos extraídos del <a href="https://www.educacionfpydeportes.gob.es/ca/servicios-al-ciudadano/estadisticas/no-universitaria/alumnado/matriculado.html" target="_blank">Ministerio de Educación, Formación Profesional y Deportes.</a>
+Consultado el 2 de junio de 2025.

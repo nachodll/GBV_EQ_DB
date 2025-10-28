@@ -37,3 +37,4 @@ No notable transformations were performed over this dataset.
 
 ## Source
 Data extracted from <a href="https://www.inmujeres.gob.es/MujerCifras/Violencia/AmbitoJudicial.htm" target="_blank">Instituto de las Mujeres</a>. Table: "Denuncias por violencia de género según Comunidad Autónoma".
+Consulted on 9 June 2025.

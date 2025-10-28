@@ -40,3 +40,4 @@ Se eliminaron las filas correspondientes al total y a la entrada combinada de Ce
 
 ## Fuente
 Datos extraídos del <a href="https://www.sanidad.gob.es/areas/promocionPrevencion/embarazo/datosEstadisticos.htm#Tabla1" target="_blank">Ministerio de Sanidad</a>. Tabla: "Interrupciones voluntarias del embarazo".
+Consultado el 16 de junio de 2025.

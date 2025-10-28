@@ -59,3 +59,4 @@ CREATE TABLE
 ## Source
 
 Data extracted from <a href="https://www.ine.es/jaxi/Tabla.htm?path=/t20/p274/serie/def/p02/&file=02015.px" target="_blank">Instituto Nacional de Estadística (INE)</a>
+Consulted on 2 June 2025.

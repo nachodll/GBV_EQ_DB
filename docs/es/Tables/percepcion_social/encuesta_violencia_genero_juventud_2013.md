@@ -40,3 +40,4 @@ CREATE TABLE
 ## Fuente
 
 Datos extraídos del <a href="https://www.cis.es/detalle-ficha-estudio?origen=estudio&idEstudio=14106" target="_blank">barómetro del CIS sobre percepciones de la violencia de género entre la juventud (estudio 2992)</a>.
+Consultado el 10 de junio de 2025.

@@ -41,3 +41,4 @@ No notable transformations were performed over this dataset.
 
 ## Source
 Data extracted from <a href="https://estadisticasviolenciagenero.igualdad.gob.es/" target="_blank">Portal Estadísdico de la Delegación del Gobierno contra la Violencia de Género (DGVG)</a>. Table: "110 Denuncias por violencia de género en la pareja o expareja".
+Consulted on 2 June 2025.

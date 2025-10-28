@@ -67,3 +67,4 @@ CREATE TABLE
 ## Fuente
 
 Datos extraídos del <a href="https://www.ine.es/jaxi/Tabla.htm?path=/t25/e447/a2009-2010/p07/l0/&file=7.3a.px&L=0" target="_blank">Instituto Nacional de Estadística (INE) - encuesta 2009</a> y del <a href="https://www.ine.es/daco/daco42/empleo/dacoeet.htm" target="_blank">Instituto Nacional de Estadística (INE) - encuesta 2002</a>
+Consultado el 2 de junio de 2025.

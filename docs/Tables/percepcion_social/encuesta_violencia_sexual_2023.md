@@ -41,3 +41,4 @@ CREATE TABLE
 ## Source
 
 Data extracted from the <a href="https://www.cis.es/detalle-ficha-estudio?origen=estudio&idEstudio=14690" target="_blank">CIS barometer on sexual violence against women (study 3393)</a>.
+Consulted on 9 June 2025.

@@ -45,3 +45,4 @@ CREATE TABLE
 
 Datos de elaboración propia a partir del <a href="https://www.boe.es/" target="_blank">Boletín Oficial del Estado (BOE)</a>.
 
+Consultado el 3 de junio de 2025.

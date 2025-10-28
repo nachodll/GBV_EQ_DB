@@ -21,3 +21,4 @@ CREATE TABLE
 
 ## Source
 Data extracted from <a href="https://www.ine.es/daco/daco42/codmun/cod_ccaa.htm" target="_blank">Instituto Nacional de Estadística (INE)</a>
+Consulted on 2 June 2025.

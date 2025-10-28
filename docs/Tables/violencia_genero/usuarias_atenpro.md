@@ -43,3 +43,4 @@ Entries with negative values for `altas` and `bajas` were dropped from the datas
 
 ## Source
 Data extracted from <a href="https://estadisticasviolenciagenero.igualdad.gob.es/" target="_blank">Portal Estadísdico de la Delegación del Gobierno contra la Violencia de Género (DGVG)</a>. Table: "050 Usuarias de ATENPRO".
+Consulted on 9 June 2025.

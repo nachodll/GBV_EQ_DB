@@ -51,3 +51,4 @@ CREATE TABLE
 ## Source
 
 Data extracted from the <a href="https://www.ine.es/jaxi/Tabla.htm?path=/t22/p133/2004-2007/l0/&file=04001.px&L=0" target="_blank">Instituto Nacional de Estadística (INE) 2004-2007 series</a> and the <a href="https://www.ine.es/jaxiT3/Tabla.htm?t=28203&L=0" target="_blank">INE 2008-2023 series</a>.
+Consulted on 3 June 2025.

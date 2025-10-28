@@ -54,3 +54,4 @@ Las diferentes tablas fueron extraídas de los informes anuale en PDF  y combina
 
 ## Fuente
 Datos extraídos de los informes de <a href="hhttps://thesocialmediafamily.com/" target="_blank">Social Media Family</a>.
+Consultado el 17 de junio de 2025.

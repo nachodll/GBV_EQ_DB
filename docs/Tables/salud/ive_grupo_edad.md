@@ -44,3 +44,4 @@ Replaced "19 y menos años" with "<19" in age group labels.
 
 ## Source
 Data extracted from <a href="https://www.sanidad.gob.es/areas/promocionPrevencion/embarazo/datosEstadisticos.htm#Tabla1" target="_blank">Ministerio de Sanidad</a>. 
+Consulted on 10 June 2025.

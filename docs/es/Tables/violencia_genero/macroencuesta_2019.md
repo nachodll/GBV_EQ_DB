@@ -33,3 +33,4 @@ CREATE TABLE
 
 ## Fuente
 Datos extraídos del <a href="https://www.cis.es/detalle-ficha-estudio?origen=estudio&idEstudio=14470" target="_blank">Centro de Investigaciones Sociológicas (CIS)</a>. Estudio 3235: Macroencuesta de Violencia contra la Mujer 2019.
+Consultado el 11 de junio de 2025.

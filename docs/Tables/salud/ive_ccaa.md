@@ -40,3 +40,4 @@ Removed rows corresponding to the total and to the combined entry for Ceuta y Me
 
 ## Source
 Data extracted from <a href="https://www.sanidad.gob.es/areas/promocionPrevencion/embarazo/datosEstadisticos.htm#Tabla1" target="_blank">Ministerio de Sanidad</a>. Table: "Interrupciones voluntarias del embarazo".
+Consulted on 16 June 2025.

@@ -39,3 +39,4 @@ CREATE TABLE
 ## Fuente
 
 Datos extraídos del <a href="https://www.senado.es/web/conocersenado/biblioteca/dossieresareastematicas/detalledossier/index.html?lang=es_ES&id=DOSSIER_CCAA1&parte=CCAA1_PLANES" target="_blank">Senado de España</a>.
+Consultado el 2 de junio de 2025.

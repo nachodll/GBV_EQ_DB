@@ -32,3 +32,4 @@ CREATE TABLE
 
 ## Source
 Data extracted from <a href="https://ec.europa.eu/eurostat/web/microdata/gender-based-violence" target="_blank">Eurostat's European Union survey on gender-based violence (2022)</a>.
+Consulted on 9 June 2025.

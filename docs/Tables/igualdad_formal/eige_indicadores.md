@@ -41,3 +41,4 @@ No notable transformations were performed over this dataset.
 
 ## Source
 Data extracted from <a href="https://eige.europa.eu/gender-statistics/dgs/browse/index" target="_blank">European Institute for Gender Equality (EIGE)</a>.
+Consulted on 11 June 2025.

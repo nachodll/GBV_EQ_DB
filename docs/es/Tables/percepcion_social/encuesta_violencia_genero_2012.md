@@ -40,3 +40,4 @@ CREATE TABLE
 ## Fuente
 
 Datos extraídos del <a href="https://www.cis.es/detalle-ficha-estudio?origen=estudio&idEstudio=14086" target="_blank">barómetro del CIS sobre percepciones sociales de la violencia de género (estudio 2968)</a>.
+Consultado el 3 de junio de 2025.

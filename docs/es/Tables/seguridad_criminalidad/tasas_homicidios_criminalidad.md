@@ -47,3 +47,4 @@ No se realizaron transformaciones notables sobre este conjunto de datos.
 
 ## Fuente
 Datos extraídos del <a href="https://www.ine.es/jaxi/Tabla.htm?path=/t00/ICV/dim6/l0/&file=61101.px&L=0" target="_blank">Instituto Nacional de Estadística (INE)</a>.
+Consultado el 23 de octubre de 2025.

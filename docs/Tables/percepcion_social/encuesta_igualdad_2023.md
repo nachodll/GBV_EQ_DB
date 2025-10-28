@@ -40,3 +40,4 @@ CREATE TABLE
 ## Source
 
 Data extracted from the <a href="https://www.cis.es/detalle-ficha-estudio?origen=estudio&idEstudio=14756" target="_blank">CIS special barometer on equality between men and women (study 3428)</a>.
+Consulted on 10 June 2025.

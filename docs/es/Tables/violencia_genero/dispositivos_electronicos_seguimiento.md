@@ -43,3 +43,4 @@ No se realizaron transformaciones notables sobre este conjunto de datos.
 
 ## Fuente
 Datos extraídos del <a href="https://estadisticasviolenciagenero.igualdad.gob.es/" target="_blank">Portal Estadístico de la Delegación del Gobierno contra la Violencia de Género (DGVG)</a>. Tabla: "060 Dispositivos electrónicos de seguimiento".
+Consultado el 17 de junio de 2025.

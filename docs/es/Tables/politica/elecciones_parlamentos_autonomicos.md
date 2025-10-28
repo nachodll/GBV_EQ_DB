@@ -38,3 +38,4 @@ CREATE TABLE
 ## Fuente
 
 Datos extraídos de la <a href="https://www.juntaelectoralcentral.es/cs/jec/elecciones/autonomicas" target="_blank">Junta Electoral Central (JEC)</a>.
+Consultado el 17 de junio de 2025.

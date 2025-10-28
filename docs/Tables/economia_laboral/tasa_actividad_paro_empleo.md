@@ -56,3 +56,4 @@ CREATE TABLE
 ## Source
 
 Data extracted from the <a href="https://www.ine.es/jaxiT3/Tabla.htm?t=65349" target="_blank">Instituto Nacional de Estadística (INE)</a>
+Consulted on 16 June 2025.

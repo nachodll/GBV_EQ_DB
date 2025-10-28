@@ -40,3 +40,4 @@ CREATE TABLE
 ## Fuente
 
 Datos extraídos del <a href="https://www.cis.es/detalle-ficha-estudio?origen=estudio&idEstudio=14354" target="_blank">barómetro del CIS sobre percepciones sociales de la violencia sexual (estudio 3182)</a>.
+Consultado el 11 de junio de 2025.

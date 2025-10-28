@@ -49,3 +49,4 @@ CREATE TABLE
 ## Source
 
 Statistics Yearbooks of the Ministry of Labor and Social Economy (<a href="https://www.mites.gob.es/es/estadisticas/anuarios/index.htm" target="_blank" rel="noopener">MITES</a>).
+Consulted on 2 June 2025.

@@ -84,3 +84,4 @@ CREATE TABLE
 ## Fuente
 
 Datos extraídos del <a href="https://estadisticas.universidades.gob.es/jaxiPx/Tabla.htm?path=/Universitaria/Alumnado/EEU_2024/Serie/TotalSUE//l0/&file=HIS_Mat_TotalSUE_Rama_CA.px&type=pcaxis&L=0" target="_blank">Ministerio de Ciencia Innovacion y Universidades.</a>
+Consultado el 11 de junio de 2025.

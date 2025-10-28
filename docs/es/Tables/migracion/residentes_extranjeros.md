@@ -75,3 +75,4 @@ CREATE TABLE
 ## Fuente
 
 Datos extraídos del <a href="https://expinterweb.inclusion.gob.es/dynPx/inebase/index.htm?type=pcaxis&path=/Stock/&file=pcaxis" target="_blank">Observatorio Permanente de la Inmigración (OPI)</a>.
+Consultado el 11 de junio de 2025.

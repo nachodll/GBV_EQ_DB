@@ -45,3 +45,4 @@ El proveedor de datos solo permite seleccionar 5 variables de análisis a la vez
 
 ## Fuente
 Datos extraídos del <a href="https://estadisticasviolenciagenero.igualdad.gob.es/" target="_blank">Portal Estadístico de la Delegación del Gobierno contra la Violencia de Género (DGVG)</a>. Tabla: "030 Menores víctimas mortales".
+Consultado el 2 de junio de 2025.

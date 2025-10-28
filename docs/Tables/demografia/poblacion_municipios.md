@@ -43,3 +43,4 @@ CREATE TABLE
 
 ## Source
 Data extracted from <a href="https://www.ine.es/dynt3/inebase/index.htm?padre=525#" target="_blank">Instituto Nacional de Estadística (INE)</a>
+Consulted on 3 June 2025.

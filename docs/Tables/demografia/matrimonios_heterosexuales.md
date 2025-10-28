@@ -63,3 +63,4 @@ CREATE TABLE
 Data extracted from <a href="https://www.ine.es/jaxiT3/Tabla.htm?t=6532&L=0" target="_blank">Instituto Nacional de Estadística (INE)</a>
 
 Previous marital status data extracted from <a href="https://ine.es/jaxiT3/Tabla.htm?t=32879" target="_blank">Instituto Nacional de Estadística (INE)</a>
+Consulted on 2 June 2025.

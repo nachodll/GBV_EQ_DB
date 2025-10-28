@@ -65,3 +65,4 @@ Datos extraídos del <a href="https://www.ine.es/jaxiT3/Tabla.htm?t=6532&L=0" ta
 
 Datos de estado civil anterior extraídos de <a href="https://ine.es/jaxiT3/Tabla.htm?t=32879" target="_blank">Instituto Nacional de Estadística (INE)</a>
 
+Consultado el 2 de junio de 2025.

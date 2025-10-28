@@ -41,3 +41,4 @@ CREATE TABLE
 ## Fuente
 
 Datos extraídos de <a href="https://www.inmujeres.gob.es/MujerCifras/PoderDecisiones/PoderLegislativo.htm" target="_blank">Mujeres en Cifras - Instituto de las Mujeres</a>.
+Consultado el 16 de junio de 2025.

@@ -79,3 +79,4 @@ CREATE TABLE
 ## Fuente
 
 Datos extraídos del <a href="https://www.cis.es/catalogo-estudios/resultados-definidos/barometros" target="_blank">portal de Barómetros Generales del Centro de Investigaciones Sociológicas (CIS)</a>.
+Consultado el 3 de octubre de 2025.

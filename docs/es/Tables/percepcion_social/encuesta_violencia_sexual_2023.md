@@ -40,3 +40,4 @@ CREATE TABLE
 ## Fuente
 
 Datos extraídos del <a href="https://www.cis.es/detalle-ficha-estudio?origen=estudio&idEstudio=14690" target="_blank">barómetro del CIS sobre violencia sexual contra las mujeres (estudio 3393)</a>.
+Consultado el 9 de junio de 2025.

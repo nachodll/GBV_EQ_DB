@@ -41,3 +41,4 @@ CREATE TABLE
 ## Source
 
 Data extracted from the <a href="https://www.cis.es/detalle-ficha-estudio?origen=estudio&idEstudio=14086" target="_blank">CIS barometer on social perceptions of gender-based violence (study 2968)</a>.
+Consulted on 3 June 2025.

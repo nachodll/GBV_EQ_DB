@@ -41,3 +41,4 @@ CREATE TABLE
 ## Source
 
 Data gathered from the <a href="https://www.inmujeres.gob.es/servRecursos/OrganismosIgualdad/AmbitoEstatal/AmbitoEstatal.htm" target="_blank">Instituto de las Mujeres</a>.
+Consulted on 17 June 2025.

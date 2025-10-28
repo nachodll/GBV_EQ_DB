@@ -61,3 +61,4 @@ No notable transformations were performed over this dataset.
 
 ## Source
 Data extracted from <a href="https://www.ine.es/jaxi/Tabla.htm?path=/t00/ICV/dim4/l0/&file=41201.px&L=0" target="_blank">Instituto Nacional de Estadística (INE)</a>.
+Consulted on 23 October 2025.

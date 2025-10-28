@@ -61,3 +61,4 @@ CREATE TABLE
 Men marriage's data extracted from <a href="https://www.ine.es/jaxiT3/Tabla.htm?t=9113&L=0" target="_blank">Instituto Nacional de Estadística (INE)</a>
 
 Women marriage's data extracted from <a href="https://www.ine.es/jaxiT3/Tabla.htm?t=9114&L=0" target="_blank">Instituto Nacional de Estadística (INE)</a>
+Consulted on 16 June 2025.
