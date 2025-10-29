@@ -613,3 +613,10 @@ Las tablas se distribuyen en diferentes esquemas según el ámbito al que perten
         </tr>
     </tbody>
 </table>
+
+## Vistas
+
+Además de las tablas base, el proyecto mantiene vistas SQL seleccionadas que agregan indicadores anuales para facilitar el análisis. Puedes consultarlas en la sección dedicada:
+
+- [analisis.v_indicadores_anuales_provinciales_unificados](./Views/v_indicadores_anuales_provinciales_unificados.md)
+- [analisis.v_indicadores_anuales_comunidades_unificados](./Views/v_indicadores_anuales_comunidades_unificados.md)

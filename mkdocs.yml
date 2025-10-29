@@ -10,6 +10,7 @@ plugins:
               nav_translations:
                 Home: Inicio
                 Tables: Tablas
+                Views: Vistas
             - locale: en
               default: true
               name: English
@@ -104,3 +105,6 @@ nav:
         - metadata:
             - fuentes: Tables/metadata/fuentes.md
             - fuentes_tablas: Tables/metadata/fuentes_tablas.md
+    - Views:
+        - v_indicadores_anuales_provinciales_unificados: Views/v_indicadores_anuales_provinciales_unificados.md
+        - v_indicadores_anuales_comunidades_unificados: Views/v_indicadores_anuales_comunidades_unificados.md

@@ -614,3 +614,10 @@ Tables are distributed in different schemas according to the field to which thei
         </tr>
     </tbody>
 </table>
+
+## Views
+
+In addition to base tables, the project maintains curated SQL views that aggregate yearly indicators for easier analysis. You can explore them in the dedicated section:
+
+- [analisis.v_indicadores_anuales_provinciales_unificados](./Views/v_indicadores_anuales_provinciales_unificados.md)
+- [analisis.v_indicadores_anuales_comunidades_unificados](./Views/v_indicadores_anuales_comunidades_unificados.md)

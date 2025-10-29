@@ -1,8 +1,8 @@
-CREATE SCHEMA IF NOT EXISTS analysis;
+CREATE SCHEMA IF NOT EXISTS analisis;
 
 -- Base geography view
 CREATE OR REPLACE VIEW
-    analysis.v_provincias AS
+    analisis.v_provincias AS
 SELECT
     p.provincia_id,
     p.nombre AS provincia
@@ -11,7 +11,7 @@ FROM
 
 -- Population view by province
 CREATE OR REPLACE VIEW
-    analysis.v_poblacion_provincial AS
+    analisis.v_poblacion_provincial AS
 SELECT
     pm.anio,
     m.provincia_id,
@@ -27,7 +27,7 @@ GROUP BY
 
 -- feminicidios_pareja_expareja, yearly aggregated totals by province with zeros for missing data within 2003-2024
 CREATE OR REPLACE VIEW
-    analysis.v_feminicidios_pareja_expareja_anual AS
+    analisis.v_feminicidios_pareja_expareja_anual AS
 WITH
     year_range AS (
         SELECT
@@ -73,7 +73,7 @@ ORDER BY
 
 -- menores_victimas_mortales, yearly aggregated totals by province with zeros for missing data within 2013-2024
 CREATE OR REPLACE VIEW
-    analysis.v_menores_victimas_mortales_anual AS
+    analisis.v_menores_victimas_mortales_anual AS
 WITH
     year_range AS (
         SELECT
@@ -114,7 +114,7 @@ ORDER BY
 
 -- servicio_016, yearly aggregated totals by province with zeros for missing data within 2008-2024
 CREATE OR REPLACE VIEW
-    analysis.v_servicio_016_anual AS
+    analisis.v_servicio_016_anual AS
 WITH
     year_range AS (
         SELECT
@@ -155,7 +155,7 @@ ORDER BY
 
 -- usuarias_atenpro, yearly total (last month is used) by province with nulls for missing data within 2005-2024
 CREATE OR REPLACE VIEW
-    analysis.v_atenpro_usuarias_activas_anual AS
+    analisis.v_atenpro_usuarias_activas_anual AS
 WITH
     year_range AS (
         SELECT
@@ -195,7 +195,7 @@ ORDER BY
 
 -- dispositivos_electronicos_seguimiento, yearly total (last month is used) by province with nulls for missing data within 2009-2024
 CREATE OR REPLACE VIEW
-    analysis.v_dispositivos_electronicos_seguimiento_anual AS
+    analisis.v_dispositivos_electronicos_seguimiento_anual AS
 WITH
     year_range AS (
         SELECT
@@ -235,7 +235,7 @@ ORDER BY
 
 -- denuncias_vg_pareja, yearly aggregated total by province with zeros for missing data within 2003-2024
 CREATE OR REPLACE VIEW
-    analysis.v_denuncias_vg_pareja_anual AS
+    analisis.v_denuncias_vg_pareja_anual AS
 WITH
     year_range AS (
         SELECT
@@ -276,7 +276,7 @@ ORDER BY
 
 -- mattrimonios_heterosexuales, yearly aggregated totals by province with zeros for missing data within 1975-2023
 CREATE OR REPLACE VIEW
-    analysis.v_matrimonios_heterosexuales_anual AS
+    analisis.v_matrimonios_heterosexuales_anual AS
 WITH
     year_range AS (
         SELECT
@@ -319,7 +319,7 @@ ORDER BY
 
 -- mattrimonios_homosexuales, yearly aggregated totals by province with nulls for missing data within 2005-2023
 CREATE OR REPLACE VIEW
-    analysis.v_matrimonios_homosexuales_anual AS
+    analisis.v_matrimonios_homosexuales_anual AS
 WITH
     year_range AS (
         SELECT
@@ -362,7 +362,7 @@ ORDER BY
 
 -- prestaciones_maternidad_paternidad, yearly aggregated totals by province with nulls for missing data within 2002-2019
 CREATE OR REPLACE VIEW
-    analysis.v_prestaciones_maternidad_paternidad_anual AS
+    analisis.v_prestaciones_maternidad_paternidad_anual AS
 WITH
     year_range AS (
         SELECT
@@ -419,7 +419,7 @@ ORDER BY
 -- tasa_actividad_paro_empleo, yearly average of 4 quarters by province with nulls for missing data within 2002-2024
 -- do not count provincia_id = 0, take only sexo='Total', aggregate by tasa=Tasa de actividad, Tasa de empleo, Tasa de paro
 CREATE OR REPLACE VIEW
-    analysis.v_tasa_actividad_paro_empleo_anual AS
+    analisis.v_tasa_actividad_paro_empleo_anual AS
 WITH
     year_range AS (
         SELECT
@@ -487,7 +487,7 @@ ORDER BY
 
 -- Unified view combining all provincial annual indicators
 CREATE OR REPLACE VIEW
-    analysis.v_indicadores_anuales_provinciales_unificados AS
+    analisis.v_indicadores_anuales_provinciales_unificados AS
 WITH
     -- Get all unique year-province combinations from all views
     all_keys AS (
@@ -495,67 +495,67 @@ WITH
             anio,
             provincia_id
         FROM
-            analysis.v_feminicidios_pareja_expareja_anual
+            analisis.v_feminicidios_pareja_expareja_anual
         UNION
         SELECT
             anio,
             provincia_id
         FROM
-            analysis.v_menores_victimas_mortales_anual
+            analisis.v_menores_victimas_mortales_anual
         UNION
         SELECT
             anio,
             provincia_id
         FROM
-            analysis.v_servicio_016_anual
+            analisis.v_servicio_016_anual
         UNION
         SELECT
             anio,
             provincia_id
         FROM
-            analysis.v_atenpro_usuarias_activas_anual
+            analisis.v_atenpro_usuarias_activas_anual
         UNION
         SELECT
             anio,
             provincia_id
         FROM
-            analysis.v_dispositivos_electronicos_seguimiento_anual
+            analisis.v_dispositivos_electronicos_seguimiento_anual
         UNION
         SELECT
             anio,
             provincia_id
         FROM
-            analysis.v_denuncias_vg_pareja_anual
+            analisis.v_denuncias_vg_pareja_anual
         UNION
         SELECT
             anio,
             provincia_id
         FROM
-            analysis.v_matrimonios_heterosexuales_anual
+            analisis.v_matrimonios_heterosexuales_anual
         UNION
         SELECT
             anio,
             provincia_id
         FROM
-            analysis.v_matrimonios_homosexuales_anual
+            analisis.v_matrimonios_homosexuales_anual
         UNION
         SELECT
             anio,
             provincia_id
         FROM
-            analysis.v_prestaciones_maternidad_paternidad_anual
+            analisis.v_prestaciones_maternidad_paternidad_anual
         UNION
         SELECT
             anio,
             provincia_id
         FROM
-            analysis.v_tasa_actividad_paro_empleo_anual
+            analisis.v_tasa_actividad_paro_empleo_anual
         UNION
         SELECT
             anio,
             provincia_id
         FROM
-            analysis.v_poblacion_provincial
+            analisis.v_poblacion_provincial
     )
 SELECT
     k.anio,
@@ -583,28 +583,28 @@ SELECT
     epa.tasa_paro
 FROM
     all_keys k
-    JOIN analysis.v_provincias p ON p.provincia_id = k.provincia_id
-    LEFT JOIN analysis.v_poblacion_provincial pop ON pop.anio = k.anio
+    JOIN analisis.v_provincias p ON p.provincia_id = k.provincia_id
+    LEFT JOIN analisis.v_poblacion_provincial pop ON pop.anio = k.anio
     AND pop.provincia_id = k.provincia_id
-    LEFT JOIN analysis.v_feminicidios_pareja_expareja_anual fem ON fem.anio = k.anio
+    LEFT JOIN analisis.v_feminicidios_pareja_expareja_anual fem ON fem.anio = k.anio
     AND fem.provincia_id = k.provincia_id
-    LEFT JOIN analysis.v_menores_victimas_mortales_anual men ON men.anio = k.anio
+    LEFT JOIN analisis.v_menores_victimas_mortales_anual men ON men.anio = k.anio
     AND men.provincia_id = k.provincia_id
-    LEFT JOIN analysis.v_servicio_016_anual s016 ON s016.anio = k.anio
+    LEFT JOIN analisis.v_servicio_016_anual s016 ON s016.anio = k.anio
     AND s016.provincia_id = k.provincia_id
-    LEFT JOIN analysis.v_atenpro_usuarias_activas_anual aten ON aten.anio = k.anio
+    LEFT JOIN analisis.v_atenpro_usuarias_activas_anual aten ON aten.anio = k.anio
     AND aten.provincia_id = k.provincia_id
-    LEFT JOIN analysis.v_dispositivos_electronicos_seguimiento_anual disp ON disp.anio = k.anio
+    LEFT JOIN analisis.v_dispositivos_electronicos_seguimiento_anual disp ON disp.anio = k.anio
     AND disp.provincia_id = k.provincia_id
-    LEFT JOIN analysis.v_denuncias_vg_pareja_anual den ON den.anio = k.anio
+    LEFT JOIN analisis.v_denuncias_vg_pareja_anual den ON den.anio = k.anio
     AND den.provincia_id = k.provincia_id
-    LEFT JOIN analysis.v_matrimonios_heterosexuales_anual mat_het ON mat_het.anio = k.anio
+    LEFT JOIN analisis.v_matrimonios_heterosexuales_anual mat_het ON mat_het.anio = k.anio
     AND mat_het.provincia_id = k.provincia_id
-    LEFT JOIN analysis.v_matrimonios_homosexuales_anual mat_hom ON mat_hom.anio = k.anio
+    LEFT JOIN analisis.v_matrimonios_homosexuales_anual mat_hom ON mat_hom.anio = k.anio
     AND mat_hom.provincia_id = k.provincia_id
-    LEFT JOIN analysis.v_prestaciones_maternidad_paternidad_anual prest ON prest.anio = k.anio
+    LEFT JOIN analisis.v_prestaciones_maternidad_paternidad_anual prest ON prest.anio = k.anio
     AND prest.provincia_id = k.provincia_id
-    LEFT JOIN analysis.v_tasa_actividad_paro_empleo_anual epa ON epa.anio = k.anio
+    LEFT JOIN analisis.v_tasa_actividad_paro_empleo_anual epa ON epa.anio = k.anio
     AND epa.provincia_id = k.provincia_id
 ORDER BY
     k.anio,
