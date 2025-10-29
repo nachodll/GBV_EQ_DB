@@ -283,7 +283,6 @@ def load_2017_centros_data() -> pd.DataFrame:
 def load_2017_victimas_data() -> pd.DataFrame:
     victimas_df = pd.read_excel(RAW_PATHS[2017]["Path"], sheet_name=RAW_PATHS[2017]["Sheet_victimas"])
     all_entries = []
-    victimas_df.to_csv("data/debug/centros_2022.csv", index=False)
 
     andalucia_idx = victimas_df.index[victimas_df.iloc[:, 1].str.strip().eq("Andalucía")][0]
     melilla_idx = victimas_df.index[victimas_df.iloc[:, 1].str.strip().eq("Melilla1")][0]
