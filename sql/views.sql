@@ -1314,6 +1314,381 @@ ORDER BY
     ac.anio,
     ac.comunidad_autonoma_id;
 
+-- 16. barometros_generales, yearly average score for selected variables by comunidad autónoma and sex within 1979-2024
+CREATE OR REPLACE VIEW
+    analisis.v_barometros_generales_comunidades_anual AS
+WITH
+    year_range AS (
+        SELECT
+            generate_series(1979, 2024) AS anio
+    ),
+    all_combinations AS (
+        SELECT
+            yr.anio,
+            ca.comunidad_autonoma_id
+        FROM
+            year_range yr
+            CROSS JOIN geo.comunidades_autonomas ca
+        WHERE
+            ca.comunidad_autonoma_id != 0
+    ),
+    -- Define the list of gender violence related problems
+    gender_violence_problems AS (
+        SELECT
+            unnest(
+                ARRAY[
+                    'La violencia contra la mujer',
+                    'La violencia de género',
+                    'Las desigualdades, incluida la de género, las diferencias de clases, la pobreza',
+                    'Los problemas relacionados con la mujer. La violencia de género',
+                    'Problemas laborales y familiares de la mujer',
+                    'Problemas relacionados con la mujer',
+                    'Violencia contra la mujer',
+                    'Los problemas laborales y familiares de las mujeres',
+                    'Los problemas relacionados con la mujer'
+                ]
+            ) AS problema_text
+    ),
+    actual_data AS (
+        SELECT
+            EXTRACT(
+                YEAR
+                FROM
+                    bg.fecha
+            ) AS anio,
+            bg.comunidad_autonoma_id,
+            -- Average ideology by gender
+            ROUND(
+                AVG(
+                    CASE
+                        WHEN bg.sexo = 'Hombre' THEN bg.ideologia
+                    END
+                )::NUMERIC,
+                2
+            ) AS promedio_ideologia_hombres,
+            ROUND(
+                AVG(
+                    CASE
+                        WHEN bg.sexo = 'Mujer' THEN bg.ideologia
+                    END
+                )::NUMERIC,
+                2
+            ) AS promedio_ideologia_mujeres,
+            -- Ideology 1-4 percentage by gender
+            ROUND(
+                SUM(
+                    CASE
+                        WHEN bg.sexo = 'Hombre'
+                        AND bg.ideologia >= 1
+                        AND bg.ideologia <= 4 THEN 1
+                        ELSE 0
+                    END
+                )::NUMERIC / NULLIF(
+                    COUNT(
+                        CASE
+                            WHEN bg.sexo = 'Hombre' THEN bg.ideologia
+                        END
+                    ),
+                    0
+                ) * 100,
+                2
+            ) AS porcentaje_ideologia_1_4_hombres,
+            ROUND(
+                SUM(
+                    CASE
+                        WHEN bg.sexo = 'Mujer'
+                        AND bg.ideologia >= 1
+                        AND bg.ideologia <= 4 THEN 1
+                        ELSE 0
+                    END
+                )::NUMERIC / NULLIF(
+                    COUNT(
+                        CASE
+                            WHEN bg.sexo = 'Mujer' THEN bg.ideologia
+                        END
+                    ),
+                    0
+                ) * 100,
+                2
+            ) AS porcentaje_ideologia_1_4_mujeres,
+            -- Ideology 5-6 percentage by gender
+            ROUND(
+                SUM(
+                    CASE
+                        WHEN bg.sexo = 'Hombre'
+                        AND bg.ideologia >= 5
+                        AND bg.ideologia <= 6 THEN 1
+                        ELSE 0
+                    END
+                )::NUMERIC / NULLIF(
+                    COUNT(
+                        CASE
+                            WHEN bg.sexo = 'Hombre' THEN bg.ideologia
+                        END
+                    ),
+                    0
+                ) * 100,
+                2
+            ) AS porcentaje_ideologia_5_6_hombres,
+            ROUND(
+                SUM(
+                    CASE
+                        WHEN bg.sexo = 'Mujer'
+                        AND bg.ideologia >= 5
+                        AND bg.ideologia <= 6 THEN 1
+                        ELSE 0
+                    END
+                )::NUMERIC / NULLIF(
+                    COUNT(
+                        CASE
+                            WHEN bg.sexo = 'Mujer' THEN bg.ideologia
+                        END
+                    ),
+                    0
+                ) * 100,
+                2
+            ) AS porcentaje_ideologia_5_6_mujeres,
+            -- Ideology 7-10 percentage by gender
+            ROUND(
+                SUM(
+                    CASE
+                        WHEN bg.sexo = 'Hombre'
+                        AND bg.ideologia >= 7
+                        AND bg.ideologia <= 10 THEN 1
+                        ELSE 0
+                    END
+                )::NUMERIC / NULLIF(
+                    COUNT(
+                        CASE
+                            WHEN bg.sexo = 'Hombre' THEN bg.ideologia
+                        END
+                    ),
+                    0
+                ) * 100,
+                2
+            ) AS porcentaje_ideologia_7_10_hombres,
+            ROUND(
+                SUM(
+                    CASE
+                        WHEN bg.sexo = 'Mujer'
+                        AND bg.ideologia >= 7
+                        AND bg.ideologia <= 10 THEN 1
+                        ELSE 0
+                    END
+                )::NUMERIC / NULLIF(
+                    COUNT(
+                        CASE
+                            WHEN bg.sexo = 'Mujer' THEN bg.ideologia
+                        END
+                    ),
+                    0
+                ) * 100,
+                2
+            ) AS porcentaje_ideologia_7_10_mujeres,
+            -- Personal violence problem percentage by gender (using expanded list)
+            ROUND(
+                SUM(
+                    CASE
+                        WHEN bg.sexo = 'Hombre'
+                        AND (
+                            bg.problema_personal_1 IN (
+                                SELECT
+                                    problema_text
+                                FROM
+                                    gender_violence_problems
+                            )
+                            OR bg.problema_personal_2 IN (
+                                SELECT
+                                    problema_text
+                                FROM
+                                    gender_violence_problems
+                            )
+                            OR bg.problema_personal_3 IN (
+                                SELECT
+                                    problema_text
+                                FROM
+                                    gender_violence_problems
+                            )
+                        ) THEN 1
+                        ELSE 0
+                    END
+                )::NUMERIC / NULLIF(
+                    COUNT(
+                        CASE
+                            WHEN bg.sexo = 'Hombre'
+                            AND (
+                                bg.problema_personal_1 IS NOT NULL
+                                OR bg.problema_personal_2 IS NOT NULL
+                                OR bg.problema_personal_3 IS NOT NULL
+                            ) THEN 1
+                        END
+                    ),
+                    0
+                ) * 100,
+                2
+            ) AS porcentaje_problema_personal_genero_hombres,
+            ROUND(
+                SUM(
+                    CASE
+                        WHEN bg.sexo = 'Mujer'
+                        AND (
+                            bg.problema_personal_1 IN (
+                                SELECT
+                                    problema_text
+                                FROM
+                                    gender_violence_problems
+                            )
+                            OR bg.problema_personal_2 IN (
+                                SELECT
+                                    problema_text
+                                FROM
+                                    gender_violence_problems
+                            )
+                            OR bg.problema_personal_3 IN (
+                                SELECT
+                                    problema_text
+                                FROM
+                                    gender_violence_problems
+                            )
+                        ) THEN 1
+                        ELSE 0
+                    END
+                )::NUMERIC / NULLIF(
+                    COUNT(
+                        CASE
+                            WHEN bg.sexo = 'Mujer'
+                            AND (
+                                bg.problema_personal_1 IS NOT NULL
+                                OR bg.problema_personal_2 IS NOT NULL
+                                OR bg.problema_personal_3 IS NOT NULL
+                            ) THEN 1
+                        END
+                    ),
+                    0
+                ) * 100,
+                2
+            ) AS porcentaje_problema_personal_genero_mujeres,
+            -- Spain violence problem percentage by gender (using expanded list)
+            ROUND(
+                SUM(
+                    CASE
+                        WHEN bg.sexo = 'Hombre'
+                        AND (
+                            bg.problema_espania_1 IN (
+                                SELECT
+                                    problema_text
+                                FROM
+                                    gender_violence_problems
+                            )
+                            OR bg.problema_espania_2 IN (
+                                SELECT
+                                    problema_text
+                                FROM
+                                    gender_violence_problems
+                            )
+                            OR bg.problema_espania_3 IN (
+                                SELECT
+                                    problema_text
+                                FROM
+                                    gender_violence_problems
+                            )
+                        ) THEN 1
+                        ELSE 0
+                    END
+                )::NUMERIC / NULLIF(
+                    COUNT(
+                        CASE
+                            WHEN bg.sexo = 'Hombre'
+                            AND (
+                                bg.problema_espania_1 IS NOT NULL
+                                OR bg.problema_espania_2 IS NOT NULL
+                                OR bg.problema_espania_3 IS NOT NULL
+                            ) THEN 1
+                        END
+                    ),
+                    0
+                ) * 100,
+                2
+            ) AS porcentaje_problema_espania_genero_hombres,
+            ROUND(
+                SUM(
+                    CASE
+                        WHEN bg.sexo = 'Mujer'
+                        AND (
+                            bg.problema_espania_1 IN (
+                                SELECT
+                                    problema_text
+                                FROM
+                                    gender_violence_problems
+                            )
+                            OR bg.problema_espania_2 IN (
+                                SELECT
+                                    problema_text
+                                FROM
+                                    gender_violence_problems
+                            )
+                            OR bg.problema_espania_3 IN (
+                                SELECT
+                                    problema_text
+                                FROM
+                                    gender_violence_problems
+                            )
+                        ) THEN 1
+                        ELSE 0
+                    END
+                )::NUMERIC / NULLIF(
+                    COUNT(
+                        CASE
+                            WHEN bg.sexo = 'Mujer'
+                            AND (
+                                bg.problema_espania_1 IS NOT NULL
+                                OR bg.problema_espania_2 IS NOT NULL
+                                OR bg.problema_espania_3 IS NOT NULL
+                            ) THEN 1
+                        END
+                    ),
+                    0
+                ) * 100,
+                2
+            ) AS porcentaje_problema_espania_genero_mujeres
+        FROM
+            percepcion_social.barometros_generales bg,
+            gender_violence_problems -- Cross join to make the CTE available
+        WHERE
+            bg.sexo IN ('Hombre', 'Mujer')
+        GROUP BY
+            EXTRACT(
+                YEAR
+                FROM
+                    bg.fecha
+            ),
+            bg.comunidad_autonoma_id
+    )
+SELECT
+    ac.anio,
+    ac.comunidad_autonoma_id,
+    -- Men indicators
+    ad.promedio_ideologia_hombres,
+    ad.porcentaje_ideologia_1_4_hombres,
+    ad.porcentaje_ideologia_5_6_hombres,
+    ad.porcentaje_ideologia_7_10_hombres,
+    ad.porcentaje_problema_personal_genero_hombres,
+    ad.porcentaje_problema_espania_genero_hombres,
+    -- Women indicators
+    ad.promedio_ideologia_mujeres,
+    ad.porcentaje_ideologia_1_4_mujeres,
+    ad.porcentaje_ideologia_5_6_mujeres,
+    ad.porcentaje_ideologia_7_10_mujeres,
+    ad.porcentaje_problema_personal_genero_mujeres,
+    ad.porcentaje_problema_espania_genero_mujeres
+FROM
+    all_combinations ac
+    LEFT JOIN actual_data ad ON ac.anio = ad.anio
+    AND ac.comunidad_autonoma_id = ad.comunidad_autonoma_id
+ORDER BY
+    ac.anio,
+    ac.comunidad_autonoma_id;
+
 -- Unified view combining all comunidad autónoma annual indicators
 CREATE OR REPLACE VIEW
     analisis.v_indicadores_anuales_comunidades_unificados AS
