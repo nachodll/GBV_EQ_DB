@@ -489,7 +489,7 @@ ORDER BY
     ac.anio,
     ac.provincia_id;
 
--- 11. tasa_bruta_divorcialidad_comunidades, yearly aggregated totals by province with nulls for missing data within 2005-2023
+-- 11. tasa_bruta_divorcialidad_comunidades, yearly totals by province with nulls for missing data within 2005-2023
 CREATE OR REPLACE VIEW
     analisis.v_tasa_bruta_divorcialidad_provincial_anual AS
 WITH
@@ -666,7 +666,7 @@ ORDER BY
 ------------------------------------------------------------------------------------
 -- 1. tasa_paro_comunidades, yearly average of 4 quarters by comunidad autónoma with nulls for missing data within 2002-2024
 CREATE OR REPLACE VIEW
-    analisis.v_tasa_paro_anual AS
+    analisis.v_tasa_paro_comunidades_anual AS
 WITH
     year_range AS (
         SELECT
@@ -699,6 +699,521 @@ SELECT
     ac.anio,
     ac.comunidad_autonoma_id,
     ad.tasa_paro
+FROM
+    all_combinations ac
+    LEFT JOIN actual_data ad ON ac.anio = ad.anio
+    AND ac.comunidad_autonoma_id = ad.comunidad_autonoma_id
+ORDER BY
+    ac.anio,
+    ac.comunidad_autonoma_id;
+
+-- 2. tasa_bruta_divorcialidad_comunidades, yearly totals by comunidad autónoma with nulls for missing data within 2005-2023
+CREATE OR REPLACE VIEW
+    analisis.v_tasa_bruta_divorcialidad_comunidades_anual AS
+WITH
+    year_range AS (
+        SELECT
+            generate_series(2005, 2023) AS anio
+    ),
+    all_combinations AS (
+        SELECT
+            yr.anio,
+            ca.comunidad_autonoma_id
+        FROM
+            year_range yr
+            CROSS JOIN geo.comunidades_autonomas ca
+        WHERE
+            ca.comunidad_autonoma_id != 0
+    ),
+    actual_data AS (
+        SELECT
+            anio,
+            comunidad_autonoma_id,
+            tasa_bruta_divorcialidad
+        FROM
+            demografia.tasa_bruta_divorcialidad_comunidades
+    )
+SELECT
+    ac.anio,
+    ac.comunidad_autonoma_id,
+    ad.tasa_bruta_divorcialidad
+FROM
+    all_combinations ac
+    LEFT JOIN actual_data ad ON ac.anio = ad.anio
+    AND ac.comunidad_autonoma_id = ad.comunidad_autonoma_id
+ORDER BY
+    ac.anio,
+    ac.comunidad_autonoma_id;
+
+--3. feminicidios_fuera_pareja_expareja, yearly aggregated totals by comunidad autónoma with zeros for missing data within 2022-2024
+CREATE OR REPLACE VIEW
+    analisis.v_feminicidios_fuera_pareja_expareja_comunidades_anual AS
+WITH
+    year_range AS (
+        SELECT
+            generate_series(2022, 2024) AS anio
+    ),
+    all_combinations AS (
+        SELECT
+            yr.anio,
+            ca.comunidad_autonoma_id
+        FROM
+            year_range yr
+            CROSS JOIN geo.comunidades_autonomas ca
+        WHERE
+            ca.comunidad_autonoma_id != 0
+    ),
+    actual_data AS (
+        SELECT
+            anio,
+            comunidad_autonoma_id,
+            SUM(feminicidios) AS feminicidios_fuera_pareja_expareja
+        FROM
+            violencia_genero.feminicidios_fuera_pareja_expareja
+        GROUP BY
+            anio,
+            comunidad_autonoma_id
+    )
+SELECT
+    ac.anio,
+    ac.comunidad_autonoma_id,
+    COALESCE(ad.feminicidios_fuera_pareja_expareja, 0) AS feminicidios_fuera_pareja_expareja
+FROM
+    all_combinations ac
+    LEFT JOIN actual_data ad ON ac.anio = ad.anio
+    AND ac.comunidad_autonoma_id = ad.comunidad_autonoma_id
+ORDER BY
+    ac.anio,
+    ac.comunidad_autonoma_id;
+
+--4. denuncias_vg_presentadas, yearly totals by comunidad autónoma with nulls for missing data within 2007-2024
+CREATE OR REPLACE VIEW
+    analisis.v_denuncias_vg_presentadas_comunidades_anual AS
+WITH
+    year_range AS (
+        SELECT
+            generate_series(2007, 2024) AS anio
+    ),
+    all_combinations AS (
+        SELECT
+            yr.anio,
+            ca.comunidad_autonoma_id
+        FROM
+            year_range yr
+            CROSS JOIN geo.comunidades_autonomas ca
+        WHERE
+            ca.comunidad_autonoma_id != 0
+    ),
+    actual_data AS (
+        SELECT
+            anio,
+            comunidad_autonoma_id,
+            denuncias_presentadas AS denuncias_vg_presentadas
+        FROM
+            violencia_genero.denuncias_vg_presentadas
+    )
+SELECT
+    ac.anio,
+    ac.comunidad_autonoma_id,
+    ad.denuncias_vg_presentadas
+FROM
+    all_combinations ac
+    LEFT JOIN actual_data ad ON ac.anio = ad.anio
+    AND ac.comunidad_autonoma_id = ad.comunidad_autonoma_id
+ORDER BY
+    ac.anio,
+    ac.comunidad_autonoma_id;
+
+-- 5. ganancia_por_hora_trabajo, yearly average by comunidad autónoma with nulls for missing data within 2004-2023
+CREATE OR REPLACE VIEW
+    analisis.v_ganancia_por_hora_trabajo_comunidades_anual AS
+WITH
+    year_range AS (
+        SELECT
+            generate_series(2004, 2023) AS anio
+    ),
+    all_combinations AS (
+        SELECT
+            yr.anio,
+            ca.comunidad_autonoma_id
+        FROM
+            year_range yr
+            CROSS JOIN geo.comunidades_autonomas ca
+        WHERE
+            ca.comunidad_autonoma_id != 0
+    ),
+    actual_data AS (
+        SELECT
+            anio,
+            comunidad_autonoma_id,
+            ganancia_por_hora_trabajo
+        FROM
+            igualdad_formal.ganancia_por_hora_trabajo
+        WHERE
+            sexo = 'Total'
+            AND sector_actividad = 'Todos los sectores'
+    )
+SELECT
+    ac.anio,
+    ac.comunidad_autonoma_id,
+    ad.ganancia_por_hora_trabajo
+FROM
+    all_combinations ac
+    LEFT JOIN actual_data ad ON ac.anio = ad.anio
+    AND ac.comunidad_autonoma_id = ad.comunidad_autonoma_id
+ORDER BY
+    ac.anio,
+    ac.comunidad_autonoma_id;
+
+-- 6. mujeres_cargos_autonomicos, yearly percentage by comunidad autónoma with nulls for missing data within 1996-2024
+CREATE OR REPLACE VIEW
+    analisis.v_mujeres_cargos_autonomicos_anual AS
+WITH
+    year_range AS (
+        SELECT
+            generate_series(1996, 2024) AS anio
+    ),
+    all_combinations AS (
+        SELECT
+            yr.anio,
+            ca.comunidad_autonoma_id
+        FROM
+            year_range yr
+            CROSS JOIN geo.comunidades_autonomas ca
+        WHERE
+            ca.comunidad_autonoma_id != 0
+    ),
+    actual_data AS (
+        SELECT
+            anio,
+            comunidad_autonoma_id,
+            ROUND(
+                (
+                    SUM(
+                        CASE
+                            WHEN sexo = 'Mujer' THEN numero_cargos
+                            ELSE 0
+                        END
+                    )::NUMERIC / NULLIF(
+                        SUM(
+                            CASE
+                                WHEN sexo = 'Total' THEN numero_cargos
+                                ELSE 0
+                            END
+                        ),
+                        0
+                    ) * 100
+                ),
+                2
+            ) AS porcentaje_mujeres_cargos_autonomicos
+        FROM
+            igualdad_formal.mujeres_cargos_autonomicos
+        WHERE
+            sexo IN ('Mujer', 'Total')
+        GROUP BY
+            anio,
+            comunidad_autonoma_id
+    )
+SELECT
+    ac.anio,
+    ac.comunidad_autonoma_id,
+    ad.porcentaje_mujeres_cargos_autonomicos
+FROM
+    all_combinations ac
+    LEFT JOIN actual_data ad ON ac.anio = ad.anio
+    AND ac.comunidad_autonoma_id = ad.comunidad_autonoma_id
+ORDER BY
+    ac.anio,
+    ac.comunidad_autonoma_id;
+
+-- 7. matriculados_universidad, yearly totals by comunidad autónoma with nulls for missing data within 1985-2024
+CREATE OR REPLACE VIEW
+    analisis.v_matriculados_universidad_comunidades_anual AS
+WITH
+    year_range AS (
+        SELECT
+            generate_series(1985, 2024) AS anio
+    ),
+    all_combinations AS (
+        SELECT
+            yr.anio,
+            ca.comunidad_autonoma_id
+        FROM
+            year_range yr
+            CROSS JOIN geo.comunidades_autonomas ca
+        WHERE
+            ca.comunidad_autonoma_id != 0
+    ),
+    actual_data AS (
+        SELECT
+            CAST(SPLIT_PART(curso, '-', 1) AS INTEGER) AS anio,
+            comunidad_autonoma_id,
+            SUM(matriculados) AS matriculados_universidad
+        FROM
+            educacion_juventud.matriculados_universidad
+        WHERE
+            nivel_academico = 'Total'
+            AND tipo_universidad = 'Total'
+            AND sexo = 'Total'
+            AND modalidad_universidad = 'Total'
+            AND rama_conocimiento = 'Total'
+        GROUP BY
+            anio,
+            comunidad_autonoma_id
+    )
+SELECT
+    ac.anio,
+    ac.comunidad_autonoma_id,
+    ad.matriculados_universidad
+FROM
+    all_combinations ac
+    LEFT JOIN actual_data ad ON ac.anio = ad.anio
+    AND ac.comunidad_autonoma_id = ad.comunidad_autonoma_id
+ORDER BY
+    ac.anio,
+    ac.comunidad_autonoma_id;
+
+-- 8. acceso_internet_viviendas, yearly percentage by comunidad autónoma with nulls for missing data within 2006-2024
+CREATE OR REPLACE VIEW
+    analisis.v_acceso_internet_viviendas_comunidades_anual AS
+WITH
+    year_range AS (
+        SELECT
+            generate_series(2006, 2024) AS anio
+    ),
+    all_combinations AS (
+        SELECT
+            yr.anio,
+            ca.comunidad_autonoma_id
+        FROM
+            year_range yr
+            CROSS JOIN geo.comunidades_autonomas ca
+        WHERE
+            ca.comunidad_autonoma_id != 0
+    ),
+    actual_data AS (
+        SELECT
+            anio,
+            comunidad_autonoma_id,
+            porcentaje AS porcentaje_acceso_internet_viviendas
+        FROM
+            tecnologia_y_medios.acceso_internet_viviendas
+        WHERE
+            tipo_equipamiento = 'Viviendas que disponen de acceso a Internet'
+    )
+SELECT
+    ac.anio,
+    ac.comunidad_autonoma_id,
+    ad.porcentaje_acceso_internet_viviendas
+FROM
+    all_combinations ac
+    LEFT JOIN actual_data ad ON ac.anio = ad.anio
+    AND ac.comunidad_autonoma_id = ad.comunidad_autonoma_id
+ORDER BY
+    ac.anio,
+    ac.comunidad_autonoma_id;
+
+-- 9. acceso_internet_personas, yearly percentage of daily access by comunidad autónoma with nulls for missing data within 2006-2024
+CREATE OR REPLACE VIEW
+    analisis.v_acceso_internet_personas_comunidades_anual AS
+WITH
+    year_range AS (
+        SELECT
+            generate_series(2006, 2024) AS anio
+    ),
+    all_combinations AS (
+        SELECT
+            yr.anio,
+            ca.comunidad_autonoma_id
+        FROM
+            year_range yr
+            CROSS JOIN geo.comunidades_autonomas ca
+        WHERE
+            ca.comunidad_autonoma_id != 0
+    ),
+    actual_data AS (
+        SELECT
+            anio,
+            comunidad_autonoma_id,
+            porcentaje AS porcentaje_uso_internet_diario_personas
+        FROM
+            tecnologia_y_medios.uso_internet_personas
+        WHERE
+            tipo_uso = 'Personas que han utilizado Internet diariamente (al menos 5 días a la semana)'
+    )
+SELECT
+    ac.anio,
+    ac.comunidad_autonoma_id,
+    ad.porcentaje_uso_internet_diario_personas
+FROM
+    all_combinations ac
+    LEFT JOIN actual_data ad ON ac.anio = ad.anio
+    AND ac.comunidad_autonoma_id = ad.comunidad_autonoma_id
+ORDER BY
+    ac.anio,
+    ac.comunidad_autonoma_id;
+
+-- 10. uso_internet_ninios, yearly percentage of children with phones by comunidad autónoma with nulls for missing data within 2006-2024
+CREATE OR REPLACE VIEW
+    analisis.v_uso_internet_ninios_comunidades_anual AS
+WITH
+    year_range AS (
+        SELECT
+            generate_series(2006, 2024) AS anio
+    ),
+    all_combinations AS (
+        SELECT
+            yr.anio,
+            ca.comunidad_autonoma_id
+        FROM
+            year_range yr
+            CROSS JOIN geo.comunidades_autonomas ca
+        WHERE
+            ca.comunidad_autonoma_id != 0
+    ),
+    actual_data AS (
+        SELECT
+            anio,
+            comunidad_autonoma_id,
+            porcentaje AS porcentaje_ninios_con_telefono_movil
+        FROM
+            tecnologia_y_medios.uso_internet_ninios
+        WHERE
+            tipo_uso = 'Niños que disponen de teléfono móvil'
+    )
+SELECT
+    ac.anio,
+    ac.comunidad_autonoma_id,
+    ad.porcentaje_ninios_con_telefono_movil
+FROM
+    all_combinations ac
+    LEFT JOIN actual_data ad ON ac.anio = ad.anio
+    AND ac.comunidad_autonoma_id = ad.comunidad_autonoma_id
+ORDER BY
+    ac.anio,
+    ac.comunidad_autonoma_id;
+
+-- 11. riesgo_pobreza_exclusion_social, yearly percentage by comunidad autónoma of AROPE indicator with nulls for missing data within 2008-2024
+CREATE OR REPLACE VIEW
+    analisis.v_riesgo_pobreza_exclusion_social_comunidades_anual AS
+WITH
+    year_range AS (
+        SELECT
+            generate_series(2008, 2024) AS anio
+    ),
+    all_combinations AS (
+        SELECT
+            yr.anio,
+            ca.comunidad_autonoma_id
+        FROM
+            year_range yr
+            CROSS JOIN geo.comunidades_autonomas ca
+        WHERE
+            ca.comunidad_autonoma_id != 0
+    ),
+    actual_data AS (
+        SELECT
+            anio,
+            comunidad_autonoma_id,
+            porcentaje AS porcentaje_arope
+        FROM
+            economia_laboral.riesgo_pobreza_exclusion
+        WHERE
+            indicador = 'Tasa de riesgo de pobreza o exclusión social (indicador AROPE)'
+    )
+SELECT
+    ac.anio,
+    ac.comunidad_autonoma_id,
+    ad.porcentaje_arope
+FROM
+    all_combinations ac
+    LEFT JOIN actual_data ad ON ac.anio = ad.anio
+    AND ac.comunidad_autonoma_id = ad.comunidad_autonoma_id
+ORDER BY
+    ac.anio,
+    ac.comunidad_autonoma_id;
+
+-- 12. tasas_homicidios_criminalidad, yearly rates by comunidad autónoma with nulls for missing data within 2010-2023
+CREATE OR REPLACE VIEW
+    analisis.v_tasas_homicidios_criminalidad_comunidades_anual AS
+WITH
+    year_range AS (
+        SELECT
+            generate_series(2010, 2023) AS anio
+    ),
+    all_combinations AS (
+        SELECT
+            yr.anio,
+            ca.comunidad_autonoma_id
+        FROM
+            year_range yr
+            CROSS JOIN geo.comunidades_autonomas ca
+        WHERE
+            ca.comunidad_autonoma_id != 0
+    ),
+    actual_data AS (
+        SELECT
+            anio,
+            comunidad_autonoma_id,
+            SUM(
+                CASE
+                    WHEN tipo_tasa = 'Tasa de homicidios' THEN total
+                END
+            ) AS tasa_homicidios,
+            SUM(
+                CASE
+                    WHEN tipo_tasa = 'Tasa de criminalidad' THEN total
+                END
+            ) AS tasa_criminalidad
+        FROM
+            seguridad_criminalidad.tasas_homicidios_criminalidad
+        GROUP BY
+            anio,
+            comunidad_autonoma_id
+    )
+SELECT
+    ac.anio,
+    ac.comunidad_autonoma_id,
+    ad.tasa_homicidios,
+    ad.tasa_criminalidad
+FROM
+    all_combinations ac
+    LEFT JOIN actual_data ad ON ac.anio = ad.anio
+    AND ac.comunidad_autonoma_id = ad.comunidad_autonoma_id
+ORDER BY
+    ac.anio,
+    ac.comunidad_autonoma_id;
+
+-- 13. ive_ccaa, yearly totals by comunidad autónoma with nulls for missing data within 2014-2023
+CREATE OR REPLACE VIEW
+    analisis.v_ive_comunidades_anual AS
+WITH
+    year_range AS (
+        SELECT
+            generate_series(2014, 2023) AS anio
+    ),
+    all_combinations AS (
+        SELECT
+            yr.anio,
+            ca.comunidad_autonoma_id
+        FROM
+            year_range yr
+            CROSS JOIN geo.comunidades_autonomas ca
+        WHERE
+            ca.comunidad_autonoma_id != 0
+    ),
+    actual_data AS (
+        SELECT
+            anio,
+            comunidad_autonoma_id,
+            tasa AS tasa_ive
+        FROM
+            salud.ive_ccaa
+    )
+SELECT
+    ac.anio,
+    ac.comunidad_autonoma_id,
+    ad.tasa_ive
 FROM
     all_combinations ac
     LEFT JOIN actual_data ad ON ac.anio = ad.anio
@@ -910,7 +1425,7 @@ WITH
             anio,
             comunidad_autonoma_id
         FROM
-            analisis.v_tasa_paro_anual
+            analisis.v_tasa_paro_comunidades_anual
     )
 SELECT
     k.anio,
@@ -957,7 +1472,7 @@ FROM
     AND mat_hom.comunidad_autonoma_id = k.comunidad_autonoma_id
     LEFT JOIN prestaciones_ccaa prest ON prest.anio = k.anio
     AND prest.comunidad_autonoma_id = k.comunidad_autonoma_id
-    LEFT JOIN analisis.v_tasa_paro_anual tasa ON tasa.anio = k.anio
+    LEFT JOIN analisis.v_tasa_paro_comunidades_anual tasa ON tasa.anio = k.anio
     AND tasa.comunidad_autonoma_id = k.comunidad_autonoma_id
 ORDER BY
     k.anio,
