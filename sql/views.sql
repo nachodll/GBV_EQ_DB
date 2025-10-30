@@ -1222,6 +1222,98 @@ ORDER BY
     ac.anio,
     ac.comunidad_autonoma_id;
 
+-- 14. legislacion, approval date of first autonomic law on gender equality/violence by comunidad autónoma, repeated for every year 1975-2024
+CREATE OR REPLACE VIEW
+    analisis.v_legislacion_primera_ley_autonomica AS
+WITH
+    year_range AS (
+        SELECT
+            generate_series(1975, 2024) AS anio
+    ),
+    primera_ley_por_ccaa AS (
+        SELECT
+            l.comunidad_autonoma_id,
+            MIN(
+                CASE
+                    WHEN l.tematica = 'Violencia de género' THEN l.fecha_aprobacion
+                END
+            ) AS fecha_primera_ley_violencia,
+            MIN(
+                CASE
+                    WHEN l.tematica = 'Igualdad' THEN l.fecha_aprobacion
+                END
+            ) AS fecha_primera_ley_igualdad
+        FROM
+            politicas_publicas_igualdad_violencia.legislacion l
+        WHERE
+            l.tematica IN ('Violencia de género', 'Igualdad')
+        GROUP BY
+            l.comunidad_autonoma_id
+    ),
+    all_combinations AS (
+        SELECT
+            yr.anio,
+            ca.comunidad_autonoma_id
+        FROM
+            year_range yr
+            CROSS JOIN geo.comunidades_autonomas ca
+        WHERE
+            ca.comunidad_autonoma_id != 0
+    )
+SELECT
+    ac.anio,
+    ac.comunidad_autonoma_id,
+    pl.fecha_primera_ley_violencia,
+    pl.fecha_primera_ley_igualdad
+FROM
+    all_combinations ac
+    LEFT JOIN primera_ley_por_ccaa pl ON pl.comunidad_autonoma_id = ac.comunidad_autonoma_id
+ORDER BY
+    ac.anio,
+    ac.comunidad_autonoma_id;
+
+-- 15. instituo_mujer, existence of autonomic institute for women for every year 1975-2024
+CREATE OR REPLACE VIEW
+    analisis.v_instituto_mujer_autonomico AS
+WITH
+    year_range AS (
+        SELECT
+            generate_series(1975, 2024) AS anio
+    ),
+    institutos_por_ccaa AS (
+        SELECT
+            im.comunidad_autonoma_id,
+            MIN(im.anio_fundacion) AS anio_creacion_instituto
+        FROM
+            politicas_publicas_igualdad_violencia.institutos_mujer im
+        GROUP BY
+            im.comunidad_autonoma_id
+    ),
+    all_combinations AS (
+        SELECT
+            yr.anio,
+            ca.comunidad_autonoma_id
+        FROM
+            year_range yr
+            CROSS JOIN geo.comunidades_autonomas ca
+        WHERE
+            ca.comunidad_autonoma_id != 0
+    )
+SELECT
+    ac.anio,
+    ac.comunidad_autonoma_id,
+    CASE
+        WHEN im.anio_creacion_instituto IS NOT NULL
+        AND ac.anio >= im.anio_creacion_instituto THEN TRUE
+        ELSE FALSE
+    END AS existe_instituto_mujer
+FROM
+    all_combinations ac
+    LEFT JOIN institutos_por_ccaa im ON im.comunidad_autonoma_id = ac.comunidad_autonoma_id
+ORDER BY
+    ac.anio,
+    ac.comunidad_autonoma_id;
+
 -- Unified view combining all comunidad autónoma annual indicators
 CREATE OR REPLACE VIEW
     analisis.v_indicadores_anuales_comunidades_unificados AS
