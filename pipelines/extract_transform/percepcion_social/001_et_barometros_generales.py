@@ -67,7 +67,7 @@ def get_updated_map() -> dict[int, dict[str, str]]:
 
                 # starting from study 3309, problems are mapped to standard names
                 if int(code) >= 3309:
-                    mapping[f"problema_personal_{i}"] = f"PPERSONAL_{i}"
+                    mapping[f"problema_personal_{i}"] = f"PPERSONAL{i}"
 
         if "problemas_generales" in mapping:
             original_var = mapping.pop("problemas_generales")
@@ -76,7 +76,7 @@ def get_updated_map() -> dict[int, dict[str, str]]:
 
                 # starting from study 3309, problems are mapped to standard names
                 if int(code) >= 3309:
-                    mapping[f"problema_espania_{i}"] = f"PESPANNA_{i}"
+                    mapping[f"problema_espania_{i}"] = f"PESPANNA{i}"
 
     return variable_maps
 
