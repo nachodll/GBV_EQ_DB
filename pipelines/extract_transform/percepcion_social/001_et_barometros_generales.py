@@ -28,6 +28,7 @@ from utils.normalization import (
 
 RAW_SAV_DIR = Path("data") / "raw" / "CIS" / "CIS004-BarómetrosGenerales"
 CLEAN_CSV_PATH = Path("data") / "clean" / "percepcion_social" / "barometros_generales.csv"
+PROVINCIAS_CSV_PATH = Path("data") / "clean" / "geo" / "provincias.csv"
 JSON_VARIABLE_MAP_PATH = Path("pipelines") / "extract_transform" / "percepcion_social" / "CIS_variable_mappings.json"
 LOAD_FROM_RAW = True  # Set to True to load .sav files directly, False to load from pickle for debugging
 
@@ -448,6 +449,12 @@ def main():
         df["problema_personal_1"] = apply_and_check(df["problema_personal_1"], normalize_plain_text)
         df["problema_personal_2"] = apply_and_check(df["problema_personal_2"], normalize_plain_text)
         df["problema_personal_3"] = apply_and_check(df["problema_personal_3"], normalize_plain_text)
+
+        # Fill up comunidad_autonoma_id for entries with provincia_id but missing comunidad_autonoma_id
+        provincias_df = pd.read_csv(PROVINCIAS_CSV_PATH, sep=";")
+        provincia_to_ccaa = dict(zip(provincias_df["provincia_id"], provincias_df["comunidad_autonoma_id"]))
+        mask = df["comunidad_autonoma_id"].isna() & df["provincia_id"].notna()
+        df.loc[mask, "comunidad_autonoma_id"] = df.loc[mask, "provincia_id"].map(provincia_to_ccaa)
 
         # Save to clean CSV
         CLEAN_CSV_PATH.parent.mkdir(parents=True, exist_ok=True)
