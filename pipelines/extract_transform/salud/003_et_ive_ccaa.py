@@ -26,16 +26,16 @@ def main():
     try:
         # Read xlsx file into a DataFrame
         excel_df = pd.read_excel(RAW_XLSX_PATH, sheet_name="Tabla 3", header=1)
+        excel_df.to_csv("data/debug/ive.csv", index=False)
 
-        # Reshape excel to df
         all_records = []
-        for row in excel_df.itertuples(index=False):
-            for cell in row[1:]:
+        for i in range(0, 17):
+            for j in range(1, excel_df.shape[1]):
                 all_records.append(
                     {
-                        "anio": excel_df.columns[row.index(cell)],
-                        "comunidad_autonoma_id": row[0],
-                        "tasa": cell,
+                        "anio": excel_df.columns[j],
+                        "comunidad_autonoma_id": excel_df.iloc[i, 0],
+                        "tasa": excel_df.iloc[i, j],
                     }
                 )
         df = pd.DataFrame(all_records)
