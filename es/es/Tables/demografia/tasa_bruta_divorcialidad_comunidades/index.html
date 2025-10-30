@@ -16,7 +16,7 @@
     
     
       
-        <title>demografia.tasa_divorcialidad - GBVEQ - Documentation</title>
+        <title>demografia.tasa_bruta_divorcialidad_comunidades - GBVEQ - Documentation</title>
       
     
     
@@ -58,7 +58,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#demografiatasa_divorcialidad" class="md-skip">
+        <a href="#demografiatasa_bruta_divorcialidad_comunidades" class="md-skip">
           Saltar a contenido
         </a>
       
@@ -94,7 +94,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              demografia.tasa_divorcialidad
+              demografia.tasa_bruta_divorcialidad_comunidades
             
           </span>
         </div>
@@ -121,7 +121,7 @@
           </li>
         
           <li class="md-select__item">
-            <a href="../../../../Tables/demografia/tasa_divorcialidad/" hreflang="en" class="md-select__link">
+            <a href="../../../../Tables/demografia/tasa_bruta_divorcialidad_comunidades/" hreflang="en" class="md-select__link">
               English
             </a>
           </li>
@@ -935,12 +935,58 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../Tables/demografia/tasa_divorcialidad/" class="md-nav__link">
+      <a href="../../../../Tables/demografia/tasa_divorcialidad_edad_sexo/" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
-    tasa_divorcialidad
+    tasa_divorcialidad_edad_sexo
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../Tables/demografia/tasa_bruta_divorcialidad_comunidades/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    tasa_bruta_divorcialidad_comunidades
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../Tables/demografia/tasa_bruta_divorcialidad_provincias/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    tasa_bruta_divorcialidad_provincias
     
   </span>
   
@@ -1970,12 +2016,35 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../Tables/economia_laboral/tasa_actividad_paro_empleo/" class="md-nav__link">
+      <a href="../../../../Tables/economia_laboral/tasa_actividad_paro_empleo_provincias/" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
-    tasa_actividad_paro_empleo
+    tasa_actividad_paro_empleo_provincias
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../Tables/economia_laboral/tasa_paro_comunidades/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    tasa_paro_comunidades
     
   </span>
   
@@ -2653,11 +2722,11 @@
 
 
 
-<h1 id="demografiatasa_divorcialidad">demografia.tasa_divorcialidad</h1>
-<p>Tasa de divorcios en España, desagregada por provincia, sexo, grupo de edad y año. Los resultados del periodo 2005-2010 solo tienen en cuenta divorcios de matrimonios entre personas de distinto sexo. Las categorías de grupos de edad son varián ligeramente entre el periodo 2005-2010 y el periodo 2010-2023.</p>
+<h1 id="demografiatasa_bruta_divorcialidad_comunidades">demografia.tasa_bruta_divorcialidad_comunidades</h1>
+<p>Tasa bruta de divorcialidad en España, desagregada por comunidad autónoma y año.</p>
 <ul>
-<li><strong>Periodo temporal</strong>: 2005-2023, anual (solo matrimonios heterosexuales para el periodo 2005-2010)</li>
-<li><strong>Desagregación regional</strong>: provincias</li>
+<li><strong>Periodo temporal</strong>: 2005-2023, anual</li>
+<li><strong>Desagregación regional</strong>: comunidades autónomas</li>
 </ul>
 <h2 id="columnas">Columnas</h2>
 <table>
@@ -2671,7 +2740,7 @@
 </thead>
 <tbody>
 <tr>
-<td>tasa_divorcialidad_id</td>
+<td>tasa_bruta_divorcialidad_comunidades_id</td>
 <td>serial</td>
 <td>NO</td>
 <td>primary key</td>
@@ -2683,35 +2752,23 @@
 <td>año</td>
 </tr>
 <tr>
-<td>provincia_id</td>
+<td>comunidad_autonoma_id</td>
 <td>int</td>
-<td>YES</td>
-<td>referencia a geo.provincias</td>
-</tr>
-<tr>
-<td>sexo</td>
-<td>enums.sexo_enum</td>
 <td>NO</td>
-<td>sexo</td>
+<td>referencia a geo.comunidades_autonomas</td>
 </tr>
 <tr>
-<td>grupo_edad</td>
-<td>varchar</td>
-<td>YES</td>
-<td>grupo de edad, las categorías varían ligeramente entre periodos</td>
-</tr>
-<tr>
-<td>tasa_divorcialidad</td>
+<td>tasa_bruta_divorcialidad</td>
 <td>float</td>
 <td>NO</td>
-<td>tasa de divorcios por 1000 personas</td>
+<td>tasa bruta de divorcialidad por cada 1000 habitantes</td>
 </tr>
 </tbody>
 </table>
 <h2 id="definicion-de-la-tabla">Definición de la tabla</h2>
 <pre><code class="language-sql">CREATE TABLE
-  demografia.tasa_divorcialidad (
-    tasa_divorcialidad_id serial PRIMARY KEY,
+  demografia.tasa_bruta_divorcialidad_comunidades (
+    tasa_bruta_divorcialidad_comunidades_id serial PRIMARY KEY,
     anio int NOT NULL CHECK (
       anio BETWEEN 1900 AND EXTRACT(
         YEAR
@@ -2719,29 +2776,21 @@
           CURRENT_DATE
       )
     ),
-    provincia_id int REFERENCES geo.provincias (provincia_id),
-    sexo enums.sexo_enum NOT NULL,
-    grupo_edad varchar CHECK (
-      grupo_edad ~ '^\\d+-\\d+$'
-      OR grupo_edad ~ '^&lt;\\d+$'
-      OR grupo_edad ~ '^&gt;\\d+$'
-    ),
-    tasa_divorcialidad float NOT NULL CHECK (
-      tasa_divorcialidad &gt;= 0
-      AND tasa_divorcialidad &lt;= 1000
+    comunidad_autonoma_id int NOT NULL REFERENCES geo.comunidades_autonomas (comunidad_autonoma_id),
+    tasa_bruta_divorcialidad float NOT NULL CHECK (
+      tasa_bruta_divorcialidad &gt;= 0
+      AND tasa_bruta_divorcialidad &lt;= 1000
     )
   );
 </code></pre>
 <h2 id="transformaciones-notables">Transformaciones notables</h2>
 <ul>
-<li>Se fusionaron los conjuntos de datos de 2005-2010 y 2010-2023. El primer periodo no incluye divorcios entre personas del mismo sexo.</li>
-<li>Se excluyeron las filas con <code>tasa_divorcialidad</code> faltante.</li>
-<li>Se eliminaron las entradas con valores agregados para <code>sexo</code> y <code>provincia_id</code>.</li>
+<li>Se eliminaron las filas donde <code>tasa_bruta_divorcialidad</code> aparecía como <code>..</code> y se convirtió la columna a valores numéricos.</li>
+<li>Se normalizaron <code>comunidad_autonoma_id</code>, <code>anio</code> y <code>tasa_bruta_divorcialidad</code> con las funciones de validación compartidas.</li>
 </ul>
 <h2 id="fuente">Fuente</h2>
-<p>Datos para el periodo 2005-2010 extraídos del <a href="https://www.ine.es/jaxiT3/Tabla.htm?t=25216&L=0" target="_blank">Instituto Nacional de Estadística (INE)</a></p>
-<p>Datos para el periodo 2010-2023 extraídos del <a href="https://www.ine.es/jaxiT3/Tabla.htm?t=25217&L=0" target="_blank">Instituto Nacional de Estadística (INE)</a>
-Consultado el 16 de junio de 2025.</p>
+<p>Datos extraídos del <a href="https://www.ine.es/jaxiT3/Tabla.htm?t=25204&L=0" target="_blank">Instituto Nacional de Estadística (INE)</a></p>
+<p>Consultado el 18 de junio de 2025.</p>
 
 
 
