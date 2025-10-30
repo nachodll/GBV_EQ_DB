@@ -2,10 +2,10 @@ DROP SCHEMA IF EXISTS analisis CASCADE;
 
 CREATE SCHEMA IF NOT EXISTS analisis;
 
-------------------------------------------------------------------------------------
+----------------------------s--------------------------------------------------------
 -- v_indicadores_anuales_provinciales_unificados
 ------------------------------------------------------------------------------------
--- Base geography view
+-- 0. Base geography view
 CREATE OR REPLACE VIEW
     analisis.v_provincias AS
 SELECT
@@ -14,7 +14,7 @@ SELECT
 FROM
     geo.provincias p;
 
--- Population view by province
+-- 1. Population view by province
 CREATE OR REPLACE VIEW
     analisis.v_poblacion_provincial AS
 SELECT
@@ -30,7 +30,7 @@ GROUP BY
     pm.anio,
     m.provincia_id;
 
--- feminicidios_pareja_expareja, yearly aggregated totals by province with zeros for missing data within 2003-2024
+-- 2. feminicidios_pareja_expareja, yearly aggregated totals by province with zeros for missing data within 2003-2024
 CREATE OR REPLACE VIEW
     analisis.v_feminicidios_pareja_expareja_anual AS
 WITH
@@ -76,7 +76,7 @@ ORDER BY
     ac.anio,
     ac.provincia_id;
 
--- menores_victimas_mortales, yearly aggregated totals by province with zeros for missing data within 2013-2024
+-- 3. menores_victimas_mortales, yearly aggregated totals by province with zeros for missing data within 2013-2024
 CREATE OR REPLACE VIEW
     analisis.v_menores_victimas_mortales_anual AS
 WITH
@@ -117,7 +117,7 @@ ORDER BY
     ac.anio,
     ac.provincia_id;
 
--- servicio_016, yearly aggregated totals by province with zeros for missing data within 2008-2024
+-- 4. servicio_016, yearly aggregated totals by province with zeros for missing data within 2008-2024
 CREATE OR REPLACE VIEW
     analisis.v_servicio_016_anual AS
 WITH
@@ -158,7 +158,7 @@ ORDER BY
     ac.anio,
     ac.provincia_id;
 
--- usuarias_atenpro, yearly total (last month is used) by province with nulls for missing data within 2005-2024
+-- 5. usuarias_atenpro, yearly total (last month is used) by province with nulls for missing data within 2005-2024
 CREATE OR REPLACE VIEW
     analisis.v_atenpro_usuarias_activas_anual AS
 WITH
@@ -238,7 +238,7 @@ ORDER BY
     ac.anio,
     ac.provincia_id;
 
--- denuncias_vg_pareja, yearly aggregated total by province with zeros for missing data within 2003-2024
+-- 6. denuncias_vg_pareja, yearly aggregated total by province with zeros for missing data within 2003-2024
 CREATE OR REPLACE VIEW
     analisis.v_denuncias_vg_pareja_anual AS
 WITH
@@ -279,7 +279,7 @@ ORDER BY
     ac.anio,
     ac.provincia_id;
 
--- mattrimonios_heterosexuales, yearly aggregated totals by province with zeros for missing data within 1975-2023
+-- 7. matrimonios_heterosexuales, yearly aggregated totals by province with zeros for missing data within 1975-2023
 CREATE OR REPLACE VIEW
     analisis.v_matrimonios_heterosexuales_anual AS
 WITH
@@ -322,7 +322,7 @@ ORDER BY
     ac.anio,
     ac.provincia_id;
 
--- mattrimonios_homosexuales, yearly aggregated totals by province with nulls for missing data within 2005-2023
+-- 8. matrimonios_homosexuales, yearly aggregated totals by province with nulls for missing data within 2005-2023
 CREATE OR REPLACE VIEW
     analisis.v_matrimonios_homosexuales_anual AS
 WITH
@@ -365,7 +365,7 @@ ORDER BY
     ac.anio,
     ac.provincia_id;
 
--- prestaciones_maternidad_paternidad, yearly aggregated totals by province with nulls for missing data within 2002-2019
+-- 9. prestaciones_maternidad_paternidad, yearly aggregated totals by province with nulls for missing data within 2002-2019
 CREATE OR REPLACE VIEW
     analisis.v_prestaciones_maternidad_paternidad_anual AS
 WITH
@@ -421,8 +421,7 @@ ORDER BY
     ac.anio,
     ac.provincia_id;
 
--- tasa_actividad_paro_empleo, yearly average of 4 quarters by province with nulls for missing data within 2002-2024
--- do not count provincia_id = 0, take only sexo='Total', aggregate by tasa=Tasa de actividad, Tasa de empleo, Tasa de paro
+-- 10. tasa_actividad_paro_empleo_provincias, yearly average of 4 quarters by province with nulls for missing data within 2002-2024
 CREATE OR REPLACE VIEW
     analisis.v_tasa_actividad_paro_empleo_anual AS
 WITH
@@ -482,6 +481,44 @@ SELECT
     ad.tasa_actividad,
     ad.tasa_empleo,
     ad.tasa_paro
+FROM
+    all_combinations ac
+    LEFT JOIN actual_data ad ON ac.anio = ad.anio
+    AND ac.provincia_id = ad.provincia_id
+ORDER BY
+    ac.anio,
+    ac.provincia_id;
+
+-- 11. tasa_bruta_divorcialidad_comunidades, yearly aggregated totals by province with nulls for missing data within 2005-2023
+CREATE OR REPLACE VIEW
+    analisis.v_tasa_bruta_divorcialidad_provincial_anual AS
+WITH
+    year_range AS (
+        SELECT
+            generate_series(2005, 2023) AS anio
+    ),
+    all_combinations AS (
+        SELECT
+            yr.anio,
+            p.provincia_id
+        FROM
+            year_range yr
+            CROSS JOIN geo.provincias p
+        WHERE
+            p.provincia_id != 0
+    ),
+    actual_data AS (
+        SELECT
+            anio,
+            provincia_id,
+            tasa_bruta_divorcialidad
+        FROM
+            demografia.tasa_bruta_divorcialidad_provincias
+    )
+SELECT
+    ac.anio,
+    ac.provincia_id,
+    ad.tasa_bruta_divorcialidad
 FROM
     all_combinations ac
     LEFT JOIN actual_data ad ON ac.anio = ad.anio
@@ -561,6 +598,12 @@ WITH
             provincia_id
         FROM
             analisis.v_poblacion_provincial
+        UNION
+        SELECT
+            anio,
+            provincia_id
+        FROM
+            analisis.v_tasa_bruta_divorcialidad_provincial_anual
     )
 SELECT
     k.anio,
@@ -571,6 +614,7 @@ SELECT
     mat_het.matrimonios_heterosexuales,
     mat_hom.matrimonios_homosexuales_hombres,
     mat_hom.matrimonios_homosexuales_mujeres,
+    div.tasa_bruta_divorcialidad,
     -- Gender-based violence indicators
     fem.feminicidios_pareja_expareja,
     fem.huerfanos_menores,
@@ -611,6 +655,8 @@ FROM
     AND prest.provincia_id = k.provincia_id
     LEFT JOIN analisis.v_tasa_actividad_paro_empleo_anual epa ON epa.anio = k.anio
     AND epa.provincia_id = k.provincia_id
+    LEFT JOIN analisis.v_tasa_bruta_divorcialidad_provincial_anual div ON div.anio = k.anio
+    AND div.provincia_id = k.provincia_id
 ORDER BY
     k.anio,
     p.provincia_id;
@@ -618,6 +664,49 @@ ORDER BY
 ------------------------------------------------------------------------------------
 -- v_indicadores_anuales_comunidades_unificados
 ------------------------------------------------------------------------------------
+-- 1. tasa_paro_comunidades, yearly average of 4 quarters by comunidad autónoma with nulls for missing data within 2002-2024
+CREATE OR REPLACE VIEW
+    analisis.v_tasa_paro_anual AS
+WITH
+    year_range AS (
+        SELECT
+            generate_series(2002, 2024) AS anio
+    ),
+    all_combinations AS (
+        SELECT
+            yr.anio,
+            ca.comunidad_autonoma_id
+        FROM
+            year_range yr
+            CROSS JOIN geo.comunidades_autonomas ca
+        WHERE
+            ca.comunidad_autonoma_id != 0
+    ),
+    actual_data AS (
+        SELECT
+            anio,
+            comunidad_autonoma_id,
+            ROUND(AVG(tasa_paro)::NUMERIC, 2) AS tasa_paro
+        FROM
+            economia_laboral.tasa_paro_comunidades
+        WHERE
+            sexo = 'Total'
+        GROUP BY
+            anio,
+            comunidad_autonoma_id
+    )
+SELECT
+    ac.anio,
+    ac.comunidad_autonoma_id,
+    ad.tasa_paro
+FROM
+    all_combinations ac
+    LEFT JOIN actual_data ad ON ac.anio = ad.anio
+    AND ac.comunidad_autonoma_id = ad.comunidad_autonoma_id
+ORDER BY
+    ac.anio,
+    ac.comunidad_autonoma_id;
+
 -- Unified view combining all comunidad autónoma annual indicators
 CREATE OR REPLACE VIEW
     analisis.v_indicadores_anuales_comunidades_unificados AS
@@ -816,6 +905,12 @@ WITH
             comunidad_autonoma_id
         FROM
             prestaciones_ccaa
+        UNION
+        SELECT
+            anio,
+            comunidad_autonoma_id
+        FROM
+            analisis.v_tasa_paro_anual
     )
 SELECT
     k.anio,
@@ -836,7 +931,9 @@ SELECT
     den.denuncias_vg_pareja,
     -- Social benefits
     prest.prestaciones_maternidad,
-    prest.prestaciones_paternidad
+    prest.prestaciones_paternidad,
+    -- Labor market indicators
+    tasa.tasa_paro
 FROM
     all_keys k
     JOIN geo.comunidades_autonomas ca ON ca.comunidad_autonoma_id = k.comunidad_autonoma_id
@@ -860,6 +957,8 @@ FROM
     AND mat_hom.comunidad_autonoma_id = k.comunidad_autonoma_id
     LEFT JOIN prestaciones_ccaa prest ON prest.anio = k.anio
     AND prest.comunidad_autonoma_id = k.comunidad_autonoma_id
+    LEFT JOIN analisis.v_tasa_paro_anual tasa ON tasa.anio = k.anio
+    AND tasa.comunidad_autonoma_id = k.comunidad_autonoma_id
 ORDER BY
     k.anio,
     ca.comunidad_autonoma_id;
