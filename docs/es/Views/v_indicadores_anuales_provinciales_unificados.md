@@ -23,6 +23,6 @@ La vista unificada combina las vistas intermedias definidas en `sql/views.sql`. 
 | `denuncias_vg_pareja` | `violencia_genero.denuncias_vg_pareja` | `analisis.v_denuncias_vg_pareja_anual` | Suma de denuncias (se rellenan ceros cuando no hay registros) | 2009-2024 |
 | `prestaciones_maternidad` | `educacion_juventud.prestaciones_maternidad_paternidad` | `analisis.v_prestaciones_maternidad_paternidad_anual` | Suma de prestaciones de maternidad (`percibidas_madre` + `percibidas_padre` cuando `tipo = 'Maternidad'`) | 2002-2019 |
 | `prestaciones_paternidad` | `educacion_juventud.prestaciones_maternidad_paternidad` | `analisis.v_prestaciones_maternidad_paternidad_anual` | Suma de prestaciones de paternidad (`percibidas_padre` cuando `tipo = 'Paternidad'`; `NULL` antes de 2007) | 2007-2019 |
-| `tasa_actividad` | `economia_laboral.tasa_actividad_paro_empleo` | `analisis.v_tasa_actividad_paro_empleo_anual` | Promedio de los cuatro totales trimestrales del año | 2002-2024 |
-| `tasa_empleo` | `economia_laboral.tasa_actividad_paro_empleo` | `analisis.v_tasa_actividad_paro_empleo_anual` | Promedio de los cuatro totales trimestrales del año | 2002-2024 |
-| `tasa_paro` | `economia_laboral.tasa_actividad_paro_empleo` | `analisis.v_tasa_actividad_paro_empleo_anual` | Promedio de los cuatro totales trimestrales del año | 2002-2024 |
+| `tasa_actividad` | `economia_laboral.tasa_actividad_paro_empleo_provincias` | `analisis.v_tasa_actividad_paro_empleo_anual` | Promedio de los cuatro totales trimestrales del año | 2002-2024 |
+| `tasa_empleo` | `economia_laboral.tasa_actividad_paro_empleo_provincias` | `analisis.v_tasa_actividad_paro_empleo_anual` | Promedio de los cuatro totales trimestrales del año | 2002-2024 |
+| `tasa_paro` | `economia_laboral.tasa_actividad_paro_empleo_provincias` | `analisis.v_tasa_actividad_paro_empleo_anual` | Promedio de los cuatro totales trimestrales del año | 2002-2024 |

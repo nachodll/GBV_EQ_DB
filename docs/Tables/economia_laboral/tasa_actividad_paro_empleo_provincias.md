@@ -1,4 +1,4 @@
-# economia_laboral.tasa_actividad_paro_empleo
+# economia_laboral.tasa_actividad_paro_empleo_provincias
 
 Quarterly activity, employment, and unemployment rates in Spain, disaggregated by province and sex.
 
@@ -9,7 +9,7 @@ Quarterly activity, employment, and unemployment rates in Spain, disaggregated b
 
 | Name | Data Type | Is Nullable | Description |
 | --- | --- | --- | --- |
-| tasa_actividad_paro_empleo_id | serial | NO | primary key |
+| tasa_actividad_paro_empleo_provincias_id | serial | NO | primary key |
 | anio | int | NO | year |
 | trimestre | int | NO | quarter number (1-4) |
 | provincia_id | int | NO | references geo.provincias |
@@ -21,8 +21,8 @@ Quarterly activity, employment, and unemployment rates in Spain, disaggregated b
 
 ```sql
 CREATE TABLE
-  economia_laboral.tasa_actividad_paro_empleo (
-    tasa_actividad_paro_empleo_id serial PRIMARY KEY,
+  economia_laboral.tasa_actividad_paro_empleo_provincias (
+    tasa_actividad_paro_empleo_provincias_id serial PRIMARY KEY,
     anio int NOT NULL CHECK (
       anio BETWEEN 1900 AND EXTRACT(
         YEAR
@@ -55,5 +55,5 @@ CREATE TABLE
 
 ## Source
 
-Data extracted from the <a href="https://www.ine.es/jaxiT3/Tabla.htm?t=65349" target="_blank">Instituto Nacional de Estadística (INE)</a>
+Data extracted from the <a href="https://www.ine.es/jaxiT3/Tabla.htm?t=65349" target="_blank">Instituto Nacional de Estadística (INE)</a>.
 Consulted on 16 June 2025.

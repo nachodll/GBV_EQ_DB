@@ -89,7 +89,8 @@ nav:
             - encuesta_violencia_genero_juventud_2013: Tables/percepcion_social/encuesta_violencia_genero_juventud_2013.md
             - encuesta_violencia_genero_2012: Tables/percepcion_social/encuesta_violencia_genero_2012.md
         - economia_laboral:
-            - tasa_actividad_paro_empleo: Tables/economia_laboral/tasa_actividad_paro_empleo.md
+            - tasa_actividad_paro_empleo_provincias: Tables/economia_laboral/tasa_actividad_paro_empleo_provincias.md
+            - tasa_paro_comunidades: Tables/economia_laboral/tasa_paro_comunidades.md
             - riesgo_pobreza_exclusion: Tables/economia_laboral/riesgo_pobreza_exclusion.md
         - seguridad_criminalidad:
             - tasas_homicidios_criminalidad: Tables/seguridad_criminalidad/tasas_homicidios_criminalidad.md

@@ -23,6 +23,6 @@ The unified view draws from the following intermediate views defined in `sql/vie
 | `denuncias_vg_pareja` | `violencia_genero.denuncias_vg_pareja` | `analisis.v_denuncias_vg_pareja_anual` | Sum of complaints (zeros are backfilled when no records exist) | 2009-2024 |
 | `prestaciones_maternidad` | `educacion_juventud.prestaciones_maternidad_paternidad` | `analisis.v_prestaciones_maternidad_paternidad_anual` | Sum of maternity benefits (`percibidas_madre` + `percibidas_padre` when `tipo = 'Maternidad'`) | 2002-2019 |
 | `prestaciones_paternidad` | `educacion_juventud.prestaciones_maternidad_paternidad` | `analisis.v_prestaciones_maternidad_paternidad_anual` | Sum of paternity benefits (`percibidas_padre` when `tipo = 'Paternidad'`; `NULL` before 2007) | 2007-2019 |
-| `tasa_actividad` | `economia_laboral.tasa_actividad_paro_empleo` | `analisis.v_tasa_actividad_paro_empleo_anual` | Average of the four quarterly totals for the year | 2002-2024 |
-| `tasa_empleo` | `economia_laboral.tasa_actividad_paro_empleo` | `analisis.v_tasa_actividad_paro_empleo_anual` | Average of the four quarterly totals for the year | 2002-2024 |
-| `tasa_paro` | `economia_laboral.tasa_actividad_paro_empleo` | `analisis.v_tasa_actividad_paro_empleo_anual` | Average of the four quarterly totals for the year | 2002-2024 |
+| `tasa_actividad` | `economia_laboral.tasa_actividad_paro_empleo_provincias` | `analisis.v_tasa_actividad_paro_empleo_anual` | Average of the four quarterly totals for the year | 2002-2024 |
+| `tasa_empleo` | `economia_laboral.tasa_actividad_paro_empleo_provincias` | `analisis.v_tasa_actividad_paro_empleo_anual` | Average of the four quarterly totals for the year | 2002-2024 |
+| `tasa_paro` | `economia_laboral.tasa_actividad_paro_empleo_provincias` | `analisis.v_tasa_actividad_paro_empleo_anual` | Average of the four quarterly totals for the year | 2002-2024 |

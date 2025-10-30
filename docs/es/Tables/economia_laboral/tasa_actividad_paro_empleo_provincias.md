@@ -1,4 +1,4 @@
-# economia_laboral.tasa_actividad_paro_empleo
+# economia_laboral.tasa_actividad_paro_empleo_provincias
 
 Tasas trimestrales de actividad, empleo y paro en España, desagregadas por provincia y sexo.
 
@@ -9,7 +9,7 @@ Tasas trimestrales de actividad, empleo y paro en España, desagregadas por prov
 
 | Nombre | Tipo de dato | Es Nullable | Descripción |
 | --- | --- | --- | --- |
-| tasa_actividad_paro_empleo_id | serial | NO | primary key |
+| tasa_actividad_paro_empleo_provincias_id | serial | NO | primary key |
 | anio | int | NO | año |
 | trimestre | int | NO | número de trimestre (1-4) |
 | provincia_id | int | NO | referencia a geo.provincias |
@@ -21,8 +21,8 @@ Tasas trimestrales de actividad, empleo y paro en España, desagregadas por prov
 
 ```sql
 CREATE TABLE
-  economia_laboral.tasa_actividad_paro_empleo (
-    tasa_actividad_paro_empleo_id serial PRIMARY KEY,
+  economia_laboral.tasa_actividad_paro_empleo_provincias (
+    tasa_actividad_paro_empleo_provincias_id serial PRIMARY KEY,
     anio int NOT NULL CHECK (
       anio BETWEEN 1900 AND EXTRACT(
         YEAR
@@ -55,5 +55,5 @@ CREATE TABLE
 
 ## Fuente
 
-Datos extraídos del <a href="https://www.ine.es/jaxiT3/Tabla.htm?t=65349" target="_blank">Instituto Nacional de Estadística (INE)</a>
+Datos extraídos del <a href="https://www.ine.es/jaxiT3/Tabla.htm?t=65349" target="_blank">Instituto Nacional de Estadística (INE)</a>.
 Consultado el 16 de junio de 2025.

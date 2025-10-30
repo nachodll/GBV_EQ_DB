@@ -517,9 +517,15 @@ Tables are distributed in different schemas according to the field to which thei
     </thead>
     <tbody>
         <tr>
-            <td><a href="./Tables/economia_laboral/tasa_actividad_paro_empleo/">tasa_actividad_paro_empleo</a></td>
+            <td><a href="./Tables/economia_laboral/tasa_actividad_paro_empleo_provincias/">tasa_actividad_paro_empleo_provincias</a></td>
             <td>2002-2025</td>
             <td>Provincias</td>
+            <td>INE</td>
+        </tr>
+        <tr>
+            <td><a href="./Tables/economia_laboral/tasa_paro_comunidades/">tasa_paro_comunidades</a></td>
+            <td>2002-2025</td>
+            <td>Comunidades</td>
             <td>INE</td>
         </tr>
         <tr>
