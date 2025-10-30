@@ -2,7 +2,7 @@
 Sources:
     INE007
 Target tables:
-    tasa_divorcialidad
+    tasa_divorcialidad_edad_sexo
 """
 
 import logging
@@ -22,7 +22,7 @@ from utils.normalization import (
 
 RAW_CSV_PATH_PRE_2010 = Path("data") / "raw" / "INE" / "INE007-TasaDivorcialidad" / "2005-2010.csv"
 RAWCSV_PATH_POST_2010 = Path("data") / "raw" / "INE" / "INE007-TasaDivorcialidad" / "2010-2023.csv"
-CLEAN_CSV_PATH = Path("data") / "clean" / "demografia" / "tasa_divorcialidad.csv"
+CLEAN_CSV_PATH = Path("data") / "clean" / "demografia" / "tasa_divorcialidad_edad_sexo.csv"
 
 
 def main():

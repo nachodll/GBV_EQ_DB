@@ -277,7 +277,7 @@ CREATE TABLE
   );
 
 CREATE TABLE
-  demografia.tasa_divorcialidad (
+  demografia.tasa_divorcialidad_edad_sexo (
     tasa_divorcialidad_id serial PRIMARY KEY,
     anio int NOT NULL CHECK (
       anio BETWEEN 1900 AND EXTRACT(
@@ -296,6 +296,40 @@ CREATE TABLE
     tasa_divorcialidad float NOT NULL CHECK (
       tasa_divorcialidad >= 0
       AND tasa_divorcialidad <= 1000
+    )
+  );
+
+CREATE TABLE
+  demografia.tasa_bruta_divorcialidad_comunidades (
+    tasa_bruta_divorcialidad_comunidades_id serial PRIMARY KEY,
+    anio int NOT NULL CHECK (
+      anio BETWEEN 1900 AND EXTRACT(
+        YEAR
+        FROM
+          CURRENT_DATE
+      )
+    ),
+    comunidad_autonoma_id int NOT NULL REFERENCES geo.comunidades_autonomas (comunidad_autonoma_id),
+    tasa_bruta_divorcialidad float NOT NULL CHECK (
+      tasa_bruta_divorcialidad >= 0
+      AND tasa_bruta_divorcialidad <= 1000
+    )
+  );
+
+CREATE TABLE
+  demografia.tasa_bruta_divorcialidad_provincias (
+    tasa_bruta_divorcialidad_provincias_id serial PRIMARY KEY,
+    anio int NOT NULL CHECK (
+      anio BETWEEN 1900 AND EXTRACT(
+        YEAR
+        FROM
+          CURRENT_DATE
+      )
+    ),
+    provincia_id int REFERENCES geo.provincias (provincia_id),
+    tasa_bruta_divorcialidad float NOT NULL CHECK (
+      tasa_bruta_divorcialidad >= 0
+      AND tasa_bruta_divorcialidad <= 1000
     )
   );
 
