@@ -1544,8 +1544,8 @@ CREATE TABLE
 -- economia_laboral
 ------------------------------------------------------------------------------------
 CREATE TABLE
-  economia_laboral.tasa_actividad_paro_empleo (
-    tasa_actividad_paro_empleo_id serial PRIMARY KEY,
+  economia_laboral.tasa_actividad_paro_empleo_provincias (
+    tasa_actividad_paro_empleo_provincias_id serial PRIMARY KEY,
     anio int NOT NULL CHECK (
       anio BETWEEN 1900 AND EXTRACT(
         YEAR
@@ -1566,6 +1566,25 @@ CREATE TABLE
     total float NOT NULL CHECK (
       total >= 0
       AND total <= 100
+    )
+  );
+
+CREATE TABLE
+  economia_laboral.tasa_paro_comunidades (
+    tasa_paro_comunidades_id serial PRIMARY KEY,
+    anio int NOT NULL CHECK (
+      anio BETWEEN 1900 AND EXTRACT(
+        YEAR
+        FROM
+          CURRENT_DATE
+      )
+    ),
+    trimestre int NOT NULL CHECK (trimestre BETWEEN 1 AND 4),
+    comunidad_autonoma_id int NOT NULL REFERENCES geo.comunidades_autonomas (comunidad_autonoma_id),
+    sexo enums.sexo_enum NOT NULL,
+    tasa_paro float NOT NULL CHECK (
+      tasa_paro >= 0
+      AND tasa_paro <= 100
     )
   );
 

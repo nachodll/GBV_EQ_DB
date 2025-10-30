@@ -2,7 +2,7 @@
 Sources:
     INE012
 Target tables:
-    tasa_actividad_paro_empleo
+    tasa_actividad_paro_empleo_provincias
 """
 
 import logging
@@ -21,7 +21,7 @@ from utils.normalization import (
 )
 
 RAW_CSV_PATH = Path("data") / "raw" / "INE" / "INE012-TasaActividadParoEmpleo.csv"
-CLEAN_CSV_PATH = Path("data") / "clean" / "economia_laboral" / "tasa_actividad_paro_empleo.csv"
+CLEAN_CSV_PATH = Path("data") / "clean" / "economia_laboral" / "tasa_actividad_paro_empleo_provincias.csv"
 
 
 def main():
