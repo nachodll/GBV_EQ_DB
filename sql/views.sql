@@ -469,7 +469,7 @@ WITH
                 2
             ) AS tasa_paro
         FROM
-            economia_laboral.tasa_actividad_paro_empleo
+            economia_laboral.tasa_actividad_paro_empleo_provincias
         WHERE
             sexo = 'Total'
         GROUP BY
