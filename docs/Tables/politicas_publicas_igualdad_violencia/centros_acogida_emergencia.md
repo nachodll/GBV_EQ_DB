@@ -46,4 +46,4 @@ CREATE TABLE
 
 ## Source
 
-Data published by the <a href="https://violenciagenero.igualdad.gob.es/violenciaencifras/recursos-autonomicos/" target="_blank">Delegación General contra la Violencia de Género (DGVG)</a>.  Consulted on 28 November 2025.
+Data published by the <a href="https://violenciagenero.igualdad.gob.es/violenciaencifras/recursos-autonomicos/" target="_blank">Delegación General contra la Violencia de Género (DGVG)</a>.  Consulted on 28 October 2025.
