@@ -204,7 +204,19 @@ Las tablas se distribuyen en diferentes esquemas según el ámbito al que perten
             <td>INE</td>
         </tr>
         <tr>
-            <td><a href="./Tables/demografia/tasa_divorcialidad/">tasa_divorcialidad</a></td>
+            <td><a href="./Tables/demografia/tasa_divorcialidad_edad_sexo/">tasa_divorcialidad_edad_sexo</a></td>
+            <td>2005-2023</td>
+            <td>Provincias</td>
+            <td>INE</td>
+        </tr>
+        <tr>
+            <td><a href="./Tables/demografia/tasa_bruta_divorcialidad_comunidades/">tasa_bruta_divorcialidad_comunidades</a></td>
+            <td>2005-2023</td>
+            <td>Comunidades</td>
+            <td>INE</td>
+        </tr>
+        <tr>
+            <td><a href="./Tables/demografia/tasa_bruta_divorcialidad_provincias/">tasa_bruta_divorcialidad_provincias</a></td>
             <td>2005-2023</td>
             <td>Provincias</td>
             <td>INE</td>

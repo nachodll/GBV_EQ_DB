@@ -49,7 +49,9 @@ nav:
             - poblacion_grupo_edad: Tables/demografia/poblacion_grupo_edad.md
             - matrimonios_heterosexuales: Tables/demografia/matrimonios_heterosexuales.md
             - matrimonios_homosexuales: Tables/demografia/matrimonios_homosexuales.md
-            - tasa_divorcialidad: Tables/demografia/tasa_divorcialidad.md
+            - tasa_divorcialidad_edad_sexo: Tables/demografia/tasa_divorcialidad_edad_sexo.md
+            - tasa_bruta_divorcialidad_comunidades: Tables/demografia/tasa_bruta_divorcialidad_comunidades.md
+            - tasa_bruta_divorcialidad_provincias: Tables/demografia/tasa_bruta_divorcialidad_provincias.md
             - divorcios_segun_duracion_matrimonio: Tables/demografia/divorcios_segun_duracion_matrimonio.md
             - nulidades_separaciones_divorcios: Tables/demografia/nulidades_separaciones_divorcios.md
             - hogares_monoparentales: Tables/demografia/hogares_monoparentales.md

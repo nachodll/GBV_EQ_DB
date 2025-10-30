@@ -1,6 +1,6 @@
-# demografia.tasa_divorcialidad
+# demografia.tasa_divorcialidad_edad_sexo
 
-Tasa de divorcios en España, desagregada por provincia, sexo, grupo de edad y año. Los resultados del periodo 2005-2010 solo tienen en cuenta divorcios de matrimonios entre personas de distinto sexo. Las categorías de grupos de edad son varián ligeramente entre el periodo 2005-2010 y el periodo 2010-2023.
+Tasa de divorcios en España, desagregada por provincia, sexo, grupo de edad y año. Los resultados del periodo 2005-2010 solo tienen en cuenta divorcios de matrimonios entre personas de distinto sexo. Las categorías de grupos de edad varían ligeramente entre el periodo 2005-2010 y el periodo 2010-2023. A diferencia de las tasas brutas de divorcialidad publicadas por provincias y comunidades autónomas, este indicador no es una tasa bruta sino una tasa específica por edad y sexo. 
 
 
 - **Periodo temporal**: 2005-2023, anual (solo matrimonios heterosexuales para el periodo 2005-2010)
@@ -21,7 +21,7 @@ Tasa de divorcios en España, desagregada por provincia, sexo, grupo de edad y a
 
 ```sql
 CREATE TABLE
-  demografia.tasa_divorcialidad (
+  demografia.tasa_divorcialidad_edad_sexo (
     tasa_divorcialidad_id serial PRIMARY KEY,
     anio int NOT NULL CHECK (
       anio BETWEEN 1900 AND EXTRACT(
@@ -53,7 +53,8 @@ CREATE TABLE
 
 ## Fuente
 
- Datos para el periodo 2005-2010 extraídos del <a href="https://www.ine.es/jaxiT3/Tabla.htm?t=25216&L=0" target="_blank">Instituto Nacional de Estadística (INE)</a>
+Datos para el periodo 2005-2010 extraídos del <a href="https://www.ine.es/jaxiT3/Tabla.htm?t=25216&L=0" target="_blank">Instituto Nacional de Estadística (INE)</a>
 
 Datos para el periodo 2010-2023 extraídos del <a href="https://www.ine.es/jaxiT3/Tabla.htm?t=25217&L=0" target="_blank">Instituto Nacional de Estadística (INE)</a>
+
 Consultado el 16 de junio de 2025.

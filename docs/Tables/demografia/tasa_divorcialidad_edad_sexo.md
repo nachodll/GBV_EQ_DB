@@ -1,6 +1,6 @@
-# demografia.tasa_divorcialidad
+# demografia.tasa_divorcialidad_edad_sexo
 
-Divorce rate in Spain, disaggregated by province, sex, age group and year. The results for the 2005-2010 period only take into account divorces of marriages between people of different sexes. Age groups categories are slightly different for periods 2005-2010 and 2010-2023.
+Divorce rate in Spain, disaggregated by province, sex, age group and year. The results for the 2005-2010 period only take into account divorces of marriages between people of different sexes. Age group categories vary slightly between the 2005-2010 and 2010-2023 periods. Unlike the crude divorce rates published separately for provinces and autonomous communities, this indicator is not a crude rate but a specific rate by age group and sex.
 
 - **Time period**: 2005-2023, annually (only heterosexual marriages for the 2005-2010 period)
 - **Regional breakdown**: provincias
@@ -13,14 +13,14 @@ Divorce rate in Spain, disaggregated by province, sex, age group and year. The r
 | anio | int | NO | year |
 | provincia_id | int | YES | references geo.provincias |
 | sexo | enums.sexo_enum | NO | sex |
-| grupo_edad | varchar | YES | age group, categories varies slightly accross periods |
+| grupo_edad | varchar | YES | age group, categories vary slightly across periods |
 | tasa_divorcialidad | float | NO | divorce rate per 1000 people |
 
 ## Table definition
 
 ```sql
 CREATE TABLE
-  demografia.tasa_divorcialidad (
+  demografia.tasa_divorcialidad_edad_sexo (
     tasa_divorcialidad_id serial PRIMARY KEY,
     anio int NOT NULL CHECK (
       anio BETWEEN 1900 AND EXTRACT(
@@ -54,4 +54,5 @@ CREATE TABLE
 Data for 2005-2010 extracted from <a href="https://www.ine.es/jaxiT3/Tabla.htm?t=25216&L=0" target="_blank">Instituto Nacional de Estadística (INE)</a>
 
 Data for 2010-2023 extracted from <a href="https://www.ine.es/jaxiT3/Tabla.htm?t=25217&L=0" target="_blank">Instituto Nacional de Estadística (INE)</a>
+
 Consulted on 16 June 2025.
