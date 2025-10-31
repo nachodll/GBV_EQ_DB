@@ -980,6 +980,12 @@ WITH
             provincia_id
         FROM
             analisis.v_tasa_bruta_divorcialidad_provincial_anual
+        UNION
+        SELECT
+            anio,
+            provincia_id
+        FROM
+            analisis.v_barometros_generales_provincias_anual
     )
 SELECT
     k.anio,
@@ -1005,7 +1011,20 @@ SELECT
     -- Labor market indicators
     epa.tasa_actividad,
     epa.tasa_empleo,
-    epa.tasa_paro
+    epa.tasa_paro,
+    -- Public perception indicators
+    bar.promedio_ideologia_hombres,
+    bar.porcentaje_ideologia_1_4_hombres,
+    bar.porcentaje_ideologia_5_6_hombres,
+    bar.porcentaje_ideologia_7_10_hombres,
+    bar.porcentaje_problema_personal_genero_hombres,
+    bar.porcentaje_problema_espania_genero_hombres,
+    bar.promedio_ideologia_mujeres,
+    bar.porcentaje_ideologia_1_4_mujeres,
+    bar.porcentaje_ideologia_5_6_mujeres,
+    bar.porcentaje_ideologia_7_10_mujeres,
+    bar.porcentaje_problema_personal_genero_mujeres,
+    bar.porcentaje_problema_espania_genero_mujeres
 FROM
     all_keys k
     JOIN analisis.v_provincias p ON p.provincia_id = k.provincia_id
@@ -1033,6 +1052,8 @@ FROM
     AND epa.provincia_id = k.provincia_id
     LEFT JOIN analisis.v_tasa_bruta_divorcialidad_provincial_anual div ON div.anio = k.anio
     AND div.provincia_id = k.provincia_id
+    LEFT JOIN analisis.v_barometros_generales_provincias_anual bar ON bar.anio = k.anio
+    AND bar.provincia_id = k.provincia_id
 ORDER BY
     k.anio,
     p.provincia_id;
@@ -2491,29 +2512,167 @@ WITH
             comunidad_autonoma_id
         FROM
             analisis.v_tasa_paro_comunidades_anual
+        UNION
+        SELECT
+            anio,
+            comunidad_autonoma_id
+        FROM
+            analisis.v_tasa_bruta_divorcialidad_comunidades_anual
+        UNION
+        SELECT
+            anio,
+            comunidad_autonoma_id
+        FROM
+            analisis.v_feminicidios_fuera_pareja_expareja_comunidades_anual
+        UNION
+        SELECT
+            anio,
+            comunidad_autonoma_id
+        FROM
+            analisis.v_denuncias_vg_presentadas_comunidades_anual
+        UNION
+        SELECT
+            anio,
+            comunidad_autonoma_id
+        FROM
+            analisis.v_ganancia_por_hora_trabajo_comunidades_anual
+        UNION
+        SELECT
+            anio,
+            comunidad_autonoma_id
+        FROM
+            analisis.v_mujeres_cargos_autonomicos_anual
+        UNION
+        SELECT
+            anio,
+            comunidad_autonoma_id
+        FROM
+            analisis.v_matriculados_universidad_comunidades_anual
+        UNION
+        SELECT
+            anio,
+            comunidad_autonoma_id
+        FROM
+            analisis.v_acceso_internet_viviendas_comunidades_anual
+        UNION
+        SELECT
+            anio,
+            comunidad_autonoma_id
+        FROM
+            analisis.v_acceso_internet_personas_comunidades_anual
+        UNION
+        SELECT
+            anio,
+            comunidad_autonoma_id
+        FROM
+            analisis.v_uso_internet_ninios_comunidades_anual
+        UNION
+        SELECT
+            anio,
+            comunidad_autonoma_id
+        FROM
+            analisis.v_riesgo_pobreza_exclusion_social_comunidades_anual
+        UNION
+        SELECT
+            anio,
+            comunidad_autonoma_id
+        FROM
+            analisis.v_tasas_homicidios_criminalidad_comunidades_anual
+        UNION
+        SELECT
+            anio,
+            comunidad_autonoma_id
+        FROM
+            analisis.v_ive_comunidades_anual
+        UNION
+        SELECT
+            anio,
+            comunidad_autonoma_id
+        FROM
+            analisis.v_legislacion_primera_ley_autonomica
+        UNION
+        SELECT
+            anio,
+            comunidad_autonoma_id
+        FROM
+            analisis.v_instituto_mujer_autonomico
+        UNION
+        SELECT
+            anio,
+            comunidad_autonoma_id
+        FROM
+            analisis.v_barometros_generales_comunidades_anual
+        UNION
+        SELECT
+            anio,
+            comunidad_autonoma_id
+        FROM
+            analisis.v_presidentes_autonomicos_anual
     )
 SELECT
     k.anio,
     k.comunidad_autonoma_id,
     ca.nombre AS comunidad_autonoma,
-    -- Demographics
+    -- Demographics and family
     pop.poblacion_comunidad,
     mat_het.matrimonios_heterosexuales,
     mat_hom.matrimonios_homosexuales_hombres,
     mat_hom.matrimonios_homosexuales_mujeres,
+    div.tasa_bruta_divorcialidad,
+    -- Education indicators
+    mat_uni.matriculados_universidad,
     -- Gender-based violence indicators
     fem.feminicidios_pareja_expareja,
     fem.huerfanos_menores,
+    fem_fuera.feminicidios_fuera_pareja_expareja,
     men.menores_victimas_mortales,
     s016.servicio_016_contactos,
     aten.atenpro_usuarias_activas,
     disp.dispositivos_electronicos_seguimiento_activos,
     den.denuncias_vg_pareja,
+    den_pres.denuncias_vg_presentadas,
     -- Social benefits
     prest.prestaciones_maternidad,
     prest.prestaciones_paternidad,
     -- Labor market indicators
-    tasa.tasa_paro
+    tasa.tasa_paro,
+    gan.ganancia_por_hora_trabajo,
+    muj.porcentaje_mujeres_cargos_autonomicos,
+    -- Digital inclusion
+    viv.porcentaje_acceso_internet_viviendas,
+    per.porcentaje_uso_internet_diario_personas,
+    nin.porcentaje_ninios_con_telefono_movil,
+    -- Social inclusion
+    arope.porcentaje_arope,
+    -- Safety and justice
+    tasas.tasa_homicidios,
+    tasas.tasa_criminalidad,
+    -- Health
+    ive.tasa_ive,
+    -- Policy context
+    legis.fecha_primera_ley_violencia,
+    legis.fecha_primera_ley_igualdad,
+    inst.existe_instituto_mujer,
+    pres.presidente_principal,
+    pres.partido_principal,
+    pres.fecha_nombramiento_presidente_principal,
+    pres.fecha_fin_presidente_principal,
+    pres.dias_servidos_presidente_principal,
+    pres.cambio_presidente_durante_anio,
+    pres.presidentes_completo,
+    -- Public perception indicators
+    bar.promedio_ideologia_hombres,
+    bar.porcentaje_ideologia_1_4_hombres,
+    bar.porcentaje_ideologia_5_6_hombres,
+    bar.porcentaje_ideologia_7_10_hombres,
+    bar.porcentaje_problema_personal_genero_hombres,
+    bar.porcentaje_problema_espania_genero_hombres,
+    bar.promedio_ideologia_mujeres,
+    bar.porcentaje_ideologia_1_4_mujeres,
+    bar.porcentaje_ideologia_5_6_mujeres,
+    bar.porcentaje_ideologia_7_10_mujeres,
+    bar.porcentaje_problema_personal_genero_mujeres,
+    bar.porcentaje_problema_espania_genero_mujeres
 FROM
     all_keys k
     JOIN geo.comunidades_autonomas ca ON ca.comunidad_autonoma_id = k.comunidad_autonoma_id
@@ -2539,6 +2698,38 @@ FROM
     AND prest.comunidad_autonoma_id = k.comunidad_autonoma_id
     LEFT JOIN analisis.v_tasa_paro_comunidades_anual tasa ON tasa.anio = k.anio
     AND tasa.comunidad_autonoma_id = k.comunidad_autonoma_id
+    LEFT JOIN analisis.v_tasa_bruta_divorcialidad_comunidades_anual div ON div.anio = k.anio
+    AND div.comunidad_autonoma_id = k.comunidad_autonoma_id
+    LEFT JOIN analisis.v_matriculados_universidad_comunidades_anual mat_uni ON mat_uni.anio = k.anio
+    AND mat_uni.comunidad_autonoma_id = k.comunidad_autonoma_id
+    LEFT JOIN analisis.v_feminicidios_fuera_pareja_expareja_comunidades_anual fem_fuera ON fem_fuera.anio = k.anio
+    AND fem_fuera.comunidad_autonoma_id = k.comunidad_autonoma_id
+    LEFT JOIN analisis.v_denuncias_vg_presentadas_comunidades_anual den_pres ON den_pres.anio = k.anio
+    AND den_pres.comunidad_autonoma_id = k.comunidad_autonoma_id
+    LEFT JOIN analisis.v_ganancia_por_hora_trabajo_comunidades_anual gan ON gan.anio = k.anio
+    AND gan.comunidad_autonoma_id = k.comunidad_autonoma_id
+    LEFT JOIN analisis.v_mujeres_cargos_autonomicos_anual muj ON muj.anio = k.anio
+    AND muj.comunidad_autonoma_id = k.comunidad_autonoma_id
+    LEFT JOIN analisis.v_acceso_internet_viviendas_comunidades_anual viv ON viv.anio = k.anio
+    AND viv.comunidad_autonoma_id = k.comunidad_autonoma_id
+    LEFT JOIN analisis.v_acceso_internet_personas_comunidades_anual per ON per.anio = k.anio
+    AND per.comunidad_autonoma_id = k.comunidad_autonoma_id
+    LEFT JOIN analisis.v_uso_internet_ninios_comunidades_anual nin ON nin.anio = k.anio
+    AND nin.comunidad_autonoma_id = k.comunidad_autonoma_id
+    LEFT JOIN analisis.v_riesgo_pobreza_exclusion_social_comunidades_anual arope ON arope.anio = k.anio
+    AND arope.comunidad_autonoma_id = k.comunidad_autonoma_id
+    LEFT JOIN analisis.v_tasas_homicidios_criminalidad_comunidades_anual tasas ON tasas.anio = k.anio
+    AND tasas.comunidad_autonoma_id = k.comunidad_autonoma_id
+    LEFT JOIN analisis.v_ive_comunidades_anual ive ON ive.anio = k.anio
+    AND ive.comunidad_autonoma_id = k.comunidad_autonoma_id
+    LEFT JOIN analisis.v_legislacion_primera_ley_autonomica legis ON legis.anio = k.anio
+    AND legis.comunidad_autonoma_id = k.comunidad_autonoma_id
+    LEFT JOIN analisis.v_instituto_mujer_autonomico inst ON inst.anio = k.anio
+    AND inst.comunidad_autonoma_id = k.comunidad_autonoma_id
+    LEFT JOIN analisis.v_presidentes_autonomicos_anual pres ON pres.anio = k.anio
+    AND pres.comunidad_autonoma_id = k.comunidad_autonoma_id
+    LEFT JOIN analisis.v_barometros_generales_comunidades_anual bar ON bar.anio = k.anio
+    AND bar.comunidad_autonoma_id = k.comunidad_autonoma_id
 ORDER BY
     k.anio,
     ca.comunidad_autonoma_id;
