@@ -7,7 +7,7 @@ Listado de los presidentes de las comunidades autónomas, con su legislatura, fe
 
 ## Columnas
 
-| Nombre | Tipo de dato | ¿Nulo? | Descripción |
+| Nombre | Tipo de dato | Es Nullable | Descripción |
 | --- | --- | --- | --- |
 | presidentes_autonomicos_id | serial | NO | Clave primaria |
 | comunidad_autonoma_id | int | NO | Referencia a `geo.comunidades_autonomas` |

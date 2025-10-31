@@ -7,7 +7,7 @@ Recuentos de votos y escaños obtenidos por cada candidatura en las elecciones a
 
 ## Columnas
 
-| Nombre | Tipo de dato | ¿Nulo? | Descripción |
+| Nombre | Tipo de dato | Es Nullable | Descripción |
 | --- | --- | --- | --- |
 | elecciones_parlamentos_autonomicos_id | serial | NO | Clave primaria |
 | fecha | date | NO | Fecha de la elección |

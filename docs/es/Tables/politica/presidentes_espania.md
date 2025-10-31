@@ -7,7 +7,7 @@ Listado de los presidentes del Gobierno de España, con las fechas de mandato, l
 
 ## Columnas
 
-| Nombre | Tipo de dato | ¿Nulo? | Descripción |
+| Nombre | Tipo de dato | Es Nullable | Descripción |
 | --- | --- | --- | --- |
 | presidentes_espania_id | serial | NO | Clave primaria |
 | legislatura | varchar | NO | Legislatura en números romanos |

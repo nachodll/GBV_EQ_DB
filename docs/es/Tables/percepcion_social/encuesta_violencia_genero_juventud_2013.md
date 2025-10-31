@@ -7,7 +7,7 @@ Microdatos del barómetro del CIS sobre percepciones de la violencia de género 
 
 ## Columnas
 
-| Nombre | Tipo de dato | ¿Nulo? | Descripción |
+| Nombre | Tipo de dato | Es Nullable | Descripción |
 | --- | --- | --- | --- |
 | encuesta_violencia_genero_juventud_2013_id | serial | NO | Clave primaria |
 | codigo_estudio | varchar(4) | NO | Código de estudio del CIS de cuatro dígitos |

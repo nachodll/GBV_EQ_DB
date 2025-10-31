@@ -7,7 +7,7 @@ Microdatos de los barómetros generales del CIS (Centro de Investigaciones Socio
 
 ## Columnas
 
-| Nombre | Tipo de dato | ¿Nulo? | Descripción |
+| Nombre | Tipo de dato | Es Nullable | Descripción |
 | --- | --- | --- | --- |
 | barometros_generales_id | serial | NO | Clave primaria |
 | fecha | date | NO | Fecha de la entrevista inferida a partir de la ficha del estudio del CIS |

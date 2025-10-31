@@ -7,7 +7,7 @@ Microdatos del barómetro del CIS sobre percepciones sociales de la violencia se
 
 ## Columnas
 
-| Nombre | Tipo de dato | ¿Nulo? | Descripción |
+| Nombre | Tipo de dato | Es Nullable | Descripción |
 | --- | --- | --- | --- |
 | encuesta_violencia_sexual_2017_id | serial | NO | Clave primaria |
 | codigo_estudio | varchar(4) | NO | Código de estudio del CIS de cuatro dígitos |

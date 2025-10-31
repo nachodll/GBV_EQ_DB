@@ -7,7 +7,7 @@ Microdatos del barómetro especial del CIS (Centro de Investigaciones Sociológi
 
 ## Columnas
 
-| Nombre | Tipo de dato | ¿Nulo? | Descripción |
+| Nombre | Tipo de dato | Es Nullable | Descripción |
 | --- | --- | --- | --- |
 | encuesta_igualdad_2023_id | serial | NO | Clave primaria |
 | codigo_estudio | varchar(4) | NO | Código de estudio del CIS de cuatro dígitos |

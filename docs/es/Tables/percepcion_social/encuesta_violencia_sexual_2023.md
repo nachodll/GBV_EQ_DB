@@ -7,7 +7,7 @@ Microdatos del barómetro especial del CIS sobre la violencia sexual contra las 
 
 ## Columnas
 
-| Nombre | Tipo de dato | ¿Nulo? | Descripción |
+| Nombre | Tipo de dato | Es Nullable | Descripción |
 | --- | --- | --- | --- |
 | encuesta_violencia_sexual_2023_id | serial | NO | Clave primaria |
 | codigo_estudio | varchar(4) | NO | Código de estudio del CIS de cuatro dígitos |

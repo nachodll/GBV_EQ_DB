@@ -7,7 +7,7 @@ Recuentos de votos y escaños obtenidos por cada candidatura en las elecciones g
 
 ## Columnas
 
-| Nombre | Tipo de dato | ¿Nulo? | Descripción |
+| Nombre | Tipo de dato | Es Nullable | Descripción |
 | --- | --- | --- | --- |
 | elecciones_congreso_id | serial | NO | Clave primaria |
 | anio | int | NO | Año de la elección |
