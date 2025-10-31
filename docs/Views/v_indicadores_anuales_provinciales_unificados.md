@@ -2,6 +2,15 @@
 
 The `analisis.v_indicadores_anuales_provinciales_unificados` view consolidates the main annual indicators that are available at province level. Every year contributes 52 rows (one per province), and any indicator without data for a province-year combination remains `NULL` in the unified output. This makes it possible to join the view safely with other yearly provincial datasets without losing the geographic universe.
 
+Each row contains the `(anio, provincia_id, provincia)` key alongside the indicators summarised in the following table.
+
+> **⚠️ Warning**
+> The indicators in this view are already aggregated at the province level. Some upstream datasets include national records without territorial identifiers; as a result, summing the provincial totals will **not** always reproduce the national total published by the data source. Consult the documentation of each source table before aggregating beyond the provincial scope.
+
+> **📝 Note** 
+> This page summarises the unified output. Detailed metadata (definitions, caveats, unit descriptions…) for every indicator live in the documentation of the corresponding source tables listed below.
+
+
 ## Source views
 
 The unified view draws from the following intermediate views defined in `sql/views.sql`. All of them align their outputs on the same `(anio, provincia_id)` keys before being joined together.
@@ -26,3 +35,16 @@ The unified view draws from the following intermediate views defined in `sql/vie
 | `tasa_actividad` | [`economia_laboral.tasa_actividad_paro_empleo_provincias`](../Tables/economia_laboral/tasa_actividad_paro_empleo_provincias.md) | `analisis.v_tasa_actividad_paro_empleo_anual` | Average of the four quarterly totals for the year | 2002-2024 |
 | `tasa_empleo` | [`economia_laboral.tasa_actividad_paro_empleo_provincias`](../Tables/economia_laboral/tasa_actividad_paro_empleo_provincias.md) | `analisis.v_tasa_actividad_paro_empleo_anual` | Average of the four quarterly totals for the year | 2002-2024 |
 | `tasa_paro` | [`economia_laboral.tasa_actividad_paro_empleo_provincias`](../Tables/economia_laboral/tasa_actividad_paro_empleo_provincias.md) | `analisis.v_tasa_actividad_paro_empleo_anual` | Average of the four quarterly totals for the year | 2002-2024 |
+| `tasa_bruta_divorcialidad` | [`demografia.tasa_bruta_divorcialidad_provincias`](../Tables/demografia/tasa_bruta_divorcialidad_provincias.md) | `analisis.v_tasa_bruta_divorcialidad_provincial_anual` | Annual divorce rate published for each province | 2005-2023 |
+| `promedio_ideologia_hombres` | [`percepcion_social.barometros_generales`](../Tables/percepcion_social/barometros_generales.md) | `analisis.v_barometros_generales_provincias_anual` | Average reported ideology (0–10) among men | 1979-2024 |
+| `porcentaje_ideologia_1_4_hombres` | [`percepcion_social.barometros_generales`](../Tables/percepcion_social/barometros_generales.md) | `analisis.v_barometros_generales_provincias_anual` | Share of male respondents with ideology 1–4 | 1979-2024 |
+| `porcentaje_ideologia_5_6_hombres` | [`percepcion_social.barometros_generales`](../Tables/percepcion_social/barometros_generales.md) | `analisis.v_barometros_generales_provincias_anual` | Share of male respondents with ideology 5–6 | 1979-2024 |
+| `porcentaje_ideologia_7_10_hombres` | [`percepcion_social.barometros_generales`](../Tables/percepcion_social/barometros_generales.md) | `analisis.v_barometros_generales_provincias_anual` | Share of male respondents with ideology 7–10 | 1979-2024 |
+| `porcentaje_problema_personal_genero_hombres` | [`percepcion_social.barometros_generales`](../Tables/percepcion_social/barometros_generales.md) | `analisis.v_barometros_generales_provincias_anual` | Men naming gender issues as a personal problem | 1979-2024 |
+| `porcentaje_problema_espania_genero_hombres` | [`percepcion_social.barometros_generales`](../Tables/percepcion_social/barometros_generales.md) | `analisis.v_barometros_generales_provincias_anual` | Men naming gender issues as a top issue in Spain | 1979-2024 |
+| `promedio_ideologia_mujeres` | [`percepcion_social.barometros_generales`](../Tables/percepcion_social/barometros_generales.md) | `analisis.v_barometros_generales_provincias_anual` | Average reported ideology (0–10) among women | 1979-2024 |
+| `porcentaje_ideologia_1_4_mujeres` | [`percepcion_social.barometros_generales`](../Tables/percepcion_social/barometros_generales.md) | `analisis.v_barometros_generales_provincias_anual` | Share of female respondents with ideology 1–4 | 1979-2024 |
+| `porcentaje_ideologia_5_6_mujeres` | [`percepcion_social.barometros_generales`](../Tables/percepcion_social/barometros_generales.md) | `analisis.v_barometros_generales_provincias_anual` | Share of female respondents with ideology 5–6 | 1979-2024 |
+| `porcentaje_ideologia_7_10_mujeres` | [`percepcion_social.barometros_generales`](../Tables/percepcion_social/barometros_generales.md) | `analisis.v_barometros_generales_provincias_anual` | Share of female respondents with ideology 7–10 | 1979-2024 |
+| `porcentaje_problema_personal_genero_mujeres` | [`percepcion_social.barometros_generales`](../Tables/percepcion_social/barometros_generales.md) | `analisis.v_barometros_generales_provincias_anual` | Women naming gender issues as a personal problem | 1979-2024 |
+| `porcentaje_problema_espania_genero_mujeres` | [`percepcion_social.barometros_generales`](../Tables/percepcion_social/barometros_generales.md) | `analisis.v_barometros_generales_provincias_anual` | Women naming gender issues as a top issue in Spain | 1979-2024 |

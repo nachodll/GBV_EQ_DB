@@ -2657,7 +2657,6 @@ SELECT
     pres.partido_principal,
     pres.fecha_nombramiento_presidente_principal,
     pres.fecha_fin_presidente_principal,
-    pres.dias_servidos_presidente_principal,
     pres.cambio_presidente_durante_anio,
     pres.presidentes_completo,
     -- Public perception indicators
