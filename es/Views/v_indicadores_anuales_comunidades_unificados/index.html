@@ -2664,6 +2664,128 @@
     
   
   
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#vistas-y-agregaciones-origen" class="md-nav__link">
+    <span class="md-ellipsis">
+      Vistas y agregaciones origen
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Vistas y agregaciones origen">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#demografia" class="md-nav__link">
+    <span class="md-ellipsis">
+      Demografía
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#educacion" class="md-nav__link">
+    <span class="md-ellipsis">
+      Educación
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#violencia-de-genero-y-proteccion" class="md-nav__link">
+    <span class="md-ellipsis">
+      Violencia de género y protección
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#prestaciones-sociales" class="md-nav__link">
+    <span class="md-ellipsis">
+      Prestaciones sociales
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#mercado-laboral-e-ingresos" class="md-nav__link">
+    <span class="md-ellipsis">
+      Mercado laboral e ingresos
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#inclusion-digital" class="md-nav__link">
+    <span class="md-ellipsis">
+      Inclusión digital
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#inclusion-social" class="md-nav__link">
+    <span class="md-ellipsis">
+      Inclusión social
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#seguridad-y-justicia" class="md-nav__link">
+    <span class="md-ellipsis">
+      Seguridad y justicia
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#salud" class="md-nav__link">
+    <span class="md-ellipsis">
+      Salud
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#contexto-institucional" class="md-nav__link">
+    <span class="md-ellipsis">
+      Contexto institucional
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#percepcion-social" class="md-nav__link">
+    <span class="md-ellipsis">
+      Percepción social
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
 </nav>
                   </div>
                 </div>
@@ -2679,7 +2801,505 @@
 
 
 <h1 id="analisisv_indicadores_anuales_comunidades_unificados">analisis.v_indicadores_anuales_comunidades_unificados</h1>
-<p>La documentación de <code>analisis.v_indicadores_anuales_comunidades_unificados</code> se añadirá cuando la vista esté implementada.</p>
+<p>La vista <code>analisis.v_indicadores_anuales_comunidades_unificados</code> reúne los principales indicadores anuales disponibles para las comunidades autónomas españolas. Cada fila representa una combinación <code>(anio, comunidad_autonoma_id, comunidad_autonoma)</code>, lo que facilita cruzar indicadores territoriales sin perder cobertura autonómica.</p>
+<blockquote>
+<p><strong>⚠️ Aviso</strong>
+Las métricas listadas ya están agregadas a nivel autonómico. Varias fuentes publican también registros sin detalle territorial (por ejemplo, totales estatales). Por ello, sumar las comunidades <strong>no</strong> siempre coincide con los totales nacionales oficiales. Revisa la documentación original antes de agregar los indicadores por encima del ámbito autonómico.</p>
+<p><strong>📝 Nota</strong>   <br />
+Esta página describe la estructura de la vista unificada. Las definiciones, notas metodológicas y advertencias de cada indicador se encuentran en la documentación de las tablas origen enlazadas a continuación.</p>
+</blockquote>
+<h2 id="vistas-y-agregaciones-origen">Vistas y agregaciones origen</h2>
+<p>La mayoría de medidas provienen de los indicadores provinciales anuales y se agregan (mediante sumas u otros cálculos) hasta la comunidad autónoma. Otras se nutren de conjuntos de datos ya publicados a nivel autonómico. La siguiente tabla resume el contenido agrupado por temática.</p>
+<h3 id="demografia">Demografía</h3>
+<table>
+<thead>
+<tr>
+<th>Indicador</th>
+<th>Tabla origen</th>
+<th>Vista intermedia</th>
+<th>Lógica de agregación</th>
+<th>Periodo</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>poblacion_comunidad</code></td>
+<td><a href="../../Tables/demografia/poblacion_municipios/"><code>demografia.poblacion_municipios</code></a></td>
+<td><code>analisis.v_poblacion_provincial</code></td>
+<td>Suma de población provincial (mujeres y hombres)</td>
+<td>1996-2024</td>
+</tr>
+<tr>
+<td><code>matrimonios_heterosexuales</code></td>
+<td><a href="../../Tables/demografia/matrimonios_heterosexuales/"><code>demografia.matrimonios_heterosexuales</code></a></td>
+<td><code>matrimonios_het_ccaa</code></td>
+<td>Suma de totales provinciales anuales</td>
+<td>1975-2023</td>
+</tr>
+<tr>
+<td><code>matrimonios_homosexuales_hombres</code></td>
+<td><a href="../../Tables/demografia/matrimonios_homosexuales/"><code>demografia.matrimonios_homosexuales</code></a></td>
+<td><code>matrimonios_hom_ccaa</code></td>
+<td>Suma de matrimonios provinciales entre hombres</td>
+<td>2005-2023</td>
+</tr>
+<tr>
+<td><code>matrimonios_homosexuales_mujeres</code></td>
+<td><a href="../../Tables/demografia/matrimonios_homosexuales/"><code>demografia.matrimonios_homosexuales</code></a></td>
+<td><code>matrimonios_hom_ccaa</code></td>
+<td>Suma de matrimonios provinciales entre mujeres</td>
+<td>2005-2023</td>
+</tr>
+<tr>
+<td><code>tasa_bruta_divorcialidad</code></td>
+<td><a href="../../Tables/demografia/tasa_bruta_divorcialidad_comunidades/"><code>demografia.tasa_bruta_divorcialidad_comunidades</code></a></td>
+<td><code>analisis.v_tasa_bruta_divorcialidad_comunidades_anual</code></td>
+<td>Tasa anual publicada para cada comunidad</td>
+<td>2005-2023</td>
+</tr>
+</tbody>
+</table>
+<h3 id="educacion">Educación</h3>
+<table>
+<thead>
+<tr>
+<th>Indicador</th>
+<th>Tabla origen</th>
+<th>Vista intermedia</th>
+<th>Lógica de agregación</th>
+<th>Periodo</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>matriculados_universidad</code></td>
+<td><a href="../../Tables/educacion_juventud/matriculados_universidad/"><code>educacion_juventud.matriculados_universidad</code></a></td>
+<td><code>analisis.v_matriculados_universidad_comunidades_anual</code></td>
+<td>Suma de matrículas (sexo, nivel, tipo y rama = Total)</td>
+<td>1985-2024</td>
+</tr>
+</tbody>
+</table>
+<h3 id="violencia-de-genero-y-proteccion">Violencia de género y protección</h3>
+<table>
+<thead>
+<tr>
+<th>Indicador</th>
+<th>Tabla origen</th>
+<th>Vista intermedia</th>
+<th>Lógica de agregación</th>
+<th>Periodo</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>feminicidios_pareja_expareja</code></td>
+<td><a href="../../Tables/violencia_genero/feminicidios_pareja_expareja/"><code>violencia_genero.feminicidios_pareja_expareja</code></a></td>
+<td><code>feminicidios_ccaa</code></td>
+<td>Suma de totales provinciales anuales</td>
+<td>2003-2024</td>
+</tr>
+<tr>
+<td><code>huerfanos_menores</code></td>
+<td><a href="../../Tables/violencia_genero/feminicidios_pareja_expareja/"><code>violencia_genero.feminicidios_pareja_expareja</code></a></td>
+<td><code>feminicidios_ccaa</code></td>
+<td>Suma de menores huérfanos provinciales</td>
+<td>2013-2024</td>
+</tr>
+<tr>
+<td><code>feminicidios_fuera_pareja_expareja</code></td>
+<td><a href="../../Tables/violencia_genero/feminicidios_fuera_pareja_expareja/"><code>violencia_genero.feminicidios_fuera_pareja_expareja</code></a></td>
+<td><code>analisis.v_feminicidios_fuera_pareja_expareja_comunidades_anual</code></td>
+<td>Suma de totales autonómicos (faltas de datos rellenadas con 0)</td>
+<td>2022-2024</td>
+</tr>
+<tr>
+<td><code>menores_victimas_mortales</code></td>
+<td><a href="../../Tables/violencia_genero/menores_victimas_mortales/"><code>violencia_genero.menores_victimas_mortales</code></a></td>
+<td><code>menores_victimas_ccaa</code></td>
+<td>Suma de totales provinciales (0 cuando no hay registro)</td>
+<td>2013-2024</td>
+</tr>
+<tr>
+<td><code>servicio_016_contactos</code></td>
+<td><a href="../../Tables/violencia_genero/servicio_016/"><code>violencia_genero.servicio_016</code></a></td>
+<td><code>servicio_016_ccaa</code></td>
+<td>Suma de contactos provinciales (llamadas, WhatsApp, email, chat)</td>
+<td>2008-2024</td>
+</tr>
+<tr>
+<td><code>atenpro_usuarias_activas</code></td>
+<td><a href="../../Tables/violencia_genero/usuarias_atenpro/"><code>violencia_genero.usuarias_atenpro</code></a></td>
+<td><code>atenpro_ccaa</code></td>
+<td>Suma de mediciones de diciembre provinciales (foto fin de año)</td>
+<td>2005-2024</td>
+</tr>
+<tr>
+<td><code>dispositivos_electronicos_seguimiento_activos</code></td>
+<td><a href="../../Tables/violencia_genero/dispositivos_electronicos_seguimiento/"><code>violencia_genero.dispositivos_electronicos_seguimiento</code></a></td>
+<td><code>dispositivos_ccaa</code></td>
+<td>Suma de mediciones de diciembre provinciales (foto fin de año)</td>
+<td>2009-2024</td>
+</tr>
+<tr>
+<td><code>denuncias_vg_pareja</code></td>
+<td><a href="../../Tables/violencia_genero/denuncias_vg_pareja/"><code>violencia_genero.denuncias_vg_pareja</code></a></td>
+<td><code>denuncias_ccaa</code></td>
+<td>Suma de totales provinciales (0 cuando no hay registro)</td>
+<td>2009-2024</td>
+</tr>
+<tr>
+<td><code>denuncias_vg_presentadas</code></td>
+<td><a href="../../Tables/violencia_genero/denuncias_vg_presentadas/"><code>violencia_genero.denuncias_vg_presentadas</code></a></td>
+<td><code>analisis.v_denuncias_vg_presentadas_comunidades_anual</code></td>
+<td>Totales autonómicos del Consejo General del Poder Judicial</td>
+<td>2007-2024</td>
+</tr>
+</tbody>
+</table>
+<h3 id="prestaciones-sociales">Prestaciones sociales</h3>
+<table>
+<thead>
+<tr>
+<th>Indicador</th>
+<th>Tabla origen</th>
+<th>Vista intermedia</th>
+<th>Lógica de agregación</th>
+<th>Periodo</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>prestaciones_maternidad</code></td>
+<td><a href="../../Tables/educacion_juventud/prestaciones_maternidad_paternidad/"><code>educacion_juventud.prestaciones_maternidad_paternidad</code></a></td>
+<td><code>prestaciones_ccaa</code></td>
+<td>Suma de prestaciones provinciales (<code>percibidas_madre</code> + <code>percibidas_padre</code>)</td>
+<td>2002-2019</td>
+</tr>
+<tr>
+<td><code>prestaciones_paternidad</code></td>
+<td><a href="../../Tables/educacion_juventud/prestaciones_maternidad_paternidad/"><code>educacion_juventud.prestaciones_maternidad_paternidad</code></a></td>
+<td><code>prestaciones_ccaa</code></td>
+<td>Suma de prestaciones provinciales (<code>percibidas_padre</code>; <code>NULL</code> antes de 2007)</td>
+<td>2007-2019</td>
+</tr>
+</tbody>
+</table>
+<h3 id="mercado-laboral-e-ingresos">Mercado laboral e ingresos</h3>
+<table>
+<thead>
+<tr>
+<th>Indicador</th>
+<th>Tabla origen</th>
+<th>Vista intermedia</th>
+<th>Lógica de agregación</th>
+<th>Periodo</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>tasa_paro</code></td>
+<td><a href="../../Tables/economia_laboral/tasa_paro_comunidades/"><code>economia_laboral.tasa_paro_comunidades</code></a></td>
+<td><code>analisis.v_tasa_paro_comunidades_anual</code></td>
+<td>Promedio de los cuatro valores trimestrales</td>
+<td>2002-2024</td>
+</tr>
+<tr>
+<td><code>ganancia_por_hora_trabajo</code></td>
+<td><a href="../../Tables/igualdad_formal/ganancia_por_hora_trabajo/"><code>igualdad_formal.ganancia_por_hora_trabajo</code></a></td>
+<td><code>analisis.v_ganancia_por_hora_trabajo_comunidades_anual</code></td>
+<td>Ganancia media por hora (sexo total, todos los sectores)</td>
+<td>2004-2023</td>
+</tr>
+<tr>
+<td><code>porcentaje_mujeres_cargos_autonomicos</code></td>
+<td><a href="../../Tables/igualdad_formal/mujeres_cargos_autonomicos/"><code>igualdad_formal.mujeres_cargos_autonomicos</code></a></td>
+<td><code>analisis.v_mujeres_cargos_autonomicos_anual</code></td>
+<td>Porcentaje de mujeres en cargos autonómicos</td>
+<td>1996-2024</td>
+</tr>
+</tbody>
+</table>
+<h3 id="inclusion-digital">Inclusión digital</h3>
+<table>
+<thead>
+<tr>
+<th>Indicador</th>
+<th>Tabla origen</th>
+<th>Vista intermedia</th>
+<th>Lógica de agregación</th>
+<th>Periodo</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>porcentaje_acceso_internet_viviendas</code></td>
+<td><a href="../../Tables/tecnologia_y_medios/acceso_internet_viviendas/"><code>tecnologia_y_medios.acceso_internet_viviendas</code></a></td>
+<td><code>analisis.v_acceso_internet_viviendas_comunidades_anual</code></td>
+<td>Porcentaje de hogares con acceso a internet</td>
+<td>2006-2024</td>
+</tr>
+<tr>
+<td><code>porcentaje_uso_internet_diario_personas</code></td>
+<td><a href="../../Tables/tecnologia_y_medios/uso_internet_personas/"><code>tecnologia_y_medios.uso_internet_personas</code></a></td>
+<td><code>analisis.v_acceso_internet_personas_comunidades_anual</code></td>
+<td>Porcentaje de personas que usan internet a diario</td>
+<td>2006-2024</td>
+</tr>
+<tr>
+<td><code>porcentaje_ninios_con_telefono_movil</code></td>
+<td><a href="../../Tables/tecnologia_y_medios/uso_internet_ninios/"><code>tecnologia_y_medios.uso_internet_ninios</code></a></td>
+<td><code>analisis.v_uso_internet_ninios_comunidades_anual</code></td>
+<td>Porcentaje de menores con teléfono móvil</td>
+<td>2006-2024</td>
+</tr>
+</tbody>
+</table>
+<h3 id="inclusion-social">Inclusión social</h3>
+<table>
+<thead>
+<tr>
+<th>Indicador</th>
+<th>Tabla origen</th>
+<th>Vista intermedia</th>
+<th>Lógica de agregación</th>
+<th>Periodo</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>porcentaje_arope</code></td>
+<td><a href="../../Tables/economia_laboral/riesgo_pobreza_exclusion/"><code>economia_laboral.riesgo_pobreza_exclusion</code></a></td>
+<td><code>analisis.v_riesgo_pobreza_exclusion_social_comunidades_anual</code></td>
+<td>Indicador AROPE publicado por comunidad</td>
+<td>2008-2024</td>
+</tr>
+</tbody>
+</table>
+<h3 id="seguridad-y-justicia">Seguridad y justicia</h3>
+<table>
+<thead>
+<tr>
+<th>Indicador</th>
+<th>Tabla origen</th>
+<th>Vista intermedia</th>
+<th>Lógica de agregación</th>
+<th>Periodo</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>tasa_homicidios</code></td>
+<td><a href="../../Tables/seguridad_criminalidad/tasas_homicidios_criminalidad/"><code>seguridad_criminalidad.tasas_homicidios_criminalidad</code></a></td>
+<td><code>analisis.v_tasas_homicidios_criminalidad_comunidades_anual</code></td>
+<td>Tasa autonómica de homicidios</td>
+<td>2010-2023</td>
+</tr>
+<tr>
+<td><code>tasa_criminalidad</code></td>
+<td><a href="../../Tables/seguridad_criminalidad/tasas_homicidios_criminalidad/"><code>seguridad_criminalidad.tasas_homicidios_criminalidad</code></a></td>
+<td><code>analisis.v_tasas_homicidios_criminalidad_comunidades_anual</code></td>
+<td>Tasa autonómica de criminalidad (por 100,000 habitantes)</td>
+<td>2010-2023</td>
+</tr>
+</tbody>
+</table>
+<h3 id="salud">Salud</h3>
+<table>
+<thead>
+<tr>
+<th>Indicador</th>
+<th>Tabla origen</th>
+<th>Vista intermedia</th>
+<th>Lógica de agregación</th>
+<th>Periodo</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>tasa_ive</code></td>
+<td><a href="../../Tables/salud/ive_ccaa/"><code>salud.ive_ccaa</code></a></td>
+<td><code>analisis.v_ive_comunidades_anual</code></td>
+<td>Tasa de interrupción voluntaria del embarazo</td>
+<td>2014-2023</td>
+</tr>
+</tbody>
+</table>
+<h3 id="contexto-institucional">Contexto institucional</h3>
+<table>
+<thead>
+<tr>
+<th>Indicador</th>
+<th>Tabla origen</th>
+<th>Vista intermedia</th>
+<th>Lógica de agregación</th>
+<th>Periodo</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>fecha_primera_ley_violencia</code></td>
+<td><a href="../../Tables/politicas_publicas_igualdad_violencia/legislacion/"><code>politicas_publicas_igualdad_violencia.legislacion</code></a></td>
+<td><code>analisis.v_legislacion_primera_ley_autonomica</code></td>
+<td>Fecha de aprobacion de la primera ley autonómica especifica en violencia de genero, repetida cada año</td>
+<td>1975-2024</td>
+</tr>
+<tr>
+<td><code>fecha_primera_ley_igualdad</code></td>
+<td><a href="../../Tables/politicas_publicas_igualdad_violencia/legislacion/"><code>politicas_publicas_igualdad_violencia.legislacion</code></a></td>
+<td><code>analisis.v_legislacion_primera_ley_autonomica</code></td>
+<td>Fecha de aprobacion de la primera ley autonómica especifica en igualdad de genero , repetida cada año</td>
+<td>1975-2024</td>
+</tr>
+<tr>
+<td><code>existe_instituto_mujer</code></td>
+<td><a href="../../Tables/politicas_publicas_igualdad_violencia/institutos_mujer/"><code>politicas_publicas_igualdad_violencia.institutos_mujer</code></a></td>
+<td><code>analisis.v_instituto_mujer_autonomico</code></td>
+<td>Indicador booleano de existencia de instituto de la mujer para dicho año-ccaa</td>
+<td>1975-2024</td>
+</tr>
+<tr>
+<td><code>presidente_principal</code></td>
+<td><a href="../../Tables/politica/presidentes_autonomicos/"><code>politica.presidentes_autonomicos</code></a></td>
+<td><code>analisis.v_presidentes_autonomicos_anual</code></td>
+<td>Presidente con más días en el cargo ese año</td>
+<td>1977-2024</td>
+</tr>
+<tr>
+<td><code>partido_principal</code></td>
+<td><a href="../../Tables/politica/presidentes_autonomicos/"><code>politica.presidentes_autonomicos</code></a></td>
+<td><code>analisis.v_presidentes_autonomicos_anual</code></td>
+<td>Partido del presidente principal</td>
+<td>1977-2024</td>
+</tr>
+<tr>
+<td><code>fecha_nombramiento_presidente_principal</code></td>
+<td><a href="../../Tables/politica/presidentes_autonomicos/"><code>politica.presidentes_autonomicos</code></a></td>
+<td><code>analisis.v_presidentes_autonomicos_anual</code></td>
+<td>Fecha de nombramiento del presidente principal</td>
+<td>1977-2024</td>
+</tr>
+<tr>
+<td><code>fecha_fin_presidente_principal</code></td>
+<td><a href="../../Tables/politica/presidentes_autonomicos/"><code>politica.presidentes_autonomicos</code></a></td>
+<td><code>analisis.v_presidentes_autonomicos_anual</code></td>
+<td>Fecha de salida del gobierno del presidente</td>
+<td>1977-2024</td>
+</tr>
+<tr>
+<td><code>cambio_presidente_durante_anio</code></td>
+<td><a href="../../Tables/politica/presidentes_autonomicos/"><code>politica.presidentes_autonomicos</code></a></td>
+<td><code>analisis.v_presidentes_autonomicos_anual</code></td>
+<td>Indicador de cambios de presidencia dentro del año</td>
+<td>1977-2024</td>
+</tr>
+<tr>
+<td><code>presidentes_completo</code></td>
+<td><a href="../../Tables/politica/presidentes_autonomicos/"><code>politica.presidentes_autonomicos</code></a></td>
+<td><code>analisis.v_presidentes_autonomicos_anual</code></td>
+<td>Lista concatenada de todos los presidentes del año</td>
+<td>1977-2024</td>
+</tr>
+</tbody>
+</table>
+<h3 id="percepcion-social">Percepción social</h3>
+<table>
+<thead>
+<tr>
+<th>Indicador</th>
+<th>Tabla origen</th>
+<th>Vista intermedia</th>
+<th>Lógica de agregación</th>
+<th>Periodo</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>promedio_ideologia_hombres</code></td>
+<td><a href="../../Tables/percepcion_social/barometros_generales/"><code>percepcion_social.barometros_generales</code></a></td>
+<td><code>analisis.v_barometros_generales_comunidades_anual</code></td>
+<td>Ideología media declarada (0–10) entre hombres</td>
+<td>1979-2024</td>
+</tr>
+<tr>
+<td><code>porcentaje_ideologia_1_4_hombres</code></td>
+<td><a href="../../Tables/percepcion_social/barometros_generales/"><code>percepcion_social.barometros_generales</code></a></td>
+<td><code>analisis.v_barometros_generales_comunidades_anual</code></td>
+<td>Porcentaje de hombres con ideología 1–4</td>
+<td>1979-2024</td>
+</tr>
+<tr>
+<td><code>porcentaje_ideologia_5_6_hombres</code></td>
+<td><a href="../../Tables/percepcion_social/barometros_generales/"><code>percepcion_social.barometros_generales</code></a></td>
+<td><code>analisis.v_barometros_generales_comunidades_anual</code></td>
+<td>Porcentaje de hombres con ideología 5–6</td>
+<td>1979-2024</td>
+</tr>
+<tr>
+<td><code>porcentaje_ideologia_7_10_hombres</code></td>
+<td><a href="../../Tables/percepcion_social/barometros_generales/"><code>percepcion_social.barometros_generales</code></a></td>
+<td><code>analisis.v_barometros_generales_comunidades_anual</code></td>
+<td>Porcentaje de hombres con ideología 7–10</td>
+<td>1979-2024</td>
+</tr>
+<tr>
+<td><code>porcentaje_problema_personal_genero_hombres</code></td>
+<td><a href="../../Tables/percepcion_social/barometros_generales/"><code>percepcion_social.barometros_generales</code></a></td>
+<td><code>analisis.v_barometros_generales_comunidades_anual</code></td>
+<td>Hombres que señalan la violencia/igualdad de género como problema personal</td>
+<td>1979-2024</td>
+</tr>
+<tr>
+<td><code>porcentaje_problema_espania_genero_hombres</code></td>
+<td><a href="../../Tables/percepcion_social/barometros_generales/"><code>percepcion_social.barometros_generales</code></a></td>
+<td><code>analisis.v_barometros_generales_comunidades_anual</code></td>
+<td>Hombres que señalan la violencia/igualdad de género como problema en España</td>
+<td>1979-2024</td>
+</tr>
+<tr>
+<td><code>promedio_ideologia_mujeres</code></td>
+<td><a href="../../Tables/percepcion_social/barometros_generales/"><code>percepcion_social.barometros_generales</code></a></td>
+<td><code>analisis.v_barometros_generales_comunidades_anual</code></td>
+<td>Ideología media declarada (0–10) entre mujeres</td>
+<td>1979-2024</td>
+</tr>
+<tr>
+<td><code>porcentaje_ideologia_1_4_mujeres</code></td>
+<td><a href="../../Tables/percepcion_social/barometros_generales/"><code>percepcion_social.barometros_generales</code></a></td>
+<td><code>analisis.v_barometros_generales_comunidades_anual</code></td>
+<td>Porcentaje de mujeres con ideología 1–4</td>
+<td>1979-2024</td>
+</tr>
+<tr>
+<td><code>porcentaje_ideologia_5_6_mujeres</code></td>
+<td><a href="../../Tables/percepcion_social/barometros_generales/"><code>percepcion_social.barometros_generales</code></a></td>
+<td><code>analisis.v_barometros_generales_comunidades_anual</code></td>
+<td>Porcentaje de mujeres con ideología 5–6</td>
+<td>1979-2024</td>
+</tr>
+<tr>
+<td><code>porcentaje_ideologia_7_10_mujeres</code></td>
+<td><a href="../../Tables/percepcion_social/barometros_generales/"><code>percepcion_social.barometros_generales</code></a></td>
+<td><code>analisis.v_barometros_generales_comunidades_anual</code></td>
+<td>Porcentaje de mujeres con ideología 7–10</td>
+<td>1979-2024</td>
+</tr>
+<tr>
+<td><code>porcentaje_problema_personal_genero_mujeres</code></td>
+<td><a href="../../Tables/percepcion_social/barometros_generales/"><code>percepcion_social.barometros_generales</code></a></td>
+<td><code>analisis.v_barometros_generales_comunidades_anual</code></td>
+<td>Mujeres que señalan la violencia/igualdad de género como problema personal</td>
+<td>1979-2024</td>
+</tr>
+<tr>
+<td><code>porcentaje_problema_espania_genero_mujeres</code></td>
+<td><a href="../../Tables/percepcion_social/barometros_generales/"><code>percepcion_social.barometros_generales</code></a></td>
+<td><code>analisis.v_barometros_generales_comunidades_anual</code></td>
+<td>Mujeres que señalan la violencia/igualdad de género como problema en España</td>
+<td>1979-2024</td>
+</tr>
+</tbody>
+</table>
 
 
 

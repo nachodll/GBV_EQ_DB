@@ -2784,6 +2784,13 @@
 
 <h1 id="analisisv_indicadores_anuales_provinciales_unificados">analisis.v_indicadores_anuales_provinciales_unificados</h1>
 <p>The <code>analisis.v_indicadores_anuales_provinciales_unificados</code> view consolidates the main annual indicators that are available at province level. Every year contributes 52 rows (one per province), and any indicator without data for a province-year combination remains <code>NULL</code> in the unified output. This makes it possible to join the view safely with other yearly provincial datasets without losing the geographic universe.</p>
+<p>Each row contains the <code>(anio, provincia_id, provincia)</code> key alongside the indicators summarised in the following table.</p>
+<blockquote>
+<p><strong>⚠️ Warning</strong>
+The indicators in this view are already aggregated at the province level. Some upstream datasets include national records without territorial identifiers; as a result, summing the provincial totals will <strong>not</strong> always reproduce the national total published by the data source. Consult the documentation of each source table before aggregating beyond the provincial scope.</p>
+<p><strong>📝 Note</strong> 
+This page summarises the unified output. Detailed metadata (definitions, caveats, unit descriptions…) for every indicator live in the documentation of the corresponding source tables listed below.</p>
+</blockquote>
 <h2 id="source-views">Source views</h2>
 <p>The unified view draws from the following intermediate views defined in <code>sql/views.sql</code>. All of them align their outputs on the same <code>(anio, provincia_id)</code> keys before being joined together.</p>
 <h3 id="indicators-included">Indicators included</h3>
@@ -2800,115 +2807,206 @@
 <tbody>
 <tr>
 <td><code>poblacion_provincia</code></td>
-<td><code>demografia.poblacion_municipios</code></td>
+<td><a href="../../Tables/demografia/poblacion_municipios/"><code>demografia.poblacion_municipios</code></a></td>
 <td><code>analisis.v_poblacion_provincial</code></td>
 <td>Sum of municipal population for men and women</td>
 <td>1996-2024</td>
 </tr>
 <tr>
 <td><code>matrimonios_heterosexuales</code></td>
-<td><code>demografia.matrimonios_heterosexuales</code></td>
+<td><a href="../../Tables/demografia/matrimonios_heterosexuales/"><code>demografia.matrimonios_heterosexuales</code></a></td>
 <td><code>analisis.v_matrimonios_heterosexuales_anual</code></td>
 <td>Sum of marriages where <code>estado_civil_anterior = 'Total'</code></td>
 <td>1975-2023</td>
 </tr>
 <tr>
 <td><code>matrimonios_homosexuales_hombres</code></td>
-<td><code>demografia.matrimonios_homosexuales</code></td>
+<td><a href="../../Tables/demografia/matrimonios_homosexuales/"><code>demografia.matrimonios_homosexuales</code></a></td>
 <td><code>analisis.v_matrimonios_homosexuales_anual</code></td>
 <td>Sum of marriages between men</td>
 <td>2005-2023</td>
 </tr>
 <tr>
 <td><code>matrimonios_homosexuales_mujeres</code></td>
-<td><code>demografia.matrimonios_homosexuales</code></td>
+<td><a href="../../Tables/demografia/matrimonios_homosexuales/"><code>demografia.matrimonios_homosexuales</code></a></td>
 <td><code>analisis.v_matrimonios_homosexuales_anual</code></td>
 <td>Sum of marriages between women</td>
 <td>2005-2023</td>
 </tr>
 <tr>
 <td><code>feminicidios_pareja_expareja</code></td>
-<td><code>violencia_genero.feminicidios_pareja_expareja</code></td>
+<td><a href="../../Tables/violencia_genero/feminicidios_pareja_expareja/"><code>violencia_genero.feminicidios_pareja_expareja</code></a></td>
 <td><code>analisis.v_feminicidios_pareja_expareja_anual</code></td>
 <td>Sum of reported femicides (zeros are backfilled when no records exist)</td>
 <td>2003-2024</td>
 </tr>
 <tr>
 <td><code>huerfanos_menores</code></td>
-<td><code>violencia_genero.feminicidios_pareja_expareja</code></td>
+<td><a href="../../Tables/violencia_genero/feminicidios_pareja_expareja/"><code>violencia_genero.feminicidios_pareja_expareja</code></a></td>
 <td><code>analisis.v_feminicidios_pareja_expareja_anual</code></td>
 <td>Sum of orphaned minors (available from 2013 onwards; earlier years remain <code>NULL</code>)</td>
 <td>2013-2024</td>
 </tr>
 <tr>
 <td><code>menores_victimas_mortales</code></td>
-<td><code>violencia_genero.menores_victimas_mortales</code></td>
+<td><a href="../../Tables/violencia_genero/menores_victimas_mortales/"><code>violencia_genero.menores_victimas_mortales</code></a></td>
 <td><code>analisis.v_menores_victimas_mortales_anual</code></td>
 <td>Sum of victims (zeros are backfilled when no records exist)</td>
 <td>2013-2024</td>
 </tr>
 <tr>
 <td><code>servicio_016_contactos</code></td>
-<td><code>violencia_genero.servicio_016</code></td>
+<td><a href="../../Tables/violencia_genero/servicio_016/"><code>violencia_genero.servicio_016</code></a></td>
 <td><code>analisis.v_servicio_016_anual</code></td>
 <td>Sum of calls, WhatsApp, emails and chats (zeros are backfilled when no records exist)</td>
 <td>2008-2024</td>
 </tr>
 <tr>
 <td><code>atenpro_usuarias_activas</code></td>
-<td><code>violencia_genero.usuarias_atenpro</code></td>
+<td><a href="../../Tables/violencia_genero/usuarias_atenpro/"><code>violencia_genero.usuarias_atenpro</code></a></td>
 <td><code>analisis.v_atenpro_usuarias_activas_anual</code></td>
 <td>December measurement (end-of-year active users; missing years remain <code>NULL</code>)</td>
 <td>2005-2024</td>
 </tr>
 <tr>
 <td><code>dispositivos_electronicos_seguimiento_activos</code></td>
-<td><code>violencia_genero.dispositivos_electronicos_seguimiento</code></td>
+<td><a href="../../Tables/violencia_genero/dispositivos_electronicos_seguimiento/"><code>violencia_genero.dispositivos_electronicos_seguimiento</code></a></td>
 <td><code>analisis.v_dispositivos_electronicos_seguimiento_anual</code></td>
 <td>December measurement (end-of-year active devices; missing years remain <code>NULL</code>)</td>
 <td>2009-2024</td>
 </tr>
 <tr>
 <td><code>denuncias_vg_pareja</code></td>
-<td><code>violencia_genero.denuncias_vg_pareja</code></td>
+<td><a href="../../Tables/violencia_genero/denuncias_vg_pareja/"><code>violencia_genero.denuncias_vg_pareja</code></a></td>
 <td><code>analisis.v_denuncias_vg_pareja_anual</code></td>
 <td>Sum of complaints (zeros are backfilled when no records exist)</td>
 <td>2009-2024</td>
 </tr>
 <tr>
 <td><code>prestaciones_maternidad</code></td>
-<td><code>educacion_juventud.prestaciones_maternidad_paternidad</code></td>
+<td><a href="../../Tables/educacion_juventud/prestaciones_maternidad_paternidad/"><code>educacion_juventud.prestaciones_maternidad_paternidad</code></a></td>
 <td><code>analisis.v_prestaciones_maternidad_paternidad_anual</code></td>
 <td>Sum of maternity benefits (<code>percibidas_madre</code> + <code>percibidas_padre</code> when <code>tipo = 'Maternidad'</code>)</td>
 <td>2002-2019</td>
 </tr>
 <tr>
 <td><code>prestaciones_paternidad</code></td>
-<td><code>educacion_juventud.prestaciones_maternidad_paternidad</code></td>
+<td><a href="../../Tables/educacion_juventud/prestaciones_maternidad_paternidad/"><code>educacion_juventud.prestaciones_maternidad_paternidad</code></a></td>
 <td><code>analisis.v_prestaciones_maternidad_paternidad_anual</code></td>
 <td>Sum of paternity benefits (<code>percibidas_padre</code> when <code>tipo = 'Paternidad'</code>; <code>NULL</code> before 2007)</td>
 <td>2007-2019</td>
 </tr>
 <tr>
 <td><code>tasa_actividad</code></td>
-<td><code>economia_laboral.tasa_actividad_paro_empleo_provincias</code></td>
+<td><a href="../../Tables/economia_laboral/tasa_actividad_paro_empleo_provincias/"><code>economia_laboral.tasa_actividad_paro_empleo_provincias</code></a></td>
 <td><code>analisis.v_tasa_actividad_paro_empleo_anual</code></td>
 <td>Average of the four quarterly totals for the year</td>
 <td>2002-2024</td>
 </tr>
 <tr>
 <td><code>tasa_empleo</code></td>
-<td><code>economia_laboral.tasa_actividad_paro_empleo_provincias</code></td>
+<td><a href="../../Tables/economia_laboral/tasa_actividad_paro_empleo_provincias/"><code>economia_laboral.tasa_actividad_paro_empleo_provincias</code></a></td>
 <td><code>analisis.v_tasa_actividad_paro_empleo_anual</code></td>
 <td>Average of the four quarterly totals for the year</td>
 <td>2002-2024</td>
 </tr>
 <tr>
 <td><code>tasa_paro</code></td>
-<td><code>economia_laboral.tasa_actividad_paro_empleo_provincias</code></td>
+<td><a href="../../Tables/economia_laboral/tasa_actividad_paro_empleo_provincias/"><code>economia_laboral.tasa_actividad_paro_empleo_provincias</code></a></td>
 <td><code>analisis.v_tasa_actividad_paro_empleo_anual</code></td>
 <td>Average of the four quarterly totals for the year</td>
 <td>2002-2024</td>
+</tr>
+<tr>
+<td><code>tasa_bruta_divorcialidad</code></td>
+<td><a href="../../Tables/demografia/tasa_bruta_divorcialidad_provincias/"><code>demografia.tasa_bruta_divorcialidad_provincias</code></a></td>
+<td><code>analisis.v_tasa_bruta_divorcialidad_provincial_anual</code></td>
+<td>Annual divorce rate published for each province</td>
+<td>2005-2023</td>
+</tr>
+<tr>
+<td><code>promedio_ideologia_hombres</code></td>
+<td><a href="../../Tables/percepcion_social/barometros_generales/"><code>percepcion_social.barometros_generales</code></a></td>
+<td><code>analisis.v_barometros_generales_provincias_anual</code></td>
+<td>Average reported ideology (0–10) among men</td>
+<td>1979-2024</td>
+</tr>
+<tr>
+<td><code>porcentaje_ideologia_1_4_hombres</code></td>
+<td><a href="../../Tables/percepcion_social/barometros_generales/"><code>percepcion_social.barometros_generales</code></a></td>
+<td><code>analisis.v_barometros_generales_provincias_anual</code></td>
+<td>Share of male respondents with ideology 1–4</td>
+<td>1979-2024</td>
+</tr>
+<tr>
+<td><code>porcentaje_ideologia_5_6_hombres</code></td>
+<td><a href="../../Tables/percepcion_social/barometros_generales/"><code>percepcion_social.barometros_generales</code></a></td>
+<td><code>analisis.v_barometros_generales_provincias_anual</code></td>
+<td>Share of male respondents with ideology 5–6</td>
+<td>1979-2024</td>
+</tr>
+<tr>
+<td><code>porcentaje_ideologia_7_10_hombres</code></td>
+<td><a href="../../Tables/percepcion_social/barometros_generales/"><code>percepcion_social.barometros_generales</code></a></td>
+<td><code>analisis.v_barometros_generales_provincias_anual</code></td>
+<td>Share of male respondents with ideology 7–10</td>
+<td>1979-2024</td>
+</tr>
+<tr>
+<td><code>porcentaje_problema_personal_genero_hombres</code></td>
+<td><a href="../../Tables/percepcion_social/barometros_generales/"><code>percepcion_social.barometros_generales</code></a></td>
+<td><code>analisis.v_barometros_generales_provincias_anual</code></td>
+<td>Men naming gender issues as a personal problem</td>
+<td>1979-2024</td>
+</tr>
+<tr>
+<td><code>porcentaje_problema_espania_genero_hombres</code></td>
+<td><a href="../../Tables/percepcion_social/barometros_generales/"><code>percepcion_social.barometros_generales</code></a></td>
+<td><code>analisis.v_barometros_generales_provincias_anual</code></td>
+<td>Men naming gender issues as a top issue in Spain</td>
+<td>1979-2024</td>
+</tr>
+<tr>
+<td><code>promedio_ideologia_mujeres</code></td>
+<td><a href="../../Tables/percepcion_social/barometros_generales/"><code>percepcion_social.barometros_generales</code></a></td>
+<td><code>analisis.v_barometros_generales_provincias_anual</code></td>
+<td>Average reported ideology (0–10) among women</td>
+<td>1979-2024</td>
+</tr>
+<tr>
+<td><code>porcentaje_ideologia_1_4_mujeres</code></td>
+<td><a href="../../Tables/percepcion_social/barometros_generales/"><code>percepcion_social.barometros_generales</code></a></td>
+<td><code>analisis.v_barometros_generales_provincias_anual</code></td>
+<td>Share of female respondents with ideology 1–4</td>
+<td>1979-2024</td>
+</tr>
+<tr>
+<td><code>porcentaje_ideologia_5_6_mujeres</code></td>
+<td><a href="../../Tables/percepcion_social/barometros_generales/"><code>percepcion_social.barometros_generales</code></a></td>
+<td><code>analisis.v_barometros_generales_provincias_anual</code></td>
+<td>Share of female respondents with ideology 5–6</td>
+<td>1979-2024</td>
+</tr>
+<tr>
+<td><code>porcentaje_ideologia_7_10_mujeres</code></td>
+<td><a href="../../Tables/percepcion_social/barometros_generales/"><code>percepcion_social.barometros_generales</code></a></td>
+<td><code>analisis.v_barometros_generales_provincias_anual</code></td>
+<td>Share of female respondents with ideology 7–10</td>
+<td>1979-2024</td>
+</tr>
+<tr>
+<td><code>porcentaje_problema_personal_genero_mujeres</code></td>
+<td><a href="../../Tables/percepcion_social/barometros_generales/"><code>percepcion_social.barometros_generales</code></a></td>
+<td><code>analisis.v_barometros_generales_provincias_anual</code></td>
+<td>Women naming gender issues as a personal problem</td>
+<td>1979-2024</td>
+</tr>
+<tr>
+<td><code>porcentaje_problema_espania_genero_mujeres</code></td>
+<td><a href="../../Tables/percepcion_social/barometros_generales/"><code>percepcion_social.barometros_generales</code></a></td>
+<td><code>analisis.v_barometros_generales_provincias_anual</code></td>
+<td>Women naming gender issues as a top issue in Spain</td>
+<td>1979-2024</td>
 </tr>
 </tbody>
 </table>
