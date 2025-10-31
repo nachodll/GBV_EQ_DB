@@ -2065,6 +2065,228 @@ ORDER BY
     ac.anio,
     ac.comunidad_autonoma_id;
 
+-- 18. presidentes_autonomicos, president in office for each year-comunidad with change indicator
+CREATE OR REPLACE VIEW
+    analisis.v_presidentes_autonomicos_anual AS
+WITH
+    year_range AS (
+        SELECT
+            generate_series(1975, 2024) AS anio
+    ),
+    all_combinations AS (
+        SELECT
+            yr.anio,
+            ca.comunidad_autonoma_id
+        FROM
+            year_range yr
+            CROSS JOIN geo.comunidades_autonomas ca
+        WHERE
+            ca.comunidad_autonoma_id != 0
+    ),
+    -- Calculate end dates by looking at next president's start date
+    presidentes_con_fin AS (
+        SELECT
+            p.comunidad_autonoma_id,
+            p.presidente,
+            p.partido,
+            p.nombramiento,
+            -- Get the next president's start date as this president's end date
+            LEAD(p.nombramiento) OVER (
+                PARTITION BY
+                    p.comunidad_autonoma_id
+                ORDER BY
+                    p.nombramiento
+            ) AS fecha_fin_calculada
+        FROM
+            politica.presidentes_autonomicos p
+    ),
+    -- Expand presidencies to cover all years in office with actual days served
+    presidentes_por_anio AS (
+        SELECT
+            p.comunidad_autonoma_id,
+            p.presidente,
+            p.partido,
+            p.nombramiento,
+            p.fecha_fin_calculada,
+            gs.anio,
+            -- Calculate actual days served in this specific year
+            CASE
+            -- If presidency starts and ends in the same year
+                WHEN EXTRACT(
+                    YEAR
+                    FROM
+                        p.nombramiento
+                ) = gs.anio
+                AND p.fecha_fin_calculada IS NOT NULL
+                AND EXTRACT(
+                    YEAR
+                    FROM
+                        p.fecha_fin_calculada
+                ) = gs.anio THEN (p.fecha_fin_calculada - p.nombramiento)::integer
+                -- If presidency starts in this year but continues beyond
+                WHEN EXTRACT(
+                    YEAR
+                    FROM
+                        p.nombramiento
+                ) = gs.anio
+                AND (
+                    p.fecha_fin_calculada IS NULL
+                    OR EXTRACT(
+                        YEAR
+                        FROM
+                            p.fecha_fin_calculada
+                    ) > gs.anio
+                ) THEN (DATE (gs.anio || '-12-31') - p.nombramiento)::integer + 1
+                -- If presidency ends in this year but started before
+                WHEN EXTRACT(
+                    YEAR
+                    FROM
+                        p.nombramiento
+                ) < gs.anio
+                AND p.fecha_fin_calculada IS NOT NULL
+                AND EXTRACT(
+                    YEAR
+                    FROM
+                        p.fecha_fin_calculada
+                ) = gs.anio THEN (
+                    p.fecha_fin_calculada - DATE (gs.anio || '-01-01')
+                )::integer
+                -- If presidency spans the entire year
+                WHEN EXTRACT(
+                    YEAR
+                    FROM
+                        p.nombramiento
+                ) < gs.anio
+                AND (
+                    p.fecha_fin_calculada IS NULL
+                    OR EXTRACT(
+                        YEAR
+                        FROM
+                            p.fecha_fin_calculada
+                    ) > gs.anio
+                ) THEN 365
+                ELSE 365 -- Default fallback
+            END AS dias_servidos_en_anio
+        FROM
+            presidentes_con_fin p
+            CROSS JOIN LATERAL generate_series(
+                EXTRACT(
+                    YEAR
+                    FROM
+                        p.nombramiento
+                )::INTEGER,
+                CASE
+                    WHEN p.fecha_fin_calculada IS NULL THEN 2024
+                    ELSE EXTRACT(
+                        YEAR
+                        FROM
+                            p.fecha_fin_calculada
+                    )::INTEGER
+                END
+            ) AS gs (anio)
+    ),
+    -- Aggregate by president name to handle reelections
+    presidentes_agrupados AS (
+        SELECT
+            ppa.anio,
+            ppa.comunidad_autonoma_id,
+            ppa.presidente,
+            ppa.partido,
+            MIN(ppa.nombramiento) AS primer_nombramiento,
+            MAX(ppa.fecha_fin_calculada) AS ultima_fecha_fin,
+            SUM(ppa.dias_servidos_en_anio) AS total_dias_servidos_en_anio
+        FROM
+            presidentes_por_anio ppa
+        GROUP BY
+            ppa.anio,
+            ppa.comunidad_autonoma_id,
+            ppa.presidente,
+            ppa.partido
+    ),
+    -- Count unique presidents per year-comunidad and identify main president
+    presidentes_con_conteo AS (
+        SELECT
+            pag.anio,
+            pag.comunidad_autonoma_id,
+            pag.presidente,
+            pag.partido,
+            pag.primer_nombramiento,
+            pag.ultima_fecha_fin,
+            pag.total_dias_servidos_en_anio,
+            COUNT(*) OVER (
+                PARTITION BY
+                    pag.anio,
+                    pag.comunidad_autonoma_id
+            ) AS num_presidentes_en_anio,
+            -- Check if this year has a presidential change
+            CASE
+                WHEN COUNT(*) OVER (
+                    PARTITION BY
+                        pag.anio,
+                        pag.comunidad_autonoma_id
+                ) > 1 THEN TRUE
+                ELSE FALSE
+            END AS cambio_presidente_durante_anio,
+            -- Rank presidents by ACTUAL days served (most days = rank 1)
+            ROW_NUMBER() OVER (
+                PARTITION BY
+                    pag.anio,
+                    pag.comunidad_autonoma_id
+                ORDER BY
+                    pag.total_dias_servidos_en_anio DESC,
+                    pag.primer_nombramiento
+            ) AS ranking_presidente,
+            -- Get all presidents for that year
+            STRING_AGG(pag.presidente, ' / ') OVER (
+                PARTITION BY
+                    pag.anio,
+                    pag.comunidad_autonoma_id
+                ORDER BY
+                    pag.primer_nombramiento ROWS BETWEEN UNBOUNDED PRECEDING
+                    AND UNBOUNDED FOLLOWING
+            ) AS todos_los_presidentes
+        FROM
+            presidentes_agrupados pag
+    ),
+    -- Get the main president (rank 1) for each year-comunidad
+    presidente_principal AS (
+        SELECT
+            anio,
+            comunidad_autonoma_id,
+            presidente AS presidente_principal,
+            partido AS partido_principal,
+            primer_nombramiento AS fecha_nombramiento_principal,
+            ultima_fecha_fin AS fecha_fin_principal,
+            total_dias_servidos_en_anio AS dias_servidos_en_anio,
+            num_presidentes_en_anio,
+            cambio_presidente_durante_anio,
+            todos_los_presidentes
+        FROM
+            presidentes_con_conteo
+        WHERE
+            ranking_presidente = 1
+    )
+SELECT
+    ac.anio,
+    ac.comunidad_autonoma_id,
+    pp.presidente_principal,
+    pp.partido_principal,
+    pp.fecha_nombramiento_principal AS fecha_nombramiento_presidente_principal,
+    pp.fecha_fin_principal AS fecha_fin_presidente_principal,
+    pp.dias_servidos_en_anio AS dias_servidos_presidente_principal,
+    COALESCE(pp.cambio_presidente_durante_anio, FALSE) AS cambio_presidente_durante_anio,
+    CASE
+        WHEN pp.cambio_presidente_durante_anio THEN pp.todos_los_presidentes
+        ELSE pp.presidente_principal
+    END AS presidentes_completo
+FROM
+    all_combinations ac
+    LEFT JOIN presidente_principal pp ON pp.anio = ac.anio
+    AND pp.comunidad_autonoma_id = ac.comunidad_autonoma_id
+ORDER BY
+    ac.anio,
+    ac.comunidad_autonoma_id;
+
 -- Unified view combining all comunidad autónoma annual indicators
 CREATE OR REPLACE VIEW
     analisis.v_indicadores_anuales_comunidades_unificados AS
